@@ -29,5 +29,24 @@ namespace CodeLineHealthCareCenter
                 Console.WriteLine("Invalid branch data.");
             }
         }
+
+        // Method to add a new department to a specific branch
+        public void AddDepartment(Department department, int branchId)
+        {
+            Branch targetBranch = Branches.Find(b => b.Id == branchId);
+            if (targetBranch != null && department != null)
+            {
+                department.BranchId = branchId;
+                Departments.Add(department);
+                Console.WriteLine($"Department '{department.Name}' added to Branch ID: {branchId}.");
+            }
+            else
+            {
+                Console.WriteLine("Branch not found or invalid department.");
+            }
+        }
+
+
+
     }
 }
