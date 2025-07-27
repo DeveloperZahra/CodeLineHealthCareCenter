@@ -21,5 +21,9 @@ namespace CodeLineHealthCareCenter
         // User's password (used for authentication)
         public string Password { get; set; }
 
-    }
+        // Virtual method to get the role of the user (can be overridden in derived classes)
+        public virtual string GetRole()
+        {
+
+        }
 }
