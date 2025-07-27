@@ -14,7 +14,7 @@
             {
                 Console.Clear();
                 Console.WriteLine("==================================");
-                Console.WriteLine("   Welcome to Health Care System   ");
+                Console.WriteLine("  🌟 Welcome to Hospital System 🌟   ");
                 Console.WriteLine("==================================");
                 Console.WriteLine("1. Sign Up");
                 Console.WriteLine("2. Sign In");
@@ -29,17 +29,27 @@
                         SignUp();
                         break;
                     case '2':
-                        SignIn();
+                        Console.WriteLine("SignIn Process....");
+                        //SignIn();
                         break;
                     case '0':
                         Console.WriteLine("Thank you for using the system!");
                         return;
                     default:
-                        ShowError("Invalid choice! Please try again.");
+                        //ShowError("Invalid choice! Please try again.");
                         break;
                 }
 
             }
         }
+
+        // create Sign Up class
+        static void SignUp() 
+        
+        { 
+            Console.WriteLine("Wellcome To SignUp....");
+        }
+
+       
     }
 }
