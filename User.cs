@@ -15,5 +15,8 @@ namespace CodeLineHealthCareCenter
         // User's full name
         public string FullName { get; set; }
 
+        // User's email address (used for login or contact)
+        public string Email { get; set; }
+
     }
 }
