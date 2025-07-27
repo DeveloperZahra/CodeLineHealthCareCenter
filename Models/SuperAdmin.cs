@@ -13,6 +13,21 @@ namespace CodeLineHealthCareCenter
         public override string GetRole()
         {
             return "SuperAdmin";
+
+        }
+
+        // Method to add a new branch to the system
+        public void AddBranch(Branch branch)
+        {
+            if (branch != null)
+            {
+                Branches.Add(branch);
+                Console.WriteLine($"Branch '{branch.Name}' added successfully.");
+            }
+            else
+            {
+                Console.WriteLine("Invalid branch data.");
+            }
         }
     }
 }
