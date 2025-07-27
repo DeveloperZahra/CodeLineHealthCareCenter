@@ -9,5 +9,8 @@ namespace CodeLineHealthCareCenter
     // Base class representing a general user in the system
     public class User
     {
+        // Unique identifier for the user
+        public int Id { get; set; }
+
     }
 }
