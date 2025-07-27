@@ -8,6 +8,8 @@ namespace CodeLineHealthCareCenter
 {
     class Branch
     {
-        public int Id { get; set; } // ID attribute for every branch 
+        public int Id { get; set; } // ID public attribute for every branch 
+        public string Name { get; set; } // Name public attribute for every branch
+
     }
 }
