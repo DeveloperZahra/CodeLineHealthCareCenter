@@ -12,5 +12,8 @@ namespace CodeLineHealthCareCenter
         // Unique identifier for the user
         public int Id { get; set; }
 
+        // User's full name
+        public string FullName { get; set; }
+
     }
 }
