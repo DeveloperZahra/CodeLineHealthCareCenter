@@ -18,5 +18,8 @@ namespace CodeLineHealthCareCenter
         // User's email address (used for login or contact)
         public string Email { get; set; }
 
+        // User's password (used for authentication)
+        public string Password { get; set; }
+
     }
 }
