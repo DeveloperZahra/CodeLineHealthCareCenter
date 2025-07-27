@@ -22,7 +22,23 @@
                 Console.WriteLine("----------------------------------");
                 Console.Write("Enter your choice: ");
 
-               
+                // switch condition to control user movemenet 
+                switch (Console.ReadKey(true).KeyChar)
+                {
+                    case '1':
+                        SignUp();
+                        break;
+                    case '2':
+                        SignIn();
+                        break;
+                    case '0':
+                        Console.WriteLine("Thank you for using the system!");
+                        return;
+                    default:
+                        ShowError("Invalid choice! Please try again.");
+                        break;
+                }
+
             }
         }
     }
