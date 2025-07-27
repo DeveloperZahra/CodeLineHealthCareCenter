@@ -46,6 +46,23 @@ namespace CodeLineHealthCareCenter
             }
         }
 
+        // Method to assign a new admin to the system
+        public void AddAdmin(Admin admin)
+        {
+            if (admin != null)
+            {
+                Admins.Add(admin);
+                Console.WriteLine($"Admin '{admin.FullName}' added successfully.");
+            }
+            else
+            {
+                Console.WriteLine("Invalid admin data.");
+            }
+        }
+
+
+
+
 
 
     }
