@@ -24,6 +24,8 @@ namespace CodeLineHealthCareCenter
         // Virtual method to get the role of the user (can be overridden in derived classes)
         public virtual string GetRole()
         {
-
+            // Default role for a basic user
+            return "User";
         }
+    }
 }
