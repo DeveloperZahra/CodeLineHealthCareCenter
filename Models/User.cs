@@ -25,5 +25,6 @@ namespace CodeLineHealthCareCenter
             // Default role for a basic user
             return "User";
         }
+
     }
 }
