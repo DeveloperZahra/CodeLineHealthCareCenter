@@ -41,6 +41,8 @@ namespace CodeLineHealthCareCenter
             this.gender = gender; //Patient's gender
         }
 
+        // 4. Class Methods
+
 
 
 
