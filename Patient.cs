@@ -35,7 +35,7 @@ namespace CodeLineHealthCareCenter
         {
             this.Id = id; // Unique identifier for the patient
             this.FullName = fullName; // Patient's full name
-            this.Email = email;
+            this.Email = email; // Patient's email address
             this.Password = password;
             this.dateOfBirth = dateOfBirth;
             this.gender = gender;
