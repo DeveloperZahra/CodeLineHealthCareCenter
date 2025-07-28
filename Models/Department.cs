@@ -57,5 +57,22 @@ namespace CodeLineHealthCareCenter
                 Console.WriteLine($"ID: {dept.DepartmentId}, Name: {dept.DepartmentName}, Branch ID: {dept.BranchId}");
             }
         }
+
+        //4.3 Updates an existing department's details.
+        public void UpdateDepartment(int branchId, int departmentId)
+        {
+            Department dept = departments.FirstOrDefault(d => d.DepartmentId == departmentId && d.BranchId == branchId);
+
+            if (dept != null)
+            {
+                Console.Write("Enter new department name: ");
+                dept.DepartmentName = Console.ReadLine();
+                Console.WriteLine("Department updated successfully!");
+            }
+            else
+            {
+                Console.WriteLine("Department not found.");
+            }
+        }
     }
 }
