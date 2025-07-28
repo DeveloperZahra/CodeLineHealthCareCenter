@@ -100,6 +100,10 @@ namespace CodeLineHealthCareCenter
                     Console.WriteLine("Deleting admin...");
                     break;
 
+                case '0':
+                    Console.WriteLine("Exiting SuperAdmin Menu.");
+                    break;
+
             }
 
 
