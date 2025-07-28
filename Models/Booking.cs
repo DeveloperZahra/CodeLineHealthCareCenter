@@ -49,6 +49,8 @@ namespace CodeLineHealthCareCenter
         // 3. Class Constructor
 
         // Default constructor
-        public Booking() { } 
+        public Booking() { }
+
+        // Constructor with parameters
     }
 }
