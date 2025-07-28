@@ -27,6 +27,12 @@ namespace CodeLineHealthCareCenter.Models
             set { patientId = value; }
         }
 
+        public string Diagnosis // Medical diagnosis for the patient
+        {
+            get { return diagnosis; }
+            set { diagnosis = value; }
+        }
+
 
 
     }
