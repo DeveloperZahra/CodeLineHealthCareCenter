@@ -18,7 +18,10 @@ namespace CodeLineHealthCareCenter
         // User's email address (used for login or contact)
         public string Email { get; set; }
 
-       
+
+        // Property to store the user's password (should be handled securely in real applications)
+        public string Password { get; set; }
+
         // Virtual method to get the role of the user (can be overridden in derived classes)
         public virtual string GetRole()
         {
