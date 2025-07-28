@@ -62,5 +62,7 @@ namespace CodeLineHealthCareCenter
             this.doctors = new List<Doctor>(); // initialize empty list
         }
 
+        // 4. Class Methods
+
     }
 }
