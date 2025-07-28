@@ -44,7 +44,7 @@ namespace CodeLineHealthCareCenter
         // 4. Class Methods
         public void ViewProfile() // Method to view the patient's profile
         {
-            Console.WriteLine($"Patient ID: {Id}");
+            Console.WriteLine($"Patient ID: {Id}"); // Unique identifier for the patient
             Console.WriteLine($"Name: {FullName}");
             Console.WriteLine($"Email: {Email}");
             Console.WriteLine($"Gender: {Gender}");
