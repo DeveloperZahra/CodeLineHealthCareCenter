@@ -10,7 +10,9 @@ namespace CodeLineHealthCareCenter
     {
         // 1. Class Fields
         public DateTime dateOfBirth; // Patient's date of birth
-        public string gender; // Patient's gender (Male, Female)
+        public bool gender; // Patient's gender (Male, Female)
+
+        // 2. Class Properties
 
     }
 }
