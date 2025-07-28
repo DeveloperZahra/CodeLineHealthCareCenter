@@ -16,8 +16,11 @@ namespace CodeLineHealthCareCenter
         public int departmentId {  get; set; }
         public bool isActive { get; set; }
 
+        //2. =======================Storage the relationship ====================
+        private List<BranchDepartment> branchDepartments = new List<BranchDepartment>();
+
+
         //2. class method ...
 
-        //3. class constructor ...
     }
 }
