@@ -18,5 +18,66 @@ namespace CodeLineHealthCareCenter
         public List<Doctor> doctors; // List of doctors assigned to the clinic
 
         // 2. Class Properties
+        public int Id // Unique identifier for the clinic
+        {
+            get { return id; }
+            set { id = value; }
+        }
+        public string Name // Name of the clinic
+        {
+            get { return name; }
+            set { name = value; }
+        }
+        public int DepartmentId // ID of the department the clinic belongs to
+        {
+            get { return departmentId; }
+            set { departmentId = value; }
+        }
+        public int BranchId // ID of the branch the clinic is located in
+        {
+            get { return branchId; }
+            set { branchId = value; }
+        }
+        public List<Doctor> Doctors // List of doctors assigned to the clinic
+        {
+            get { return doctors; }
+            set { doctors = value; }
+        }
+
+        // 3. Class Constructors
+
+        // Default constructor
+        public Clinic()
+        {
+            doctors = new List<Doctor>(); // initialize empty list
+        }
+
+        // Constructor with parameters
+        public Clinic(int id, string name, int departmentId, int branchId) // Unique identifier for the clinic, Name of the clinic, ID of the department the clinic belongs to, ID of the branch the clinic is located in
+        {
+            this.id = id; // Unique identifier for the clinic
+            this.name = name; // Name of the clinic
+            this.departmentId = departmentId; // ID of the department the clinic belongs to
+            this.branchId = branchId; // ID of the branch the clinic is located in
+            this.doctors = new List<Doctor>(); // initialize empty list
+        }
+
+        // 4. Class Methods
+        // Add a doctor to the clinic
+        public void AddDoctor(Doctor doctor)
+        {
+            doctors.Add(doctor); // Add the doctor to the clinic's list of doctors
+        }
+
+        // Display clinic information
+        public void PrintClinicInfo()
+        {
+            Console.WriteLine($"Clinic ID: {id}"); // Unique identifier for the clinic
+            Console.WriteLine($"Name: {name}"); // Name of the clinic
+            Console.WriteLine($"Department ID: {departmentId}"); // ID of the department the clinic belongs to
+            Console.WriteLine($"Branch ID: {branchId}"); // ID of the branch the clinic is located in
+            Console.WriteLine($"Total Doctors: {doctors.Count}"); // Total number of doctors in the clinic
+        }
+
     }
 }
