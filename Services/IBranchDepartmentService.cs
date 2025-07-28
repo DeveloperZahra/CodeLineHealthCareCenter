@@ -8,7 +8,8 @@ namespace HospitalSystemTeamTask.Services
     {
         void AddDepartmentToBranch(int branchID); // Adds a new department to a specific branch.
         void GetDepartmentsByBranch(int branchID); // Displays all departments that belong to a specific branch.
-        
 
+        void GetBranchsByDepartment(int departmentId); // Displays all branches that contain a specific department.
+        
     }
 }
