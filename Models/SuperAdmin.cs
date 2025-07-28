@@ -79,6 +79,12 @@ namespace CodeLineHealthCareCenter
                     Console.WriteLine("Deleting doctor...");
                     break;
 
+                case '6':
+                    //to view doctors ...
+                    //ViewDoctors();
+                    Branch.AddBranch();
+                    break;
+
             }
 
 
