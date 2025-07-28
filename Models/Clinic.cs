@@ -23,6 +23,11 @@ namespace CodeLineHealthCareCenter
             get { return id; }
             set { id = value; }
         }
-       
+        public string Name // Name of the clinic
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
     }
 }
