@@ -73,7 +73,7 @@ namespace CodeLineHealthCareCenter.Models
             Console.WriteLine($"Record ID: {id}");
             Console.WriteLine($"Patient ID: {patientId}");
             Console.WriteLine($"Diagnosis: {diagnosis}");
-
+            Console.WriteLine($"Treatment: {treatment}");
         }
 
 
