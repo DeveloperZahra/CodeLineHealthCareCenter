@@ -52,5 +52,15 @@ namespace CodeLineHealthCareCenter
             doctors = new List<Doctor>(); // initialize empty list
         }
 
+        // Constructor with parameters
+        public Clinic(int id, string name, int departmentId, int branchId)
+        {
+            this.id = id;
+            this.name = name;
+            this.departmentId = departmentId;
+            this.branchId = branchId;
+            this.doctors = new List<Doctor>();
+        }
+
     }
 }
