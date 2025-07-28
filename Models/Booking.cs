@@ -58,7 +58,7 @@ namespace CodeLineHealthCareCenter
             this.patientId = patientId; // Unique identifier for the patient
             this.clinicId = clinicId; // Unique identifier for the clinic
             this.appointmentDate = appointmentDate; // Date and time of the appointment
-            this.appointmentType = appointmentType;
+            this.appointmentType = appointmentType; // Type of appointment (e.g., consultation, follow-up)
         }
     }
 }
