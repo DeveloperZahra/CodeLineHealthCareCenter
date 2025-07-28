@@ -47,5 +47,7 @@ namespace CodeLineHealthCareCenter.Models
 
         // 3. Class Constructors
 
+        // Constructor with parameters
+
     }
 }
