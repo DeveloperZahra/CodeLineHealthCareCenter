@@ -95,6 +95,11 @@ namespace CodeLineHealthCareCenter
                     Console.WriteLine("Updating admin...");
                     break;
 
+                case '9':
+                    //to delete admin ...
+                    Console.WriteLine("Deleting admin...");
+                    break;
+
             }
 
 
