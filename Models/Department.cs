@@ -30,5 +30,16 @@ namespace CodeLineHealthCareCenter
         }
         //4. ========================================== Class Methods ================================
         /// Implement IDepartmentServices Methods 
+        // 4.1 Creates a new department for the specified branch.
+        public void CreateDepartment(int branchId)
+        {
+            Console.Write("Enter department name: ");
+            string name = Console.ReadLine();
+
+            Department newDept = new Department(name, branchId);
+            departments.Add(newDept);
+
+            Console.WriteLine($"Department '{newDept.DepartmentName}' created successfully in Branch {branchId}!");
+        }
     }
 }
