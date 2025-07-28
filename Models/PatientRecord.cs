@@ -74,6 +74,7 @@ namespace CodeLineHealthCareCenter.Models
             Console.WriteLine($"Patient ID: {patientId}");
             Console.WriteLine($"Diagnosis: {diagnosis}");
             Console.WriteLine($"Treatment: {treatment}");
+            Console.WriteLine($"Record Date: {recordDate.ToShortDateString()}");
         }
 
 
