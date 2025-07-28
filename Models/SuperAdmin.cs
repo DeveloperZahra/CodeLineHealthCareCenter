@@ -48,11 +48,20 @@ namespace CodeLineHealthCareCenter
             //to get the user choice ...
             char choice = Validation.CharValidation("option");
             switch (choice)
+            {
+
+                case '1':
+                    // to add new branch 
+                    Console.WriteLine("Add Branch");
+                    break;
 
 
 
 
 
+
+
+            }
 
 
 
