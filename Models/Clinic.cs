@@ -69,5 +69,15 @@ namespace CodeLineHealthCareCenter
             doctors.Add(doctor); // Add the doctor to the clinic's list of doctors
         }
 
+        // Display clinic information
+        public void PrintClinicInfo()
+        {
+            Console.WriteLine($"Clinic ID: {id}");
+            Console.WriteLine($"Name: {name}");
+            Console.WriteLine($"Department ID: {departmentId}");
+            Console.WriteLine($"Branch ID: {branchId}");
+            Console.WriteLine($"Total Doctors: {doctors.Count}");
+        }
+
     }
 }
