@@ -74,5 +74,20 @@ namespace CodeLineHealthCareCenter
                 Console.WriteLine("Department not found.");
             }
         }
+
+        //4.4 Changes the active status of a department.
+        public void SetDepartmentActiveStatus(int departmentId, bool isActive)
+        {
+            Department dept = departments.FirstOrDefault(d => d.DepartmentId == departmentId);
+            if (dept != null)
+            {
+                string status = isActive ? "Active" : "Inactive";
+                Console.WriteLine($" Department '{dept.DepartmentName}' status set to {status}.");
+            }
+            else
+            {
+                Console.WriteLine("Department not found.");
+            }
+        }
     }
 }
