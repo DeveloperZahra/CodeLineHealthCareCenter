@@ -74,7 +74,7 @@ namespace CodeLineHealthCareCenter
         public void DisplayBookingDetails() //Method to display booking details
         {
             Console.WriteLine($"Booking ID: {id}"); // Unique identifier for the booking
-            Console.WriteLine($"Patient ID: {patientId}");
+            Console.WriteLine($"Patient ID: {patientId}"); // Unique identifier for the patient
             Console.WriteLine($"Clinic ID: {clinicId}");
             Console.WriteLine($"Appointment Date: {appointmentDate}");
             Console.WriteLine($"Appointment Type: {appointmentType}");
