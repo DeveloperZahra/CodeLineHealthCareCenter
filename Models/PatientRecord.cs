@@ -66,5 +66,7 @@ namespace CodeLineHealthCareCenter.Models
             treatment = newTreatment; 
         }
 
+        // Display record details
+
     }
 }
