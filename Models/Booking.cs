@@ -75,7 +75,7 @@ namespace CodeLineHealthCareCenter
         {
             Console.WriteLine($"Booking ID: {id}"); // Unique identifier for the booking
             Console.WriteLine($"Patient ID: {patientId}"); // Unique identifier for the patient
-            Console.WriteLine($"Clinic ID: {clinicId}");
+            Console.WriteLine($"Clinic ID: {clinicId}"); // Unique identifier for the clinic
             Console.WriteLine($"Appointment Date: {appointmentDate}");
             Console.WriteLine($"Appointment Type: {appointmentType}");
         }
