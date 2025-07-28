@@ -14,7 +14,7 @@ namespace HospitalSystemTeamTask.Services
         void UpdateDepartment(int branchId, int departmentId); //Updates a department's details using branchId and departmentId.
         void SetDepartmentActiveStatus(int departmentId, bool isActive); //Sets the active status(open/closed) for a department.
         void GetDepartmentByName(string department); //Finds and displays a department by its name.
-        void GetDepartmentByid(int did);
+        void GetDepartmentByid(int did); //Finds and displays a department by its ID.
         string GetDepartmentName(int depId);
 
 
