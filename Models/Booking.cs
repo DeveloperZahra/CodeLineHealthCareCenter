@@ -45,5 +45,7 @@ namespace CodeLineHealthCareCenter
             get { return appointmentType; }
             set { appointmentType = value; }
         }
+
+        // 3. Class Constructor
     }
 }
