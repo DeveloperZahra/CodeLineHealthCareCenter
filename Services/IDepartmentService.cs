@@ -3,6 +3,7 @@
 using CodeLineHealthCareCenter;
 using HospitalSystemTeamTask.Services;
 using System;
+using System.Xml.Linq;
 
 namespace HospitalSystemTeamTask.Services
 {
@@ -12,7 +13,10 @@ namespace HospitalSystemTeamTask.Services
         void GetAllDepartments(); // Displays all departments
         void UpdateDepartment(int branchId, int departmentId); //Updates a department's details using branchId and departmentId.
         void SetDepartmentActiveStatus(int departmentId, bool isActive); //Sets the active status(open/closed) for a department.
-      
+        void GetDepartmentByName(string department); //Finds and displays a department by its name.
+        void GetDepartmentByid(int did);
+        string GetDepartmentName(int depId);
+
 
     }
 }
