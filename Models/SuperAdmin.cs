@@ -12,19 +12,8 @@ namespace CodeLineHealthCareCenter
         // List to store all branches in the system
         private List<Branch> Branches = new List<Branch>();
 
-        // Method to add a new branch to the system
-        public void AddBranch(Branch branch)
-        {
-            if (branch != null)
-            {
-                Branches.Add(branch);
-                Console.WriteLine($"Branch '{branch.Name}' added successfully.");
-            }
-            else
-            {
-                Console.WriteLine("Invalid branch data.");
-            }
-        }
+        // List to store all departments
+        private List<Department> Departments = new List<Department>();
 
         // Method to add a new department to a specific branch
         public void AddDepartment(Department department, int branchId)
