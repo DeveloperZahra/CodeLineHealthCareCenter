@@ -85,6 +85,13 @@ namespace CodeLineHealthCareCenter
                     Branch.AddBranch();
                     break;
 
+                case '7':
+                    //to view admins ...
+                    Console.WriteLine("Viewing admins...");
+                    break;
+
+
+
             }
 
 
