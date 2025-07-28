@@ -15,7 +15,7 @@ namespace CodeLineHealthCareCenter
         private int patientId; // Unique identifier for the patient
         private int clinicId; // Unique identifier for the clinic
         private DateTime appointmentDate; // Date and time of the appointment
-        private string appointmentType;
+        private string appointmentType; // Type of appointment (e.g., consultation, follow-up)
 
 
     }
