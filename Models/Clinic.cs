@@ -76,7 +76,7 @@ namespace CodeLineHealthCareCenter
             Console.WriteLine($"Name: {name}"); // Name of the clinic
             Console.WriteLine($"Department ID: {departmentId}"); // ID of the department the clinic belongs to
             Console.WriteLine($"Branch ID: {branchId}"); // ID of the branch the clinic is located in
-            Console.WriteLine($"Total Doctors: {doctors.Count}");
+            Console.WriteLine($"Total Doctors: {doctors.Count}"); // Total number of doctors in the clinic
         }
 
     }
