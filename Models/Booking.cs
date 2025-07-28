@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HospitalSystemTeamTask.Services;
+using System.Security.Claims;
 
 namespace CodeLineHealthCareCenter
 {
@@ -17,6 +18,6 @@ namespace CodeLineHealthCareCenter
         public DateTime appointmentDate; // Date and time of the appointment
         public string appointmentType; // Type of appointment (e.g., consultation, follow-up)
 
-
+        //2. Class Properties
     }
 }
