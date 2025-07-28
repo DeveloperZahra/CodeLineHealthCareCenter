@@ -9,11 +9,12 @@ namespace CodeLineHealthCareCenter
 {
     class Department : IDepartmentService
     {
-        //1. ======================================= Class Fields and attributes=========================
-        public int DepartmentId;
-        public string DepartmentName;
-        public int BranchId;
+        //1. ======================================= Class Fields and attributes with properties =========================
+        public int DepartmentId { get; set;}
+        public string DepartmentName {  get; set;}
+        public int BranchId {  get; set;}
         public static int DepartmentCount = 0;
+
 
         //2. Class Lists 
         private List<Department> departments = new List<Department>();
