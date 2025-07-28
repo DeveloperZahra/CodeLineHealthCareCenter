@@ -27,6 +27,7 @@ namespace CodeLineHealthCareCenter
             this.isActive = isActive;
         }
         //4. ======================= Class method ============================================
-
+        /// Implement all methods in IBranchDepartmentService interface 
+        /// 
     }
 }
