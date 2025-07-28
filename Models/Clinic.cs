@@ -33,6 +33,11 @@ namespace CodeLineHealthCareCenter
             get { return departmentId; }
             set { departmentId = value; }
         }
+        public int BranchId // ID of the branch the clinic is located in
+        {
+            get { return branchId; }
+            set { branchId = value; }
+        }
 
     }
 }
