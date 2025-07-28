@@ -93,6 +93,22 @@ namespace CodeLineHealthCareCenter
         }
 
         //3.4 Finds and displays details of a branch by name OR ID.
+        public void GetBranchDetails(string branchName, int branchId)
+        {
+            // check if branch object with the input name and branch id id found 
+            Branch branch = branches.FirstOrDefault(b =>b.BranchId == branchId || b.BranchName.Equals(branchName, StringComparison.OrdinalIgnoreCase));
+
+            if (branch != null)
+            {
+                Console.WriteLine($"Branch Details: ID={branch.BranchId}, Name={branch.BranchName}, Address={branch.BranchAddress}, Status={(branch.BranchStatus ? "Open" : "Closed")}");
+            }
+            else
+            {
+                Console.WriteLine("Branch not found.");
+            }
+        }
+
+
 
 
 
