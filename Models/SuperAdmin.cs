@@ -81,8 +81,8 @@ namespace CodeLineHealthCareCenter
 
                 case '6':
                     //to view doctors ...
-                    //ViewDoctors();
-                    Branch.AddBranch();
+                    Console.WriteLine("Viewing doctors....");
+                    
                     break;
 
                 case '7':
@@ -90,7 +90,10 @@ namespace CodeLineHealthCareCenter
                     Console.WriteLine("Viewing admins...");
                     break;
 
-
+                case '8':
+                    //to update admin ...
+                    Console.WriteLine("Updating admin...");
+                    break;
 
             }
 
