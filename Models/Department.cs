@@ -52,7 +52,7 @@ namespace CodeLineHealthCareCenter
             Console.WriteLine("List of Departments:");
             foreach (var dept in departments)
             {
-                Console.WriteLine($"ID: {dept.DepartmentId}, Name: {dept.DepartmentName}, Branch ID: {dept.BranchId}");
+                Console.WriteLine($"ID: {dept.DepartmentId}, Name: {dept.DepartmentName}");
             }
         }
 
