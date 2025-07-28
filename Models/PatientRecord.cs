@@ -71,6 +71,7 @@ namespace CodeLineHealthCareCenter.Models
         {
             Console.WriteLine("----- Patient Medical Record -----");
             Console.WriteLine($"Record ID: {id}");
+            Console.WriteLine($"Patient ID: {patientId}");
         }
         
             
