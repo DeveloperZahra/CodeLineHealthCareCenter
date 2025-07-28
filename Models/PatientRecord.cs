@@ -51,6 +51,7 @@ namespace CodeLineHealthCareCenter.Models
         public PatientRecord(int id, int patientId, string diagnosis, string treatment, DateTime recordDate) 
         {
             this.id = id; 
+            this.patientId = patientId;
            
         }
 
