@@ -73,7 +73,7 @@ namespace CodeLineHealthCareCenter
         public void PrintClinicInfo()
         {
             Console.WriteLine($"Clinic ID: {id}"); // Unique identifier for the clinic
-            Console.WriteLine($"Name: {name}");
+            Console.WriteLine($"Name: {name}"); // Name of the clinic
             Console.WriteLine($"Department ID: {departmentId}");
             Console.WriteLine($"Branch ID: {branchId}");
             Console.WriteLine($"Total Doctors: {doctors.Count}");
