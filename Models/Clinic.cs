@@ -28,6 +28,11 @@ namespace CodeLineHealthCareCenter
             get { return name; }
             set { name = value; }
         }
+        public int DepartmentId // ID of the department the clinic belongs to
+        {
+            get { return departmentId; }
+            set { departmentId = value; }
+        }
 
     }
 }
