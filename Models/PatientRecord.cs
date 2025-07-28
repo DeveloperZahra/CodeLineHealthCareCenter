@@ -8,5 +8,6 @@ namespace CodeLineHealthCareCenter.Models
 {
     class PatientRecord
     {
+        // 1. Class Fields
     }
 }
