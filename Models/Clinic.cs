@@ -38,6 +38,11 @@ namespace CodeLineHealthCareCenter
             get { return branchId; }
             set { branchId = value; }
         }
+        public List<Doctor> Doctors // List of doctors assigned to the clinic
+        {
+            get { return doctors; }
+            set { doctors = value; }
+        }
 
     }
 }
