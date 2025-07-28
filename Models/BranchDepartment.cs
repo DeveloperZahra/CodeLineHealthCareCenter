@@ -8,19 +8,16 @@ using System.Threading.Tasks;
 
 namespace CodeLineHealthCareCenter
 {
+    // Class BranchDepartment which represents the relationship between a branch and a department
     class BranchDepartment : IBranchDepartmentService
-        //1. class fields ...
-        public static List<Department> Departments = new List<Department>();
-        public static List<Doctor> Doctors = new List<Doctor>();
-        public static List<Admin> Admins = new List<Admin>();
-        public int BranchId;
+    {
+        //1. ========================== class fields and their properities ==========================
+        public int branchId { get; set; }
+        public int departmentId {  get; set; }
+        public bool isActive { get; set; }
 
-        //2. class properity ...
+        //2. class method ...
 
-        
-        //3. class method ...
-
-        
-        //4. class constructor ...
+        //3. class constructor ...
     }
 }
