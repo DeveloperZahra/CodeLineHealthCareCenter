@@ -28,20 +28,22 @@ namespace CodeLineHealthCareCenter
             return "SuperAdmin";
         }
 
-
-        // Method to add a new branch to the system
-        public void AddBranch(Branch branch)
+        // class method ..
+        public static void SuperAdminMenu()
         {
-            if (branch != null)
-            {
-                Branches.Add(branch);
-                Console.WriteLine($"Branch '{branch.Name}' added successfully.");
-            }
-            else
-            {
-                Console.WriteLine("Invalid branch data.");
-            }
-        }
+
+            Console.WriteLine("Welcome to SuperAdminMenu");
+            Console.WriteLine("1. Add Doctor");
+            Console.WriteLine("2. Add Admin");
+            Console.WriteLine("3. Assign Admin To Branch");
+            Console.WriteLine("4. Update Doctor");
+            Console.WriteLine("5. Delete Doctor");
+            Console.WriteLine("6. View Doctors");
+            Console.WriteLine("7. View Admins");
+            Console.WriteLine("8. Update Admin");
+            Console.WriteLine("9. Delete Admin");
+            Console.WriteLine("4. Exit");
+            Console.Write("Please select an option: ");
 
         // Method to add a new department to a specific branch
         public void AddDepartment(Department department, int branchId)
