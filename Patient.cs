@@ -48,7 +48,7 @@ namespace CodeLineHealthCareCenter
             Console.WriteLine($"Name: {FullName}"); // Patient's full name
             Console.WriteLine($"Email: {Email}"); // Patient's email address
             Console.WriteLine($"Gender: {Gender}"); //Patient's gender
-            Console.WriteLine($"Date of Birth: {DateOfBirth.ToShortDateString()}");
+            Console.WriteLine($"Date of Birth: {DateOfBirth.ToShortDateString()}");// Patient's date of birth
         }
 
 
