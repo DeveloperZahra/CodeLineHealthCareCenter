@@ -47,7 +47,7 @@ namespace CodeLineHealthCareCenter
             Console.WriteLine($"Patient ID: {Id}"); // Unique identifier for the patient
             Console.WriteLine($"Name: {FullName}"); // Patient's full name
             Console.WriteLine($"Email: {Email}"); // Patient's email address
-            Console.WriteLine($"Gender: {Gender}");
+            Console.WriteLine($"Gender: {Gender}"); //Patient's gender
             Console.WriteLine($"Date of Birth: {DateOfBirth.ToShortDateString()}");
         }
 
