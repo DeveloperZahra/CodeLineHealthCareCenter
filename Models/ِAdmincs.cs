@@ -9,7 +9,7 @@ namespace CodeLineHealthCareCenter.Models
 {
     // The Admin class inherits from the base User class.
     // Represents a user with administrative privileges over a specific department and branch.
-    public class _ِAdmincs
+    public class Admincs
     {
         // The branch this admin is assigned to
         public int BranchId { get; set; }
