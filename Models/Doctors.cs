@@ -33,7 +33,9 @@ namespace CodeLineHealthCareCenter.Models
             return "Doctor";
         }
 
+        // Method to simulate viewing appointments for this doctor
+        public void ViewAppointments()
+        {
 
-
-    }
+        }
 }
