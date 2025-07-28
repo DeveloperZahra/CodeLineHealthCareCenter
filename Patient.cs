@@ -25,7 +25,10 @@ namespace CodeLineHealthCareCenter
             set { gender = value; }
         }
 
-        // 3. Class Constructor(s)
+        // 3. Class Constructor
+
+        // Default constructor
+        public Patient() { }
 
     }
 }
