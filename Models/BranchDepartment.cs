@@ -118,6 +118,28 @@ namespace CodeLineHealthCareCenter
                 Console.WriteLine("Relation not found.");
             }
         }
+        // 4.6 Displays all departments in a branch by branch name.
+        public void GetDepartmentsByBranchName(string branchName)
+        {
+            // Find all relations where the branch name matches (case-insensitive)
+            var departments = branchDepartments
+                .Where(bd => bd.branchName.Equals(branchName, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            // If no departments are found, show a warning message
+            if (departments.Count == 0)
+            {
+                Console.WriteLine($" No departments found for branch '{branchName}'.");
+                return;
+            }
+
+            //  Display all departments for the branch
+            Console.WriteLine($"Departments in Branch '{branchName}':");
+            foreach (var dep in departments)
+            {
+                Console.WriteLine($"Department ID: {dep.departmentId}, Name: {dep.departmentName}, Status: {(dep.isActive ? "Active" : "Inactive")}");
+            }
+        }
 
 
     }
