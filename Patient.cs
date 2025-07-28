@@ -45,7 +45,7 @@ namespace CodeLineHealthCareCenter
         public void ViewProfile() // Method to view the patient's profile
         {
             Console.WriteLine($"Patient ID: {Id}"); // Unique identifier for the patient
-            Console.WriteLine($"Name: {FullName}");
+            Console.WriteLine($"Name: {FullName}"); // Patient's full name
             Console.WriteLine($"Email: {Email}");
             Console.WriteLine($"Gender: {Gender}");
             Console.WriteLine($"Date of Birth: {DateOfBirth.ToShortDateString()}");
