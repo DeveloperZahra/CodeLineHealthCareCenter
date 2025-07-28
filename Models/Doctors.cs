@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,6 +12,9 @@ namespace CodeLineHealthCareCenter.Models
     {
         // The doctor's medical specialty (e.g., Cardiology, Pediatrics)
         public string Specialty { get; set; }
+
+        // The ID of the department the doctor belongs to
+    public int DepartmentId { get; set; }
 
 
 
