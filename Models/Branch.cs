@@ -122,6 +122,17 @@ namespace CodeLineHealthCareCenter
             }
         }
 
+        //3.6 Gets and returns the name of a branch using its ID.
+        public string GetBranchName(int branchId)
+        {
+            Branch branch = branches.FirstOrDefault(b => b.BranchId == branchId);
+            if (branch != null)
+                return branch.BranchName;
+            else
+                return "❌ Branch not found.";
+        }
+
+
 
 
 
