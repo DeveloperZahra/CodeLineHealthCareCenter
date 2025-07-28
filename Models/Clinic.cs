@@ -8,5 +8,6 @@ namespace CodeLineHealthCareCenter
 {
     class Clinic
     {
+        // 1. Class Fields
     }
 }
