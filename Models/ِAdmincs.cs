@@ -81,5 +81,14 @@ namespace CodeLineHealthCareCenter.Models
             }
         }
 
+        // Optionally: Add appointment to the list (for testing or internal use)
+        public void AddAppointment(Appointment appointment)
+        {
+            if (appointment.BranchId == this.BranchId && appointment.DepartmentId == this.DepartmentId)
+            {
+                appointments.Add(appointment);
+            }
+        }
+
     }
 }
