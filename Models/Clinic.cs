@@ -66,7 +66,7 @@ namespace CodeLineHealthCareCenter
         // Add a doctor to the clinic
         public void AddDoctor(Doctor doctor)
         {
-            doctors.Add(doctor);
+            doctors.Add(doctor); // Add the doctor to the clinic's list of doctors
         }
 
     }
