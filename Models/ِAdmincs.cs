@@ -10,5 +10,8 @@ namespace CodeLineHealthCareCenter.Models
     // Represents a user with administrative privileges over a specific department and branch.
     public class _ِAdmincs
     {
+        // The branch this admin is assigned to
+        public int BranchId { get; set; }
+
     }
 }
