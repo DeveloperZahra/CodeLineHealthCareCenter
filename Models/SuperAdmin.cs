@@ -73,6 +73,12 @@ namespace CodeLineHealthCareCenter
                     Console.WriteLine("Updating doctor...");
                     break;
 
+
+                case '5':
+                    //to delete doctor ...
+                    Console.WriteLine("Deleting doctor...");
+                    break;
+
             }
 
 
