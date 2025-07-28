@@ -68,6 +68,11 @@ namespace CodeLineHealthCareCenter
                     break;
 
 
+                case '4':
+                    //to update doctor ...
+                    Console.WriteLine("Updating doctor...");
+                    break;
+
             }
 
 
