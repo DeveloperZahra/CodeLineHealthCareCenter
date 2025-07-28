@@ -13,5 +13,8 @@ namespace CodeLineHealthCareCenter.Models
         // The branch this admin is assigned to
         public int BranchId { get; set; }
 
+
+        // The department this admin manages
+        public int DepartmentId { get; set; }
     }
 }
