@@ -68,7 +68,7 @@ namespace CodeLineHealthCareCenter
         }
         public void Cancel() //Method to cancel the appointment
         {
-            appointmentType = "Canceled";
+            appointmentType = "Canceled"; // Update the appointment type to indicate cancellation
         }
     }
 }
