@@ -58,7 +58,7 @@ namespace CodeLineHealthCareCenter
             this.id = id; // Unique identifier for the clinic
             this.name = name; // Name of the clinic
             this.departmentId = departmentId; // ID of the department the clinic belongs to
-            this.branchId = branchId;
+            this.branchId = branchId; // ID of the branch the clinic is located in
             this.doctors = new List<Doctor>();
         }
 
