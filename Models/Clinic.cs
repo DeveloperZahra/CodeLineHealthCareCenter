@@ -63,6 +63,11 @@ namespace CodeLineHealthCareCenter
         }
 
         // 4. Class Methods
+        // Add a doctor to the clinic
+        public void AddDoctor(Doctor doctor)
+        {
+            doctors.Add(doctor);
+        }
 
     }
 }
