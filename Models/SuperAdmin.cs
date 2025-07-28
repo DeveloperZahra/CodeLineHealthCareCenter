@@ -45,64 +45,60 @@ namespace CodeLineHealthCareCenter
             Console.WriteLine("4. Exit");
             Console.Write("Please select an option: ");
 
-        // Method to add a new department to a specific branch
-        public void AddDepartment(Department department, int branchId)
-        {
-            Branch targetBranch = Branches.Find(b => b.Id == branchId);
-            if (targetBranch != null && department != null)
-            {
-                department.BranchId = branchId;
-                Departments.Add(department);
-                Console.WriteLine($"Department '{department.Name}' added to Branch ID: {branchId}.");
-            }
-            else
-            {
-                Console.WriteLine("Branch not found or invalid department.");
-            }
+            //to get the user choice ...
+            char choice = Validation.CharValidation("option");
+            switch (choice)
+
+
+
+
+
+
+
+
+
         }
-
-        // Method to assign a new admin to the system
-        public void AddAdmin(Admin admin)
-        {
-            if (admin != null)
-            {
-                Admins.Add(admin);
-                Console.WriteLine($"Admin '{admin.FullName}' added successfully.");
-            }
-            else
-            {
-                Console.WriteLine("Invalid admin data.");
-            }
-        }
-
-        // Method to display all stored system data
-        public void ViewAllSystemData()
-        {
-            Console.WriteLine("\n--- All System Data ---");
-
-            Console.WriteLine("\nBranches:");
-            foreach (var branch in Branches)
-            {
-                Console.WriteLine($"- ID: {branch.Id}, Name: {branch.Name}, Location: {branch.Location}");
-            }
-
-            Console.WriteLine("\nDepartments:");
-            foreach (var dept in Departments)
-            {
-                Console.WriteLine($"- ID: {dept.Id}, Name: {dept.Name}, Branch ID: {dept.BranchId}");
-            }
-
-            Console.WriteLine("\nAdmins:");
-            foreach (var admin in Admins)
-            {
-                Console.WriteLine($"- ID: {admin.Id}, Name: {admin.FullName}, Branch ID: {admin.BranchId}, Department ID: {admin.DepartmentId}");
-            }
-
-            Console.WriteLine("--------------------------\n");
-        }
-
-
-
-
     }
 }
+
+
+
+        //// Method to assign a new admin to the system
+        //public void AddAdmin(Admin admin)
+        //{
+        //    if (admin != null)
+        //    {
+        //        Admins.Add(admin);
+        //        Console.WriteLine($"Admin '{admin.FullName}' added successfully.");
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Invalid admin data.");
+        //    }
+        //}
+
+//// Method to display all stored system data
+//public void ViewAllSystemData()
+//{
+//    Console.WriteLine("\n--- All System Data ---");
+
+//    Console.WriteLine("\nBranches:");
+//    foreach (var branch in Branches)
+//    {
+//        Console.WriteLine($"- ID: {branch.Id}, Name: {branch.Name}, Location: {branch.Location}");
+//    }
+
+//    Console.WriteLine("\nDepartments:");
+//    foreach (var dept in Departments)
+//    {
+//        Console.WriteLine($"- ID: {dept.Id}, Name: {dept.Name}, Branch ID: {dept.BranchId}");
+//    }
+
+//    Console.WriteLine("\nAdmins:");
+//    foreach (var admin in Admins)
+//    {
+//        Console.WriteLine($"- ID: {admin.Id}, Name: {admin.FullName}, Branch ID: {admin.BranchId}, Department ID: {admin.DepartmentId}");
+//    }
+
+//    Console.WriteLine("--------------------------\n");
+//}
