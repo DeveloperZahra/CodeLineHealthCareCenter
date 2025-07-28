@@ -12,7 +12,6 @@ namespace CodeLineHealthCareCenter
         //1. ======================================= Class Fields and attributes with properties =========================
         public int DepartmentId { get; set;}
         public string DepartmentName {  get; set;}
-        public int BranchId {  get; set;}
         public static int DepartmentCount = 0;
 
 
@@ -21,25 +20,24 @@ namespace CodeLineHealthCareCenter
 
 
         //3. ======================================== Class Constructor ========================================
-        public Department(string name, int branchId)
+        public Department(string name)
         {
             DepartmentCount++;
             DepartmentId = DepartmentCount;
             DepartmentName = name;
-            BranchId = branchId;
         }
         //4. ========================================== Class Methods ================================
         /// Implement IDepartmentServices Methods 
         // 4.1 Creates a new department for the specified branch.
-        public void CreateDepartment(int branchId)
+        public void CreateDepartment()
         {
             Console.Write("Enter department name: ");
             string name = Console.ReadLine();
 
-            Department newDept = new Department(name, branchId);
+            Department newDept = new Department(name);
             departments.Add(newDept);
 
-            Console.WriteLine($"Department '{newDept.DepartmentName}' created successfully in Branch {branchId}!");
+            Console.WriteLine($"Department '{newDept.DepartmentName}' created successfully!");
         }
 
         // 4.2 Displays all departments stored in the list
@@ -61,7 +59,7 @@ namespace CodeLineHealthCareCenter
         //4.3 Updates an existing department's details.
         public void UpdateDepartment(int branchId, int departmentId)
         {
-            Department dept = departments.FirstOrDefault(d => d.DepartmentId == departmentId && d.BranchId == branchId);
+            Department dept = departments.FirstOrDefault(d => d.DepartmentId == departmentId);
 
             if (dept != null)
             {
@@ -94,7 +92,7 @@ namespace CodeLineHealthCareCenter
         {
             Department dept = departments.FirstOrDefault(d => d.DepartmentName.Equals(departmentName, StringComparison.OrdinalIgnoreCase));
             if (dept != null)
-                Console.WriteLine($"Department Found: ID={dept.DepartmentId}, Branch={dept.BranchId}");
+                Console.WriteLine($"Department Found: ID={dept.DepartmentId}, Department Name ={dept.DepartmentName}");
             else
                 Console.WriteLine("Department not found.");
         }
@@ -103,7 +101,7 @@ namespace CodeLineHealthCareCenter
         {
             Department dept = departments.FirstOrDefault(d => d.DepartmentId == departmentId);
             if (dept != null)
-                Console.WriteLine($"Department Found: Name={dept.DepartmentName}, Branch={dept.BranchId}");
+                Console.WriteLine($"Department Found: Name={dept.DepartmentName}");
             else
                 Console.WriteLine("Department not found.");
         }
