@@ -56,7 +56,10 @@ namespace CodeLineHealthCareCenter
         public void AddBranch(string branchAddress)
         {
             Branch newBranch = new Branch(branchAddress); // Create a new branch object
-           
+            branches.Add(newBranch); // Add it to the list
+            Console.WriteLine($"✅ Branch '{newBranch.BranchName}' added successfully!");
+        }
+
 
 
 
