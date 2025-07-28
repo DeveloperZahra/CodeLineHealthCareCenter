@@ -62,7 +62,10 @@ namespace CodeLineHealthCareCenter
 
                     break;
 
-
+                case '3':
+                    //to assign admin to branch ...
+                    Console.WriteLine("Assigning admin to branch...");
+                    break;
 
 
             }
