@@ -67,6 +67,18 @@ namespace CodeLineHealthCareCenter.Models
         }
 
         // Display record details
+        public void PrintRecord()
+        {
+            Console.WriteLine("----- Patient Medical Record -----");
+            Console.WriteLine($"Record ID: {id}");
+            Console.WriteLine($"Patient ID: {patientId}");
+            Console.WriteLine($"Diagnosis: {diagnosis}");
+            Console.WriteLine($"Treatment: {treatment}");
+            Console.WriteLine($"Record Date: {recordDate.ToShortDateString()}");
+        }
+        {
+            
+        }
 
     }
 }
