@@ -39,6 +39,12 @@ namespace CodeLineHealthCareCenter.Models
             set { treatment = value; }
         }
 
+        public DateTime RecordDate // Date when the record was created
+        {
+            get { return recordDate; }
+            set { recordDate = value; }
+        }
+
 
 
     }
