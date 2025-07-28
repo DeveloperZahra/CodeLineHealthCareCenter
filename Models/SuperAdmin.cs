@@ -9,12 +9,8 @@ namespace CodeLineHealthCareCenter
     // SuperAdmin class that inherits from User and has full control over the system
     public class SuperAdmin
     {
-        // Override the base GetRole method to return the specific role
-        public override string GetRole()
-        {
-            return "SuperAdmin";
-
-        }
+        // List to store all branches in the system
+        private List<Branch> Branches = new List<Branch>();
 
         // Method to add a new branch to the system
         public void AddBranch(Branch branch)
