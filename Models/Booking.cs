@@ -24,5 +24,11 @@ namespace CodeLineHealthCareCenter
             get { return id; }
             set { id = value; }
         }
+
+        public int PatientId // Unique identifier for the patient
+        {
+            get { return patientId; }
+            set { patientId = value; }
+        }
     }
 }
