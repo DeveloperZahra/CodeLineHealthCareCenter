@@ -8,5 +8,77 @@ namespace CodeLineHealthCareCenter.Models
 {
     class PatientRecord
     {
+        // 1. Class Fields
+        public int id; // Unique identifier for the medical record
+        public int patientId; // Patient's ID to link the record to a patient
+        public string diagnosis; // Medical diagnosis for the patient
+        public string treatment; // Treatment given or prescribed
+        public DateTime recordDate; // Date when the record was created
+
+        // 2. Class Properties
+        public int Id // Unique identifier for the medical record
+        {
+            get { return id; }
+            set { id = value; }
+        }
+        public int PatientId // Patient's ID to link the record to a patient
+        {
+            get { return patientId; }
+            set { patientId = value; }
+        }
+
+        public string Diagnosis // Medical diagnosis for the patient
+        {
+            get { return diagnosis; } 
+            set { diagnosis = value; }
+        }
+
+        public string Treatment // Treatment given or prescribed
+        {
+            get { return treatment; }
+            set { treatment = value; }
+        }
+
+        public DateTime RecordDate // Date when the record was created
+        {
+            get { return recordDate; }
+            set { recordDate = value; }
+        }
+
+        // 3. Class Constructors
+
+        // Constructor with parameters
+        public PatientRecord(int id, int patientId, string diagnosis, string treatment, DateTime recordDate) 
+        {
+            this.id = id; 
+            this.patientId = patientId;
+            this.diagnosis = diagnosis;
+            this.treatment = treatment;
+            this.recordDate = recordDate;
+        }
+
+        // 4. Class Methods
+
+        // Update the record with new diagnosis and treatment
+        public void UpdateRecord(string newDiagnosis, string newTreatment)
+        {
+            diagnosis = newDiagnosis; 
+            treatment = newTreatment; 
+        }
+
+        // Display record details
+        public void PrintRecord()
+        {
+            Console.WriteLine("----- Patient Medical Record -----");
+            Console.WriteLine($"Record ID: {id}");
+            Console.WriteLine($"Patient ID: {patientId}");
+            Console.WriteLine($"Diagnosis: {diagnosis}");
+            Console.WriteLine($"Treatment: {treatment}");
+            Console.WriteLine($"Record Date: {recordDate.ToShortDateString()}");
+        }
+
+
+
+
     }
 }
