@@ -37,7 +37,7 @@ namespace CodeLineHealthCareCenter
             this.FullName = fullName; // Patient's full name
             this.Email = email; // Patient's email address
             this.Password = password; // Patient's password
-            this.dateOfBirth = dateOfBirth;
+            this.dateOfBirth = dateOfBirth; // Patient's date of birth
             this.gender = gender;
         }
 
