@@ -29,6 +29,6 @@ namespace CodeLineHealthCareCenter
             BranchId = branchId;
         }
         //4. ========================================== Class Methods ================================
-        
+        /// Implement IDepartmentServices Methods 
     }
 }
