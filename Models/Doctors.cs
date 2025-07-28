@@ -16,6 +16,17 @@ namespace CodeLineHealthCareCenter.Models
         // The ID of the department the doctor belongs to
     public int DepartmentId { get; set; }
 
+        // Parameterized constructor to initialize a new doctor
+        public Doctor(int id, string fullName, string email, string password, string specialty, int departmentId)
+        {
+            this.Id = id;
+            this.FullName = fullName;
+            this.Email = email;
+            this.Password = password;
+            this.Specialty = specialty;
+            this.DepartmentId = departmentId;
+        }
+
 
 
     }
