@@ -48,6 +48,11 @@ namespace CodeLineHealthCareCenter.Models
         // 3. Class Constructors
 
         // Constructor with parameters
+        public PatientRecord(int id, int patientId, string diagnosis, string treatment, DateTime recordDate) 
+        {
+            this.id = id; 
+           
+        }
 
     }
 }
