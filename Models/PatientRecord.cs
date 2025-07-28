@@ -10,5 +10,6 @@ namespace CodeLineHealthCareCenter.Models
     {
         // 1. Class Fields
         public int id; // Unique identifier for the medical record
+        public int patientId; // Patient's ID to link the record to a patient
     }
 }
