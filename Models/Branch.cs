@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
+
 namespace CodeLineHealthCareCenter
 {
     // Represents a branch of the hospital, including its details and associated floors.
@@ -22,6 +23,8 @@ namespace CodeLineHealthCareCenter
 
         // A list to store all branches (acting as an in-memory database)
         private List<Branch> branches = new List<Branch>();
+
+
 
 
         // 2. ===================================Class Constructors===============================
@@ -48,7 +51,12 @@ namespace CodeLineHealthCareCenter
         // 3. ===================================Class methods================================================
 
         /// implements IBranchService It provides all operations for managing branches
-        // 
+        // 3.1. Adds a new branch to the list.
+
+        public void AddBranch(string branchAddress)
+        {
+            Branch newBranch = new Branch(branchAddress); // Create a new branch object
+           
 
 
 
@@ -56,4 +64,7 @@ namespace CodeLineHealthCareCenter
 
 
     }
+
+
+
 }
