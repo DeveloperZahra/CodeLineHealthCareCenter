@@ -60,5 +60,7 @@ namespace CodeLineHealthCareCenter
             this.appointmentDate = appointmentDate; // Date and time of the appointment
             this.appointmentType = appointmentType; // Type of appointment (e.g., consultation, follow-up)
         }
+
+        // 4. Class Methods
     }
 }
