@@ -55,7 +55,7 @@ namespace CodeLineHealthCareCenter
         public Booking(int id, int patientId, int clinicId, DateTime appointmentDate, string appointmentType) 
         {
             this.id = id; // Unique identifier for the booking
-            this.patientId = patientId;
+            this.patientId = patientId; // Unique identifier for the patient
             this.clinicId = clinicId;
             this.appointmentDate = appointmentDate;
             this.appointmentType = appointmentType;
