@@ -57,5 +57,23 @@ namespace CodeLineHealthCareCenter
                 Console.WriteLine($"Department ID: {dep.departmentId}, Status: {(dep.isActive ? "Active" : "Inactive")}");
             }
         }
+
+        //4.3 Displays all branches that contain a specific department.
+        public void GetBranchsByDepartment(int departmentId)
+        {
+            var branches = branchDepartments.Where(bd => bd.departmentId == departmentId).ToList();
+
+            if (branches.Count == 0)
+            {
+                Console.WriteLine("No branches found for this department.");
+                return;
+            }
+
+            Console.WriteLine($"Branches containing Department {departmentId}:");
+            foreach (var br in branches)
+            {
+                Console.WriteLine($"➡ Branch ID: {br.branchId}, Status: {(br.isActive ? "Active" : "Inactive")}");
+            }
+        }
     }
 }
