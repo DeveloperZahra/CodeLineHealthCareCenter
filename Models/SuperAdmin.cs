@@ -104,6 +104,11 @@ namespace CodeLineHealthCareCenter
                     Console.WriteLine("Exiting SuperAdmin Menu.");
                     break;
 
+                default:
+                    Console.WriteLine("Invalid option, please try again.");
+                    Additional.HoldScreen();
+                    break;
+
             }
 
 
