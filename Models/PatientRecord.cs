@@ -59,5 +59,7 @@ namespace CodeLineHealthCareCenter.Models
 
         // 4. Class Methods
 
+        // Update the record with new diagnosis and treatment
+
     }
 }
