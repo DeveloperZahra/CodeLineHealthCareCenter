@@ -12,7 +12,7 @@ namespace CodeLineHealthCareCenter
     {
         // 1. Class Fields
         private int id; // Unique identifier for the booking
-        private int patientId;
+        private int patientId; // Unique identifier for the patient
         private int clinicId;
         private DateTime appointmentDate;
         private string appointmentType;
