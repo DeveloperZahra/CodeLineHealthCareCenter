@@ -45,7 +45,7 @@ namespace CodeLineHealthCareCenter.Models
             set { recordDate = value; }
         }
 
-
+        // 3. Class Constructors
 
     }
 }
