@@ -20,9 +20,15 @@ namespace CodeLineHealthCareCenter
         private List<Department> departments = new List<Department>();
 
 
-        //2. ======================================== Class Constructor ========================================
-
-        //3. ========================================== Class Methods ================================
-
+        //3. ======================================== Class Constructor ========================================
+        public Department(string name, int branchId)
+        {
+            DepartmentCount++;
+            DepartmentId = DepartmentCount;
+            DepartmentName = name;
+            BranchId = branchId;
+        }
+        //4. ========================================== Class Methods ================================
+        
     }
 }
