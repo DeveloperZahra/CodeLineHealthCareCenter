@@ -30,5 +30,7 @@ namespace CodeLineHealthCareCenter
         // Default constructor
         public Patient() { }
 
+        // Constructor with parameters
+
     }
 }
