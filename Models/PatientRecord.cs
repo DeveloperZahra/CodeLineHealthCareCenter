@@ -70,6 +70,7 @@ namespace CodeLineHealthCareCenter.Models
         public void PrintRecord()
         {
             Console.WriteLine("----- Patient Medical Record -----");
+            Console.WriteLine($"Record ID: {id}");
         }
         
             
