@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CodeLineHealthCareCenter
 {
-    // Class representing a SuperAdmin user who has the highest level of access
+    // SuperAdmin class that inherits from User and has full control over the system
     public class SuperAdmin
     {
         // Override the base GetRole method to return the specific role
@@ -59,6 +59,7 @@ namespace CodeLineHealthCareCenter
                 Console.WriteLine("Invalid admin data.");
             }
         }
+
 
 
 
