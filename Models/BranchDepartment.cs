@@ -28,7 +28,7 @@ namespace CodeLineHealthCareCenter
         }
         //4. ======================= Class method ============================================
         /// Implement all methods in IBranchDepartmentService interface 
-        //4.4 Adds a new department to a specific branch.
+        //4.1 Adds a new department to a specific branch.
         public void AddDepartmentToBranch(int branchID)
         {
             Console.Write("Enter Department ID: ");
@@ -38,6 +38,24 @@ namespace CodeLineHealthCareCenter
             branchDepartments.Add(newRelation);
 
             Console.WriteLine($"✅ Department {departmentId} added to Branch {branchID}.");
+        }
+
+        //4.2 Displays all departments that belong to a specific branch.
+        public void GetDepartmentsByBranch(int branchID)
+        {
+            var departments = branchDepartments.Where(bd => bd.branchId == branchID).ToList();
+
+            if (departments.Count == 0)
+            {
+                Console.WriteLine("No departments found for this branch.");
+                return;
+            }
+
+            Console.WriteLine($"Departments in Branch {branchID}:");
+            foreach (var dep in departments)
+            {
+                Console.WriteLine($"Department ID: {dep.departmentId}, Status: {(dep.isActive ? "Active" : "Inactive")}");
+            }
         }
     }
 }
