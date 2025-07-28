@@ -132,6 +132,21 @@ namespace CodeLineHealthCareCenter
                 return "❌ Branch not found.";
         }
 
+        //3.7 Changes the status of a branch (open/closed) using its ID.
+        public void SetBranchStatus(int branchId, bool isActive)
+        {
+            Branch branch = branches.FirstOrDefault(b => b.BranchId == branchId);
+            if (branch != null)
+            {
+                branch.BranchStatus = isActive;
+                Console.WriteLine($" Branch '{branch.BranchName}' status updated to {(isActive ? "Open" : "Closed")}.");
+            }
+            else
+            {
+                Console.WriteLine("Branch not found.");
+            }
+        }
+
 
 
 
