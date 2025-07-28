@@ -55,7 +55,7 @@ namespace CodeLineHealthCareCenter
         // Constructor with parameters
         public Clinic(int id, string name, int departmentId, int branchId) // Unique identifier for the clinic, Name of the clinic, ID of the department the clinic belongs to, ID of the branch the clinic is located in
         {
-            this.id = id;
+            this.id = id; // Unique identifier for the clinic
             this.name = name;
             this.departmentId = departmentId;
             this.branchId = branchId;
