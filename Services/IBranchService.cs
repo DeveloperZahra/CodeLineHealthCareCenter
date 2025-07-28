@@ -5,13 +5,13 @@ namespace HospitalSystemTeamTask.Services
 {
     public interface IBranchService
     {
-        void AddBranch(BranchDTO branchDto);
-        IEnumerable<Branch> GetAllBranches();
-        BranchDTO GetBranchById(int id);
-        BranchDTO GetBranchDetails(string? branchName, int? branchId);
-        Branch GetBranchDetailsByBranchName(string branchName);
+        void AddBranch(string branchAddress, string phoneNumber);
+        void GetAllBranches();
+        void GetBranchById(int branchId);
+        void GetBranchDetails(string branchName, int  branchId);
+        void GetBranchDetailsByBranchName(string branchName);
         string GetBranchName(int branchId);
         void SetBranchStatus(int branchId, bool isActive);
-        void UpdateBranch(int branchId, BranchDTO branchDto);
+        void UpdateBranch(int branchId);
     }
 }
