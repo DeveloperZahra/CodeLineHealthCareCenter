@@ -12,5 +12,6 @@ namespace CodeLineHealthCareCenter.Models
         public int id; // Unique identifier for the medical record
         public int patientId; // Patient's ID to link the record to a patient
         public string diagnosis; // Medical diagnosis for the patient
+        public string treatment; // Treatment given or prescribed
     }
 }
