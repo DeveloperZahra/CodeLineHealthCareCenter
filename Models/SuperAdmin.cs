@@ -19,18 +19,11 @@ namespace CodeLineHealthCareCenter
         // List to store all admins
         private List<Admin> Admins = new List<Admin>();
 
-        // Method to assign a new admin to the system
-        public void AddAdmin(Admin admin)
+
+        // Override GetRole to return the specific role of this user
+        public override string GetRole()
         {
-            if (admin != null)
-            {
-                Admins.Add(admin);
-                Console.WriteLine($"Admin '{admin.FullName}' added successfully.");
-            }
-            else
-            {
-                Console.WriteLine("Invalid admin data.");
-            }
+            return "SuperAdmin";
         }
 
 
