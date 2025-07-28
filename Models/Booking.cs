@@ -19,5 +19,10 @@ namespace CodeLineHealthCareCenter
         public string appointmentType; // Type of appointment (e.g., consultation, follow-up)
 
         //2. Class Properties
+        public int Id //Unique identifier for the booking
+        {
+            get { return id; }
+            set { id = value; }
+        }
     }
 }
