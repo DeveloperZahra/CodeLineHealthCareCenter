@@ -57,5 +57,7 @@ namespace CodeLineHealthCareCenter.Models
             this.recordDate = recordDate;
         }
 
+        // 4. Class Methods
+
     }
 }
