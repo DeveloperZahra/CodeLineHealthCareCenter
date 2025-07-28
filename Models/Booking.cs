@@ -62,5 +62,9 @@ namespace CodeLineHealthCareCenter
         }
 
         // 4. Class Methods
+        public void Reschedule(DateTime newDate) //Method to reschedule the appointment
+        {
+            appointmentDate = newDate;
+        }
     }
 }
