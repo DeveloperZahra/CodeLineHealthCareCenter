@@ -56,7 +56,7 @@ namespace CodeLineHealthCareCenter
         {
             this.id = id; // Unique identifier for the booking
             this.patientId = patientId; // Unique identifier for the patient
-            this.clinicId = clinicId;
+            this.clinicId = clinicId; // Unique identifier for the clinic
             this.appointmentDate = appointmentDate;
             this.appointmentType = appointmentType;
         }
