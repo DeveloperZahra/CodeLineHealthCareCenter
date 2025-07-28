@@ -22,7 +22,7 @@ namespace CodeLineHealthCareCenter.Models
         // Lists to manage data relevant to this admin
         private List<Doctor> doctors = new List<Doctor>();
         private List<Clinic> clinics = new List<Clinic>();
-        private List<Appointment> appointments = new List<Appointment>();
+        private List<Booking> appointments = new List<Booking>();
 
         // Returns the role of this user
         public override string GetRole()
