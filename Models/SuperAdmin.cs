@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CodeLineHealthCareCenter.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 namespace CodeLineHealthCareCenter
 {
     // SuperAdmin class that inherits from User and has full control over the system
-    public class SuperAdmin
+    public class SuperAdmin : User
     {
         // List to store all branches in the system
         private List<Branch> Branches = new List<Branch>();
