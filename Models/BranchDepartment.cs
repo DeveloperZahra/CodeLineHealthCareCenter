@@ -103,6 +103,22 @@ namespace CodeLineHealthCareCenter
             }
         }
 
+        // 4.5 Displays details of a specific branch-department relation.
+        public void GetBranchDep(int departmentId, int branchId)
+        {
+            BranchDepartment relation = branchDepartments
+                .FirstOrDefault(bd => bd.departmentId == departmentId && bd.branchId == branchId);
+
+            if (relation != null)
+            {
+                Console.WriteLine($"Found: Branch {branchId}, Department {departmentId}, Status: {(relation.isActive ? "Active" : "Inactive")}");
+            }
+            else
+            {
+                Console.WriteLine("Relation not found.");
+            }
+        }
+
 
     }
 }
