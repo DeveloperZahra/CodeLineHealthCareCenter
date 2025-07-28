@@ -66,5 +66,9 @@ namespace CodeLineHealthCareCenter
         {
             appointmentDate = newDate; // Update the appointment date
         }
+        public void Cancel() //Method to cancel the appointment
+        {
+            appointmentType = "Canceled";
+        }
     }
 }
