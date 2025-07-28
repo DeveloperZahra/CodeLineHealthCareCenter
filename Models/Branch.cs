@@ -35,15 +35,17 @@ namespace CodeLineHealthCareCenter
             BranchId = BranchCount;
             BranchAddress = "Muscat";
             BranchName = BranchAddress + "CodeLine Health Care";
+            BranchPhoneNumber = "Null";
             BranchStatus = false;
             BranchEstablished = DateTime.Now;
         }
 
-        public Branch(string address) // Overloaded constructor to initialize branch details.
+        public Branch(string address, string phoneNumber) // Overloaded constructor to initialize branch details.
         {
             BranchId = BranchCount;
             BranchAddress = address;
             BranchName = BranchAddress + "CodeLine Health Care";
+            BranchPhoneNumber = phoneNumber;
             BranchStatus = true;
             BranchEstablished = DateTime.Now;
             BranchCount++;
@@ -54,9 +56,9 @@ namespace CodeLineHealthCareCenter
         /// implements IBranchService It provides all operations for managing branches
         // 3.1. Adds a new branch to the list.
 
-        public void AddBranch(string branchAddress)
+        public void AddBranch(string branchAddress, string phoneNumber)
         {
-            Branch newBranch = new Branch(branchAddress); // Create a new branch object
+            Branch newBranch = new Branch(branchAddress, phoneNumber); // Create a new branch object
             branches.Add(newBranch); // Add it to the list
             Console.WriteLine($"Branch '{newBranch.BranchName}' added successfully!");
         }
@@ -154,25 +156,44 @@ namespace CodeLineHealthCareCenter
             Branch branch = branches.FirstOrDefault(b => b.BranchId == branchId);
             if (branch != null)
             {
+                bool WantUpdate = false;
+                while(WantUpdate == true)
                 Console.WriteLine("Which data do you want to update:");
                 Console.WriteLine("1. Branch Name");
                 Console.WriteLine("2. Branch Address");
-                Console.WriteLine("3. Branch ");
-                Console.Write("Enter new branch name: ");
-                branch.BranchName = Console.ReadLine();
+                Console.WriteLine("3. Branch Phone Number");
+                Console.WriteLine("0. Cancel");
 
-                Console.Write("Enter new branch address: ");
-                branch.BranchAddress = Console.ReadLine();
+                char UpdateBranchDetail = Console.ReadKey().KeyChar;
+                switch (UpdateBranchDetail)
+                {
+                    case '1':
+                        Console.Write("Enter new branch name: ");
+                        branch.BranchName = Console.ReadLine();
+                        Console.WriteLine($"Branch Name updated successfully to{ branch.BranchName}!");
+                        break;
+                    case '2':
+                        Console.Write("Enter new branch address: ");
+                        branch.BranchAddress = Console.ReadLine();
+                        Console.WriteLine($"Branch address updated successfully to{branch.BranchAddress}!");
 
-                Console.Write("Is branch active? (true/false): ");
-                bool status = bool.Parse(Console.ReadLine());
-                branch.BranchStatus = status;
+                        break;
+                    case '3':
+                        Console.WriteLine("Enter new branch phone number:");
+                        branch.BranchPhoneNumber = Console.ReadLine();
+                        Console.WriteLine($"Branch phone number updated successfully to{branch.BranchPhoneNumber}!");
 
-                Console.WriteLine("✅ Branch updated successfully!");
+                        break;
+                    case '0':
+                        WantUpdate = false;
+                        Console.WriteLine("Branch Detail Dose not Update");
+                        break;
+                }
+                
             }
             else
             {
-                Console.WriteLine("❌ Branch not found.");
+                Console.WriteLine("Branch not found.");
             }
         }
 
