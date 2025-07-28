@@ -60,6 +60,11 @@ namespace CodeLineHealthCareCenter.Models
         // 4. Class Methods
 
         // Update the record with new diagnosis and treatment
+        public void UpdateRecord(string newDiagnosis, string newTreatment)
+        {
+            diagnosis = newDiagnosis; 
+            treatment = newTreatment; 
+        }
 
     }
 }
