@@ -40,5 +40,10 @@ namespace CodeLineHealthCareCenter
             get { return appointmentDate; }
             set { appointmentDate = value; }
         }
+        public string AppointmentType // Type of appointment (e.g., consultation, follow-up)
+        {
+            get { return appointmentType; }
+            set { appointmentType = value; }
+        }
     }
 }
