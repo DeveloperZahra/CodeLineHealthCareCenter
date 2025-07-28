@@ -16,5 +16,13 @@ namespace CodeLineHealthCareCenter.Models
 
         // The department this admin manages
         public int DepartmentId { get; set; }
+
+
+        // Overrides the base method to return the specific role of this user
+        public override string GetRole()
+        {
+            return "Admin";
+        }
+
     }
 }
