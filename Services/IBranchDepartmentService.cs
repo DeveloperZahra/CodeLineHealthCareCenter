@@ -10,6 +10,7 @@ namespace HospitalSystemTeamTask.Services
         void GetDepartmentsByBranch(int branchID); // Displays all departments that belong to a specific branch.
 
         void GetBranchsByDepartment(int departmentId); // Displays all branches that contain a specific department.
+        void UpdateBranchDepartment(int branchId, int departmentId, string newDepartmentName); // Updates the details of a branch-department relationship.
         
     }
 }
