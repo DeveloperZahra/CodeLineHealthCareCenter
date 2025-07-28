@@ -36,6 +36,8 @@ namespace CodeLineHealthCareCenter.Models
         // Method to simulate viewing appointments for this doctor
         public void ViewAppointments()
         {
-
+            Console.WriteLine($"Doctor {FullName} is viewing their appointments...");
+            // Here you would add logic to retrieve appointments from a list or database
         }
+    }
 }
