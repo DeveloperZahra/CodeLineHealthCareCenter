@@ -45,8 +45,41 @@ namespace CodeLineHealthCareCenter.Models
         }
 
 
+        // Add a clinic only if it belongs to the same branch and department
+        public void AddClinic(Clinic clinic)
+        {
+            if (clinic.BranchId == this.BranchId && clinic.DepartmentId == this.DepartmentId)
+            {
+                clinics.Add(clinic);
+                Console.WriteLine($"Clinic '{clinic.Name}' added successfully.");
+            }
+            else
+            {
+                Console.WriteLine("Error: Clinic must belong to the same branch and department as the Admin.");
+            }
+        }
 
 
+        // View all appointments related to this department
+        public void ViewDepartmentAppointments()
+        {
+            Console.WriteLine($"\n--- Appointments for Department {DepartmentId} ---");
+
+            var filteredAppointments = appointments
+                .Where(a => a.DepartmentId == this.DepartmentId && a.BranchId == this.BranchId)
+                .ToList();
+
+            if (filteredAppointments.Count == 0)
+            {
+                Console.WriteLine("No appointments found.");
+                return;
+            }
+
+            foreach (var appt in filteredAppointments)
+            {
+                Console.WriteLine($"Appointment ID: {appt.Id}, Patient: {appt.PatientName}, Doctor ID: {appt.DoctorId}, Time: {appt.DateTime}");
+            }
+        }
 
     }
 }
