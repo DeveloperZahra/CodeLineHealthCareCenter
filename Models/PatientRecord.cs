@@ -54,7 +54,7 @@ namespace CodeLineHealthCareCenter.Models
             this.patientId = patientId;
             this.diagnosis = diagnosis;
             this.treatment = treatment;
-            
+            this.recordDate = recordDate;
         }
 
     }
