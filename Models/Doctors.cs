@@ -39,5 +39,20 @@ namespace CodeLineHealthCareCenter.Models
             Console.WriteLine($"Doctor {FullName} is viewing their appointments...");
             // Here you would add logic to retrieve appointments from a list or database
         }
+
+        // Method to display doctor information
+        public void DisplayInfo()
+        {
+            Console.WriteLine("=== Doctor Information ===");
+            Console.WriteLine($"ID         : {Id}");
+            Console.WriteLine($"Name       : {FullName}");
+            Console.WriteLine($"Email      : {Email}");
+            Console.WriteLine($"Specialty  : {Specialty}");
+            Console.WriteLine($"Department : {DepartmentId}");
+            Console.WriteLine("==========================");
+        }
+
+
+
     }
 }
