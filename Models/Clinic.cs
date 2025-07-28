@@ -16,5 +16,7 @@ namespace CodeLineHealthCareCenter
         public int branchId; // ID of the branch the clinic is located in
 
         public List<Doctor> doctors; // List of doctors assigned to the clinic
+
+        // 2. Class Properties
     }
 }
