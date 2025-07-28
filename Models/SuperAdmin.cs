@@ -71,5 +71,34 @@ namespace CodeLineHealthCareCenter
             }
         }
 
+        // Method to display all stored system data
+        public void ViewAllSystemData()
+        {
+            Console.WriteLine("\n--- All System Data ---");
+
+            Console.WriteLine("\nBranches:");
+            foreach (var branch in Branches)
+            {
+                Console.WriteLine($"- ID: {branch.Id}, Name: {branch.Name}, Location: {branch.Location}");
+            }
+
+            Console.WriteLine("\nDepartments:");
+            foreach (var dept in Departments)
+            {
+                Console.WriteLine($"- ID: {dept.Id}, Name: {dept.Name}, Branch ID: {dept.BranchId}");
+            }
+
+            Console.WriteLine("\nAdmins:");
+            foreach (var admin in Admins)
+            {
+                Console.WriteLine($"- ID: {admin.Id}, Name: {admin.FullName}, Branch ID: {admin.BranchId}, Department ID: {admin.DepartmentId}");
+            }
+
+            Console.WriteLine("--------------------------\n");
+        }
+
+
+
+
     }
 }
