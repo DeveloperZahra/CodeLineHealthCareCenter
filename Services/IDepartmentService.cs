@@ -1,16 +1,13 @@
-﻿using HospitalSystemTeamTask.DTO_s;
-using HospitalSystemTeamTask.Models;
+﻿//using HospitalSystemTeamTask.DTO_s;
+//using HospitalSystemTeamTask.Models;
+using HospitalSystemTeamTask.Services;
 
 namespace HospitalSystemTeamTask.Services
 {
     public interface IDepartmentService
     {
-        void CreateDepartment(DepartmentDTO departmentDto);
-        IEnumerable<DepDTO> GetAllDepartments();
-        void UpdateDepartment(DepDTO departmentDto); // Only one declaration for UpdateDepartment
-        void SetDepartmentActiveStatus(int departmentId, bool isActive);
-        Department GetDepartmentByName(string department);
-        DepDTO GetDepartmentByid(int did);
-        string GetDepartmentName(int depId);
+        void CreateDepartment(int branchId); // Creates a new department for a specific branch.
+
+       
     }
 }
