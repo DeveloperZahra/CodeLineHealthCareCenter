@@ -35,5 +35,10 @@ namespace CodeLineHealthCareCenter
             get { return clinicId; }
             set { clinicId = value; }
         }
+        public DateTime AppointmentDate // Date and time of the appointment
+        {
+            get { return appointmentDate; }
+            set { appointmentDate = value; }
+        }
     }
 }
