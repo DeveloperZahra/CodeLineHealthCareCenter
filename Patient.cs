@@ -8,5 +8,8 @@ namespace CodeLineHealthCareCenter
 {
     class Patient : User
     {
+        // 1. Class Fields
+        public DateTime dateOfBirth; // Patient's date of birth
+
     }
 }
