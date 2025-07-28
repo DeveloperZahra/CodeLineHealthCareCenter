@@ -24,7 +24,11 @@ namespace CodeLineHealthCareCenter.Models
         private List<Clinic> clinics = new List<Clinic>();
         private List<Appointment> appointments = new List<Appointment>();
 
-
+        // Returns the role of this user
+        public override string GetRole()
+        {
+            return "Admin";
+        }
 
 
 
