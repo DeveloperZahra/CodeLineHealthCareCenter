@@ -17,6 +17,7 @@ namespace CodeLineHealthCareCenter
         public int BranchId { get; set; }// Unique identifier for the branch. 
         public string BranchName { get; set; }// The name of the branch.
         public string BranchAddress { get; set; } //The address where the branch is located. 
+        public string BranchPhoneNumber { get; set; }   // The phone number attribute for every branch 
         public bool BranchStatus { get; set; } // Indicates whether the branch is currently active (true = open, false = closed).
         public DateTime BranchEstablished { get; set; } // The date when the branch was established.
         public static int BranchCount = 0;// Keeps track of the total number of branches created.
@@ -144,6 +145,34 @@ namespace CodeLineHealthCareCenter
             else
             {
                 Console.WriteLine("Branch not found.");
+            }
+        }
+
+        // 3.8 Updates the details of a branch by its ID.
+        public void UpdateBranch(int branchId)
+        {
+            Branch branch = branches.FirstOrDefault(b => b.BranchId == branchId);
+            if (branch != null)
+            {
+                Console.WriteLine("Which data do you want to update:");
+                Console.WriteLine("1. Branch Name");
+                Console.WriteLine("2. Branch Address");
+                Console.WriteLine("3. Branch ");
+                Console.Write("Enter new branch name: ");
+                branch.BranchName = Console.ReadLine();
+
+                Console.Write("Enter new branch address: ");
+                branch.BranchAddress = Console.ReadLine();
+
+                Console.Write("Is branch active? (true/false): ");
+                bool status = bool.Parse(Console.ReadLine());
+                branch.BranchStatus = status;
+
+                Console.WriteLine("✅ Branch updated successfully!");
+            }
+            else
+            {
+                Console.WriteLine("❌ Branch not found.");
             }
         }
 
