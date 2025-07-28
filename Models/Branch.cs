@@ -33,7 +33,17 @@ namespace CodeLineHealthCareCenter
             BranchEstablished = DateTime.Now;
         }
 
-      
+        public Branch(string address) // Overloaded constructor to initialize branch details.
+        {
+            BranchId = BranchCount;
+            BranchAddress = address;
+            BranchName = BranchAddress + "CodeLine Health Care";
+            BranchStatus = true;
+            BranchEstablished = DateTime.Now;
+            BranchCount++;
+        }
+
+
 
 
 
