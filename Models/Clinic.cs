@@ -10,5 +10,6 @@ namespace CodeLineHealthCareCenter
     {
         // 1. Class Fields
         public int id; // Unique identifier for the clinic
+        public string name; // Name of the clinic
     }
 }
