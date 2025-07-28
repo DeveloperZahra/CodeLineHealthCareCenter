@@ -78,6 +78,19 @@ namespace CodeLineHealthCareCenter
 
         }
 
+        // 3.3 Finds and displays details of a branch by its ID.
+        public void GetBranchById(int branchId)
+        {
+            Branch branch = branches.FirstOrDefault(b => b.BranchId == branchId);
+            if (branch != null)
+            {
+                Console.WriteLine($"Branch Found: ID={branch.BranchId}, Name={branch.BranchName}, Address={branch.BranchAddress}, Status={(branch.BranchStatus ? "Open" : "Closed")}");
+            }
+            else
+            {
+                Console.WriteLine("Branch not found.");
+            }
+        }
 
 
 
