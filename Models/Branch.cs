@@ -10,22 +10,30 @@ namespace CodeLineHealthCareCenter
     // Represents a branch of the hospital, including its details and associated floors.
     class Branch
     {
-        // 1. Class Field...
-        private int BranchId;// Unique identifier for the branch. 
-        private string BranchName;// The name of the branch.
-        private string BranchAddress; //The address where the branch is located. 
-        private bool BranchStatus; // Indicates whether the branch is currently active (true = open, false = closed).
-        private DateOnly BranchEstablished; // The date when the branch was established.
-        private static int BranchCount =0; // Keeps track of the total number of branches created.
-        private List<Floor> Floors = new List<Floor>(); //  List of floors that belong to this branch.
-
-        // 2. class property... 
+        // 1. Class Field and  property...
+        public int BranchId { get; set; }// Unique identifier for the branch. 
+        public string BranchName { get; set; }// The name of the branch.
+        public string BranchAddress { get; set; } //The address where the branch is located. 
+        public bool BranchStatus { get; set; } // Indicates whether the branch is currently active (true = open, false = closed).
+        public DateTime BranchEstablished { get; set; } // The date when the branch was established.
+        public static int BranchCount = 0;// Keeps track of the total number of branches created.
+        public List<Floor> Floors { get; set; } = new List<Floor>(); //  List of floors that belong to this branch.
 
 
-        // 3. class method...
+        // 2. class method...
 
-        // 4. Class Constructor...
+        // 3. Class Constructor...
+        public Branch() // Default constructor that increments the BranchCount.
+        {
+            BranchCount++;
+            BranchId = BranchCount;
+            BranchAddress = "Muscat";
+            BranchName = BranchAddress + "CodeLine Health Care";
+            BranchStatus = false;
+            BranchEstablished = DateTime.Now;
+        }
 
+      
 
 
 
