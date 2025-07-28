@@ -15,15 +15,20 @@ namespace CodeLineHealthCareCenter
         public int branchId { get; set; }
         public int departmentId {  get; set; }
         public bool isActive { get; set; }
+        public string branchName {  get; set; }
+        private string departmentName {  get; set; }
+
 
         //2. =======================Storage the relationship =================================
         private List<BranchDepartment> branchDepartments = new List<BranchDepartment>();
 
         //3. ======================= Class constructor =========================================
-        public BranchDepartment(int branchId, int departmentId, bool isActive = true)
+        public BranchDepartment(int branchId, int departmentId, string branchName, string departmentName, bool isActive = true)
         {
             this.branchId = branchId;
             this.departmentId = departmentId;
+            this.branchName = branchName;
+            this.departmentName = departmentName;
             this.isActive = isActive;
         }
         //4. ======================= Class method ============================================
@@ -33,11 +38,14 @@ namespace CodeLineHealthCareCenter
         {
             Console.Write("Enter Department ID: ");
             int departmentId = int.Parse(Console.ReadLine());
-
-            BranchDepartment newRelation = new BranchDepartment(branchID, departmentId, true);
+            Console.WriteLine("Enter the branch Name");
+            string branchName = Console.ReadLine();
+            Console.WriteLine("Enter the department name");
+            string departmentName = Console.ReadLine();
+            BranchDepartment newRelation = new BranchDepartment(branchID, departmentId, departmentName,branchName,true);
             branchDepartments.Add(newRelation);
 
-            Console.WriteLine($"✅ Department {departmentId} added to Branch {branchID}.");
+            Console.WriteLine($" Department {departmentId} added to Branch {branchID}.");
         }
 
         //4.2 Displays all departments that belong to a specific branch.
@@ -75,5 +83,26 @@ namespace CodeLineHealthCareCenter
                 Console.WriteLine($"➡ Branch ID: {br.branchId}, Status: {(br.isActive ? "Active" : "Inactive")}");
             }
         }
+
+        // 4.4 Updates the department name in a specific branch-department relation.
+        public void UpdateBranchDepartment(int branchId, int departmentId, string newDepartmentName)
+        {
+            BranchDepartment relation = branchDepartments.FirstOrDefault(bd => bd.branchId == branchId && bd.departmentId == departmentId);
+
+            if (relation != null)
+            {
+                // update the name of department in the specific class 
+                relation.departmentName = newDepartmentName;
+
+                Console.WriteLine($"Department ID {departmentId} in Branch {branchId} updated to new name '{newDepartmentName}'.");
+            
+            }
+            else
+            {
+                Console.WriteLine("Branch-Department relation not found.");
+            }
+        }
+
+
     }
 }
