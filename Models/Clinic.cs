@@ -46,5 +46,11 @@ namespace CodeLineHealthCareCenter
 
         // 3. Class Constructors
 
+        // Default constructor
+        public Clinic()
+        {
+            doctors = new List<Doctor>(); // initialize empty list
+        }
+
     }
 }
