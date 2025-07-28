@@ -41,5 +41,21 @@ namespace CodeLineHealthCareCenter
 
             Console.WriteLine($"Department '{newDept.DepartmentName}' created successfully in Branch {branchId}!");
         }
+
+        // 4.2 Displays all departments stored in the list
+        public void GetAllDepartments()
+        {
+            if (departments.Count == 0)
+            {
+                Console.WriteLine("No departments found.");
+                return;
+            }
+
+            Console.WriteLine("List of Departments:");
+            foreach (var dept in departments)
+            {
+                Console.WriteLine($"ID: {dept.DepartmentId}, Name: {dept.DepartmentName}, Branch ID: {dept.BranchId}");
+            }
+        }
     }
 }
