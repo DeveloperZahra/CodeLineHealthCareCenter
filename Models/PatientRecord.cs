@@ -53,6 +53,7 @@ namespace CodeLineHealthCareCenter.Models
             this.id = id; 
             this.patientId = patientId;
             this.diagnosis = diagnosis;
+            this.treatment = treatment;
             
         }
 
