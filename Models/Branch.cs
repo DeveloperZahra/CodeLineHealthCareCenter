@@ -19,14 +19,12 @@ namespace CodeLineHealthCareCenter
         public bool BranchStatus { get; set; } // Indicates whether the branch is currently active (true = open, false = closed).
         public DateTime BranchEstablished { get; set; } // The date when the branch was established.
         public static int BranchCount = 0;// Keeps track of the total number of branches created.
-        public List<Floor> Floors { get; set; } = new List<Floor>(); //  List of floors that belong to this branch.
+
+        // A list to store all branches (acting as an in-memory database)
+        private List<Branch> branches = new List<Branch>();
 
 
-        // 2. ===================================Class methods================================================
-       
-        /// implements IBranchService It provides all operations for managing branches
-
-        // 3. ===================================Class Constructors===============================
+        // 2. ===================================Class Constructors===============================
         public Branch() // Default constructor that increments the BranchCount.
         {
             BranchCount++;
@@ -47,6 +45,10 @@ namespace CodeLineHealthCareCenter
             BranchCount++;
         }
 
+        // 3. ===================================Class methods================================================
+
+        /// implements IBranchService It provides all operations for managing branches
+        // 
 
 
 
