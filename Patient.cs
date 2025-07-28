@@ -53,7 +53,7 @@ namespace CodeLineHealthCareCenter
 
         public override string GetRole() // Method to get the role of the user
         {
-            return "Patient";
+            return "Patient"; // Role of the user is Patient
         }
 
 
