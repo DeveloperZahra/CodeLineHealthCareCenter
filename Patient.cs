@@ -51,6 +51,11 @@ namespace CodeLineHealthCareCenter
             Console.WriteLine($"Date of Birth: {DateOfBirth.ToShortDateString()}");// Patient's date of birth
         }
 
+        public override string GetRole() // Method to get the role of the user
+        {
+            return "Patient";
+        }
+
 
 
 
