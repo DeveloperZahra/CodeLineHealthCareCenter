@@ -14,5 +14,7 @@ namespace CodeLineHealthCareCenter.Models
         public string diagnosis; // Medical diagnosis for the patient
         public string treatment; // Treatment given or prescribed
         public DateTime recordDate; // Date when the record was created
+
+        // 2. Class Properties
     }
 }
