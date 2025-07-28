@@ -13,6 +13,11 @@ namespace CodeLineHealthCareCenter
         public bool gender; // Patient's gender (Male, Female)
 
         // 2. Class Properties
+        public DateTime DateOfBirth // Patient's date of birth
+        {
+            get { return dateOfBirth; }
+            set { dateOfBirth = value; }
+        }
 
     }
 }
