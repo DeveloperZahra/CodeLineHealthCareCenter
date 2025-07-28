@@ -16,5 +16,11 @@ namespace CodeLineHealthCareCenter.Models
         public DateTime recordDate; // Date when the record was created
 
         // 2. Class Properties
+        public int Id // Unique identifier for the medical record
+        {
+            get { return id; }
+            set { id = value; }
+        }
+       
     }
 }
