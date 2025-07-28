@@ -1,16 +1,18 @@
-﻿using System;
+﻿using HospitalSystemTeamTask.Services;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace CodeLineHealthCareCenter
 {
     // Represents a branch of the hospital, including its details and associated floors.
-    class Branch
+    class Branch : IBranchService
     {
-        // 1. Class Field and  property...
+        // 1. ============================== Class Field and Property =====================================
         public int BranchId { get; set; }// Unique identifier for the branch. 
         public string BranchName { get; set; }// The name of the branch.
         public string BranchAddress { get; set; } //The address where the branch is located. 
@@ -20,9 +22,11 @@ namespace CodeLineHealthCareCenter
         public List<Floor> Floors { get; set; } = new List<Floor>(); //  List of floors that belong to this branch.
 
 
-        // 2. class method...
+        // 2. ===================================Class methods================================================
+       
+        /// implements IBranchService It provides all operations for managing branches
 
-        // 3. Class Constructor...
+        // 3. ===================================Class Constructors===============================
         public Branch() // Default constructor that increments the BranchCount.
         {
             BranchCount++;
