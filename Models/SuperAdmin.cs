@@ -56,7 +56,11 @@ namespace CodeLineHealthCareCenter
                     break;
 
 
+                    case '2':
+                    //to add a new admin ...
+                    Console.WriteLine("Adding a new admin...");
 
+                    break;
 
 
 
