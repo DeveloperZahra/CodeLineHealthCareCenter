@@ -30,6 +30,19 @@ namespace CodeLineHealthCareCenter.Models
             return "Admin";
         }
 
+        // Add a doctor only if they belong to the same branch and department as the admin
+        public void AddDoctor(Doctor doctor)
+        {
+            if (doctor.BranchId == this.BranchId && doctor.DepartmentId == this.DepartmentId)
+            {
+                doctors.Add(doctor);
+                Console.WriteLine($"Doctor {doctor.FullName} added successfully.");
+            }
+            else
+            {
+                Console.WriteLine("Error: Doctor must belong to the same branch and department as the Admin.");
+            }
+        }
 
 
 
