@@ -12,5 +12,7 @@ namespace CodeLineHealthCareCenter.Models
         // The doctor's medical specialty (e.g., Cardiology, Pediatrics)
         public string Specialty { get; set; }
 
+
+
     }
 }
