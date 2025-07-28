@@ -18,5 +18,11 @@ namespace CodeLineHealthCareCenter
         public List<Doctor> doctors; // List of doctors assigned to the clinic
 
         // 2. Class Properties
+        public int Id // Unique identifier for the clinic
+        {
+            get { return id; }
+            set { id = value; }
+        }
+       
     }
 }
