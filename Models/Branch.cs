@@ -63,7 +63,19 @@ namespace CodeLineHealthCareCenter
         // 3.2 Displays all branches stored in the list.
         public void GetAllBranches()
         {
-          
+            // check if there is branch 
+            if (branches.Count == 0)
+            {
+                Console.WriteLine("No branches found.");
+                return;
+            }
+            // display all branches 
+            Console.WriteLine(" List of all branches:");
+            foreach (var branch in branches)
+            {
+                Console.WriteLine($"ID: {branch.BranchId}, Name: {branch.BranchName}, Address: {branch.BranchAddress}, Status: {(branch.BranchStatus ? "Open" : "Closed")}");
+            }
+
         }
 
 
