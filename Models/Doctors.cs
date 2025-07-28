@@ -27,6 +27,12 @@ namespace CodeLineHealthCareCenter.Models
             this.DepartmentId = departmentId;
         }
 
+        // Override GetRole method to specify this user is a Doctor
+        public override string GetRole()
+        {
+            return "Doctor";
+        }
+
 
 
     }
