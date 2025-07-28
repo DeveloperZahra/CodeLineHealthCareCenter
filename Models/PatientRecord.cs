@@ -21,6 +21,13 @@ namespace CodeLineHealthCareCenter.Models
             get { return id; }
             set { id = value; }
         }
-       
+        public int PatientId // Patient's ID to link the record to a patient
+        {
+            get { return patientId; }
+            set { patientId = value; }
+        }
+
+
+
     }
 }
