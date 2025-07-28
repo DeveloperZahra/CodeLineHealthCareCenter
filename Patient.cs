@@ -31,6 +31,18 @@ namespace CodeLineHealthCareCenter
         public Patient() { }
 
         // Constructor with parameters
+        public Patient(int id, string fullName, string email, string password, DateTime dateOfBirth, bool gender) 
+        {
+            this.Id = id; // Unique identifier for the patient
+            this.FullName = fullName;
+            this.Email = email;
+            this.Password = password;
+            this.dateOfBirth = dateOfBirth;
+            this.gender = gender;
+        }
+
+
+
 
     }
 }
