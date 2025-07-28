@@ -52,5 +52,13 @@ namespace CodeLineHealthCareCenter
         public Booking() { }
 
         // Constructor with parameters
+        public Booking(int id, int patientId, int clinicId, DateTime appointmentDate, string appointmentType) 
+        {
+            this.id = id; // Unique identifier for the booking
+            this.patientId = patientId;
+            this.clinicId = clinicId;
+            this.appointmentDate = appointmentDate;
+            this.appointmentType = appointmentType;
+        }
     }
 }
