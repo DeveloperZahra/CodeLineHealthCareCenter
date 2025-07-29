@@ -20,7 +20,7 @@ namespace CodeLineHealthCareCenter
         public SuperAdmin (string name, string email, string password, string nationalId, string phoneNumber)
         {
             UserCount++;
-            UserId = "Admin" + UserCount;
+            UserId = "SA" + UserCount;
             UserName = name;
             Email = email;
             Password = password;
