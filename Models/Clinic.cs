@@ -40,17 +40,17 @@ namespace CodeLineHealthCareCenter
             get { return branchId; }
             set { branchId = value; }
         }
-        public Dictionary<Doctor, string> DoctorSchedules // Doctor + available time
+        public Dictionary<int, string> DoctorSchedules // Dictionary to hold doctor schedules with doctor ID as key and available time as value
         {
-            get { return doctorSchedules; } // Dictionary to hold doctor schedules with Doctor as key and available time as value
-            set { doctorSchedules = value; } 
+            get { return doctorSchedules; }
+            set { doctorSchedules = value; }
         }
 
 
         // 3. Class Constructors
 
         // Default constructor
-        
+
         public Clinic()
         {
             doctorSchedules = new Dictionary<Doctor, string>(); // initialize empty dictionary
