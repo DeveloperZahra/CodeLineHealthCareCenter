@@ -3,6 +3,7 @@ using HospitalSystemTeamTask.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -44,9 +45,62 @@ namespace CodeLineHealthCareCenter
         // 4.1 Checks if the email and password match any active user
         public bool AuthenticateUser(string email, string password, string role)
         {
+            bool CanAuthenticateUser = false;
+            //Use a switch statement for clarity and extensibility
+            switch (role)
+            {
+                // Maintance the switch case if role is  Super Admin
+                case "Super Admin":
+                    CanAuthenticateUser= SuperAdmin.SuperAdmins.Any(u => u.Email == email && u.Password == password && u.Role == role);
+                    if (CanAuthenticateUser)
+                    {
+                        if(SuperAdmin.SuperAdmins.Any(u => u.IsActive))
+                        {
+                            Console.WriteLine($"User '{email}' with role '{role}' authenticated successfully.");
+                            return true;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Authentication failed for email '{email}' with role '{role}': Account is inactive.");
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Authentication failed for email '{email}'with role '{role}': email can not found");
+                        return false;
+                    }
+                    break;
+
+                case "Admin":
+                    
+                break;
+
+                case "Doctor":
+
+                break;
+
+                case "Patient":
+
+                break;
+
+                default:
+                    // Log or handle unrecognized role
+                    Console.WriteLine($"Authentication failed: Unrecognized role '{role}'.");
+                    return false;
+
+
+
+
+
+            }
+                
             if (role == "Super Admin")
             {
-                return SuperAdmin.SuperAdmins.Any(u => u.Email == email && u.Password == password && u.Role == role && u.IsActive);
+                if (!IsActive)
+                    return SuperAdmin.SuperAdmins.Any(u => u.Email == email && u.Password == password && u.Role == role && u.IsActive);
+                else
+                    Console.WriteLine("");
 
             }
             else if(role == "Admin")
@@ -65,8 +119,81 @@ namespace CodeLineHealthCareCenter
             }
             else
             {
+                Console.WriteLine("No user with this role in the system");
                 return false;
-            }            
+
+            }
+        }
+
+        // 4.2 Deactivates a user by their ID.
+        public void DeactivateUser(string userId ,string role)
+        {
+            if (role == "Super Admin")
+            {
+                if (SuperAdmin.SuperAdmins != null)
+                {
+                    var super_admin = SuperAdmin.SuperAdmins.FirstOrDefault(u => u.UserId == userId);
+                    if (super_admin != null)
+                        super_admin.IsActive = false;
+                    else
+                        Console.WriteLine($"Super Admin with this {userId} can not found");
+                }
+                else
+                {
+                    Console.WriteLine("There is no Super Admin data in the system");
+                }
+
+            }
+            else if (role == "Admin")
+            {
+                if (Admin.Admins != null)
+                {
+                    var admin = Admin.Admins.FirstOrDefault(u => u.UserId == userId);
+                    if (admin != null)
+                        admin.IsActive = false;
+                    else
+                        Console.WriteLine($"Admin with this {userId} can not found");
+                }
+                else
+                {
+                    Console.WriteLine("There is no Admin data in the system");
+                }
+            }
+            else if (role == "Doctor")
+            {
+                if(Doctor.doctors != null)
+                {
+                    var doctor = Doctor.doctors.FirstOrDefault(u => u.UserId == userId);
+                    if (doctor != null)
+                        doctor.IsActive = false;
+                    else Console.WriteLine($"Doctor with this {userId} can not found");
+                }
+                else
+                {
+                    Console.WriteLine("There is no Doctor data in the system");
+                }
+
+            }
+            else if (role == "Patient")
+            {
+                if (Patient.patients != null)
+                {
+                    var patient = Patient.patients.FirstOrDefault(u => u.UserId == userId);
+                    if (patient != null)
+                        patient.IsActive = false;
+                    else Console.WriteLine($"Patient with this {userId} can not found");
+                }
+                else
+                {
+                    Console.WriteLine("There is no Patient data in the system");
+                }
+            }
+            else
+            {
+                Console.WriteLine("No user with this role in the system");
+            }
+
+
         }
 
 
