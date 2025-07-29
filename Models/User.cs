@@ -272,9 +272,20 @@ namespace CodeLineHealthCareCenter
                     }
 
                     break;
-
+                // check email for Patient if exist
                 case "Patient":
+                    EmailExists = Patient.patients.Any(u => u.Email == email);
+                    if (EmailExists)
+                    {
+                        Console.WriteLine($"{role}{email} successfully exist");
+                        return true;
+                    }
 
+                    else
+                    {
+                        Console.WriteLine($"{role}{email} dose not exist");
+                        return false;
+                    }
                     break;
                 default:
                     // Log or handle unrecognized role
