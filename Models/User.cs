@@ -225,7 +225,7 @@ namespace CodeLineHealthCareCenter
             bool EmailExists;
             switch (role)
             {
-                // check email for admin if exist
+                // check email for super admin if exist
                 case "Super Admin":
                     EmailExists = SuperAdmin.SuperAdmins.Any(u => u.Email == email);
                     if (EmailExists)
@@ -239,17 +239,23 @@ namespace CodeLineHealthCareCenter
                         Console.WriteLine($"{role}{email} dose not exist");
                         return false;
                     }
-
-
                     break;
-
+                // check email for  admin if exist
                 case "Admin":
                     EmailExists = Admin.Admins.Any(u => u.Email == email);
                     if (EmailExists)
+                    {
+                        Console.WriteLine($"{role}{email} successfully exist");
                         return true;
+                    }
+
                     else
+                    {
                         Console.WriteLine($"{role}{email} dose not exist");
-                    break;
+                        return false;
+                    }
+
+                    break; 
 
                 case "Doctor":
                     EmailExists = Doctor.doctors.Any(u => u.Email == email);
