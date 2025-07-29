@@ -9,7 +9,7 @@ namespace HospitalSystemTeamTask.Services
 {
     public interface IDepartmentService
     {
-        void CreateDepartment(int branchId); // Creates a new department for a specific branch.
+        void CreateDepartment(); // Creates a new department for a specific branch.
         void GetAllDepartments(); // Displays all departments
         void UpdateDepartment(int branchId, int departmentId); //Updates a department's details using branchId and departmentId.
         void SetDepartmentActiveStatus(int departmentId, bool isActive); //Sets the active status(open/closed) for a department.
