@@ -9,6 +9,13 @@ namespace CodeLineHealthCareCenter
 {
     class Service
     {
+        protected List<Department> departments = new List<Department>(); // List to store departments
+
+        public Service(List<Department> departments)
+        {
+            this.departments = departments;
+        }
+
         protected List<Service> services = new List<Service>(); // List to store services
 
         // Add a new service to the list
