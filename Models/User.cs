@@ -220,7 +220,12 @@ namespace CodeLineHealthCareCenter
         }
 
         // 4.3 Checks if an email already exists in the system.
-
+        public bool EmailExists(string email, string role)
+        {
+            bool EmailExists;
+            
+            
+        }
 
 
 
