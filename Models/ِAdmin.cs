@@ -19,7 +19,7 @@ namespace CodeLineHealthCareCenter.Models
         public int DepartmentId { get; set; }  // The department this admin manages
         // 2. ============================== Admin List =================================
         public static List<Admin> Admins = new List<Admin>();
-        // ================================= Class Constructor ==========================
+        // 3. ================================= Class Constructor ==========================
         public Admin(string name, string email, string password, string nationalId, string phoneNumber,string gender, int branchId, int departmentId)
         {
             UserCount++;
@@ -35,7 +35,7 @@ namespace CodeLineHealthCareCenter.Models
             DepartmentId = departmentId ;
             IsActive = true ;
         }
-        //==================================================== Admins Methods =======================================================
+        //4. ==================================================== Admins Methods =======================================================
 
        
 
