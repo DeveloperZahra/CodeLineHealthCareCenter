@@ -37,9 +37,15 @@ namespace CodeLineHealthCareCenter
         // Method to add a floor after checking if it already exists in the branch
         public static void AddFloor(int floorId, int branchId)
         {
-            Floor newFloor = new Floor (BranchId);
-
-            Floors.Add(new Floor (BranchId));   
+            // Check if floor already exists in this branch
+            foreach (var floor in Floors)
+            {
+                if (floor.FloorId == floorId && floor.BranchId == branchId)
+                {
+                    Console.WriteLine("❌ This floor ID already exists in this branch.");
+                    return;
+                }
+            }
         }
 
 
