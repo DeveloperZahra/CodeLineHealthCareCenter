@@ -36,7 +36,7 @@ namespace CodeLineHealthCareCenter
             var service = services.Find(match); // Find the first service that matches the condition
             if (service != null)
             {
-                services.Remove(service);
+                services.Remove(service); // Remove the service from the list
                 Console.WriteLine(" Service removed.");
                 return true;
             }
