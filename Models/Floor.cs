@@ -41,6 +41,11 @@ namespace CodeLineHealthCareCenter
 
 
 
+        public void GetAllFloorInBranch (int BranchId)
+        {
+
+        }
+
 
     }
 }
