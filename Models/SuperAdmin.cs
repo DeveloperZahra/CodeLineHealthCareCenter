@@ -16,8 +16,20 @@ namespace CodeLineHealthCareCenter
         // list to store super admin data 
         public List<SuperAdmin> SuperAdmins = new List<SuperAdmin>();
 
+        // constructore 
+        public SuperAdmin (string name, string email, string password, string nationalId, string phoneNumber)
+        {
+            UserCount++;
+            UserId = "Admin" + UserCount;
+            UserName = name;
+            Email = email;
+            Password = password;
+            PhoneNumber = phoneNumber;
+            Role = "Super Admin";
+            IsActive = true;
+        }
 
- 
+        // ---------------------------------------------------------------------
 
         // class method ..
         public static void SuperAdminMenu()
