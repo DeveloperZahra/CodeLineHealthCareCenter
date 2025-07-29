@@ -11,8 +11,8 @@ namespace CodeLineHealthCareCenter
     {
         // ==============1. Class Fields ==============
         
-        public int FloorId {  get; set; } //Floor ID (e.g., 1,1,3)
-        public int BranchId { get; set; }
+        public int FloorId {  get; set; } //Floor ID (e.g., 1, 2, 3)
+        public int BranchId { get; set; } // The Branch ID this floor belongs to
 
         // A list to store all Floor (acting as an in-memory database)
 
