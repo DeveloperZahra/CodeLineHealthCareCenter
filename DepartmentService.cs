@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace CodeLineHealthCareCenter
 {
-    class DepartmentService
+    public class DepartmentService : Service
     {
+        // 1. Get all departments
+        public void GetAllDepartments()
+        {
+            if (items.Count == 0)
+            {
+                Console.WriteLine(" No departments found.");
+                return;
+            }
+
+        }
     }
 }
