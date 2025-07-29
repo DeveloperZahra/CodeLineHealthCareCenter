@@ -29,5 +29,28 @@ namespace CodeLineHealthCareCenter
             this.BranchId = branchId;
         }
 
+        // Methodes 
+
+        public void AddRoom()
+        {
+            Console.WriteLine("Enter the room id :");
+            int roomId = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter the branch id :");
+            int branchId = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter the Floor id:");
+            int floorId = int.Parse(Console.ReadLine());
+
+
+            Room newRoom = Rooms(roomId , floorId , branchId);
+            {
+                Rooms.Add(newRoom);
+
+                Console.WriteLine("The room has been successfully added"
+            }
+        }
+
+
     }
 }
