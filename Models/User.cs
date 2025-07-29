@@ -41,6 +41,27 @@ namespace CodeLineHealthCareCenter
                     throw new ArgumentException("Password must be at least 6 characters long.");
             }
         }
+        // 4============== Constructor ==============
+        public User(string name, string email, string password, string nationalId, string phoneNumber, string gender, string role)
+        {
+            // Increment the global user counter to generate a unique ID
+            UserCount++;
+
+            // Assign a unique ID (can be customized later in child classes)
+            UserId = "U" + UserCount;
+
+            // Assign values to properties
+            UserName = name;
+            Email = email;
+            Password = password;  // Uses the encapsulated Password property with validation
+            NationalID = nationalId;
+            PhoneNumber = phoneNumber;
+            Gender = gender;
+            Role = role;
+
+            // By default, when a user is created, the account is active
+            IsActive = true;
+        }
 
         // 4. ======================= Methods of IUserServices Interface ==========================
         /// Implement Methods which all users will 
@@ -546,7 +567,7 @@ namespace CodeLineHealthCareCenter
         }
 
         // 4.9 Prints all users with a specific role.
-        public void GetUserByRole(string roleName)
+        public void GetUsersByRole(string roleName)
         {
             switch (roleName)
             {
