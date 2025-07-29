@@ -15,7 +15,7 @@ namespace CodeLineHealthCareCenter
         public int BranchId; // The ID of the branch this room belongs to
 
 
-        // list 
+        //  Shared list to store all rooms (static so it belongs to the class, not object)
         public List<Room> Rooms=new List<Room>();
 
 
