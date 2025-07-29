@@ -88,13 +88,13 @@ namespace CodeLineHealthCareCenter
 
             if (doctorSchedules.Count == 0) // no doctors assigned
             {
-                Console.WriteLine("No doctors assigned to this clinic yet.");
+                Console.WriteLine("No doctors assigned to this clinic yet."); 
             }
             else
             {
-                foreach (var entry in doctorSchedules)
+                foreach (var entry in doctorSchedules) 
                 {
-                    Console.WriteLine($"- Dr. {entry.Key.FullName} | Available: {entry.Value}");
+                    Console.WriteLine($"- Dr. {entry.Key.FullName} | Available: {entry.Value}"); 
                 }
             }
         }
