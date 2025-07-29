@@ -240,7 +240,7 @@ namespace CodeLineHealthCareCenter
                         return false;
                     }
                     break;
-                // check email for  admin if exist
+                // check email for admin if exist
                 case "Admin":
                     EmailExists = Admin.Admins.Any(u => u.Email == email);
                     if (EmailExists)
@@ -255,15 +255,22 @@ namespace CodeLineHealthCareCenter
                         return false;
                     }
 
-                    break; 
-
+                    break;
+                // check email for doctor if exist
                 case "Doctor":
                     EmailExists = Doctor.doctors.Any(u => u.Email == email);
                     if (EmailExists)
+                    {
+                        Console.WriteLine($"{role}{email} successfully exist");
                         return true;
+                    }
+
                     else
+                    {
                         Console.WriteLine($"{role}{email} dose not exist");
-                    break;
+                        return false;
+                    }
+
                     break;
 
                 case "Patient":
