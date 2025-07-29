@@ -24,6 +24,12 @@ namespace CodeLineHealthCareCenter
             return services;
         }
 
+        // Find service based on a matching condition
+        public virtual Service GetBy(Predicate<Service> match)
+        {
+            return services.Find(match);
+        }
+
 
 
 
