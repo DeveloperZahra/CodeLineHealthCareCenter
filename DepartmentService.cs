@@ -17,8 +17,9 @@ namespace CodeLineHealthCareCenter
                 return;
             }
 
-            Console.WriteLine(" List of Departments:"); 
-            foreach (var dept in items) 
+            Console.WriteLine(" List of Departments:");
+            // Iterate through each department and print its details
+            foreach (var dept in items)  
             {
                 Console.WriteLine($"ID: {dept.DepartmentId}, Name: {dept.DepartmentName}"); 
             }
