@@ -23,7 +23,7 @@ namespace CodeLineHealthCareCenter
             NationalID = nationalId;
             PhoneNumber = phoneNumber;
             Gender = gender;
-            Role = "Doctor";
+            Role = "Patient";
             DateOfBirth = dateOFBirthday;
             IsActive = true;
         }
