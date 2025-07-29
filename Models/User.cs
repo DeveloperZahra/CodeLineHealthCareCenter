@@ -501,7 +501,48 @@ namespace CodeLineHealthCareCenter
             }
         }
 
-        
+        // 4.8 Helper method to update the correct user based on role and field
+        private void UpdateField(string userId, string role, string field, string newValue)
+        {
+            object user = null;
+
+            // Fetch user based on role
+            switch (role)
+            {
+                case "Super Admin":
+                    user = SuperAdmin.SuperAdmins.FirstOrDefault(u => u.UserId == userId);
+                    break;
+                case "Admin":
+                    user = Admin.Admins.FirstOrDefault(u => u.UserId == userId);
+                    break;
+                case "Doctor":
+                    user = Doctor.doctors.FirstOrDefault(u => u.UserId == userId);
+                    break;
+                case "Patient":
+                    user = Patient.patients.FirstOrDefault(u => u.UserId == userId);
+                    break;
+                default:
+                    Console.WriteLine($"⚠️ Unrecognized role '{role}'.");
+                    return;
+            }
+
+            if (user == null)
+            {
+                Console.WriteLine($"⚠️ No user found with ID {userId} for role {role}.");
+                return;
+            }
+
+            // Update the selected field dynamically
+            var property = user.GetType().GetProperty(field);
+            if (property != null && property.CanWrite)
+            {
+                property.SetValue(user, newValue);
+            }
+            else
+            {
+                Console.WriteLine($"⚠️ Cannot update the field '{field}'.");
+            }
+        }
 
 
 
