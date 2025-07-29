@@ -2,6 +2,7 @@
 using HospitalSystemTeamTask.Services;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Runtime.Intrinsics.X86;
 using System.Text;
@@ -542,6 +543,31 @@ namespace CodeLineHealthCareCenter
             {
                 Console.WriteLine($"⚠️ Cannot update the field '{field}'.");
             }
+        }
+
+        // 4.9 Prints all users with a specific role.
+        public void GetUserByRole(string roleName)
+        {
+            switch (roleName)
+            {
+                // Prints all users with a specific Super Admin role.
+                case "Super Admin":
+                    var roleUsers = SuperAdmin.SuperAdmins.Where(u => u.Role.Equals(roleName, StringComparison.OrdinalIgnoreCase));
+                    foreach (var user in roleUsers)
+                        DisplayUser(user);
+                    break;
+                case "Admin":
+                    break;
+                case "Doctor":
+                    break;
+                case "Patient":
+                    break;
+                default:
+                    Console.WriteLine($"⚠️ Unrecognized role '{roleName}'.");
+                    return;
+
+            }
+            
         }
 
 
