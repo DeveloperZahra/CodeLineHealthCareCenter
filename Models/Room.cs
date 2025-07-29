@@ -31,9 +31,11 @@ namespace CodeLineHealthCareCenter
             this.BranchId = branchId;
         }
 
-        // Methodes 
 
-        public void AddRoom()
+        // ============== 3. Methods ==============
+
+        // Method to add a new room (reads input from user)
+        public static  void AddRoom()
         {
             Console.WriteLine("Enter the room id :");
             int roomId = int.Parse(Console.ReadLine());
