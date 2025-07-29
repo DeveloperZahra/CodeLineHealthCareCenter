@@ -73,21 +73,29 @@ namespace CodeLineHealthCareCenter
             if (doctorSchedules.ContainsKey(doctor))
                 doctorSchedules[doctor] = availableTime; // update time if doctor exists
             else
-                doctorSchedules.Add(doctor, availableTime); // add new do
+                doctorSchedules.Add(doctor, availableTime); // add new doctor and time
         }
 
 
-        // Display clinic information
+        // Display clinic and doctor schedule info
         public void PrintClinicInfo()
         {
-            Console.WriteLine($"Clinic ID: {id}"); // Unique identifier for the clinic
-            Console.WriteLine($"Name: {name}"); // Name of the clinic
-            Console.WriteLine($"Department ID: {departmentId}"); // ID of the department the clinic belongs to
-            Console.WriteLine($"Branch ID: {branchId}"); // ID of the branch the clinic is located in
-            Console.WriteLine("Doctors and Available Times:"); 
-            foreach (var entry in doctorSchedules) 
+            Console.WriteLine($"Clinic ID: {id}");
+            Console.WriteLine($"Name: {name}");
+            Console.WriteLine($"Department ID: {departmentId}");
+            Console.WriteLine($"Branch ID: {branchId}");
+            Console.WriteLine("Doctors and Available Times:");
+
+            if (doctorSchedules.Count == 0) // no doctors assigned
             {
-                Console.WriteLine($"- Dr. {entry.Key.FullName} | Available: {entry.Value}");// Full name of the doctor and their available time
+                Console.WriteLine("No doctors assigned to this clinic yet.");
+            }
+            else
+            {
+                foreach (var entry in doctorSchedules)
+                {
+                    Console.WriteLine($"- Dr. {entry.Key.FullName} | Available: {entry.Value}");
+                }
             }
         }
 
