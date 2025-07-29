@@ -9,5 +9,15 @@ namespace CodeLineHealthCareCenter
     // ==============1. Class Fields ==============
     public class Room
     {
+        public int RoomId;
+        public string Name;
+        public int FloorId;
+        public int BranchId; 
+
+
+
+
+
+
     }
 }
