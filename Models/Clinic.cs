@@ -67,38 +67,35 @@ namespace CodeLineHealthCareCenter
         }
 
         // 4. Class Methods
-       
-         //update a doctor's available time
-        public void AddOrUpdateDoctorSchedule(Doctor doctor, string availableTime)
+
+        //  update available time for existing doctor (by ID)
+        public void AssignDoctorTime(int doctorId, string availableTime)
         {
-            if (doctorSchedules.ContainsKey(doctor))
-                doctorSchedules[doctor] = availableTime; // update time if doctor exists
-            else
-                doctorSchedules.Add(doctor, availableTime); // add new doctor and time
+            doctorSchedules[doctorId] = availableTime; //  update
         }
 
 
-        // Display clinic and doctor schedule info
+        // Print info (you can fetch doctor names by ID from Admin if needed)
         public void PrintClinicInfo()
         {
             Console.WriteLine($"Clinic ID: {id}");
             Console.WriteLine($"Name: {name}");
             Console.WriteLine($"Department ID: {departmentId}");
             Console.WriteLine($"Branch ID: {branchId}");
-            Console.WriteLine("Doctors and Available Times:");
-
-            if (doctorSchedules.Count == 0) // no doctors assigned
+            Console.WriteLine("Doctor Schedules:");
+            if (doctorSchedules.Count == 0)
             {
-                Console.WriteLine("No doctors assigned to this clinic yet."); 
+                Console.WriteLine("No doctor schedule assigned.");
             }
             else
             {
                 foreach (var entry in doctorSchedules) 
                 {
-                    Console.WriteLine($"- Dr. {entry.Key.FullName} | Available: {entry.Value}"); 
+                    Console.WriteLine($"- Doctor ID: {entry.Key} | Available Time: {entry.Value}"); 
                 }
             }
         }
-
     }
+
+    
 }
