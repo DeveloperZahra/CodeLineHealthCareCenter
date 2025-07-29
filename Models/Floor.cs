@@ -17,7 +17,7 @@ namespace CodeLineHealthCareCenter
 
         // Shared list to hold all floors in the system // A list to store all Floor (acting as an in-memory database)
 
-        public List<Floor> Floors = new List<Floor>();
+        public static List<Floor> Floors = new List<Floor>();
 
 
 
