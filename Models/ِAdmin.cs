@@ -36,8 +36,28 @@ namespace CodeLineHealthCareCenter.Models
             IsActive = true ;
         }
         //4. ==================================================== Admins Methods =======================================================
+        /// implement method in IAdminService 
+        // 4.1 Adds a new Admin user to the system.
+        public void AddAdmin(string name, string email, string password, string nationalId, string phoneNumber, string gender, int branchId, int departmentId)
+        {
+            // 1️⃣ Check if an admin with the same email already exists
+            bool exists = Admins.Exists(a => a.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+            if (exists)
+            {
+                Console.WriteLine("❌ Admin with this email already exists!");
+                return;
+            }
 
-       
+            // 2️⃣ Create new Admin object
+            Admin newAdmin = new Admin(name, email, password, nationalId, phoneNumber, gender, branchId, departmentId);
+
+            // 3️⃣ Add the new admin to the static list
+            Admins.Add(newAdmin);
+
+            // 4️⃣ Confirmation message
+            Console.WriteLine($"✅ Admin '{newAdmin.UserName}' added successfully with ID: {newAdmin.UserId}");
+        }
+
 
     }
 }
