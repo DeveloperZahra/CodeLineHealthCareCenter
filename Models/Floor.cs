@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,6 +29,18 @@ namespace CodeLineHealthCareCenter
             this.BranchId = BranchId;
 
         }
+
+        //3. ===============Class methods===============
+
+        public void AddFloor(int BranchId)
+        {
+            Floor newFloor = new Floor (BranchId);
+
+            Floors.Add(new Floor (BranchId));   
+        }
+
+
+
 
     }
 }
