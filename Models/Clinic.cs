@@ -66,11 +66,14 @@ namespace CodeLineHealthCareCenter
         }
 
         // 4. Class Methods
-        // Add a doctor with specific time
-        public void AddDoctor(Doctor doctor, string availableTime)
+       
+         //update a doctor's available time
+        public void AddOrUpdateDoctorSchedule(Doctor doctor, string availableTime)
         {
-            if (!doctorSchedules.ContainsKey(doctor)) // Check if the doctor is already in the dictionary
-                doctorSchedules.Add(doctor, availableTime); // Add the doctor and their available time to the dictionary
+            if (doctorSchedules.ContainsKey(doctor))
+                doctorSchedules[doctor] = availableTime; // update time if doctor exists
+            else
+                doctorSchedules.Add(doctor, availableTime); // add new doctor and time
         }
 
 
