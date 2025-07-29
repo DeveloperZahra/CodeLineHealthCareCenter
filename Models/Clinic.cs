@@ -66,11 +66,13 @@ namespace CodeLineHealthCareCenter
         }
 
         // 4. Class Methods
-        // Add a doctor to the clinic
-        public void AddDoctor(Doctor doctor)
+        // Add a doctor with specific time
+        public void AddDoctor(Doctor doctor, string availableTime)
         {
-            doctors.Add(doctor); // Add the doctor to the clinic's list of doctors
+            if (!doctorSchedules.ContainsKey(doctor))
+                doctorSchedules.Add(doctor, availableTime);
         }
+
 
         // Display clinic information
         public void PrintClinicInfo()
