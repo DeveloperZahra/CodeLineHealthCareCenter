@@ -52,7 +52,7 @@ namespace CodeLineHealthCareCenter
         
         public Clinic()
         {
-            doctorSchedules = new Dictionary<Doctor, string>(); // initialize
+            doctorSchedules = new Dictionary<Doctor, string>(); // initialize empty dictionary
         }
 
         // Constructor with parameters
