@@ -19,7 +19,7 @@ namespace CodeLineHealthCareCenter
 
             Console.WriteLine(" List of Departments:");
             // Iterate through each department and print its details
-            foreach (var dept in items)  
+            foreach (var dept in items)  // items is a List<Department> in the base class Service
             {
                 Console.WriteLine($"ID: {dept.DepartmentId}, Name: {dept.DepartmentName}"); 
             }
