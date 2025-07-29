@@ -295,6 +295,51 @@ namespace CodeLineHealthCareCenter
 
         }
 
+        // 4.4 function to display user data
+        private void DisplayUser(User user)
+        {
+            Console.WriteLine($"ID: {user.UserId}, Name: {user.UserName}, Email: {user.Email}, Role: {user.Role}, Active: {user.IsActive}");
+        }
+        // 4.5 Prints user details by ID and role
+        public void GetUserById(string userId, string role)
+        {
+            switch (role)
+            {
+                // Get Super Admin data By ID 
+                case "Super Admin":
+                    var Super_Admin = SuperAdmin.SuperAdmins.FirstOrDefault(u => u.UserId == userId && u.Role == role);
+                    if (Super_Admin != null)
+                    {
+                        DisplayUser(Super_Admin);
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Not {role} in th system");
+                    }
+                        break;
+                // Get Admin data By ID 
+                case "Admin":
+                    var admin = Admin.Admins.FirstOrDefault(u => u.UserId == userId && u.Role == role);
+                    if (admin != null)
+                    {
+                        DisplayUser(admin);
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Not {role} in th system");
+                    }
+                    break;
+                case "Doctor":
+                    break;
+                case "Patient":
+                    break;
+                default:
+                    // Log or handle unrecognized role
+                    Console.WriteLine($"Unrecognized role '{role}'.");
+            }
+            
+        }
+
 
 
     }
