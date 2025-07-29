@@ -58,8 +58,15 @@ namespace CodeLineHealthCareCenter
                 }
             }
 
+            // If not found, add new room
+            Room newRoom = new Room(roomId, floorId, branchId);
+            Rooms.Add(newRoom);
 
-            Room newRoom = Rooms(roomId , floorId , branchId);
+            Console.WriteLine("✅ The room has been successfully added.");
+        }
+
+
+        Room newRoom = Rooms(roomId , floorId , branchId);
             {
                 Rooms.Add(newRoom);
 
