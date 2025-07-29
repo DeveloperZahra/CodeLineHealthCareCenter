@@ -61,12 +61,6 @@ namespace CodeLineHealthCareCenter
                 Console.WriteLine(" Department not found."); 
         }
 
-        // 6. Get department name by ID (return string)
-        public string GetDepartmentName(int id)
-        {
-            var dept = departments.FirstOrDefault(d => d.DepartmentId == id);
-            return dept != null ? dept.DepartmentName : "Department not found.";
-        }
+
     }
-}
 }
