@@ -9,7 +9,7 @@ namespace CodeLineHealthCareCenter
     // ==============1. Class Fields ==============
     public class Room
     {
-        public int RoomId;
+        public int RoomId;  // Unique room identifier
         public string Name;
         public int FloorId;
         public int BranchId; 
