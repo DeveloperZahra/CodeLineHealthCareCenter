@@ -16,7 +16,7 @@ namespace CodeLineHealthCareCenter
 
 
         //  Shared list to store all rooms (static so it belongs to the class, not object)
-        public List<Room> Rooms=new List<Room>();
+        public static  List<Room> Rooms=new List<Room>();
 
 
 
