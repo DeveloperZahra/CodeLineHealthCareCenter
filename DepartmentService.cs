@@ -41,14 +41,14 @@ namespace CodeLineHealthCareCenter
                 Console.WriteLine("  Department not found."); 
             }
         }
-        // 4. Get department by name
+        // 3. Get department by name
         public void GetDepartmentByName(string name)
         {
-            var dept = departments.FirstOrDefault(d => d.DepartmentName.Equals(name, StringComparison.OrdinalIgnoreCase));
+            var dept = departments.FirstOrDefault(d => d.DepartmentName.Equals(name, StringComparison.OrdinalIgnoreCase)); // Find the department by name
             if (dept != null)
-                Console.WriteLine($"🔍 Department Found: ID = {dept.DepartmentId}, Name = {dept.DepartmentName}");
+                Console.WriteLine($" Department Found: ID = {dept.DepartmentId}, Name = {dept.DepartmentName}");
             else
-                Console.WriteLine("❌ Department not found.");
+                Console.WriteLine(" Department not found.");
         }
     }
 }
