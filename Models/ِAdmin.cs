@@ -20,20 +20,18 @@ namespace CodeLineHealthCareCenter.Models
         // 2. ============================== Admin List =================================
         public static List<Admin> Admins = new List<Admin>();
         // 3. ================================= Class Constructor ==========================
-        public Admin(string name, string email, string password, string nationalId, string phoneNumber,string gender, int branchId, int departmentId)
+        public Admin(string name, string email, string password, string nationalId, string phoneNumber, string gender, int branchId, int departmentId)
+        : base(name, email, password, nationalId, phoneNumber, gender, "Admin") // Call parent User constructor
         {
-            UserCount++;
+            // Generate a custom Admin ID (starts with "A")
             UserId = "A" + UserCount;
-            UserName = name ;
-            Email = email ;
-            Password = password ;
-            NationalID = nationalId ;
-            PhoneNumber = phoneNumber ;
-            Gender = gender ;
-            Role = "Admin";
-            BranchId = branchId ;
-            DepartmentId = departmentId ;
-            IsActive = true ;
+
+            // Assign admin-specific properties
+            BranchId = branchId;
+            DepartmentId = departmentId;
+
+            // Admin accounts are active by default
+            IsActive = true;
         }
         //4. ==================================================== Admins Methods =======================================================
         /// implement method in IAdminService 
