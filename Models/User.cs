@@ -307,7 +307,7 @@ namespace CodeLineHealthCareCenter
             {
                 // Get Super Admin data By ID 
                 case "Super Admin":
-                    var Super_Admin = SuperAdmin.SuperAdmins.FirstOrDefault(u => u.UserId == userId && u.Role == role);
+                    var Super_Admin = SuperAdmin.SuperAdmins.FirstOrDefault(u => u.UserId == userId);
                     if (Super_Admin != null)
                     {
                         DisplayUser(Super_Admin);
@@ -319,7 +319,7 @@ namespace CodeLineHealthCareCenter
                         break;
                 // Get Admin data By ID 
                 case "Admin":
-                    var admin = Admin.Admins.FirstOrDefault(u => u.UserId == userId && u.Role == role);
+                    var admin = Admin.Admins.FirstOrDefault(u => u.UserId == userId);
                     if (admin != null)
                     {
                         DisplayUser(admin);
@@ -329,7 +329,17 @@ namespace CodeLineHealthCareCenter
                         Console.WriteLine($"Not {role} in th system");
                     }
                     break;
+                // Get Doctor data By ID 
                 case "Doctor":
+                    var doctor = Doctor.doctors.FirstOrDefault(u => u.UserId == userId);
+                    if (doctor != null)
+                    {
+                        DisplayUser(doctor);
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Not {role} in th system");
+                    }
                     break;
                 case "Patient":
                     break;
