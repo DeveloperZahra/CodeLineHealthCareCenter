@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CodeLineHealthCareCenter
 {
@@ -382,7 +383,20 @@ namespace CodeLineHealthCareCenter
 
                     }
                     break;
+                    // Updates a Super Admin's password
                 case "Admin":
+                    var admin = Admin.Admins.FirstOrDefault(u => u.UserId == userId);
+                    if (admin != null && admin.Password == currentPassword)
+                    {
+                        admin.Password = newPassword;
+                        Console.WriteLine("Successfully update password");
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Faild update password: not input get or currentPassword is wrong");
+
+                    }
                     break;
                 case "Doctor":
                     break;
