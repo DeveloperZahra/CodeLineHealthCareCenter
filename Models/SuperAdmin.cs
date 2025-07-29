@@ -17,16 +17,13 @@ namespace CodeLineHealthCareCenter
         public static List<SuperAdmin> SuperAdmins = new List<SuperAdmin>();
 
         // 2. ================================= Constructore ======================================
-        public SuperAdmin (string name, string email, string password, string nationalId, string phoneNumber, string gender)
+        public SuperAdmin(string name, string email, string password, string nationalId, string phoneNumber, string gender)
+        : base(name, email, password, nationalId, phoneNumber, gender, "Super Admin") // Call parent User constructor
         {
-            UserCount++;
+            // Generate a custom SuperAdmin ID (starts with "SA")
             UserId = "SA" + UserCount;
-            UserName = name;
-            Email = email;
-            Password = password;
-            PhoneNumber = phoneNumber;
-            Gender = gender;
-            Role = "Super Admin";
+
+            // SuperAdmin accounts are active by default
             IsActive = true;
         }
 
