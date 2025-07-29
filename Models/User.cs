@@ -568,7 +568,11 @@ namespace CodeLineHealthCareCenter
                     foreach (var user in roleUsers3)
                         DisplayUser(user);
                     break;
+                // Prints all users with a specific Patients role.
                 case "Patient":
+                    var roleUsers4 = Patient.patients.Where(u => u.Role.Equals(roleName, StringComparison.OrdinalIgnoreCase));
+                    foreach (var user in roleUsers4)
+                        DisplayUser(user);
                     break;
                 default:
                     Console.WriteLine($"⚠️ Unrecognized role '{roleName}'.");
