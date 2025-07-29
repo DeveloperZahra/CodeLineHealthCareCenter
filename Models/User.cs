@@ -414,7 +414,20 @@ namespace CodeLineHealthCareCenter
 
                     }
                     break;
+                // Updates a Patient's password
                 case "Patient":
+                    var patient = Patient.patients.FirstOrDefault(u => u.UserId == userId);
+                    if (patient != null && patient.Password == currentPassword)
+                    {
+                        patient.Password = newPassword;
+                        Console.WriteLine($"Successfully update{patient.Role}password");
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Faild update password: not input get or currentPassword is wrong");
+
+                    }
                     break;
                 default:
                     // unrecognized role
