@@ -14,7 +14,8 @@ namespace CodeLineHealthCareCenter
         public int FloorId {  get; set; } //Floor ID (e.g., 1, 2, 3)
         public int BranchId { get; set; } // The Branch ID this floor belongs to
 
-        // A list to store all Floor (acting as an in-memory database)
+
+        // Shared list to hold all floors in the system // A list to store all Floor (acting as an in-memory database)
 
         public List<Floor> Floors = new  List<Floor>();
 
