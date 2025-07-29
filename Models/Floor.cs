@@ -13,8 +13,7 @@ namespace CodeLineHealthCareCenter
         public int FloorId {  get; set; }
         public int BranchId { get; set; }
 
-
-        // List of floor 
+        // A list to store all Floor (acting as an in-memory database)
 
         public List<Floor> Floors = new  List<Floor>();
 
