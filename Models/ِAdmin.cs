@@ -1,22 +1,37 @@
-﻿using System;
+﻿using CodeLineHealthCareCenter.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace CodeLineHealthCareCenter.Models
 {
     // The Admin class inherits from the base User class.
     // Represents a user with administrative privileges over a specific department and branch.
-    public class Admin : User
+    public class Admin : User, IAdminServices
     {
-        // ================================== Class feilds =========================
+        // ================================== Class feilds ===========================
         
         public int BranchId { get; set; } // The branch this admin is assigned to 
         public int DepartmentId { get; set; }  // The department this admin manages
 
-        // c
+        // ================================= Class Constructor ==========================
+        public Admin(string name, string email, string password, string nationalId, string phoneNumber,int branchId, int departmentId)
+        {
+            UserCount++;
+            UserName = name ;
+            Email = email ;
+            Password = password ;
+            NationalID = nationalId ;
+            PhoneNumber = phoneNumber ;
+            Role = "Admin";
+            BranchId = branchId ;
+            DepartmentId = departmentId ;
+            IsActive = true ;
+        }
 
         //// Add a doctor only if they belong to the same branch and department as the admin
         //public void AddDoctor(Doctor doctor)
