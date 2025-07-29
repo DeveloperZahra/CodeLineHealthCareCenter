@@ -10,24 +10,24 @@ namespace CodeLineHealthCareCenter
     public class Floor
     {
         // ==============1. Class Fields ==============
-        
-        public int FloorId {  get; set; } //Floor ID (e.g., 1, 2, 3)
+
+        public int FloorId { get; set; } //Floor ID (e.g., 1, 2, 3)
         public int BranchId { get; set; } // The Branch ID this floor belongs to
 
 
         // Shared list to hold all floors in the system // A list to store all Floor (acting as an in-memory database)
 
-        public List<Floor> Floors = new  List<Floor>();
+        public List<Floor> Floors = new List<Floor>();
 
 
 
         //===============2. Constructor=============
 
         // Constructor to create a floor with specified ID and Branch
-        public Floor ( int floorId , int branchId)
+        public Floor(int floorId, int branchId)
         {
-            
-            this.FloorId = floorId; 
+
+            this.FloorId = floorId;
             this.BranchId = branchId;
 
         }
@@ -46,8 +46,14 @@ namespace CodeLineHealthCareCenter
                     return;
                 }
             }
-        }
+        
 
+        // If not exists, add the floor
+        Floor newFloor = new Floor(floorId, branchId);
+        Floors.Add(newFloor);
+        Console.WriteLine($" ✅ Floor {newFloor.FloorId} added to Branch {branchId}.");
+            
+     }
 
 
         public void GetAllFloorInBranch (int BranchId)
