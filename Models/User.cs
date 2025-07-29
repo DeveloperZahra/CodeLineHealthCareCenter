@@ -437,6 +437,75 @@ namespace CodeLineHealthCareCenter
             
         }
 
+        // 4.7 Updates a user's details (name, email, phone, address) based on their role and userId.
+        public void UpdateUser(string userId, string role)
+        {
+            bool hasUpdates = false;
+            bool continueUpdating = true;
+
+            while (continueUpdating)
+            {
+                Console.WriteLine("\nSelect the data you want to change:");
+                Console.WriteLine("1. Name");
+                Console.WriteLine("2. Email");
+                Console.WriteLine("3. Phone Number");
+                Console.WriteLine("4. Address");
+                Console.WriteLine("0. Cancel / Finish");
+
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        Console.Write("Enter new name: ");
+                        string newName = Console.ReadLine();
+                        // Assign the new value to the user later (after fetching the correct user)
+                        UpdateField(userId, role, "Name", newName);
+                        hasUpdates = true;
+                        break;
+
+                    case "2":
+                        Console.Write("Enter new email: ");
+                        string newEmail = Console.ReadLine();
+                        UpdateField(userId, role, "Email", newEmail);
+                        hasUpdates = true;
+                        break;
+
+                    case "3":
+                        Console.Write("Enter new phone: ");
+                        string newPhone = Console.ReadLine();
+                        UpdateField(userId, role, "PhoneNumber", newPhone);
+                        hasUpdates = true;
+                        break;
+
+                    case "4":
+                        Console.Write("Enter new address: ");
+                        string newAddress = Console.ReadLine();
+                        UpdateField(userId, role, "Address", newAddress);
+                        hasUpdates = true;
+                        break;
+
+                    case "0":
+                        if (hasUpdates)
+                            Console.WriteLine("\n✅ Your data has been successfully updated.");
+                        else
+                            Console.WriteLine("\nℹ️ No changes were made to your data.");
+
+                        continueUpdating = false;
+                        break;
+
+                    default:
+                        Console.WriteLine("\n⚠️ Invalid choice. Please try again.");
+                        break;
+                }
+            }
+        }
+
+        
+
+
+
+
 
 
     }
