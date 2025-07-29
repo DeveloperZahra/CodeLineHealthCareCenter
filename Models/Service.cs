@@ -18,6 +18,13 @@ namespace CodeLineHealthCareCenter
             Console.WriteLine(" Service added successfully."); 
         }
 
+        // Get all services
+        public virtual List<Service> GetAll()
+        {
+            return services;
+        }
+
+
 
 
 
