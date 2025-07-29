@@ -1,4 +1,5 @@
-﻿using HospitalSystemTeamTask.Services;
+﻿using CodeLineHealthCareCenter.Models;
+using HospitalSystemTeamTask.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,10 +42,31 @@ namespace CodeLineHealthCareCenter
         // 4. ======================= Methods of IUserServices Interface ==========================
         /// Implement Methods which all users will 
         // 4.1 Checks if the email and password match any active user
-        public bool AuthenticateUser(string email, string password, string Role)
+        public bool AuthenticateUser(string email, string password, string role)
         {
-            
-           
+            if (role == "Super Admin")
+            {
+                return SuperAdmin.SuperAdmins.Any(u => u.Email == email && u.Password == password && u.Role == role && u.IsActive);
+
+            }
+            else if(role == "Admin")
+            {
+                return Admin.Admins.Any(u => u.Email == email && u.Password == password && u.Role == role && u.IsActive);
+            }
+            else if(role == "Doctor")
+            {
+                return Doctor.doctors.Any(u => u.Email == email && u.Password == password && u.Role == role && u.IsActive);
+
+            }
+            else if(role == "Patient")
+            {
+                return Patient.patients.Any(u => u.Email == email && u.Password == password && u.Role == role && u.IsActive);
+
+            }
+            else
+            {
+                return false;
+            }            
         }
 
 
