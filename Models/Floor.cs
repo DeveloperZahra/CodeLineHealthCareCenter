@@ -32,9 +32,10 @@ namespace CodeLineHealthCareCenter
 
         }
 
-        //3. ===============Class methods===============
+        //===============3. Methods===============
 
-        public void AddFloor(int BranchId)
+        // Method to add a floor after checking if it already exists in the branch
+        public static void AddFloor(int floorId, int branchId)
         {
             Floor newFloor = new Floor (BranchId);
 
