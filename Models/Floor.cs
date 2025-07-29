@@ -6,7 +6,19 @@ using System.Threading.Tasks;
 
 namespace CodeLineHealthCareCenter
 {
-    class Floor
+    public class Floor
     {
+        // 1.==============Class Field ==============
+        public static int FloorCount = 0; 
+        public int FloorId {  get; set; }
+        public int BranchId { get; set; }
+
+
+        // List of floor 
+
+        public List<Floor> Floors = new  List<Floor>();
+
+
+
     }
 }
