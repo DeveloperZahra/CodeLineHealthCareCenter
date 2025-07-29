@@ -39,11 +39,12 @@ namespace CodeLineHealthCareCenter
             get { return branchId; }
             set { branchId = value; }
         }
-        public List<Doctor> Doctors // List of doctors assigned to the clinic
+        public Dictionary<Doctor, string> DoctorSchedules // Doctor + available time
         {
-            get { return doctors; }
-            set { doctors = value; }
+            get { return doctorSchedules; } //
+            set { doctorSchedules = value; } 
         }
+
 
         // 3. Class Constructors
 
