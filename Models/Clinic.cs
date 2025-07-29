@@ -70,7 +70,7 @@ namespace CodeLineHealthCareCenter
         public void AddDoctor(Doctor doctor, string availableTime)
         {
             if (!doctorSchedules.ContainsKey(doctor)) // Check if the doctor is already in the dictionary
-                doctorSchedules.Add(doctor, availableTime);
+                doctorSchedules.Add(doctor, availableTime); // Add the doctor and their available time to the dictionary
         }
 
 
