@@ -355,7 +355,41 @@ namespace CodeLineHealthCareCenter
                     }
                     break;
                 default:
-                    // Log or handle unrecognized role
+                    // unrecognized role
+                    Console.WriteLine($"Unrecognized role '{role}'.");
+                    return;
+            }
+            
+        }
+
+        //4.6 Updates a user's password if the current password matches.
+        public void UpdatePassword(string userId, string role, string currentPassword, string newPassword)
+        {
+            switch (role)
+            {
+                // Updates a Super Admin's password
+                case "Super Admin":
+                    var Super_Admin = SuperAdmin.SuperAdmins.FirstOrDefault(u => u.UserId == userId);
+                    if (Super_Admin != null && Super_Admin.Password == currentPassword)
+                    {
+                        Super_Admin.Password = newPassword;
+                        Console.WriteLine("Successfully update password");
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Faild update password: not input get or currentPassword is wrong");
+
+                    }
+                    break;
+                case "Admin":
+                    break;
+                case "Doctor":
+                    break;
+                case "Patient":
+                    break;
+                default:
+                    // unrecognized role
                     Console.WriteLine($"Unrecognized role '{role}'.");
                     return;
             }
