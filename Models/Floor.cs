@@ -9,9 +9,9 @@ namespace CodeLineHealthCareCenter
 {
     public class Floor
     {
-        // 1.==============Class Field ==============
-        public static int FloorCount = 0; 
-        public int FloorId {  get; set; }
+        // ==============1. Class Fields ==============
+        
+        public int FloorId {  get; set; } //Floor ID (e.g., 1,1,3)
         public int BranchId { get; set; }
 
         // A list to store all Floor (acting as an in-memory database)
