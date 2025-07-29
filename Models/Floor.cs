@@ -55,10 +55,25 @@ namespace CodeLineHealthCareCenter
             
      }
 
-
-        public void GetAllFloorInBranch (int BranchId)
+        // Method to get and print all floors in a specific branch
+        public void GetAllFloorInBranch (int branchId)
         {
+            Console.WriteLine($"\n🏢 Floors in Branch {branchId}:");
 
+            bool found = false;
+            foreach (var floor in Floors)
+            {
+                if (floor.BranchId == branchId)
+                {
+                    Console.WriteLine($"- Floor ID: {floor.FloorId}");
+                    found = true;
+                }
+            }
+
+            if (!found)
+            {
+                Console.WriteLine("❌ No floors found for this branch.");
+            }
         }
 
 
