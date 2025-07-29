@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace CodeLineHealthCareCenter
 {
-    class Room
+    // ==============1. Class Fields ==============
+    public class Room
     {
     }
 }
