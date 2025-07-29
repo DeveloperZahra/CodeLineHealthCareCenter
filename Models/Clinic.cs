@@ -53,7 +53,7 @@ namespace CodeLineHealthCareCenter
 
         public Clinic()
         {
-            doctorSchedules = new Dictionary<Doctor, string>(); // initialize empty dictionary
+            doctorSchedules = new Dictionary<int, string>(); // initialize empty dictionary
         }
 
         // Constructor with parameters
@@ -63,7 +63,7 @@ namespace CodeLineHealthCareCenter
             this.name = name; // Name of the clinic
             this.departmentId = departmentId; // ID of the department the clinic belongs to
             this.branchId = branchId; // ID of the branch the clinic is located in
-            this.doctorSchedules = new Dictionary<Doctor, string>(); // Initialize the dictionary to hold doctor schedules
+            this.doctorSchedules = new Dictionary<int, string>(); // initialize empty dictionary
         }
 
         // 4. Class Methods
