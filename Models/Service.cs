@@ -33,14 +33,14 @@ namespace CodeLineHealthCareCenter
         // Remove service based on a matching condition
         public virtual bool Remove(Predicate<Service> match)
         {
-            var service = services.Find(match);
+            var service = services.Find(match); // Find the first service that matches the condition
             if (service != null)
             {
                 services.Remove(service);
-                Console.WriteLine("✅ Service removed.");
+                Console.WriteLine(" Service removed.");
                 return true;
             }
-            Console.WriteLine("❌ Service not found.");
+            Console.WriteLine(" Service not found.");
             return false;
         }
 
