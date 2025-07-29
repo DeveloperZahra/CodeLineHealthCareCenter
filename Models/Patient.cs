@@ -11,8 +11,10 @@ namespace CodeLineHealthCareCenter
         // 1. ======================== Class Fields ==========================
         public DateTime DateOfBirth { get; set; } // Patient's date of birth
 
+        // 2. ======================== Patient List ============================
+        public static List<Patient> patients = new List<Patient>();
 
-        // 2. ====================== Constructor ========================================
+        // 3. ====================== Constructor ========================================
         public Patient(string name, DateTime dateOFBirthday, string email, string password, string nationalId, string phoneNumber, string gender, string city) 
         {
             UserCount++;
@@ -28,7 +30,7 @@ namespace CodeLineHealthCareCenter
             IsActive = true;
         }
 
-       //=======================================================
+       //================================================ Patients Methods ===================================
 
 
 
