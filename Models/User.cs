@@ -341,11 +341,23 @@ namespace CodeLineHealthCareCenter
                         Console.WriteLine($"Not {role} in th system");
                     }
                     break;
+                // Get Patient data By ID 
+
                 case "Patient":
+                    var patient = Patient.patients.FirstOrDefault(u => u.UserId == userId);
+                    if (patient != null)
+                    {
+                        DisplayUser(patient);
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Not {role} in th system");
+                    }
                     break;
                 default:
                     // Log or handle unrecognized role
                     Console.WriteLine($"Unrecognized role '{role}'.");
+                    return;
             }
             
         }
