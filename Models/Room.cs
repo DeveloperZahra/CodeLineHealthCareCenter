@@ -22,6 +22,8 @@ namespace CodeLineHealthCareCenter
 
         //============2. Constructor============
 
+
+        // Constructor to create a new Room object
         public Room(int roomId , int floorId , int branchId) 
         {
             this.RoomId = roomId;
