@@ -15,9 +15,19 @@ namespace CodeLineHealthCareCenter
         public int BranchId; 
 
 
+        // list 
+        public List<Room> Rooms=new List<Room>();
 
 
 
+        //============2. Constructor============
+
+        public Room(int roomId , int floorId , int branchId) 
+        {
+            this.RoomId = roomId;
+            this.FloorId = floorId;
+            this.BranchId = branchId;
+        }
 
     }
 }
