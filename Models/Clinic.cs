@@ -73,7 +73,7 @@ namespace CodeLineHealthCareCenter
             if (doctorSchedules.ContainsKey(doctor))
                 doctorSchedules[doctor] = availableTime; // update time if doctor exists
             else
-                doctorSchedules.Add(doctor, availableTime); // add new doctor and time
+                doctorSchedules.Add(doctor, availableTime); // add new do
         }
 
 
