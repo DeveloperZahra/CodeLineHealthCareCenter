@@ -16,20 +16,13 @@ namespace CodeLineHealthCareCenter
         public static List<Patient> patients = new List<Patient>();
 
         // 3. ====================== Constructor ========================================
-        public Patient(string name, DateTime dateOFBirthday, string email, string password, string nationalId, string phoneNumber, string gender, string city) 
+        public Patient(string name, DateTime dateOfBirth, string email, string password, string nationalId, string phoneNumber, string gender, string city)
+        : base(name, email, password, nationalId, phoneNumber, gender, "Patient")
         {
-            UserCount++;
-            UserId = "P" + UserCount;
-            UserName = name;
-            Email = email;
-            Password = password;
-            NationalID = nationalId;
-            PhoneNumber = phoneNumber;
-            Gender = gender;
-            Role = "Patient";
-            DateOfBirth = dateOFBirthday;
-            IsActive = true;
+            UserId = "P" + UserCount; // Override default ID format for patients
+            DateOfBirth = dateOfBirth;
         }
+
 
         //4. ================================================ Patients Methods ===================================
         /// implement method in IPatientServices Interface
