@@ -13,7 +13,7 @@ namespace CodeLineHealthCareCenter
 
         public Service(List<Department> departments) // Constructor to initialize the service with a list of departments
         {
-            this.departments = departments;
+            this.departments = departments; // Initialize the service with the provided list of departments
         }
 
         protected List<Service> services = new List<Service>(); // List to store services
