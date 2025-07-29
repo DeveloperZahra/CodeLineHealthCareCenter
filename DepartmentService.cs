@@ -27,15 +27,15 @@ namespace CodeLineHealthCareCenter
         // 2. Set department active/inactive
         public void SetActiveStatus(int departmentId, bool isActive)
         {
-            var dept = items.FirstOrDefault(d => d.DepartmentId == departmentId);
+            var dept = items.FirstOrDefault(d => d.DepartmentId == departmentId); // Find the department by ID
             if (dept != null)
             {
                 string status = isActive ? "Active" : "Inactive";
-                Console.WriteLine($"🔄 Department '{dept.DepartmentName}' status set to {status}.");
+                Console.WriteLine($" Department '{dept.DepartmentName}' status set to {status}.");
             }
             else
             {
-                Console.WriteLine("❌ Department not found.");
+                Console.WriteLine("  Department not found."); 
             }
         }
     }
