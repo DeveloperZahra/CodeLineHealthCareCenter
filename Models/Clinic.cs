@@ -15,7 +15,8 @@ namespace CodeLineHealthCareCenter
         public int departmentId; // ID of the department the clinic 
         public int branchId; // ID of the branch the clinic is located in
 
-        public Dictionary<Doctor, string> doctorSchedules; // Map of Doctor to available time
+        // Dictionary<doctorId, availableTime>
+        public Dictionary<int, string> doctorSchedules;
 
 
         // 2. Class Properties
