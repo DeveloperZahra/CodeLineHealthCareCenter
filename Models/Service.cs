@@ -12,10 +12,10 @@ namespace CodeLineHealthCareCenter
         protected List<Service> services = new List<Service>(); // List to store services
 
         // Add a new service to the list
-        public virtual void Add(ServiceModel service)
+        public virtual void Add(Service service)
         {
-            services.Add(service);
-            Console.WriteLine(" Service added successfully.");
+            services.Add(service); // Add the service to the list
+            Console.WriteLine(" Service added successfully."); 
         }
 
 
