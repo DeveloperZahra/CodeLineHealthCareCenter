@@ -22,6 +22,7 @@ namespace CodeLineHealthCareCenter.Models
         public Admin(string name, string email, string password, string nationalId, string phoneNumber,int branchId, int departmentId)
         {
             UserCount++;
+            UserId = "A" + UserCount;
             UserName = name ;
             Email = email ;
             Password = password ;
@@ -32,6 +33,7 @@ namespace CodeLineHealthCareCenter.Models
             DepartmentId = departmentId ;
             IsActive = true ;
         }
+        //===========================================================================================================
 
         //// Add a doctor only if they belong to the same branch and department as the admin
         //public void AddDoctor(Doctor doctor)
