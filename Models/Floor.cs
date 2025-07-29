@@ -23,11 +23,12 @@ namespace CodeLineHealthCareCenter
 
         //===============2. Constructor=============
 
-        public Floor ( int BranchId)
+        // Constructor to create a floor with specified ID and Branch
+        public Floor ( int floorId , int branchId)
         {
-            FloorCount ++;
-            FloorId = FloorCount; 
-            this.BranchId = BranchId;
+            
+            this.FloorId = floorId; 
+            this.BranchId = branchId;
 
         }
 
