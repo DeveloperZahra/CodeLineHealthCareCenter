@@ -9,10 +9,11 @@ namespace CodeLineHealthCareCenter
     public class DepartmentService : Service // DepartmentService inherits from Service
     {
         public DepartmentService(List<Department> departments) : base(departments) { } // Constructor to initialize the service with a list of departments
+        
         // 1. Get all departments
         public void GetAllDepartments()
         {
-            if (items.Count == 0) // Check if there are no departments
+            if (departments.Count == 0) // Check if there are no departments
             {
                 Console.WriteLine(" No departments found.");
                 return;
@@ -20,7 +21,7 @@ namespace CodeLineHealthCareCenter
 
             Console.WriteLine(" List of Departments:");
             // Iterate through each department and print its details
-            foreach (var dept in items)  // items is a List<Department> in the base class Service
+            foreach (var dept in departments)  // items is a List<Department> in the base class Service
             {
                 Console.WriteLine($"ID: {dept.DepartmentId}, Name: {dept.DepartmentName}"); 
             }
@@ -29,10 +30,10 @@ namespace CodeLineHealthCareCenter
         // 2. Set department active/inactive
         public void SetActiveStatus(int departmentId, bool isActive)
         {
-            var dept = items.FirstOrDefault(d => d.DepartmentId == departmentId); // Find the department by ID
+            var dept = departments.FirstOrDefault(d => d.DepartmentId == departmentId); // Find the department by ID
             if (dept != null)
             {
-                string status = isActive ? "Active" : "Inactive";
+                string status = isActive ? "Active" : "Inactive"; // Set the status based on isActive parameter
                 Console.WriteLine($" Department '{dept.DepartmentName}' status set to {status}.");
             }
             else
