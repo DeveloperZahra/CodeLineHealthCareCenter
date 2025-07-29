@@ -10,7 +10,7 @@ namespace CodeLineHealthCareCenter.Services
 {
     public interface ISuperAdminSevices
     {
-        void AddSuperAdmin(string name, string email, string password, string nationalId, string phoneNumber);
+        void AddSuperAdmin(string name, string email, string password, string nationalId, string phoneNumber, string gender);
 
     }
 }

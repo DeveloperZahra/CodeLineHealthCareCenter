@@ -1,22 +1,18 @@
-﻿using HospitalSystemTeamTask.DTO_s;
-using HospitalSystemTeamTask.Models;
+﻿//using HospitalSystemTeamTask.DTO_s;
+//using HospitalSystemTeamTask.Models;
+using HospitalSystemTeamTask.Services;
+
 
 namespace HospitalSystemTeamTask.Services
 {
     public interface IUserService
-    {
-        int AddStaff(User InputUser);
-        void AddSuperAdmin(UserInputDTO InputUser);
-        void AddUser(User user);
-        User AuthenticateUser(string email, string password);
-        void DeactivateUser(int uid);
-        bool EmailExists(string email);
-        User GetUserById(int uid);
-        User GetUserByName(string userName);
-        string GetUserName(int userId);
-        void UpdatePassword(int uid, string currentPassword, string newPassword);
-        void UpdateUser(User user);
-        UserOutputDTO GetUserData(string? userName, int? uid);
-        IEnumerable<UserOutputDTO> GetUserByRole(string roleName);
+    {   
+        bool AuthenticateUser(string email, string password, string Role);
+        void DeactivateUser(string UserId, string role);
+        bool EmailExists(string email, string role);
+        void GetUserById(string UserId, string Role);
+        void UpdatePassword(string UserId,string Role, string currentPassword, string newPassword);
+        void UpdateUser(string UserId, string Role);
+        void GetUsersByRole(string roleName);
     }
 }

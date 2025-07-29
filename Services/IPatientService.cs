@@ -5,12 +5,14 @@ namespace HospitalSystemTeamTask.Services
 {
     public interface IPatientService
     {
-        IEnumerable<Patient> GetAllPatients();
-        Patient GetPatientById(int Pid);
-        void UpdatePatientDetails(int UID, string phoneNumber);
-        void AddPatient(PatientInputDTO patientInput);
-        Patient GetPatientByName(string PatientName);
-        PatienoutputDTO GetPatientData(string? userName, int? Pid);
+        void AddPatient(string name, DateTime DateOFBirthday, string email, string password, string nationalId, string phoneNumber, string gender, string city);
+
+        //void GetAllPatients();
+        //void GetPatientById(int Pid);
+        //void UpdatePatientDetails(int UID, string phoneNumber);
+        //void AddPatient();
+        //void GetPatientByName(string PatientName);
+        //void GetPatientData(string? userName, int? Pid);
 
     }
 }
