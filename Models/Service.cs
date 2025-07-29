@@ -44,6 +44,21 @@ namespace CodeLineHealthCareCenter
             return false;
         }
 
+        // Print all services using a custom action
+        public virtual void PrintAll(Action<Service> printAction)
+        {
+            if (services.Count == 0)
+            {
+                Console.WriteLine("❌ No services found.");
+                return;
+            }
+
+            foreach (var service in services)
+            {
+                printAction(service);
+            }
+        }
+
 
 
     }
