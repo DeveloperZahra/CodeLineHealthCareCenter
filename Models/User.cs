@@ -71,58 +71,81 @@ namespace CodeLineHealthCareCenter
                         return false;
                     }
                     break;
-
+                //  Maintance the switch case if role is Admin
                 case "Admin":
-                    
-                break;
+                    CanAuthenticateUser = Admin.Admins.Any(u => u.Email == email && u.Password == password && u.Role == role);
+                    if (CanAuthenticateUser)
+                    {
+                        if (Admin.Admins.Any(u => u.IsActive))
+                        {
+                            Console.WriteLine($"User '{email}' with role '{role}' authenticated successfully.");
+                            return true;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Authentication failed for email '{email}' with role '{role}': Account is inactive.");
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Authentication failed for email '{email}'with role '{role}': email can not found");
+                        return false;
+                    }
 
+                    break;
+                    //Maintance the switch case if role is Doctor
                 case "Doctor":
+                    CanAuthenticateUser = Doctor.doctors.Any(u => u.Email == email && u.Password == password && u.Role == role);
+                    if (CanAuthenticateUser)
+                    {
+                        if (Doctor.doctors.Any(u => u.IsActive))
+                        {
+                            Console.WriteLine($"User '{email}' with role '{role}' authenticated successfully.");
+                            return true;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Authentication failed for email '{email}' with role '{role}': Account is inactive.");
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Authentication failed for email '{email}'with role '{role}': email can not found");
+                        return false;
+                    }
 
-                break;
-
+                    break;
+                    //Maintance the switch case if role is patient
                 case "Patient":
-
-                break;
+                    CanAuthenticateUser = Patient.patients.Any(u => u.Email == email && u.Password == password && u.Role == role);
+                    if (CanAuthenticateUser)
+                    {
+                        if (Patient.patients.Any(u => u.IsActive))
+                        {
+                            Console.WriteLine($"User '{email}' with role '{role}' authenticated successfully.");
+                            return true;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Authentication failed for email '{email}' with role '{role}': Account is inactive.");
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Authentication failed for email '{email}'with role '{role}': email can not found");
+                        return false;
+                    }
+                    break;
 
                 default:
                     // Log or handle unrecognized role
                     Console.WriteLine($"Authentication failed: Unrecognized role '{role}'.");
                     return false;
-
-
-
-
-
             }
                 
-            if (role == "Super Admin")
-            {
-                if (!IsActive)
-                    return SuperAdmin.SuperAdmins.Any(u => u.Email == email && u.Password == password && u.Role == role && u.IsActive);
-                else
-                    Console.WriteLine("");
-
-            }
-            else if(role == "Admin")
-            {
-                return Admin.Admins.Any(u => u.Email == email && u.Password == password && u.Role == role && u.IsActive);
-            }
-            else if(role == "Doctor")
-            {
-                return Doctor.doctors.Any(u => u.Email == email && u.Password == password && u.Role == role && u.IsActive);
-
-            }
-            else if(role == "Patient")
-            {
-                return Patient.patients.Any(u => u.Email == email && u.Password == password && u.Role == role && u.IsActive);
-
-            }
-            else
-            {
-                Console.WriteLine("No user with this role in the system");
-                return false;
-
-            }
         }
 
         // 4.2 Deactivates a user by their ID.
@@ -195,6 +218,9 @@ namespace CodeLineHealthCareCenter
 
 
         }
+
+        // 4.3 Checks if an email already exists in the system.
+
 
 
 
