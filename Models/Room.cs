@@ -66,11 +66,24 @@ namespace CodeLineHealthCareCenter
         }
 
 
-        Room newRoom = Rooms(roomId , floorId , branchId);
-            {
-                Rooms.Add(newRoom);
+        // Optional: Display all rooms in a branch
+        public static void GetAllRoomsInBranch(int branchId)
+        {
+            Console.WriteLine($"🏢 Rooms in Branch {branchId}:");
+            bool found = false;
 
-                Console.WriteLine("The room has been successfully added"
+            foreach (var room in Rooms)
+            {
+                if (room.BranchId == branchId)
+                {
+                    Console.WriteLine($"- Room ID: {room.RoomId}, Floor ID: {room.FloorId}");
+                    found = true;
+                }
+            }
+
+            if (!found)
+            {
+                Console.WriteLine("❌ No rooms found in this branch.");
             }
         }
 
