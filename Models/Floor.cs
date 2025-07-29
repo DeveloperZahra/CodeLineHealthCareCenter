@@ -19,5 +19,15 @@ namespace CodeLineHealthCareCenter
 
 
 
+        //2. ===============class Constructor=============
+
+        public Floor ( int BranchId)
+        {
+            FloorCount ++;
+            FloorId = FloorCount; 
+            this.BranchId = BranchId;
+
+        }
+
     }
 }
