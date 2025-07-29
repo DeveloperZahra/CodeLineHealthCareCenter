@@ -374,7 +374,7 @@ namespace CodeLineHealthCareCenter
                     if (Super_Admin != null && Super_Admin.Password == currentPassword)
                     {
                         Super_Admin.Password = newPassword;
-                        Console.WriteLine("Successfully update password");
+                        Console.WriteLine($"Successfully update{Super_Admin.Role}password");
 
                     }
                     else
@@ -383,13 +383,13 @@ namespace CodeLineHealthCareCenter
 
                     }
                     break;
-                    // Updates a Super Admin's password
+                    // Updates a Admin's password
                 case "Admin":
                     var admin = Admin.Admins.FirstOrDefault(u => u.UserId == userId);
                     if (admin != null && admin.Password == currentPassword)
                     {
                         admin.Password = newPassword;
-                        Console.WriteLine("Successfully update password");
+                        Console.WriteLine($"Successfully update{admin.Role}password");
 
                     }
                     else
@@ -398,7 +398,21 @@ namespace CodeLineHealthCareCenter
 
                     }
                     break;
+                // Updates a Doctor's password
+
                 case "Doctor":
+                    var doctor = Doctor.doctors.FirstOrDefault(u => u.UserId == userId);
+                    if (doctor != null && doctor.Password == currentPassword)
+                    {
+                        doctor.Password = newPassword;
+                        Console.WriteLine($"Successfully update{doctor.Role}password");
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Faild update password: not input get or currentPassword is wrong");
+
+                    }
                     break;
                 case "Patient":
                     break;
