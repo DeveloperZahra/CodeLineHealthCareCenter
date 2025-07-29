@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CodeLineHealthCareCenter
 {
-    public class DepartmentService : Service
+    public class DepartmentService : Service // DepartmentService inherits from Service
     {
         // 1. Get all departments
         public void GetAllDepartments()
