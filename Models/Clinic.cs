@@ -41,7 +41,7 @@ namespace CodeLineHealthCareCenter
         }
         public Dictionary<Doctor, string> DoctorSchedules // Doctor + available time
         {
-            get { return doctorSchedules; } //
+            get { return doctorSchedules; } // Dictionary to hold doctor schedules with Doctor as key and available time as value
             set { doctorSchedules = value; } 
         }
 
