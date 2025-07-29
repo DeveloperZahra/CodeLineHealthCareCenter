@@ -148,7 +148,7 @@ namespace CodeLineHealthCareCenter
                 
         }
 
-        // 4.2 Deactivates a user by their ID.
+        // 4.2 Deactivates a user by their ID
         public void DeactivateUser(string userId ,string role)
         {
             if (role == "Super Admin")
