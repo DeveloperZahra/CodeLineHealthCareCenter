@@ -8,6 +8,7 @@ namespace CodeLineHealthCareCenter
 {
     public class DepartmentService : Service // DepartmentService inherits from Service
     {
+        public DepartmentService(List<Department> departments) : base(departments) { } // Constructor to initialize the service with a list of departments
         // 1. Get all departments
         public void GetAllDepartments()
         {
