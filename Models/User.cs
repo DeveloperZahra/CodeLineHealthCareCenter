@@ -556,7 +556,11 @@ namespace CodeLineHealthCareCenter
                     foreach (var user in roleUsers)
                         DisplayUser(user);
                     break;
+                // Prints all users with a specific Admin role.
                 case "Admin":
+                    var roleUsers2 = Admin.Admins.Where(u => u.Role.Equals(roleName, StringComparison.OrdinalIgnoreCase));
+                    foreach (var user in roleUsers2)
+                        DisplayUser(user);
                     break;
                 case "Doctor":
                     break;
