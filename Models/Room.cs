@@ -37,14 +37,26 @@ namespace CodeLineHealthCareCenter
         // Method to add a new room (reads input from user)
         public static  void AddRoom()
         {
-            Console.WriteLine("Enter the room id :");
+            Console.WriteLine("Enter the Room ID:");
             int roomId = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Enter the branch id :");
+            Console.WriteLine("Enter the Branch ID:");
             int branchId = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Enter the Floor id:");
+            Console.WriteLine("Enter the Floor ID:");
             int floorId = int.Parse(Console.ReadLine());
+
+
+
+            // Check if room with same ID already exists in this branch and floor
+            foreach (var room in Rooms)
+            {
+                if (room.RoomId == roomId && room.BranchId == branchId && room.FloorId == floorId)
+                {
+                    Console.WriteLine("❌ This room already exists in the same floor and branch.");
+                    return;
+                }
+            }
 
 
             Room newRoom = Rooms(roomId , floorId , branchId);
