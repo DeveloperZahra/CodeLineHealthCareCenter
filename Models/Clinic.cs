@@ -49,9 +49,10 @@ namespace CodeLineHealthCareCenter
         // 3. Class Constructors
 
         // Default constructor
+        
         public Clinic()
         {
-            doctors = new List<Doctor>(); // initialize empty list
+            doctorSchedules = new Dictionary<Doctor, string>(); // initialize
         }
 
         // Constructor with parameters
