@@ -11,7 +11,7 @@ namespace CodeLineHealthCareCenter
     {
         protected List<Department> departments = new List<Department>(); // List to store departments
 
-        public Service(List<Department> departments)
+        public Service(List<Department> departments) // Constructor to initialize the service with a list of departments
         {
             this.departments = departments;
         }
