@@ -10,7 +10,7 @@ namespace CodeLineHealthCareCenter
     public class Room
     {
         public int RoomId;  // Unique room identifier
-        public string Name;
+        public string Name;  // Name of the room (optional field, you can use it later)
         public int FloorId;
         public int BranchId; 
 
