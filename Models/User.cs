@@ -223,8 +223,52 @@ namespace CodeLineHealthCareCenter
         public bool EmailExists(string email, string role)
         {
             bool EmailExists;
-            
-            
+            switch (role)
+            {
+                // check email for admin if exist
+                case "Super Admin":
+                    EmailExists = SuperAdmin.SuperAdmins.Any(u => u.Email == email);
+                    if (EmailExists)
+                    {
+                        Console.WriteLine($"{role}{email} successfully exist");
+                        return true;
+                    }
+
+                    else
+                    {
+                        Console.WriteLine($"{role}{email} dose not exist");
+                        return false;
+                    }
+
+
+                    break;
+
+                case "Admin":
+                    EmailExists = Admin.Admins.Any(u => u.Email == email);
+                    if (EmailExists)
+                        return true;
+                    else
+                        Console.WriteLine($"{role}{email} dose not exist");
+                    break;
+
+                case "Doctor":
+                    EmailExists = Doctor.doctors.Any(u => u.Email == email);
+                    if (EmailExists)
+                        return true;
+                    else
+                        Console.WriteLine($"{role}{email} dose not exist");
+                    break;
+                    break;
+
+                case "Patient":
+
+                    break;
+                default:
+                    // Log or handle unrecognized role
+                    Console.WriteLine($"Unrecognized role '{role}'.");
+                    return false;
+            }
+
         }
 
 
