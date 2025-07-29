@@ -4,11 +4,14 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using CodeLineHealthCareCenter.Services;
+using HospitalSystemTeamTask.Services;
+
 
 namespace CodeLineHealthCareCenter.Models
 {
     // Doctor class inherits from the base class User
-    public class Doctor : User
+    public class Doctor : User, IDoctorService
     {
         // ================================ Class feilds ==================================================
         
