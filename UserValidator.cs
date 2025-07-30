@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace CodeLineHealthCareCenter
 {
-    class UserValidator
+    public static class UserValidator
     {
+        public static void ValidateName(string name) 
+
+        {
+            if (string.IsNullOrWhiteSpace(name)) // Check if the name is null, empty, or consists only of whitespace
+                throw new ArgumentException("Name cannot be empty.");
+        }
     }
 }
