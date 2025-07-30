@@ -1,4 +1,10 @@
-﻿namespace CodeLineHealthCareCenter
+﻿using System;
+using System.Collections.Generic;
+using CodeLineHealthCareCenter.Models;  // Import custom models (User, Doctor, Patient, etc.)
+
+
+
+namespace CodeLineHealthCareCenter
 {
     internal class Program
     {
