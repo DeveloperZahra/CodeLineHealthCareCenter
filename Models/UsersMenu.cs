@@ -13,6 +13,8 @@ namespace CodeLineHealthCareCenter.Models
         {
             // Flag to control the loop and allow the user to go back
             bool back = false;
+
+            // Keep showing the menu until the user chooses to go back
             while (!back)
             {
                 Console.WriteLine("\n👑 SuperAdmin Dashboard:");
