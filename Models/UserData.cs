@@ -26,11 +26,11 @@ namespace CodeLineHealthCareCenter.Models
                     userName = Console.ReadLine();
 
                     // Check if the input is valid (not empty and at least 3 characters)
-                    bool isValidName = !string.IsNullOrWhiteSpace(userName) && userName.Length >= 3;
+                    bool isValidName = UserValidator.ValidateName(userName);
 
                     if (isValidName)
                     {
-                        Console.WriteLine("✅ Valid User Name.");
+                        Console.WriteLine("✅");
                         return userName; // Return the valid name
                     }
                     else
