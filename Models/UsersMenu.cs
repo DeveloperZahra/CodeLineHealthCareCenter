@@ -71,6 +71,44 @@ namespace CodeLineHealthCareCenter.Models
 
 
 
+        // =================== Admin Menu ====================
+        static void AdminMenu()
+        {
+            bool back = false;
+            while (!back)
+            {
+                Console.WriteLine("\n🛠 Admin Dashboard:");
+                Console.WriteLine("1. Add Doctor");
+                Console.WriteLine("2. Add Clinic");
+                Console.WriteLine("3. View Appointments");
+                Console.WriteLine("0. Back");
+                Console.Write("Choose: ");
+                string input = Console.ReadLine();
+
+                switch (input)
+                {
+                    case "1":
+                        Console.WriteLine("🩺 [Admin] Add Doctor - Not implemented");
+                        break;
+                    case "2":
+                        Console.WriteLine("🏥 [Admin] Add Clinic - Not implemented");
+                        break;
+                    case "3":
+                        Console.WriteLine("📅 [Admin] View Appointments - Not implemented");
+                        break;
+                    case "0":
+                        back = true;
+                        break;
+                    default:
+                        Console.WriteLine("❌ Invalid choice.");
+                        break;
+                }
+            }
+        }
+
+
+
+
 
 
 
