@@ -14,7 +14,7 @@
             {
                 Console.Clear();
                 Console.WriteLine("==================================");
-                Console.WriteLine("  🌟 Welcome to Hospital System 🌟   ");
+                Console.WriteLine("  🏥 Welcome to Hospital System 🏥   ");
                 Console.WriteLine("==================================");
                 Console.WriteLine("1. Sign Up");
                 Console.WriteLine("2. Sign In");
