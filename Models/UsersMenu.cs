@@ -105,7 +105,9 @@ namespace CodeLineHealthCareCenter.Models
                         // Placeholder action for adding a clinic
                         Console.WriteLine("🏥 [Admin] Add Clinic - Not implemented");
                         break;
+
                     case "3":
+                        // Placeholder action for viewing appointments
                         Console.WriteLine("📅 [Admin] View Appointments - Not implemented");
                         break;
                     case "0":
