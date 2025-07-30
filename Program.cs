@@ -94,6 +94,7 @@ namespace CodeLineHealthCareCenter
                     Console.Write("Branch ID: ");
                     int branchId = int.Parse(Console.ReadLine());
 
+                    // Prompt the user to enter the Department ID and read it from console input
                     Console.Write("Department ID: ");
                     int adminDept = int.Parse(Console.ReadLine());
 
