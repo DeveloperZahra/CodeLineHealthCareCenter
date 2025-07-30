@@ -134,8 +134,24 @@ namespace CodeLineHealthCareCenter.Models
                 DisplayBookingDetails(booking);
             }
         }
+        // 5.6 Get booking by ID
+        public void GetBookingById(int id)
+        {
+            var booking = Bookings.FirstOrDefault(b => b.BookingId == id);
+
+            if (booking == null)
+            {
+                Console.WriteLine("Booking not found.");
+                return;
+            }
+
+            DisplayBookingDetails(booking);
+        }
 
         
+
+
+
 
 
 
