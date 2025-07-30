@@ -108,6 +108,7 @@ namespace CodeLineHealthCareCenter
                         BranchId = branchId,  // Set the Branch ID for the admin user
                         DepartmentId = adminDept  // Set the Department ID for the admin user
                     };
+                    // Exit the switch case after creating the Admin user
                     break;
 
 
