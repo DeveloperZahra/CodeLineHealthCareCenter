@@ -184,25 +184,30 @@ namespace CodeLineHealthCareCenter.Models
         // 5.9 Get available appointments by clinic and date
         public void GetAvailableAppointmentsByClinicIdAndDate(DateTime date, int clinicId)
         {
-            var availableSpots = BranchDepartment.Departments
-                .SelectMany(d => d.Clinics)
-                .Where(c => c.ClinicId == clinicId)
-                .SelectMany(c => c.ClinicSpots)
-                .Where(s => s.Date == date.Date)
+            // // Find all departments in all relationships (BranchDepartment)
+            var availableSpots = BranchDepartment.branchDepartments
+                .SelectMany(bd => bd.Departments) // access to department
+                .SelectMany(dep => dep.Clinics)   // accessto clinic in departmrnt
+                .Where(clinic => clinic.ClinicId == clinicId) // select rquest clinic
+                .SelectMany(clinic => clinic.ClinicSpots) // get all available spots in the clinic
+                .Where(spot => spot.Date == date.Date) // filter by selected date
                 .ToList();
 
+            // Check if there are any available spots
             if (availableSpots.Count == 0)
             {
                 Console.WriteLine("No available spots for this clinic on the selected date.");
                 return;
             }
 
+            //  Display available spots
             Console.WriteLine("Available Spots:");
             foreach (var spot in availableSpots)
             {
                 Console.WriteLine(spot);
             }
         }
+
 
         // 5.10 Schedule a new appointment
         public void ScheduleAppointment(int patientId, int clinicId, DateTime date, TimeSpan time)
@@ -213,7 +218,133 @@ namespace CodeLineHealthCareCenter.Models
             Console.WriteLine($"New appointment scheduled successfully. Booking ID: {newBooking.BookingId}");
         }
 
-      
+        // ========================== Helper Methods ==========================
+
+        // Display details of a booking
+        private void DisplayBookingDetails(Booking booking)
+        {
+            Console.WriteLine("----------------------------------");
+            Console.WriteLine($"Booking ID: {booking.BookingId}");
+            Console.WriteLine($"Patient ID: {booking.PatientId}");
+            Console.WriteLine($"Clinic ID: {booking.ClinicId}");
+            Console.WriteLine($"Doctor ID: {booking.DoctorId}");
+            Console.WriteLine($"Date & Time: {booking.BookingDateTime}");
+            Console.WriteLine($"Type: {booking.AppointmentType}");
+            Console.WriteLine("----------------------------------");
+        }
+
+        // List clinics by department
+        public static void GetAllClinicsByDepartmentId(int departmentId)
+        {
+            // Step 1: Get all departments from all branch-department relationships
+            //         and filter only the department that matches the given departmentId.
+            var clinics = BranchDepartment.branchDepartments
+                .SelectMany(bd => bd.Departments) // Access the list of departments inside each branch-department
+                .Where(dep => dep.DepartmentId == departmentId) // Filter by departmentId
+                .SelectMany(dep => dep.Clinics) // Get all clinics inside the selected department
+                .ToList();
+
+            // Step 2: If no clinics are found, display a message and return.
+            if (clinics.Count == 0)
+            {
+                Console.WriteLine("No clinics found for this department.");
+                return;
+            }
+
+            // Step 3: Print all clinics' details (ID and Name).
+            Console.WriteLine($"Clinics in Department ID {departmentId}:");
+            foreach (var clinic in clinics)
+            {
+                Console.WriteLine($"Clinic ID: {clinic.ClinicId}, Name: {clinic.ClinicName}");
+            }
+        }
+
+        // List doctors by clinic
+        public static void GetAllDoctorsByClinicId(int clinicId)
+        {
+            // Step 1: Get all departments from all branch-department relationships
+            //         Then access their clinics to find the clinic with the given ID.
+            var doctors = BranchDepartment.branchDepartments
+                .SelectMany(bd => bd.Departments)         // Access departments
+                .SelectMany(dep => dep.Clinics)          // Access clinics inside each department
+                .Where(clinic => clinic.ClinicId == clinicId) // Filter by clinicId
+                .SelectMany(clinic => clinic.Doctors)    // Get all doctors inside the selected clinic
+                .ToList();
+
+            // Step 2: If no doctors found, display a message and return
+            if (doctors.Count == 0)
+            {
+                Console.WriteLine("No doctors found for this clinic.");
+                return;
+            }
+
+            // Step 3: Display all doctors' details
+            Console.WriteLine($"Doctors in Clinic ID {clinicId}:");
+            foreach (var doctor in doctors)
+            {
+                Console.WriteLine($"Doctor ID: {doctor.UserId}, Name: {doctor.UserName}, Specialization: {doctor.Specialty}");
+            }
+        }
+
+        // List services by clinic
+        public static void GetAllServicesByClinicId(int clinicId)
+        {
+            // Fetch all services that belong to the given clinic
+            var services = Service.Services.Where(s => s.ClinicId == clinicId).ToList();
+
+            // Check if there are any services for this clinic
+            if (services.Count == 0)
+            {
+                Console.WriteLine("No services found for this clinic.");
+                return;
+            }
+
+            // Print all services
+            Console.WriteLine($"Services available for Clinic ID {clinicId}:");
+            foreach (var service in services)
+            {
+                Console.WriteLine($"Service ID: {service.ServiceId}, Name: {service.ServiceName}, Price: {service.Price}");
+            }
+        }
+
+
+        // List available appointment spots by clinic
+        public static void GetAllSpotsByClinicId(int clinicId, int departmentId)
+        {
+            //  Find the department by departmentId
+            var department = BranchDepartment.branchDepartments
+                .FirstOrDefault(d => d.departmentId == departmentId);
+
+            //  Validate that department exists
+            if (department == null)
+            {
+                Console.WriteLine("Department not found.");
+                return;
+            }
+
+            // Find the clinic inside the found department
+            var clinic = department.Clinics.FirstOrDefault(c => c.ClinicId == clinicId);
+
+            // Validate that clinic exists and has available spots
+            if (clinic == null)
+            {
+                Console.WriteLine("Clinic not found in this department.");
+                return;
+            }
+
+            if (clinic.ClinicSpots == null || clinic.ClinicSpots.Count == 0)
+            {
+                Console.WriteLine("No available spots for this clinic.");
+                return;
+            }
+
+            //  Print all available spots
+            Console.WriteLine($"Available spots for Clinic ID {clinicId}:");
+            foreach (var spot in clinic.ClinicSpots)
+            {
+                Console.WriteLine($"- {spot}");
+            }
+        }
 
 
 
