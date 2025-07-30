@@ -1,19 +1,20 @@
-﻿using HospitalSystemTeamTask.DTO_s;
-using HospitalSystemTeamTask.Models;
+﻿//using HospitalSystemTeamTask.DTO_s;
+using CodeLineHealthCareCenter;
+using HospitalSystemTeamTask.Services;
 
 namespace HospitalSystemTeamTask.Services
 {
     public interface IBookingService
     {
-        void BookAppointment(BookingInputDTO input, int patientId);
-        void CancelAppointment(BookingInputDTO bookingInputDTO, int patientId);
-        void DeleteAppointments(BookingInputDTO bookingInputDTO);
-        IEnumerable<BookingOutputDTO> GetAllBooking();
-        IEnumerable<BookingInputDTO> GetAvailableAppointmentsBy(int? clinicId, int? departmentId);
-        IEnumerable<BookingOutputDTO> GetBookedAppointments(int patientId);
-        Booking GetBookingById(int bookingId);
-        IEnumerable<Booking> GetBookingsByClinicAndDate(int clinicId, DateTime date);
-        IEnumerable<Booking> ScheduledAppointments(int cid, DateTime appointmentDate);
-        void UpdateBookedAppointment(BookingInputDTO previousAppointment, BookingInputDTO newAppointment, int patientId);
+        void BookAppointment();
+        void CancelAppointment();
+        void DeleteAppointment();
+        void UpdateBookedAppointment();
+        void GetAllBooking();
+        void GetBookingById(int id);
+        void GetBookingByClinicIdAndDate(int patientId);
+        void GetBookingByPatientId(int patientId);
+        void GetAvailableAppointmentsByClinicIdAndDate(DateTime date, int clinicId);
+        void ScheduleAppointment(int patientId, int clinicId, DateTime date, TimeSpan time);
     }
 }
