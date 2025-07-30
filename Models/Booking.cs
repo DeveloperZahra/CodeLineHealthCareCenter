@@ -73,6 +73,22 @@ namespace CodeLineHealthCareCenter.Models
 
             Console.WriteLine($"Booking created successfully! Booking ID: {newBooking.BookingId}");
         }
+        // 5.2 Cancel an existing booking
+        public void CancelAppointment()
+        {
+            int bookingId = UserValidator.IntValidation("Enter Booking ID to cancel");
+            var booking = Bookings.FirstOrDefault(b => b.BookingId == bookingId);
 
+            if (booking == null)
+            {
+                Console.WriteLine("Booking not found.");
+                return;
+            }
+
+            booking.AppointmentType = "Canceled";
+            Console.WriteLine("Booking canceled successfully.");
+        }
+
+        
     }
 }
