@@ -147,6 +147,7 @@ namespace CodeLineHealthCareCenter.Models
                 switch (input)
                 {
                     case "1":
+                        // Placeholder for the "View Appointments" functionality
                         Console.WriteLine("📆 [Doctor] View Appointments - Not implemented");
                         break;
                     case "0":
