@@ -7,6 +7,7 @@
             Console.WriteLine("Hello, World!");
         }
 
+        // Displays the main welcome screen with SignUp, SignIn, and Exit options
         static void ShowWelcomeScreen()
         {
             // while loop to display wellcome screen every true value untill user enter 0 value to exist from loop 
