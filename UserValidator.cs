@@ -20,5 +20,11 @@ namespace CodeLineHealthCareCenter
             if (string.IsNullOrWhiteSpace(email) || !email.Contains("@") || !email.Contains(".")) 
                 throw new ArgumentException("Invalid email format."); // Check if the email is null, empty, or does not contain '@' or '.'
         }
+
+        public static void ValidatePassword(string password) // Validates the password of a user
+        {
+            if (string.IsNullOrWhiteSpace(password) || password.Length < 6)
+                throw new ArgumentException("Password must be at least 6 characters long.");
+        }
     }
 }
