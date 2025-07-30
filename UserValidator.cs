@@ -38,10 +38,11 @@ namespace CodeLineHealthCareCenter
             else return true;
         }
 
-        public static void ValidatePhoneNumber(string phoneNumber) // Validates the phone number of a user
+        public static bool ValidatePhoneNumber(string phoneNumber) // Validates the phone number of a user
         {
             if (string.IsNullOrWhiteSpace(phoneNumber) || phoneNumber.Length < 8)
-                throw new ArgumentException("Phone number must be at least 8 digits.");// Check if the phone number is null, empty, or less than 8 characters long
+                return false;// Check if the phone number is null, empty, or less than 8 characters long
+            else return true;
         }
 
         public static void ValidateGender(string gender) // Validates the gender of a user
