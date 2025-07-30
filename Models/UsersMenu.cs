@@ -169,6 +169,7 @@ namespace CodeLineHealthCareCenter.Models
         // =================== Patient Menu ====================
         static void PatientMenu()
         {
+            // Boolean flag used to control when to exit the menu
             bool back = false;
             while (!back)
             {
