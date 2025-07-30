@@ -224,8 +224,21 @@ namespace CodeLineHealthCareCenter.Models
             Clinics.Remove(clinic);
             Console.WriteLine("Clinic deleted successfully.");
         }
+        // Method to display clinic information
+        public void ViewClinicInfo()
+        {
+            Console.WriteLine("\nClinic ID: " + ClinicId);
+            Console.WriteLine("Clinic Name: " + ClinicName);
+            Console.WriteLine("Department ID: " + DepartmentId);
+            Console.WriteLine("Branch ID: " + BranchId);
+            Console.WriteLine("Location: " + Location);
+            Console.WriteLine("Price: " + Price);
+            Console.WriteLine("Status: " + (ClinicStatus ? "Open" : "Closed"));
+            Console.WriteLine("Number of Doctors: " + Doctors.Count);
+            Console.WriteLine("Number of Available Appointments: " + ClinicSpots.Count);
+        }
 
-       
+
 
 
 
