@@ -89,7 +89,7 @@ namespace CodeLineHealthCareCenter.Models
 
                 // Prompt the user to select an option
                 Console.Write("Choose: ");
-                string input = Console.ReadLine();
+                string input = Console.ReadLine(); // Read user input from the console
 
                 switch (input)
                 {
