@@ -234,7 +234,7 @@ namespace CodeLineHealthCareCenter.Models
                     role = Console.ReadLine()?.Trim();
 
                     // ✅ Validate role: must match one of the valid roles (case-insensitive)
-                    bool isValidRole = !string.IsNullOrWhiteSpace(role) &&
+                    bool isValidRole = UserValidator.ValidateRole(role) &&
                                        Array.Exists(validRoles, r => r.Equals(role, StringComparison.OrdinalIgnoreCase));
 
                     if (isValidRole)
@@ -243,7 +243,7 @@ namespace CodeLineHealthCareCenter.Models
                         string formattedRole = string.Join(" ", role.Split(' ')
                             .Select(word => char.ToUpper(word[0]) + word.Substring(1).ToLower()));
 
-                        Console.WriteLine("✅ Valid Role.");
+                        Console.WriteLine("✅");
                         return formattedRole;
                     }
                     else
