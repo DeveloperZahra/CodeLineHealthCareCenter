@@ -24,6 +24,8 @@ namespace CodeLineHealthCareCenter.Models
                 Console.WriteLine("3. Add Admin");
                 Console.WriteLine("4. View System Data");
                 Console.WriteLine("0. Back");
+
+                // Prompt the user to choose an option
                 Console.Write("Choose: ");
                 string input = Console.ReadLine();
 
