@@ -8,6 +8,7 @@ namespace CodeLineHealthCareCenter.Models
 {
     public class AuthServices
     {
+        private static User currentUser = null; // Stores the currently logged-in user
         // Registers a new Patien (Sign Up).
         public static void SignUp()
         {
@@ -48,6 +49,79 @@ namespace CodeLineHealthCareCenter.Models
             Console.WriteLine($"✅ User '{name}' registered successfully!");
         }
 
-        
+        // Signs in an existing user by validating email and password.
+        public static void SignIn()
+        {
+            Console.WriteLine("\n=== SIGN IN ===");
+
+            Console.Write("Enter Email: ");
+            string email = Console.ReadLine();
+
+            User foundUser = SuperAdmin.SuperAdmins.FirstOrDefault(u => u.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+
+            if (foundUser == null)
+                foundUser = Admin.Admins.FirstOrDefault(u => u.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+
+            if (foundUser == null)
+                foundUser = Doctor.doctors.FirstOrDefault(u => u.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+
+            if (foundUser == null)
+                foundUser = Patient.patients.FirstOrDefault(u => u.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+
+            if (foundUser == null)
+            {
+                Console.WriteLine("❌ Email not found. Please Sign Up first.");
+                return;
+            }
+
+            // Verify your password (use VerifyPassword)
+            int tries = 0;
+            while (tries < 3)
+            {
+                Console.Write("Enter Password: ");
+                string enteredPassword = UserData.ReadPassword();
+                string HashPassw = UserData.HashPassword(enteredPassword);
+
+                if (HashPassw == foundUser.Password)
+                {
+                    Console.WriteLine($"\n✅ Welcome, {foundUser.UserName}! You are logged in as {foundUser.Role}.");
+                    SetCurrentUser(foundUser);
+                    switch (foundUser.Role)
+                    {
+                        case "Super Admin":
+                            Console.WriteLine(" =============== Welcome to Super Admin Menu ================");
+                            //SuperAdminMenu(foundUser);
+                            break;
+                        case "Admin":
+                            Console.WriteLine(" =============== Welcome to Admin Menu ================");
+                            //AdminMenu(foundUser);
+                            break;
+                        case "Doctor":
+                            Console.WriteLine(" =============== Welcome to Doctor Menu ================");
+                            //DoctorMenu(foundUser);
+                            break;
+                        case "Patient":
+                            Console.WriteLine(" =============== Welcome to Patient Menu ================");
+                            //PatientMenu(foundUser);
+                            break;
+                    }
+                    return;
+                }
+                else
+                {
+                    tries++;
+                    Console.WriteLine($"\n❌ Incorrect password. Attempts left: {3 - tries}");
+                }
+            }
+
+            Console.WriteLine("⛔ Too many failed attempts. Please try again later.");
+        }
+
+
+
+
+
+
+
     }
 }
