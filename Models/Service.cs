@@ -16,6 +16,13 @@ namespace CodeLineHealthCareCenter
             this.departments = departments; // Initialize the service with the provided list of departments
         }
 
+        public virtual void Add(Department department) 
+        {
+            departments.Add(department); 
+            Console.WriteLine(" Department added successfully.");
+        }
+
+
         protected List<Service> services = new List<Service>(); // List to store services
 
         // Add a new service to the list
