@@ -1,0 +1,70 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CodeLineHealthCareCenter.Models
+{
+    public  class UsersMenu
+    {
+        // =================== SuperAdmin Menu ====================
+        static void SuperAdminMenu()
+        {
+            bool back = false;
+            while (!back)
+            {
+                Console.WriteLine("\n👑 SuperAdmin Dashboard:");
+                Console.WriteLine("1. Add Branch");
+                Console.WriteLine("2. Add Department");
+                Console.WriteLine("3. Add Admin");
+                Console.WriteLine("4. View System Data");
+                Console.WriteLine("0. Back");
+                Console.Write("Choose: ");
+                string input = Console.ReadLine();
+
+                switch (input)
+                {
+                    case "1":
+                        Console.WriteLine("🔧 [SuperAdmin] Add Branch - Not implemented");
+                        break;
+                    case "2":
+                        Console.WriteLine("🔧 [SuperAdmin] Add Department - Not implemented");
+                        break;
+                    case "3":
+                        Console.WriteLine("🔧 [SuperAdmin] Add Admin - Not implemented");
+                        break;
+                    case "4":
+                        Console.WriteLine("📊 [SuperAdmin] View System Data - Not implemented");
+                        break;
+                    case "0":
+                        back = true;
+                        break;
+                    default:
+                        Console.WriteLine("❌ Invalid choice.");
+                        break;
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+}
