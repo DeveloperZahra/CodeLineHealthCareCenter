@@ -227,6 +227,8 @@ namespace CodeLineHealthCareCenter.Models
         // Method to display clinic information
         public void ViewClinicInfo()
         {
+            int DoctorNum = 0;
+            Console.WriteLine("Clinic Information:");
             Console.WriteLine("\nClinic ID: " + ClinicId);
             Console.WriteLine("Clinic Name: " + ClinicName);
             Console.WriteLine("Department ID: " + DepartmentId);
@@ -234,7 +236,15 @@ namespace CodeLineHealthCareCenter.Models
             Console.WriteLine("Location: " + Location);
             Console.WriteLine("Price: " + Price);
             Console.WriteLine("Status: " + (ClinicStatus ? "Open" : "Closed"));
-            Console.WriteLine("Number of Doctors: " + Doctors.Count);
+            for(int i = 0; i < Doctor.doctors.Count; i++)
+            {
+                if (Doctor.doctors[i].BranchId == BranchId && Doctor.doctors[i].DepartmentId == DepartmentId)
+                {
+                    DoctorNum++;
+
+                }
+            }
+            Console.WriteLine("Number of Doctors: " + DoctorNum);
             Console.WriteLine("Number of Available Appointments: " + ClinicSpots.Count);
         }
 
