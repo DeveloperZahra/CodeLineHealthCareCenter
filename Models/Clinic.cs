@@ -133,7 +133,21 @@ namespace CodeLineHealthCareCenter.Models
             }
         }
 
+        // Method to get a clinic by its name
+        public void GetClinicByName(string clinicName)
+        {
+            var clinic = Clinics.FirstOrDefault(c => c.ClinicName.Equals(clinicName, StringComparison.OrdinalIgnoreCase));
+            if (clinic == null)
+            {
+                Console.WriteLine("Clinic not found.");
+                return;
+            }
+            clinic.ViewClinicInfo();
+        }
+
         
+
+
 
 
 
