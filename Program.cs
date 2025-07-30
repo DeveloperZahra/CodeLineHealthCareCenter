@@ -6,8 +6,10 @@ using CodeLineHealthCareCenter.Models;  // Import custom models (User, Doctor, P
 
 namespace CodeLineHealthCareCenter
 {
-    internal class Program
+    public class Program
     {
+      
+
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
@@ -49,68 +51,12 @@ namespace CodeLineHealthCareCenter
             }
         }
 
-        // Function to handle user registration
+        // Create sign up Class 
         static void SignUp()
 
         {
-            Console.Clear();
+           
             Console.WriteLine("=== Sign Up====");
-
-            // Collect user details
-            Console.Write("Full Name: ");
-            string name = Console.ReadLine();
-
-            Console.Write("Email: ");
-            string email = Console.ReadLine();
-
-            Console.Write("Password: ");
-            string password = Console.ReadLine();
-
-            // Ask for user role
-            Console.Write("Role (Doctor / Patient / Admin / SuperAdmin): ");
-            string role = Console.ReadLine().ToLower();
-
-            User newUser = null; // Temporary holder for the new user object
-
-
-            // Create appropriate object based on role
-            switch (role)
-            {
-                // Check if the user role is "superadmin"
-                case "superadmin":
-                    // Create a new instance of the SuperAdmin class
-                    newUser = new SuperAdmin
-                    {
-                        Id = users.Count + 1,   // Assign a unique Id based on the current number of users + 1
-                        FullName = name, // Set the full name of the new user
-                        Email = email,  // Set the email of the new user
-                        Password = password    // Set the password of the new user
-                    };
-                    break;
-
-                // Check if the user role is "admin"
-                case "admin":
-                    // Prompt the user to enter the Branch ID and read it from console input
-                    Console.Write("Branch ID: ");
-                    int branchId = int.Parse(Console.ReadLine());
-
-                    // Prompt the user to enter the Department ID and read it from console input
-                    Console.Write("Department ID: ");
-                    int adminDept = int.Parse(Console.ReadLine());
-
-                    // Create a new instance of the Admin class and set its properties
-                    newUser = new Admin
-                    {
-                        Id = users.Count + 1,  // Assign a unique Id based on the current number of users + 1
-                        FullName = name, // Set the full name of the new user
-                        Email = email,  // Set the email of the new user
-                        Password = password, // Set the password of the new user
-                        BranchId = branchId,  // Set the Branch ID for the admin user
-                        DepartmentId = adminDept  // Set the Department ID for the admin user
-                    };
-                    // Exit the switch case after creating the Admin user
-                    break;
-
 
 
             }
