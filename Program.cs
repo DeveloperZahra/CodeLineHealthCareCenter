@@ -70,7 +70,7 @@ namespace CodeLineHealthCareCenter
             Console.Write("Role (Doctor / Patient / Admin / SuperAdmin): ");
             string role = Console.ReadLine().ToLower();
 
-
+            User newUser = null; // Temporary holder for the new user object
         }
 
         // Create Sign In Class
