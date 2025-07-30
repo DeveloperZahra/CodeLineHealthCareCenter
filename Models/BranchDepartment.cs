@@ -14,6 +14,8 @@ namespace CodeLineHealthCareCenter
         //1. ========================== class fields and their properities ==========================
         public int branchId { get; set; }
         public int departmentId {  get; set; }
+        public int branchDepartmentId { get; set; } // Unique identifier for the branch-department relationship
+
         public bool isActive { get; set; }
         public string branchName {  get; set; }
         private string departmentName {  get; set; }
@@ -23,8 +25,9 @@ namespace CodeLineHealthCareCenter
         private List<BranchDepartment> branchDepartments = new List<BranchDepartment>();
 
         //3. ======================= Class constructor =========================================
-        public BranchDepartment(int branchId, int departmentId, string branchName, string departmentName, bool isActive = true)
+        public BranchDepartment(int branchDepartmentId, int branchId, int departmentId, string branchName, string departmentName, bool isActive = true)
         {
+            this.branchDepartmentId = branchDepartmentId; // Unique ID for the relationship
             this.branchId = branchId;
             this.departmentId = departmentId;
             this.branchName = branchName;
