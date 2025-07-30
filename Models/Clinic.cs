@@ -212,8 +212,21 @@ namespace CodeLineHealthCareCenter.Models
             clinic.Price = price;
             Console.WriteLine("Clinic details updated successfully.");
         }
+        // Method to delete a clinic by its ID
+        public void DeleteClinic(int clinicId)
+        {
+            var clinic = Clinics.FirstOrDefault(c => c.ClinicId == clinicId);
+            if (clinic == null)
+            {
+                Console.WriteLine("Clinic not found.");
+                return;
+            }
+            Clinics.Remove(clinic);
+            Console.WriteLine("Clinic deleted successfully.");
+        }
 
        
+
 
 
 
