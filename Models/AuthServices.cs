@@ -12,7 +12,7 @@ namespace CodeLineHealthCareCenter.Models
     {
         private static User currentUser = null; // Stores the currently logged-in user
         // Registers a new Patien (Sign Up).
-        public static void SignUp()
+        public void SignUp()
         {
             Console.WriteLine("\n=== SIGN UP ===");
 
