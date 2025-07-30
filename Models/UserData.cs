@@ -10,7 +10,7 @@ namespace CodeLineHealthCareCenter.Models
     public class UserData
     {    public static int tries = 0;
         /// =================================== User Input Data ===============================
-        // ================================== 1. User Name ============================
+        // ================================== 1. User Name ====================================
         public static string EnterUserName()
         {
             string userName = "";
@@ -81,6 +81,49 @@ namespace CodeLineHealthCareCenter.Models
                     }
 
                 } while (tries < 3); // Maximum of 3 attempts
+
+                // If user fails 3 times
+                Console.WriteLine("⚠ You have exceeded the maximum number of attempts.");
+                Console.WriteLine("Please try again later.");
+                return "null";
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"⚠ An error occurred: {ex.Message}");
+                return "null";
+            }
+        }
+
+        // ================================== 3. NationalID ===================================
+        public static string EnterNationalID()
+        {
+            string nationalId = "";
+            int tries = 0; // Counter for attempts
+
+            try
+            {
+                do
+                {
+                    Console.Write("Enter National ID: ");
+                    nationalId = Console.ReadLine();
+
+                    // ✅ Validate National ID: must be digits only and 10 to 14 characters long
+                    bool isValidId = !string.IsNullOrWhiteSpace(nationalId) &&
+                                     nationalId.All(char.IsDigit) &&
+                                     (nationalId.Length == 10 || nationalId.Length == 14);
+
+                    if (isValidId)
+                    {
+                        Console.WriteLine("✅ Valid National ID.");
+                        return nationalId; // Return valid National ID
+                    }
+                    else
+                    {
+                        Console.WriteLine("❌ Invalid National ID. It must be 10 or 14 digits only.");
+                        tries++;
+                    }
+
+                } while (tries < 3); // Allow up to 3 attempts
 
                 // If user fails 3 times
                 Console.WriteLine("⚠ You have exceeded the maximum number of attempts.");
