@@ -12,18 +12,14 @@ namespace CodeLineHealthCareCenter.Utilities
         // Method to save data to a file
         public static void SaveToFile<T>(List<T> dataList, string filePath)
         {
-            try
+            using (StreamWriter writer = new StreamWriter(filePath))
             {
-                string jsonData = JsonSerializer.Serialize(dataList, new JsonSerializerOptions { WriteIndented = true });
-                File.WriteAllText(filePath, jsonData);
-                Console.WriteLine($" Saved to {filePath}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($" Error saving file: {ex.Message}");
+                foreach (var item in dataList)
+                {
+                    writer.WriteLine(item.ToString()); //  override ToString
+                }
             }
         }
-
         // Method to load data from a file
         public static List<T> LoadFromFile<T>(string filePath)
         {
