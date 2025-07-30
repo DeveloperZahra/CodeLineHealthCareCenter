@@ -384,9 +384,9 @@ namespace CodeLineHealthCareCenter.Models
             return false;
         }
 
-        // ==================================== 9.Department ID ============================== 
+        // ==================================== 9.Branch ID ============================== 
         /// Input Data Specility for some users in the system 
-        // Prompts the user to enter a Department ID that must already exist in the system.
+        // Prompts the user to enter a Branch ID that must already exist in the system.
         public static int EnterBranchId(List<Branch> branches)
         {
             int tries = 0;
@@ -426,5 +426,51 @@ namespace CodeLineHealthCareCenter.Models
                 return -1;
             }
         }
+
+        // ==================================== 10. Department ID ===============================
+        /// Input Data Specility for some users in the system 
+        // Prompts the user to enter a Department ID that must already exist in the system.
+        public static int EnterDepartmentId(List<Department> departments)
+        {
+            int tries = 0; // Counter for user attempts
+
+            try
+            {
+                do
+                {
+                    Console.Write("Enter Department ID: ");
+                    string input = Console.ReadLine();
+
+                    // Check if the entered value is a valid integer
+                    if (int.TryParse(input, out int departmentId))
+                    {
+                        // Check if the entered department ID exists in the provided list
+                        bool exists = departments.Any(d => d.DepartmentId == departmentId);
+
+                        if (exists)
+                        {
+                            Console.WriteLine("✅ Valid Department ID.");
+                            return departmentId; // Return valid department ID
+                        }
+                    }
+
+                    // If the input is invalid or department not found
+                    Console.WriteLine("❌ Invalid Department ID. Please enter an existing ID.");
+                    tries++; // Increase the number of failed attempts
+
+                } while (tries < 3); // Allow a maximum of 3 attempts
+
+                // If user failed 3 times
+                Console.WriteLine("⚠ You have exceeded the maximum number of attempts.");
+                return -1; // Indicate failure
+            }
+            catch (Exception ex)
+            {
+                // Handle unexpected errors
+                Console.WriteLine($"⚠ An error occurred: {ex.Message}");
+                return -1; // Indicate failure
+            }
+        }
+
     }
 }
