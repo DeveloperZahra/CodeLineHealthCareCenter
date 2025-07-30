@@ -26,5 +26,11 @@ namespace CodeLineHealthCareCenter
             if (string.IsNullOrWhiteSpace(password) || password.Length < 6)
                 throw new ArgumentException("Password must be at least 6 characters long.");// Check if the password is null, empty, or less than 6 characters long
         }
+
+        public static void ValidateNationalId(string nationalId) // Validates the national ID of a user
+        {
+            if (string.IsNullOrWhiteSpace(nationalId) || nationalId.Length != 10)
+                throw new ArgumentException("National ID must be 10 digits.");
+        }
     }
 }
