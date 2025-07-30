@@ -83,7 +83,7 @@ namespace CodeLineHealthCareCenter
                     {
                         Id = users.Count + 1,   // Assign a unique Id based on the current number of users + 1
                         FullName = name, // Set the full name of the new user
-                        Email = email,
+                        Email = email,  // Set the email of the new user
                         Password = password
                     };
                     break;
