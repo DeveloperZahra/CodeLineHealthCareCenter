@@ -136,5 +136,91 @@ namespace CodeLineHealthCareCenter.Models
                 return "null";
             }
         }
+        // ================================== 4. Phone Number ==================================
+        public static string EnterPhoneNumber()
+        {
+            string phoneNumber = "";
+            int tries = 0; // Counter for attempts
+
+            try
+            {
+                do
+                {
+                    Console.Write("Enter Phone Number: ");
+                    phoneNumber = Console.ReadLine();
+
+                    // ✅ Validate phone number: must be digits only and between 8-12 digits
+                    bool isValidPhone = !string.IsNullOrWhiteSpace(phoneNumber) &&
+                                        phoneNumber.All(char.IsDigit) &&
+                                        phoneNumber.Length >= 8 && phoneNumber.Length <= 12;
+
+                    if (isValidPhone)
+                    {
+                        Console.WriteLine("✅ Valid Phone Number.");
+                        return phoneNumber; // Return valid phone number
+                    }
+                    else
+                    {
+                        Console.WriteLine("❌ Invalid Phone Number. It must contain only digits and be 8-12 digits long.");
+                        tries++;
+                    }
+
+                } while (tries < 3); // Allow up to 3 attempts
+
+                // If user fails 3 times
+                Console.WriteLine("⚠ You have exceeded the maximum number of attempts.");
+                Console.WriteLine("Please try again later.");
+                return "null";
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"⚠ An error occurred: {ex.Message}");
+                return "null";
+            }
+        }
+        // ================================== 5. Gender ========================================
+        public static string EnterGender()
+        {
+            string gender = "";
+            int tries = 0; // Counter for attempts
+
+            try
+            {
+                do
+                {
+                    Console.Write("Enter Gender (Male/Female): ");
+                    gender = Console.ReadLine()?.Trim();
+
+                    // ✅ Validate gender: must be "Male" or "Female" (case-insensitive)
+                    bool isValidGender = !string.IsNullOrWhiteSpace(gender) &&
+                                         (gender.Equals("Male", StringComparison.OrdinalIgnoreCase) ||
+                                          gender.Equals("Female", StringComparison.OrdinalIgnoreCase));
+
+                    if (isValidGender)
+                    {
+                        // Normalize output to start with capital letter
+                        string formattedGender = char.ToUpper(gender[0]) + gender.Substring(1).ToLower();
+                        Console.WriteLine("✅ Valid Gender.");
+                        return formattedGender;
+                    }
+                    else
+                    {
+                        Console.WriteLine("❌ Invalid Gender. Please enter 'Male' or 'Female'.");
+                        tries++;
+                    }
+
+                } while (tries < 3); // Allow up to 3 attempts
+
+                // If user fails 3 times
+                Console.WriteLine("⚠ You have exceeded the maximum number of attempts.");
+                Console.WriteLine("Please try again later.");
+                return "null";
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"⚠ An error occurred: {ex.Message}");
+                return "null";
+            }
+        }
     }
 }
