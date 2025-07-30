@@ -16,11 +16,11 @@ namespace CodeLineHealthCareCenter.Utilities
             {
                 string jsonData = JsonSerializer.Serialize(dataList, new JsonSerializerOptions { WriteIndented = true });
                 File.WriteAllText(filePath, jsonData);
-                Console.WriteLine($"✅ Saved to {filePath}");
+                Console.WriteLine($" Saved to {filePath}");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error saving file: {ex.Message}");
+                Console.WriteLine($" Error saving file: {ex.Message}");
             }
         }
 
@@ -31,18 +31,18 @@ namespace CodeLineHealthCareCenter.Utilities
             {
                 if (!File.Exists(filePath)) // Check if the file exists
                 {
-                    Console.WriteLine($"⚠️ File not found: {filePath}"); // If file does not exist, return an empty list
+                    Console.WriteLine($"⚠ File not found: {filePath}"); // If file does not exist, return an empty list
                     return new List<T>(); // Return an empty list if file does not exist
                 }
 
                 string jsonData = File.ReadAllText(filePath); // Read the file content
                 var dataList = JsonSerializer.Deserialize<List<T>>(jsonData); // Deserialize the JSON data into a list of type T
-                Console.WriteLine($"✅ Loaded from {filePath}");
+                Console.WriteLine($" Loaded from {filePath}");
                 return dataList ?? new List<T>();
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error loading file: {ex.Message}"); // Handle any exceptions that occur during loading
+                Console.WriteLine($" Error loading file: {ex.Message}"); // Handle any exceptions that occur during loading
                 return new List<T>(); // Return an empty list in case of error
             }
         }
