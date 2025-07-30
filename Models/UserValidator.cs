@@ -64,5 +64,65 @@ namespace CodeLineHealthCareCenter
         }
 
 
+        /// ================================ validate general user input data typr =================
+        // 1. int data type
+        public static int IntValidation(string message)
+        {
+            bool IntFlag;//to handle user StringNaming error input ...
+            int IntInput = 0;
+            do
+            {
+                IntFlag = false;
+                try
+                {
+                    Console.WriteLine($"Enter {message}:");
+                    IntInput = int.Parse(Console.ReadLine());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"{message} not accepted due to " + e.Message);
+                    Console.ReadLine();
+                    IntFlag = true;
+                }
+
+            } while (IntFlag);
+            //to return tne char input ...
+            return IntInput;
+        }
+
+        // 2. DateTime data type
+        public static DateTime DateTimeValidation(string message)
+        {
+            bool DateTimeFlag; // to handle user DateTime error input
+            DateTime DateTimeInput = DateTime.Now;
+
+            do
+            {
+                DateTimeFlag = false;
+                try
+                {
+                    Console.WriteLine($"Enter your {message} (format: MM/dd/yyyy):");
+                    DateTimeInput = DateTime.Parse(Console.ReadLine());
+
+                    //// Check if the date is in the future or today
+                    //if (DateTimeInput.Date > DateTime.Now.Date)
+                    //{
+                    //    Console.WriteLine($"{message} should be a date valid.");
+                    //    HoldScreen(); // just to hold a second
+                    //    DateTimeFlag = true; // ask user again
+                    //}
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"{message} not accepted due to: " + e.Message);
+                    Console.ReadLine();
+                    DateTimeFlag = true; // ask user again
+                }
+            } while (DateTimeFlag);
+
+            return DateTimeInput; // Return the validated input
+        }
+
+
     }
 }

@@ -184,27 +184,27 @@ namespace CodeLineHealthCareCenter.Models
         // 5.9 Get available appointments by clinic and date
         public void GetAvailableAppointmentsByClinicIdAndDate(DateTime date, int clinicId)
         {
-            // // Find all departments in all relationships (BranchDepartment)
+            // Find all clinics under all branch-department relationships
             var availableSpots = BranchDepartment.branchDepartments
-                .SelectMany(bd => bd.Departments) // access to department
-                .SelectMany(dep => dep.Clinics)   // accessto clinic in departmrnt
-                .Where(clinic => clinic.ClinicId == clinicId) // select rquest clinic
-                .SelectMany(clinic => clinic.ClinicSpots) // get all available spots in the clinic
-                .Where(spot => spot.Date == date.Date) // filter by selected date
+                .Where(bd => bd.Clinics != null) // Ensure Clinics list exists
+                .SelectMany(bd => bd.Clinics) // Get all clinics
+                .Where(clinic => clinic.ClinicId == clinicId) // Match the required clinic
+                .SelectMany(clinic => clinic.ClinicSpots) // Get all appointment spots
+                .Where(spot => spot.Date == date.Date) // Filter by selected date
                 .ToList();
 
-            // Check if there are any available spots
+            // Check if any available spots exist
             if (availableSpots.Count == 0)
             {
                 Console.WriteLine("No available spots for this clinic on the selected date.");
                 return;
             }
 
-            //  Display available spots
-            Console.WriteLine("Available Spots:");
+            // Display the available spots
+            Console.WriteLine($"Available Spots for Clinic ID {clinicId} on {date:yyyy-MM-dd}:");
             foreach (var spot in availableSpots)
             {
-                Console.WriteLine(spot);
+                Console.WriteLine($"- {spot:yyyy-MM-dd HH:mm}");
             }
         }
 
@@ -236,18 +236,17 @@ namespace CodeLineHealthCareCenter.Models
         // List clinics by department
         public static void GetAllClinicsByDepartmentId(int departmentId)
         {
-            // Step 1: Get all departments from all branch-department relationships
-            //         and filter only the department that matches the given departmentId.
+            // Step 1: Get all clinics from branch-department relationships
+            //         where the departmentId matches the given one.
             var clinics = BranchDepartment.branchDepartments
-                .SelectMany(bd => bd.Departments) // Access the list of departments inside each branch-department
-                .Where(dep => dep.DepartmentId == departmentId) // Filter by departmentId
-                .SelectMany(dep => dep.Clinics) // Get all clinics inside the selected department
+                .Where(bd => bd.departmentId == departmentId && bd.Clinics != null) // Filter by departmentId and ensure Clinics list is not null
+                .SelectMany(bd => bd.Clinics) // Get all clinics inside the branch-department
                 .ToList();
 
             // Step 2: If no clinics are found, display a message and return.
             if (clinics.Count == 0)
             {
-                Console.WriteLine("No clinics found for this department.");
+                Console.WriteLine($"No clinics found for Department ID {departmentId}.");
                 return;
             }
 
@@ -262,27 +261,26 @@ namespace CodeLineHealthCareCenter.Models
         // List doctors by clinic
         public static void GetAllDoctorsByClinicId(int clinicId)
         {
-            // Step 1: Get all departments from all branch-department relationships
-            //         Then access their clinics to find the clinic with the given ID.
+            // Step 1: Get all doctors from clinics that match the given clinicId.
             var doctors = BranchDepartment.branchDepartments
-                .SelectMany(bd => bd.Departments)         // Access departments
-                .SelectMany(dep => dep.Clinics)          // Access clinics inside each department
-                .Where(clinic => clinic.ClinicId == clinicId) // Filter by clinicId
-                .SelectMany(clinic => clinic.Doctors)    // Get all doctors inside the selected clinic
+                .Where(bd => bd.Clinics != null)                 // Ensure Clinics is not null
+                .SelectMany(bd => bd.Clinics)                    // Get all clinics from branch-department
+                .Where(clinic => clinic.ClinicId == clinicId)    // Filter clinics by clinicId
+                .SelectMany(clinic => clinic.Doctors)            // Get doctors from the matching clinics
                 .ToList();
 
-            // Step 2: If no doctors found, display a message and return
+            // Step 2: If no doctors found, show a message and return
             if (doctors.Count == 0)
             {
-                Console.WriteLine("No doctors found for this clinic.");
+                Console.WriteLine($"No doctors found for Clinic ID {clinicId}.");
                 return;
             }
 
-            // Step 3: Display all doctors' details
+            // Step 3: Print doctors' details
             Console.WriteLine($"Doctors in Clinic ID {clinicId}:");
             foreach (var doctor in doctors)
             {
-                Console.WriteLine($"Doctor ID: {doctor.UserId}, Name: {doctor.UserName}, Specialization: {doctor.Specialty}");
+                Console.WriteLine($"Doctor ID: {doctor.UserId}, Name: {doctor.UserName}, Specialty: {doctor.Specialty}");
             }
         }
 

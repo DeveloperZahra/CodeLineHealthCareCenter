@@ -7,92 +7,78 @@ namespace CodeLineHealthCareCenter.Models
 {
     public class Clinic : IClinicService
     {
-
-        // Private static counter to generate unique IDs for clinics
+        // Static counter to generate unique clinic IDs
         private static int clinicCounter = 0;
 
-        // Private field to store the status of the clinic (open or closed)
+        // Private field for clinic status
         private bool clinicStatus = true;
 
         // Private fields for location and price
         private string location;
         private decimal price;
 
-        // Property for unique clinic ID (read-only)
-        public int ClinicId { get; private set; }
-
-        // Property for clinic name
+        // ========================== Properties ==========================
+        public int ClinicId { get; private set; } // Unique ID
         public string ClinicName { get; set; }
-
-        // Property for department ID that the clinic belongs to
         public int DepartmentId { get; set; }
-
-        // Property for branch ID that the clinic belongs to
         public int BranchId { get; set; }
-
-        // Property for floor ID where the clinic is located
         public int FloorId { get; set; }
-
-        // Property for room ID where the clinic is located
         public int RoomId { get; set; }
 
-        /// <summary>
-        ///  Static list to store all clinics created in the system.
-        /// </summary>
-        
-        // Property for the clinic location
-        public string Location
-        {
-            get { return location; }
-            set { location = value; }
-        }
+        public string Location { get => location; set => location = value; }
+        public decimal Price { get => price; set => price = value; }
+        public bool ClinicStatus => clinicStatus;
 
-        // Property for the price of clinic services
-        public decimal Price
-        {
-            get { return price; }
-            set { price = value; }
-        }
-
-        // Property to get the current status of the clinic (open or closed)
-        public bool ClinicStatus
-        {
-            get { return clinicStatus; }
-        }
-
-
-        //===================================== Lists =====================================
-        ///  wamt Clinics +Doctors + ClinicSpots 
-        // Static list to store all clinics created in the system
+        // Static list to store all clinics
         public static List<Clinic> Clinics = new List<Clinic>();
 
-        // List of available appointment times for the clinic
+        // List of available time slots
         public List<DateTime> ClinicSpots { get; set; } = new List<DateTime>();
 
+        // List of doctors assigned to this clinic
+        public List<Doctor> Doctors { get; set; } = new List<Doctor>();
 
-        // Constructor to create a new clinic with required details
+        // ========================== Constructor ==========================
         public Clinic(string clinicName, string location, int departmentId, int branchId, int floorId, int roomId, decimal price)
         {
-            clinicCounter++; // Increment the counter to assign a new unique ID
-            ClinicId = clinicCounter; // Assign the unique ID to the clinic
-            ClinicName = clinicName; // Set clinic name
-            Location = location; // Set clinic location
-            DepartmentId = departmentId; // Set department ID
-            BranchId = branchId; // Set branch ID
-            FloorId = floorId; // Set floor ID
-            RoomId = roomId; // Set room ID
-            Price = price; // Set clinic price
+            clinicCounter++;
+            ClinicId = clinicCounter;
+            ClinicName = clinicName;
+            Location = location;
+            DepartmentId = departmentId;
+            BranchId = branchId;
+            FloorId = floorId;
+            RoomId = roomId;
+            Price = price;
         }
 
-        // Method to add a new clinic to the system
+        // ========================== Interface Methods ==========================
+
+        /// <summary>
+        /// Adds a new clinic and optionally assigns doctors to it.
+        /// </summary>
         public void AddClinic(string clinicName, string location)
         {
-            clinicCounter++;
+            // 1️⃣ Create a new clinic object
             Clinic newClinic = new Clinic(clinicName, location, 0, 0, 0, 0, 0);
+
+            // 2️⃣ Optionally assign doctors to this clinic
+            Console.WriteLine("Do you want to assign doctors to this clinic? (yes/no)");
+            string choice = Console.ReadLine()?.Trim().ToLower();
+
+            if (choice == "yes")
+            {
+                AssignDoctorsToClinic(newClinic);
+            }
+
+            // 3️⃣ Add clinic to the static list
             Clinics.Add(newClinic);
-            Console.WriteLine("Clinic added successfully with ID " + newClinic.ClinicId);
+            Console.WriteLine($"Clinic '{newClinic.ClinicName}' added successfully with ID {newClinic.ClinicId}");
         }
-        // Method to get and display all clinics
+
+        /// <summary>
+        /// Displays all clinics.
+        /// </summary>
         public void GetAllClinics()
         {
             if (!Clinics.Any())
@@ -102,11 +88,9 @@ namespace CodeLineHealthCareCenter.Models
             }
 
             foreach (var clinic in Clinics)
-            {
                 clinic.ViewClinicInfo();
-            }
         }
-        // Method to get a clinic by its unique ID
+
         public void GetClinicById(int clinicId)
         {
             var clinic = Clinics.FirstOrDefault(c => c.ClinicId == clinicId);
@@ -118,7 +102,6 @@ namespace CodeLineHealthCareCenter.Models
             clinic.ViewClinicInfo();
         }
 
-        // Method to get a clinic by branch ID and department ID
         public void GetClinicByBranchDep(int branchId, int departmentId)
         {
             var filteredClinics = Clinics.Where(c => c.BranchId == branchId && c.DepartmentId == departmentId).ToList();
@@ -128,12 +111,9 @@ namespace CodeLineHealthCareCenter.Models
                 return;
             }
             foreach (var clinic in filteredClinics)
-            {
                 clinic.ViewClinicInfo();
-            }
         }
 
-        // Method to get a clinic by its name
         public void GetClinicByName(string clinicName)
         {
             var clinic = Clinics.FirstOrDefault(c => c.ClinicName.Equals(clinicName, StringComparison.OrdinalIgnoreCase));
@@ -144,7 +124,7 @@ namespace CodeLineHealthCareCenter.Models
             }
             clinic.ViewClinicInfo();
         }
-        // Method to get the name of a clinic by its ID
+
         public void GetClinicName(int clinicId)
         {
             var clinic = Clinics.FirstOrDefault(c => c.ClinicId == clinicId);
@@ -153,29 +133,27 @@ namespace CodeLineHealthCareCenter.Models
                 Console.WriteLine("Clinic not found.");
                 return;
             }
-            Console.WriteLine("Clinic Name: " + clinic.ClinicName);
+            Console.WriteLine($"Clinic Name: {clinic.ClinicName}");
         }
-        // Method to get all clinics by branch name 
+
         public void GetClinicByBranchName(string branchName)
         {
-            Console.WriteLine("Branch name-based search requires branch details integration.");
+            Console.WriteLine("This method requires branch details integration.");
         }
-        // Method to get all clinics by department ID
+
         public void GetClinicByDepartmentId(int departmentId)
         {
             var filteredClinics = Clinics.Where(c => c.DepartmentId == departmentId).ToList();
             if (!filteredClinics.Any())
             {
-                Console.WriteLine("No clinics found for the given department.");
+                Console.WriteLine("No clinics found for this department.");
                 return;
             }
+
             foreach (var clinic in filteredClinics)
-            {
                 clinic.ViewClinicInfo();
-            }
         }
 
-        // Method to get the price of a clinic by its ID
         public void GetPrice(int clinicId)
         {
             var clinic = Clinics.FirstOrDefault(c => c.ClinicId == clinicId);
@@ -184,9 +162,9 @@ namespace CodeLineHealthCareCenter.Models
                 Console.WriteLine("Clinic not found.");
                 return;
             }
-            Console.WriteLine("Clinic Price: " + clinic.Price);
+            Console.WriteLine($"Clinic Price: {clinic.Price}");
         }
-        // Method to set the status (open or closed) of a clinic by its ID
+
         public void SetClinicStatus(int clinicId, bool isActive)
         {
             var clinic = Clinics.FirstOrDefault(c => c.ClinicId == clinicId);
@@ -196,9 +174,9 @@ namespace CodeLineHealthCareCenter.Models
                 return;
             }
             clinic.clinicStatus = isActive;
-            Console.WriteLine("Clinic status updated successfully.");
+            Console.WriteLine("Clinic status updated.");
         }
-        // Method to update the details of a clinic
+
         public void UpdateClinicDetails(int clinicId, string clinicName, string location, decimal price)
         {
             var clinic = Clinics.FirstOrDefault(c => c.ClinicId == clinicId);
@@ -207,12 +185,13 @@ namespace CodeLineHealthCareCenter.Models
                 Console.WriteLine("Clinic not found.");
                 return;
             }
+
             clinic.ClinicName = clinicName;
             clinic.Location = location;
             clinic.Price = price;
-            Console.WriteLine("Clinic details updated successfully.");
+            Console.WriteLine("Clinic details updated.");
         }
-        // Method to delete a clinic by its ID
+
         public void DeleteClinic(int clinicId)
         {
             var clinic = Clinics.FirstOrDefault(c => c.ClinicId == clinicId);
@@ -224,50 +203,55 @@ namespace CodeLineHealthCareCenter.Models
             Clinics.Remove(clinic);
             Console.WriteLine("Clinic deleted successfully.");
         }
-        // Method to display clinic information
+
+        /// <summary>
+        /// Displays clinic details including assigned doctors.
+        /// </summary>
         public void ViewClinicInfo()
         {
-            int DoctorNum = 0;
-            Console.WriteLine("Clinic Information:");
-            Console.WriteLine("\nClinic ID: " + ClinicId);
-            Console.WriteLine("Clinic Name: " + ClinicName);
-            Console.WriteLine("Department ID: " + DepartmentId);
-            Console.WriteLine("Branch ID: " + BranchId);
-            Console.WriteLine("Location: " + Location);
-            Console.WriteLine("Price: " + Price);
-            Console.WriteLine("Status: " + (ClinicStatus ? "Open" : "Closed"));
-            for(int i = 0; i < Doctor.doctors.Count; i++)
-            {
-                if (Doctor.doctors[i].BranchId == BranchId && Doctor.doctors[i].DepartmentId == DepartmentId)
-                {
-                    DoctorNum++;
+            Console.WriteLine($"\nClinic ID: {ClinicId}, Name: {ClinicName}, Location: {Location}, Price: {Price}, Status: {(ClinicStatus ? "Open" : "Closed")}");
+            Console.WriteLine($"Department: {DepartmentId}, Branch: {BranchId}");
+            Console.WriteLine($"Doctors Assigned: {Doctors.Count}");
 
-                }
-            }
-            Console.WriteLine("Number of Doctors: " + DoctorNum);
-            Console.WriteLine("Number of Available Appointments: " + ClinicSpots.Count);
+            foreach (var doc in Doctors)
+                Console.WriteLine($" - {doc.UserName} ({doc.Specialty})");
+
+            Console.WriteLine($"Available Appointments: {ClinicSpots.Count}");
         }
 
+        // ========================== New Method ==========================
+        /// <summary>
+        /// Allows assigning existing doctors to a clinic.
+        /// </summary>
+        private void AssignDoctorsToClinic(Clinic clinic)
+        {
+            if (Doctor.doctors.Count == 0)
+            {
+                Console.WriteLine("No doctors available to assign.");
+                return;
+            }
 
+            Console.WriteLine("Available Doctors:");
+            foreach (var doc in Doctor.doctors)
+                Console.WriteLine($"{doc.UserId} - {doc.UserName} ({doc.Specialty})");
 
+            Console.WriteLine("Enter Doctor IDs to assign (comma separated):");
+            string input = Console.ReadLine();
+            var ids = input.Split(',').Select(id => id.Trim()).ToList();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            foreach (var id in ids)
+            {
+                var doctor = Doctor.doctors.FirstOrDefault(d => d.UserId == id);
+                if (doctor != null)
+                {
+                    clinic.Doctors.Add(doctor);
+                    Console.WriteLine($"Doctor {doctor.UserName} assigned to clinic.");
+                }
+                else
+                {
+                    Console.WriteLine($"Doctor with ID {id} not found.");
+                }
+            }
+        }
     }
 }
