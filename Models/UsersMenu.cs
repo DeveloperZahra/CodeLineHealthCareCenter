@@ -110,7 +110,9 @@ namespace CodeLineHealthCareCenter.Models
                         // Placeholder action for viewing appointments
                         Console.WriteLine("📅 [Admin] View Appointments - Not implemented");
                         break;
+
                     case "0":
+                        // Set the flag to true to exit the menu loop
                         back = true;
                         break;
                     default:
