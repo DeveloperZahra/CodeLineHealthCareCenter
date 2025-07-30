@@ -81,7 +81,7 @@ namespace CodeLineHealthCareCenter
                     // Create a new instance of the SuperAdmin class
                     newUser = new SuperAdmin
                     {
-                        Id = users.Count + 1,
+                        Id = users.Count + 1,   // Assign a unique Id based on the current number of users + 1
                         FullName = name,
                         Email = email,
                         Password = password
