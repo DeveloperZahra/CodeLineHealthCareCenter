@@ -197,7 +197,9 @@ namespace CodeLineHealthCareCenter.Models
                         // Placeholder for viewing patient's own appointments
                         Console.WriteLine("📋 [Patient] View My Appointments - Not implemented");
                         break;
+
                     case "0":
+                        // User selected to go back, so we set the flag to true to exit the loop
                         back = true;
                         break;
                     default:
