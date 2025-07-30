@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Security.Cryptography; // to can use SHA256 hash for the given password.
+
 
 namespace CodeLineHealthCareCenter.Models
 {
@@ -340,6 +342,14 @@ namespace CodeLineHealthCareCenter.Models
 
             Console.WriteLine();
             return password;
+        }
+        // 8.2 Generates a SHA256 hash for the given password.
+        public static string HashPassword(string password)
+        {
+            using var sha256 = SHA256.Create();
+            byte[] bytes = Encoding.UTF8.GetBytes(password);
+            byte[] hashBytes = sha256.ComputeHash(bytes);
+            return Convert.ToBase64String(hashBytes);
         }
 
 
