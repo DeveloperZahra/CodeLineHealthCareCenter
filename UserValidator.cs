@@ -48,7 +48,7 @@ namespace CodeLineHealthCareCenter
         public static void ValidateRole(string role) // Validates the role of a user
         {
             if (string.IsNullOrWhiteSpace(role))
-                throw new ArgumentException("Role cannot be empty.");
+                throw new ArgumentException("Role cannot be empty."); // Check if the role is null, empty, or consists only of whitespace
         }
 
 
