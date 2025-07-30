@@ -127,6 +127,7 @@ namespace CodeLineHealthCareCenter.Models
         // =================== Doctor Menu ====================
         static void DoctorMenu()
         {
+            // A flag used to keep the menu active until the user chooses to go back
             bool back = false;
             while (!back)
             {
