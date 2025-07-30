@@ -98,6 +98,7 @@ namespace CodeLineHealthCareCenter
                     Console.Write("Department ID: ");
                     int adminDept = int.Parse(Console.ReadLine());
 
+                    // Create a new instance of the Admin class and set its properties
                     newUser = new Admin
                     {
                         Id = users.Count + 1,
