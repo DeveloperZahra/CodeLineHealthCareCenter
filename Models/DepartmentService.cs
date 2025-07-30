@@ -40,17 +40,17 @@ namespace CodeLineHealthCareCenter
             var dept = departments.FirstOrDefault(d => d.DepartmentId == departmentId);
             if (dept != null)
             {
-                Console.Write("Enter new department name: ");
+                Console.Write("Enter new department name: "); // Prompt user for new department name
                 dept.DepartmentName = Console.ReadLine();
-                Console.WriteLine("✅ Department updated successfully.");
+                Console.WriteLine(" Department updated successfully.");
             }
             else
             {
-                Console.WriteLine("❌ Department not found.");
+                Console.WriteLine(" Department not found.");
             }
         }
 
-        // 2. Set department active/inactive
+        // 3. Set department active/inactive
         public void SetActiveStatus(int departmentId, bool isActive)
         {
             var dept = departments.FirstOrDefault(d => d.DepartmentId == departmentId); // Find the department by ID
