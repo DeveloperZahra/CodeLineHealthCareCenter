@@ -22,8 +22,13 @@ namespace CodeLineHealthCareCenter
 
 
         //2. =======================Storage the relationship =================================
-        private List<BranchDepartment> branchDepartments = new List<BranchDepartment>();
+        // Existing fields...
+        public static List<BranchDepartment> branchDepartments = new List<BranchDepartment>();
+        public List<Clinic> Clinics { get; set; } = new List<Clinic>();
 
+
+        // Add a list of departments under this branch
+        public List<Department> Departments { get; set; } = new List<Department>();
         //3. ======================= Class constructor =========================================
         public BranchDepartment(int branchDepartmentId, int branchId, int departmentId,int FloorId, string branchName, string departmentName, bool isActive = true)
         {
