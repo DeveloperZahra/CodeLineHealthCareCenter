@@ -11,7 +11,7 @@ namespace CodeLineHealthCareCenter.Models
 {
     public class UserData
     {    public static int tries = 0;
-        /// =================================== User Input Data ===============================
+        /// =================================== General User Input Data ===============================
         // ================================== 1. User Name ====================================
         public static string EnterUserName()
         {
@@ -382,6 +382,49 @@ namespace CodeLineHealthCareCenter.Models
             Console.WriteLine("\n⛔ You have exceeded the maximum number of attempts.");
             Console.WriteLine("Your account has been locked. Please contact admin.");
             return false;
+        }
+
+        // ==================================== 9.Department ID ============================== 
+        /// Input Data Specility for some users in the system 
+        // Prompts the user to enter a Department ID that must already exist in the system.
+        public static int EnterBranchId(List<Branch> branches)
+        {
+            int tries = 0;
+
+            try
+            {
+                do
+                {
+                    Console.Write("Enter Branch ID: ");
+                    string input = Console.ReadLine();
+
+                    // ✅ Try parsing the input to an integer
+                    if (int.TryParse(input, out int branchId))
+                    {
+                        // ✅ Check if the branch exists
+                        bool exists = branches.Any(b => b.BranchId == branchId);
+
+                        if (exists)
+                        {
+                            Console.WriteLine("✅ Valid Branch ID.");
+                            return branchId;
+                        }
+                    }
+
+                    // If input is invalid or branch does not exist
+                    Console.WriteLine("❌ Invalid Branch ID. Please enter an existing ID.");
+                    tries++;
+
+                } while (tries < 3);
+
+                Console.WriteLine("⚠ You have exceeded the maximum number of attempts.");
+                return -1; // Return -1 if attempts exceeded
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"⚠ An error occurred: {ex.Message}");
+                return -1;
+            }
         }
     }
 }
