@@ -72,7 +72,7 @@ namespace CodeLineHealthCareCenter.Models
 
                     if (isValidEmail)
                     {
-                        Console.WriteLine("✅ Valid Email Address.");
+                        Console.WriteLine("✅");
                         return email; // Return valid email
                     }
                     else
@@ -113,7 +113,7 @@ namespace CodeLineHealthCareCenter.Models
 
                     if (isValidId)
                     {
-                        Console.WriteLine("✅ Valid National ID.");
+                        Console.WriteLine("✅");
                         return nationalId; // Return valid National ID
                     }
                     else
@@ -153,7 +153,7 @@ namespace CodeLineHealthCareCenter.Models
 
                     if (isValidPhone)
                     {
-                        Console.WriteLine("✅ Valid Phone Number.");
+                        Console.WriteLine("✅");
                         return phoneNumber; // Return valid phone number
                     }
                     else
@@ -195,7 +195,7 @@ namespace CodeLineHealthCareCenter.Models
                     {
                         // Normalize output to start with capital letter
                         string formattedGender = char.ToUpper(gender[0]) + gender.Substring(1).ToLower();
-                        Console.WriteLine("✅ Valid Gender.");
+                        Console.WriteLine("✅");
                         return formattedGender;
                     }
                     else
@@ -407,7 +407,7 @@ namespace CodeLineHealthCareCenter.Models
 
                         if (exists)
                         {
-                            Console.WriteLine("✅ Valid Branch ID.");
+                            Console.WriteLine("✅");
                             return branchId;
                         }
                     }
@@ -450,7 +450,7 @@ namespace CodeLineHealthCareCenter.Models
 
                         if (exists)
                         {
-                            Console.WriteLine("✅ Valid Department ID.");
+                            Console.WriteLine("✅");
                             return departmentId; // Return valid department ID
                         }
                     }
@@ -557,7 +557,7 @@ namespace CodeLineHealthCareCenter.Models
                         // ✅ Validate age range (1 - 120 years)
                         if (age >= 1 && age <= 120)
                         {
-                            Console.WriteLine("✅ Valid Date of Birth.");
+                            Console.WriteLine("✅");
                             return dob;
                         }
                         else
