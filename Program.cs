@@ -50,10 +50,27 @@ namespace CodeLineHealthCareCenter
         }
 
         // create Sign Up class
-        static void SignUp() 
-        
-        { 
-            Console.WriteLine("Wellcome To SignUp....");
+        static void SignUp()
+
+        {
+            Console.Clear();
+            Console.WriteLine("=== Sign Up====");
+
+            Console.Write("Full Name: ");
+            string name = Console.ReadLine();
+
+            Console.Write("Email: ");
+            string email = Console.ReadLine();
+
+            // Ensure email is not already taken
+            if (users.Exists(u => u.Email == email))
+            {
+                Console.WriteLine("Email is already registered. Please sign in.");
+                Console.ReadKey();
+                return;
+            }
+
+
         }
 
         // Create Sign In Class
