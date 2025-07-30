@@ -15,7 +15,7 @@ namespace CodeLineHealthCareCenter
         public int branchId { get; set; }
         public int departmentId {  get; set; }
         public int branchDepartmentId { get; set; } // Unique identifier for the branch-department relationship
-
+        public int FloorId { get; set; } // to track which floor the department is on in the branch
         public bool isActive { get; set; }
         public string branchName {  get; set; }
         private string departmentName {  get; set; }
@@ -25,11 +25,12 @@ namespace CodeLineHealthCareCenter
         private List<BranchDepartment> branchDepartments = new List<BranchDepartment>();
 
         //3. ======================= Class constructor =========================================
-        public BranchDepartment(int branchDepartmentId, int branchId, int departmentId, string branchName, string departmentName, bool isActive = true)
+        public BranchDepartment(int branchDepartmentId, int branchId, int departmentId,int FloorId, string branchName, string departmentName, bool isActive = true)
         {
             this.branchDepartmentId = branchDepartmentId; // Unique ID for the relationship
             this.branchId = branchId;
             this.departmentId = departmentId;
+            this.FloorId = FloorId; //if you want to track the floor
             this.branchName = branchName;
             this.departmentName = departmentName;
             this.isActive = isActive;
