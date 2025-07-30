@@ -351,6 +351,12 @@ namespace CodeLineHealthCareCenter.Models
             byte[] hashBytes = sha256.ComputeHash(bytes);
             return Convert.ToBase64String(hashBytes);
         }
+        // 8.3 Verifies if the entered password matches the stored hashed password.
+        public static bool VerifyPassword(string enteredPassword, string storedHashedPassword)
+        {
+            string enteredHash = HashPassword(enteredPassword);
+            return enteredHash == storedHashedPassword;
+        }
 
 
     }
