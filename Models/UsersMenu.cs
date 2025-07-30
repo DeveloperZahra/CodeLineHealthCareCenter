@@ -189,6 +189,7 @@ namespace CodeLineHealthCareCenter.Models
                 switch (input)
                 {
                     case "1":
+                        // Placeholder for appointment booking functionality
                         Console.WriteLine("📅 [Patient] Book Appointment - Not implemented");
                         break;
                     case "2":
