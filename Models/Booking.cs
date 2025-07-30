@@ -148,7 +148,27 @@ namespace CodeLineHealthCareCenter.Models
             DisplayBookingDetails(booking);
         }
 
+        // 5.7 Get bookings by clinic ID and date
+        public void GetBookingByClinicIdAndDate(int clinicId)
+        {
+            DateTime date = UserValidator.DateTimeValidation("Enter date to filter bookings");
+            var filtered = Bookings.Where(b => b.ClinicId == clinicId && b.BookingDateTime.Date == date.Date).ToList();
+
+            if (filtered.Count == 0)
+            {
+                Console.WriteLine("No bookings found for the given clinic and date.");
+                return;
+            }
+
+            foreach (var booking in filtered)
+            {
+                DisplayBookingDetails(booking);
+            }
+        }
+
         
+
+
 
 
 
