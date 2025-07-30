@@ -15,7 +15,9 @@ namespace CodeLineHealthCareCenter
         public int departmentId; // ID of the department the clinic 
         public int branchId; // ID of the branch the clinic is located in
 
-        public List<Doctor> doctors; // List of doctors assigned to the clinic
+        // Dictionary<doctorId, availableTime>
+        public Dictionary<int, string> doctorSchedules;
+
 
         // 2. Class Properties
         public int Id // Unique identifier for the clinic
@@ -38,18 +40,20 @@ namespace CodeLineHealthCareCenter
             get { return branchId; }
             set { branchId = value; }
         }
-        public List<Doctor> Doctors // List of doctors assigned to the clinic
+        public Dictionary<int, string> DoctorSchedules // Dictionary to hold doctor schedules with doctor ID as key and available time as value
         {
-            get { return doctors; }
-            set { doctors = value; }
+            get { return doctorSchedules; }
+            set { doctorSchedules = value; }
         }
+
 
         // 3. Class Constructors
 
         // Default constructor
+
         public Clinic()
         {
-            doctors = new List<Doctor>(); // initialize empty list
+            doctorSchedules = new Dictionary<int, string>(); // initialize empty dictionary
         }
 
         // Constructor with parameters
@@ -59,25 +63,39 @@ namespace CodeLineHealthCareCenter
             this.name = name; // Name of the clinic
             this.departmentId = departmentId; // ID of the department the clinic belongs to
             this.branchId = branchId; // ID of the branch the clinic is located in
-            this.doctors = new List<Doctor>(); // initialize empty list
+            this.doctorSchedules = new Dictionary<int, string>(); // initialize empty dictionary
         }
 
         // 4. Class Methods
-        // Add a doctor to the clinic
-        public void AddDoctor(Doctor doctor)
+
+        //  update available time for existing doctor (by ID)
+        public void AssignDoctorTime(int doctorId, string availableTime)
         {
-            doctors.Add(doctor); // Add the doctor to the clinic's list of doctors
+            doctorSchedules[doctorId] = availableTime; //  update
         }
 
-        // Display clinic information
+
+        // Print info (you can fetch doctor names by ID from Admin if needed)
         public void PrintClinicInfo()
         {
-            Console.WriteLine($"Clinic ID: {id}"); // Unique identifier for the clinic
-            Console.WriteLine($"Name: {name}"); // Name of the clinic
-            Console.WriteLine($"Department ID: {departmentId}"); // ID of the department the clinic belongs to
-            Console.WriteLine($"Branch ID: {branchId}"); // ID of the branch the clinic is located in
-            Console.WriteLine($"Total Doctors: {doctors.Count}"); // Total number of doctors in the clinic
+            Console.WriteLine($"Clinic ID: {id}");
+            Console.WriteLine($"Name: {name}");
+            Console.WriteLine($"Department ID: {departmentId}");
+            Console.WriteLine($"Branch ID: {branchId}");
+            Console.WriteLine("Doctor Schedules:");
+            if (doctorSchedules.Count == 0)
+            {
+                Console.WriteLine("No doctor schedule assigned.");
+            }
+            else
+            {
+                foreach (var entry in doctorSchedules) 
+                {
+                    Console.WriteLine($"- Doctor ID: {entry.Key} | Available Time: {entry.Value}"); 
+                }
+            }
         }
-
     }
+
+    
 }
