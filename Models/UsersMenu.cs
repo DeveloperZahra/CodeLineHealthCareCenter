@@ -134,8 +134,9 @@ namespace CodeLineHealthCareCenter.Models
             // Loop to continuously display the Doctor menu until the user exits
             while (!back)
             {
+                // Display the Doctor dashboard with options
                 Console.WriteLine("\n🩺 Doctor Dashboard:");
-                Console.WriteLine("1. View Appointments");
+                Console.WriteLine("1. View Appointments");  // Option for doctor to view their scheduled appointments
                 Console.WriteLine("0. Back");
                 Console.Write("Choose: ");
                 string input = Console.ReadLine();
