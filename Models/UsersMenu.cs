@@ -60,7 +60,9 @@ namespace CodeLineHealthCareCenter.Models
                         // Exit the menu loop and return to the previous screen
                         back = true;
                         break;
+
                     default:
+                        // Handle invalid input from the user
                         Console.WriteLine("❌ Invalid choice.");
                         break;
                 }
