@@ -175,6 +175,7 @@ namespace CodeLineHealthCareCenter.Models
             // Loop that displays the menu until the user chooses to go back
             while (!back)
             {
+                // Display the Patient dashboard with available options
                 Console.WriteLine("\n🏥 Patient Dashboard:");
                 Console.WriteLine("1. Book Appointment");
                 Console.WriteLine("2. View My Appointments");
