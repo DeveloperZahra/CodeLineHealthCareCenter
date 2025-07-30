@@ -10,9 +10,9 @@ namespace CodeLineHealthCareCenter
     class Department : IDepartmentService
     {
         //1. ======================================= Class Fields and attributes with properties =========================
-        public int DepartmentId { get; set;}
-        public string DepartmentName {  get; set;}
-        public static int DepartmentCount = 0;
+        public int DepartmentId { get; set; }
+        public string DepartmentName { get; set; }
+        private static int counter = 0; // Static counter to keep track of the number of departments created
 
 
         //2. Class Lists 
