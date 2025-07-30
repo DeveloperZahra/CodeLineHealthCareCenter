@@ -270,5 +270,48 @@ namespace CodeLineHealthCareCenter.Models
                 return "null";
             }
         }
+        // ================================== 7. IsActive ======================================
+        public static bool EnterIsActive()
+        {
+            string input = "";
+            int tries = 0;
+
+            try
+            {
+                do
+                {
+                    Console.Write("Is the account active? (Yes/No): ");
+                    input = Console.ReadLine()?.Trim().ToLower();
+
+                    // ✅ Validate input: must be yes/no or true/false
+                    if (input == "yes" || input == "true")
+                    {
+                        Console.WriteLine("✅ Account set as Active.");
+                        return true;
+                    }
+                    else if (input == "no" || input == "false")
+                    {
+                        Console.WriteLine("✅ Account set as Inactive.");
+                        return false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("❌ Invalid input. Please enter Yes or No.");
+                        tries++;
+                    }
+
+                } while (tries < 3);
+
+                // If user fails 3 times
+                Console.WriteLine("⚠ You have exceeded the maximum number of attempts.");
+                Console.WriteLine("Default value set to Inactive.");
+                return false; // Default to inactive if user fails
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"⚠ An error occurred: {ex.Message}");
+                return false; // Return false by default on error
+            }
+        }
     }
 }
