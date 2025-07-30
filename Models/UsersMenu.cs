@@ -185,6 +185,7 @@ namespace CodeLineHealthCareCenter.Models
                 Console.Write("Choose: ");
                 string input = Console.ReadLine(); // Read the user's input
 
+                // Use switch-case to handle user selection
                 switch (input)
                 {
                     case "1":
