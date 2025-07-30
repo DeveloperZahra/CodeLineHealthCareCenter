@@ -12,10 +12,11 @@ namespace CodeLineHealthCareCenter
         private List<Department> departments = new List<Department>(); // List to store all departments
 
 
-        public DepartmentService(List<Department> departments)  // Constructor to initialize the service with a list of departments
+        public DepartmentService(List<Department> departments)
         {
             this.departments = departments;
         }
+
 
         // 1. Get all departments
         public void GetAllDepartments()

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CodeLineHealthCareCenter
 {
-    class Department : IDepartmentService
+    public class Department : IDepartmentService
     {
         //1. ======================================= Class Fields and attributes with properties =========================
         public int DepartmentId { get; set; }
