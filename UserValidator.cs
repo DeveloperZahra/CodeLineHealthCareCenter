@@ -14,5 +14,11 @@ namespace CodeLineHealthCareCenter
             if (string.IsNullOrWhiteSpace(name)) // Check if the name is null, empty, or consists only of whitespace
                 throw new ArgumentException("Name cannot be empty."); 
         }
+
+        public static void ValidateEmail(string email) // Validates the email format of a user
+        {
+            if (string.IsNullOrWhiteSpace(email) || !email.Contains("@") || !email.Contains("."))
+                throw new ArgumentException("Invalid email format.");
+        }
     }
 }
