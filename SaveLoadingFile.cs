@@ -31,7 +31,7 @@ namespace CodeLineHealthCareCenter.Utilities
             {
                 if (!File.Exists(filePath)) // Check if the file exists
                 {
-                    Console.WriteLine($"⚠️ File not found: {filePath}");
+                    Console.WriteLine($"⚠️ File not found: {filePath}"); // If file does not exist, return an empty list
                     return new List<T>();
                 }
 
