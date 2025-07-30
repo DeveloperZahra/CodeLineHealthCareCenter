@@ -36,17 +36,23 @@ namespace CodeLineHealthCareCenter.Models
                         // Placeholder for adding a new branch
                         Console.WriteLine("🔧 [SuperAdmin] Add Branch - Not implemented");
                         break;
-                        // Placeholder for adding a new department
+                        
 
 
                     case "2":
-                        // Placeholder for adding a new admin user
+                        // Placeholder for adding a new department
                         Console.WriteLine("🔧 [SuperAdmin] Add Department - Not implemented");
                         break;
+
+
+                    // Placeholder for adding a new admin user
                     case "3":
                         Console.WriteLine("🔧 [SuperAdmin] Add Admin - Not implemented");
                         break;
+
+
                     case "4":
+                        // Placeholder for viewing overall system data
                         Console.WriteLine("📊 [SuperAdmin] View System Data - Not implemented");
                         break;
                     case "0":
