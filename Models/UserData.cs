@@ -471,6 +471,64 @@ namespace CodeLineHealthCareCenter.Models
                 return -1; // Indicate failure
             }
         }
+        public static string EnterSpecialty()
+        {
+            // List of available specialties
+                    List<string> specialties = new List<string>
+            {
+                "Cardiology",
+                "Pediatrics",
+                "Neurology",
+                "Orthopedics",
+                "Dermatology",
+                "General Surgery",
+                "Psychiatry",
+                "Radiology"
+            };
+
+            int tries = 0;
+
+            try
+            {
+                do
+                {
+                    Console.WriteLine("\nAvailable Specialties:");
+                    for (int i = 0; i < specialties.Count; i++)
+                    {
+                        Console.WriteLine($"{i + 1}. {specialties[i]}");
+                    }
+
+                    Console.Write("Select the number of the specialty: ");
+                    string input = Console.ReadLine();
+
+                    // Check if input is a valid number
+                    if (int.TryParse(input, out int selectedIndex))
+                    {
+                        // Check if the selected index is within range
+                        if (selectedIndex >= 1 && selectedIndex <= specialties.Count)
+                        {
+                            string selectedSpecialty = specialties[selectedIndex - 1];
+                            Console.WriteLine($"✅ You selected: {selectedSpecialty}");
+                            return selectedSpecialty;
+                        }
+                    }
+
+                    // If input is invalid
+                    Console.WriteLine("❌ Invalid selection. Please enter a valid number.");
+                    tries++;
+
+                } while (tries < 3); // Allow up to 3 attempts
+
+                Console.WriteLine("⚠ You have exceeded the maximum number of attempts.");
+                return "null"; // Indicate failure
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"⚠ An error occurred: {ex.Message}");
+                return "null";
+            }
+        }
+
 
     }
 }
