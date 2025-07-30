@@ -171,6 +171,8 @@ namespace CodeLineHealthCareCenter.Models
         {
             // Boolean flag used to control when to exit the menu
             bool back = false;
+
+            // Loop that displays the menu until the user chooses to go back
             while (!back)
             {
                 Console.WriteLine("\n🏥 Patient Dashboard:");
