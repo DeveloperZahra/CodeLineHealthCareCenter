@@ -179,7 +179,7 @@ namespace CodeLineHealthCareCenter.Models
                 Console.WriteLine("\n🏥 Patient Dashboard:");
                 Console.WriteLine("1. Book Appointment");  // Option to book a new appointment
                 Console.WriteLine("2. View My Appointments");   // Option to view all appointments booked by the patient
-                Console.WriteLine("0. Back");
+                Console.WriteLine("0. Back");  // Option to return to the previous menu
                 Console.Write("Choose: ");
                 string input = Console.ReadLine();
 
