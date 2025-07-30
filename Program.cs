@@ -71,7 +71,13 @@ namespace CodeLineHealthCareCenter
             string role = Console.ReadLine().ToLower();
 
             User newUser = null; // Temporary holder for the new user object
-        }
+
+
+            // Create appropriate object based on role
+            switch (role)
+            {
+
+            }
 
         // Create Sign In Class
         static void SignIn()
