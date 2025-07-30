@@ -91,7 +91,7 @@ namespace CodeLineHealthCareCenter.Models
         // 5.3 Delete a booking completely
         public void DeleteAppointment()
         {
-            int bookingId = Validation.IntValidation("Enter Booking ID to delete");
+            int bookingId = UserValidator.IntValidation("Enter Booking ID to delete");
             var booking = Bookings.FirstOrDefault(b => b.BookingId == bookingId);
 
             if (booking == null)
@@ -106,7 +106,7 @@ namespace CodeLineHealthCareCenter.Models
         // 5.4 Update booked appointment date/time
         public void UpdateBookedAppointment()
         {
-            int bookingId = Validation.IntValidation("Enter Booking ID to update");
+            int bookingId = UserValidator.IntValidation("Enter Booking ID to update");
             var booking = Bookings.FirstOrDefault(b => b.BookingId == bookingId);
 
             if (booking == null)
@@ -115,196 +115,13 @@ namespace CodeLineHealthCareCenter.Models
                 return;
             }
 
-            DateTime newDate = Validation.DateTimeValidation("Enter new appointment date and time");
+            DateTime newDate = UserValidator.DateTimeValidation("Enter new appointment date and time");
             booking.BookingDateTime = newDate;
 
             Console.WriteLine("Booking updated successfully.");
         }
 
-        // 5.5 Get all bookings
-        public void GetAllBooking()
-        {
-            if (Bookings.Count == 0)
-            {
-                Console.WriteLine("No bookings available.");
-                return;
-            }
-
-            foreach (var booking in Bookings)
-            {
-                DisplayBookingDetails(booking);
-            }
-        }
-
-        // 5.6 Get booking by ID
-        public void GetBookingById(int id)
-        {
-            var booking = Bookings.FirstOrDefault(b => b.BookingId == id);
-
-            if (booking == null)
-            {
-                Console.WriteLine("Booking not found.");
-                return;
-            }
-
-            DisplayBookingDetails(booking);
-        }
-
-        // 5.7 Get bookings by clinic ID and date
-        public void GetBookingByClinicIdAndDate(int clinicId)
-        {
-            DateTime date = Validation.DateTimeValidation("Enter date to filter bookings");
-            var filtered = Bookings.Where(b => b.ClinicId == clinicId && b.BookingDateTime.Date == date.Date).ToList();
-
-            if (filtered.Count == 0)
-            {
-                Console.WriteLine("No bookings found for the given clinic and date.");
-                return;
-            }
-
-            foreach (var booking in filtered)
-            {
-                DisplayBookingDetails(booking);
-            }
-        }
-
-        // 5.8 Get bookings by patient ID
-        public void GetBookingByPatientId(int patientId)
-        {
-            var patientBookings = Bookings.Where(b => b.PatientId == patientId).ToList();
-
-            if (patientBookings.Count == 0)
-            {
-                Console.WriteLine("No bookings found for this patient.");
-                return;
-            }
-
-            foreach (var booking in patientBookings)
-            {
-                DisplayBookingDetails(booking);
-            }
-        }
-
-        // 5.9 Get available appointments by clinic and date
-        public void GetAvailableAppointmentsByClinicIdAndDate(DateTime date, int clinicId)
-        {
-            var availableSpots = BranchDepartment.Departments
-                .SelectMany(d => d.Clinics)
-                .Where(c => c.ClinicId == clinicId)
-                .SelectMany(c => c.ClinicSpots)
-                .Where(s => s.Date == date.Date)
-                .ToList();
-
-            if (availableSpots.Count == 0)
-            {
-                Console.WriteLine("No available spots for this clinic on the selected date.");
-                return;
-            }
-
-            Console.WriteLine("Available Spots:");
-            foreach (var spot in availableSpots)
-            {
-                Console.WriteLine(spot);
-            }
-        }
-
-        // 5.10 Schedule a new appointment
-        public void ScheduleAppointment(int patientId, int clinicId, DateTime date, TimeSpan time)
-        {
-            Booking newBooking = new Booking(date.Date + time, clinicId, 0, patientId, "Scheduled");
-            Bookings.Add(newBooking);
-
-            Console.WriteLine($"New appointment scheduled successfully. Booking ID: {newBooking.BookingId}");
-        }
-
-        // ========================== Helper Methods ==========================
-
-        // Display details of a booking
-        private void DisplayBookingDetails(Booking booking)
-        {
-            Console.WriteLine("----------------------------------");
-            Console.WriteLine($"Booking ID: {booking.BookingId}");
-            Console.WriteLine($"Patient ID: {booking.PatientId}");
-            Console.WriteLine($"Clinic ID: {booking.ClinicId}");
-            Console.WriteLine($"Doctor ID: {booking.DoctorId}");
-            Console.WriteLine($"Date & Time: {booking.BookingDateTime}");
-            Console.WriteLine($"Type: {booking.AppointmentType}");
-            Console.WriteLine("----------------------------------");
-        }
-
-        // List clinics by department
-        public static void GetAllClinicsByDepartmentId(int departmentId)
-        {
-            var clinics = BranchDepartment.Departments
-                .Where(d => d.DepartmentId == departmentId)
-                .SelectMany(d => d.Clinics)
-                .ToList();
-
-            if (clinics.Count == 0)
-            {
-                Console.WriteLine("No clinics found.");
-                return;
-            }
-
-            foreach (var clinic in clinics)
-            {
-                Console.WriteLine($"Clinic ID: {clinic.ClinicId}, Name: {clinic.ClinicName}");
-            }
-        }
-
-        // List doctors by clinic
-        public static void GetAllDoctorsByClinicId(int clinicId)
-        {
-            var doctors = BranchDepartment.Doctors.Where(d => d.ClinicID == clinicId).ToList();
-
-            if (doctors.Count == 0)
-            {
-                Console.WriteLine("No doctors found for this clinic.");
-                return;
-            }
-
-            foreach (var doctor in doctors)
-            {
-                Console.WriteLine($"Doctor ID: {doctor.DoctorID}, Name: {doctor.UserName}, Specialization: {doctor.DoctorSpecialization}");
-            }
-        }
-
-        // List services by clinic
-        public static void GetAllServicesByClinicId(int clinicId)
-        {
-            var services = Service.Services.Where(s => s.ClinicId == clinicId).ToList();
-
-            if (services.Count == 0)
-            {
-                Console.WriteLine("No services found for this clinic.");
-                return;
-            }
-
-            foreach (var service in services)
-            {
-                Console.WriteLine($"Service ID: {service.ServiceId}, Name: {service.ServiceName}, Price: {service.Price}");
-            }
-        }
-
-        // List available appointment spots by clinic
-        public static void GetAllSpotsByClinicId(int clinicId, int departmentId)
-        {
-            var clinic = BranchDepartment.Departments
-                .FirstOrDefault(d => d.DepartmentId == departmentId)?
-                .Clinics.FirstOrDefault(c => c.ClinicId == clinicId);
-
-            if (clinic == null || clinic.ClinicSpots.Count == 0)
-            {
-                Console.WriteLine("No available spots.");
-                return;
-            }
-
-            foreach (var spot in clinic.ClinicSpots)
-            {
-                Console.WriteLine($"Available Spot: {spot}");
-            }
-        }
-
+      
 
 
 
