@@ -76,6 +76,19 @@ namespace CodeLineHealthCareCenter
             // Create appropriate object based on role
             switch (role)
             {
+                // Check if the user role is "superadmin"
+                case "superadmin":
+                    // Create a new instance of the SuperAdmin class
+                    newUser = new SuperAdmin
+                    {
+                        Id = users.Count + 1,
+                        FullName = name,
+                        Email = email,
+                        Password = password
+                    };
+                    break;
+
+
 
             }
 
