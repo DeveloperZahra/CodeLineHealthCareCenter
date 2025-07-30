@@ -138,6 +138,8 @@ namespace CodeLineHealthCareCenter.Models
                 Console.WriteLine("\n🩺 Doctor Dashboard:");
                 Console.WriteLine("1. View Appointments");  // Option for doctor to view their scheduled appointments
                 Console.WriteLine("0. Back");  // Option to go back to the previous screen/menu
+
+                // Prompt user for their choice
                 Console.Write("Choose: ");
                 string input = Console.ReadLine();
 
