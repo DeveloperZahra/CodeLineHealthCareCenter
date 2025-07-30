@@ -33,6 +33,7 @@ namespace CodeLineHealthCareCenter.Models
                 switch (input)
                 {
                     case "1":
+                        // Placeholder for adding a new branch
                         Console.WriteLine("🔧 [SuperAdmin] Add Branch - Not implemented");
                         break;
                     case "2":
