@@ -76,6 +76,8 @@ namespace CodeLineHealthCareCenter.Models
         {
             // A flag to keep the menu running until the user chooses to go back
             bool back = false;
+
+            // Loop to display the Admin menu continuously
             while (!back)
             {
                 Console.WriteLine("\n🛠 Admin Dashboard:");
