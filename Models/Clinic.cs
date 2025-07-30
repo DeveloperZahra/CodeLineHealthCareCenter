@@ -92,7 +92,23 @@ namespace CodeLineHealthCareCenter.Models
             Clinics.Add(newClinic);
             Console.WriteLine("Clinic added successfully with ID " + newClinic.ClinicId);
         }
+        // Method to get and display all clinics
+        public void GetAllClinics()
+        {
+            if (!Clinics.Any())
+            {
+                Console.WriteLine("No clinics available.");
+                return;
+            }
+
+            foreach (var clinic in Clinics)
+            {
+                clinic.ViewClinicInfo();
+            }
+        }
 
         
+
+
     }
 }
