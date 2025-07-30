@@ -7,6 +7,9 @@ namespace HospitalSystemTeamTask.Services
 {
     public interface IAuthService
     {
-        void Login();
+        void SignUp();
+        void SignIn();
+        void SignOut();
+
     }
 }
