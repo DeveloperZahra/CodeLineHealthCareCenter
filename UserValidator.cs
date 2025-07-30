@@ -17,8 +17,8 @@ namespace CodeLineHealthCareCenter
 
         public static void ValidateEmail(string email) // Validates the email format of a user
         {
-            if (string.IsNullOrWhiteSpace(email) || !email.Contains("@") || !email.Contains("."))
-                throw new ArgumentException("Invalid email format.");
+            if (string.IsNullOrWhiteSpace(email) || !email.Contains("@") || !email.Contains(".")) 
+                throw new ArgumentException("Invalid email format."); // Check if the email is null, empty, or does not contain '@' or '.'
         }
     }
 }
