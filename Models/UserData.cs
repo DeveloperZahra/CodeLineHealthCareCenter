@@ -357,7 +357,31 @@ namespace CodeLineHealthCareCenter.Models
             string enteredHash = HashPassword(enteredPassword);
             return enteredHash == storedHashedPassword;
         }
+        //8.4 Prompts the user to enter a password and validates it against the stored hash.
+        public static bool EnterPasswordWithAttempts(string storedHashedPassword)
+        {
+            int tries = 0;
 
+            while (tries < 3)
+            {
+                Console.Write("Enter your password: ");
+                string enteredPassword = ReadPassword();
 
+                if (VerifyPassword(enteredPassword, storedHashedPassword))
+                {
+                    Console.WriteLine("\n✅ Login successful.");
+                    return true;
+                }
+                else
+                {
+                    tries++;
+                    Console.WriteLine("\n❌ Incorrect password. Attempts left: " + (3 - tries));
+                }
+            }
+
+            Console.WriteLine("\n⛔ You have exceeded the maximum number of attempts.");
+            Console.WriteLine("Your account has been locked. Please contact admin.");
+            return false;
+        }
     }
 }
