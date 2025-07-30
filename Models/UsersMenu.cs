@@ -11,6 +11,7 @@ namespace CodeLineHealthCareCenter.Models
         // =================== SuperAdmin Menu ====================
         static void SuperAdminMenu()
         {
+            // Flag to control the loop and allow the user to go back
             bool back = false;
             while (!back)
             {
