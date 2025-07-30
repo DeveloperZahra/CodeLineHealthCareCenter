@@ -204,6 +204,17 @@ namespace CodeLineHealthCareCenter.Models
             }
         }
 
+        // 5.10 Schedule a new appointment
+        public void ScheduleAppointment(int patientId, int clinicId, DateTime date, TimeSpan time)
+        {
+            Booking newBooking = new Booking(date.Date + time, clinicId, 0, patientId, "Scheduled");
+            Bookings.Add(newBooking);
+
+            Console.WriteLine($"New appointment scheduled successfully. Booking ID: {newBooking.BookingId}");
+        }
+
+      
+
 
 
 
