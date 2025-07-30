@@ -471,6 +471,10 @@ namespace CodeLineHealthCareCenter.Models
                 return -1; // Indicate failure
             }
         }
+
+        // ===================================11. Specialty =================================
+        /// Input Data Specility for doctore
+        // Displays a list of available specialties and allows the user to select one by entering its number.
         public static string EnterSpecialty()
         {
             // List of available specialties
