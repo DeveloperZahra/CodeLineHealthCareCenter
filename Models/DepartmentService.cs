@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace CodeLineHealthCareCenter
 {
-    public class DepartmentService : Service // DepartmentService inherits from Service
+    public class DepartmentService //// DepartmentService class that provides operations for Department objects directly
     {
         public DepartmentService(List<Department> departments) : base(departments) { } // Constructor to initialize the service with a list of departments
         
