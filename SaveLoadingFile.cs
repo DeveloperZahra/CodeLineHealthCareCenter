@@ -24,6 +24,28 @@ namespace CodeLineHealthCareCenter.Utilities
             }
         }
 
+        // Method to load data from a file
+        public static List<T> LoadFromFile<T>(string filePath)
+        {
+            try
+            {
+                if (!File.Exists(filePath))
+                {
+                    Console.WriteLine($"⚠️ File not found: {filePath}");
+                    return new List<T>();
+                }
+
+                string jsonData = File.ReadAllText(filePath);
+                var dataList = JsonSerializer.Deserialize<List<T>>(jsonData);
+                Console.WriteLine($"✅ Loaded from {filePath}");
+                return dataList ?? new List<T>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"❌ Error loading file: {ex.Message}");
+                return new List<T>();
+            }
+        }
 
 
     }
