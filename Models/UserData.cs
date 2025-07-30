@@ -189,9 +189,7 @@ namespace CodeLineHealthCareCenter.Models
                     gender = Console.ReadLine()?.Trim();
 
                     // ✅ Validate gender: must be "Male" or "Female" (case-insensitive)
-                    bool isValidGender = !string.IsNullOrWhiteSpace(gender) &&
-                                         (gender.Equals("Male", StringComparison.OrdinalIgnoreCase) ||
-                                          gender.Equals("Female", StringComparison.OrdinalIgnoreCase));
+                    bool isValidGender = UserValidator.ValidateGender(gender);
 
                     if (isValidGender)
                     {
@@ -202,7 +200,7 @@ namespace CodeLineHealthCareCenter.Models
                     }
                     else
                     {
-                        Console.WriteLine("❌ Invalid Gender. Please enter 'Male' or 'Female'.");
+                        Console.WriteLine("❌ Invalid Gender. Gender cannot be empty. and only be ( M/F ).");
                         tries++;
                     }
 
