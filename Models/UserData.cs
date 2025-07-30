@@ -313,5 +313,35 @@ namespace CodeLineHealthCareCenter.Models
                 return false; // Return false by default on error
             }
         }
+
+        // ================================== 8. Password ======================================
+        /// Password Methods 
+        // 8.1 Reads a password from the console while masking the input.
+        public static string ReadPassword()
+        {
+            string password = "";
+            ConsoleKeyInfo key;
+
+            do
+            {
+                key = Console.ReadKey(true);
+
+                if (key.Key != ConsoleKey.Backspace && key.Key != ConsoleKey.Enter)
+                {
+                    password += key.KeyChar;
+                    Console.Write("*");
+                }
+                else if (key.Key == ConsoleKey.Backspace && password.Length > 0)
+                {
+                    password = password[0..^1];
+                    Console.Write("\b \b");
+                }
+            } while (key.Key != ConsoleKey.Enter);
+
+            Console.WriteLine();
+            return password;
+        }
+
+
     }
 }
