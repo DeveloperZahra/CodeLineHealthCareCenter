@@ -178,7 +178,7 @@ namespace CodeLineHealthCareCenter.Models
                 // Display the Patient dashboard with available options
                 Console.WriteLine("\n🏥 Patient Dashboard:");
                 Console.WriteLine("1. Book Appointment");  // Option to book a new appointment
-                Console.WriteLine("2. View My Appointments");
+                Console.WriteLine("2. View My Appointments");   // Option to view all appointments booked by the patient
                 Console.WriteLine("0. Back");
                 Console.Write("Choose: ");
                 string input = Console.ReadLine();
