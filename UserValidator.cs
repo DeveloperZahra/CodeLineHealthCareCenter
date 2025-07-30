@@ -16,10 +16,11 @@ namespace CodeLineHealthCareCenter
             else return true;
         }
 
-        public static void ValidateEmail(string email) // Validates the email format of a user
+        public static bool ValidateEmail(string email) // Validates the email format of a user
         {
-            if (string.IsNullOrWhiteSpace(email) || !email.Contains("@") || !email.Contains(".")) 
-                throw new ArgumentException("Invalid email format."); // Check if the email is null, empty, or does not contain '@' or '.'
+            if (string.IsNullOrWhiteSpace(email) || !email.Contains("@") || !email.Contains("."))
+                return false; // Check if the email is null, empty, or does not contain '@' or '.'
+            else return true;
         }
 
         public static void ValidatePassword(string password) // Validates the password of a user
