@@ -1,4 +1,7 @@
-﻿using System;
+﻿using CodeLineHealthCareCenter.Models;
+using HospitalSystemTeamTask.Services;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,56 +9,45 @@ using System.Threading.Tasks;
 
 namespace CodeLineHealthCareCenter
 {
-    class Patient : User
+    class Patient : User, IPatientService
     {
-        // 1. Class Fields
-        public DateTime dateOfBirth; // Patient's date of birth
-        public bool gender; // Patient's gender (Male, Female)
+        // 1. ======================== Class Fields ==========================
+        public DateTime DateOfBirth { get; set; } // Patient's date of birth
 
-        // 2. Class Properties
-        public DateTime DateOfBirth // Patient's date of birth
+        // 2. ======================== Patient List ============================
+        public static List<Patient> patients = new List<Patient>();
+
+        // 3. ====================== Constructor ========================================
+        public Patient(string name, DateTime dateOfBirth, string email, string password, string nationalId, string phoneNumber, string gender, string city)
+        : base(name, email, password, nationalId, phoneNumber, gender, "Patient")
         {
-            get { return dateOfBirth; } 
-            set { dateOfBirth = value; } 
+            UserId = "P" + UserCount; // Override default ID format for patients
+            DateOfBirth = dateOfBirth;
         }
 
-        public bool Gender //Patient's for Gender 
+
+        //4. ================================================ Patients Methods ===================================
+        /// implement method in IPatientServices Interface
+        // 4.1 Adds a new patient to the system.
+        public void AddPatient(string name, DateTime dateOfBirth, string email, string password, string nationalId, string phoneNumber, string gender, string city)
         {
-            get { return gender; }
-            set { gender = value; }
+            // Check if patient with the same email already exists
+            bool exists = patients.Exists(p => p.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+            if (exists)
+            {
+                Console.WriteLine("Patient with this email already exists!");
+                return;
+            }
+
+            // Create a new Patient object
+            Patient newPatient = new Patient(name, dateOfBirth, email, password, nationalId, phoneNumber, gender, city);
+
+            // Add to the static list
+            patients.Add(newPatient);
+
+            // Confirmation message
+            Console.WriteLine($"Patient '{newPatient.UserName}' added successfully with ID: {newPatient.UserId}");
         }
-
-        // 3. Class Constructor
-
-        // Default constructor
-        public Patient() { }
-
-        // Constructor with parameters
-        public Patient(int id, string fullName, string email, string password, DateTime dateOfBirth, bool gender) 
-        {
-            this.Id = id; // Unique identifier for the patient
-            this.FullName = fullName; // Patient's full name
-            this.Email = email; // Patient's email address
-            this.Password = password; // Patient's password
-            this.dateOfBirth = dateOfBirth; // Patient's date of birth
-            this.gender = gender; //Patient's gender
-        }
-
-        // 4. Class Methods
-        public void ViewProfile() // Method to view the patient's profile
-        {
-            Console.WriteLine($"Patient ID: {Id}"); // Unique identifier for the patient
-            Console.WriteLine($"Name: {FullName}"); // Patient's full name
-            Console.WriteLine($"Email: {Email}"); // Patient's email address
-            Console.WriteLine($"Gender: {Gender}"); //Patient's gender
-            Console.WriteLine($"Date of Birth: {DateOfBirth.ToShortDateString()}");// Patient's date of birth
-        }
-
-        public override string GetRole() // Method to get the role of the user
-        {
-            return "Patient"; // Role of the user is Patient
-        }
-
 
 
 
