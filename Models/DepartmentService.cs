@@ -64,7 +64,7 @@ namespace CodeLineHealthCareCenter
                 Console.WriteLine("  Department not found."); 
             }
         }
-        // 3. Get department by name
+        // 4. Get department by name
         public void GetDepartmentByName(string name) 
         {
             var dept = departments.FirstOrDefault(d => d.DepartmentName.Equals(name, StringComparison.OrdinalIgnoreCase)); // Find the department by name
@@ -74,7 +74,7 @@ namespace CodeLineHealthCareCenter
                 Console.WriteLine(" Department not found.");
         }
 
-        // 4. Get department by ID
+        // 5. Get department by ID
         public void GetDepartmentById(int id)
         {
             var dept = departments.FirstOrDefault(d => d.DepartmentId == id); // Find the department by ID
@@ -84,6 +84,14 @@ namespace CodeLineHealthCareCenter
                 Console.WriteLine(" Department not found."); 
         }
 
-
+        // 6. Get department name by ID (return string)
+        public string GetDepartmentName(int id)
+        {
+            var dept = departments.FirstOrDefault(d => d.DepartmentId == id);
+            return dept != null ? dept.DepartmentName : "Department not found.";
+        }
     }
+
+
+}
 }
