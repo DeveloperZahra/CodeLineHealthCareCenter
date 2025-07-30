@@ -117,6 +117,21 @@ namespace CodeLineHealthCareCenter.Models
             Console.WriteLine("⛔ Too many failed attempts. Please try again later.");
         }
 
+        // Signs out the currently logged-in user.
+        public static void SignOut()
+        {
+            if (currentUser != null)
+            {
+                Console.WriteLine($"👋 User '{currentUser.UserName}' has been signed out successfully.");
+                currentUser = null; // Clear the logged-in user
+            }
+            else
+            {
+                Console.WriteLine("⚠ No user is currently signed in.");
+            }
+        }
+
+
 
 
 
