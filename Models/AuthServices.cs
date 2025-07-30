@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CodeLineHealthCareCenter.Models;
+using HospitalSystemTeamTask.Services;
 
 namespace CodeLineHealthCareCenter.Models
 {
-    public class AuthServices
+    public class AuthServices : IAuthService
     {
         private static User currentUser = null; // Stores the currently logged-in user
         // Registers a new Patien (Sign Up).
@@ -50,7 +52,7 @@ namespace CodeLineHealthCareCenter.Models
         }
 
         // Signs in an existing user by validating email and password.
-        public static void SignIn()
+        public void SignIn()
         {
             Console.WriteLine("\n=== SIGN IN ===");
 
@@ -118,7 +120,7 @@ namespace CodeLineHealthCareCenter.Models
         }
 
         // Signs out the currently logged-in user.
-        public static void SignOut()
+        public void SignOut()
         {
             if (currentUser != null)
             {
