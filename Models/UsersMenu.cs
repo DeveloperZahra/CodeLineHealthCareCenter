@@ -74,6 +74,7 @@ namespace CodeLineHealthCareCenter.Models
         // =================== Admin Menu ====================
         static void AdminMenu()
         {
+            // A flag to keep the menu running until the user chooses to go back
             bool back = false;
             while (!back)
             {
