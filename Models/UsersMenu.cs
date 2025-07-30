@@ -124,6 +124,32 @@ namespace CodeLineHealthCareCenter.Models
             }
         }
 
+        // =================== Doctor Menu ====================
+        static void DoctorMenu()
+        {
+            bool back = false;
+            while (!back)
+            {
+                Console.WriteLine("\n🩺 Doctor Dashboard:");
+                Console.WriteLine("1. View Appointments");
+                Console.WriteLine("0. Back");
+                Console.Write("Choose: ");
+                string input = Console.ReadLine();
+
+                switch (input)
+                {
+                    case "1":
+                        Console.WriteLine("📆 [Doctor] View Appointments - Not implemented");
+                        break;
+                    case "0":
+                        back = true;
+                        break;
+                    default:
+                        Console.WriteLine("❌ Invalid choice.");
+                        break;
+                }
+            }
+        }
 
 
 
