@@ -67,9 +67,8 @@ namespace CodeLineHealthCareCenter.Models
                     Console.Write("Enter Email Address: ");
                     email = Console.ReadLine();
 
-                    // ✅ Validate email format using a simple regex
-                    bool isValidEmail = !string.IsNullOrWhiteSpace(email) &&
-                                        Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
+                    // Validate email format using a simple regex
+                    bool isValidEmail = UserValidator.ValidateEmail(email);
 
                     if (isValidEmail)
                     {
