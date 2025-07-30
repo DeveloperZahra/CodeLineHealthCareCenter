@@ -88,7 +88,24 @@ namespace CodeLineHealthCareCenter.Models
             booking.AppointmentType = "Canceled";
             Console.WriteLine("Booking canceled successfully.");
         }
+        // 5.3 Delete a booking completely
+        public void DeleteAppointment()
+        {
+            int bookingId = Validation.IntValidation("Enter Booking ID to delete");
+            var booking = Bookings.FirstOrDefault(b => b.BookingId == bookingId);
+
+            if (booking == null)
+            {
+                Console.WriteLine("Booking not found.");
+                return;
+            }
+
+            Bookings.Remove(booking);
+            Console.WriteLine("Booking deleted successfully.");
+        }
 
         
+
+
     }
 }
