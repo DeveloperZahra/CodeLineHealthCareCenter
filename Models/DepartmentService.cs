@@ -9,8 +9,8 @@ namespace CodeLineHealthCareCenter
 {
     public class DepartmentService //// DepartmentService class that provides operations for Department objects directly
     {
-        public DepartmentService(List<Department> departments) : base(departments) { } // Constructor to initialize the service with a list of departments
-        
+        private List<Department> departments = new List<Department>(); // List to store all departments
+
         // 1. Get all departments
         public void GetAllDepartments()
         {
