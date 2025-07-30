@@ -334,7 +334,7 @@ namespace CodeLineHealthCareCenter.Models
                 }
                 else if (key.Key == ConsoleKey.Backspace && password.Length > 0)
                 {
-                    password = password[0..^1];
+                    password = password[..^1];
                     Console.Write("\b \b");
                 }
             } while (key.Key != ConsoleKey.Enter);
@@ -350,37 +350,45 @@ namespace CodeLineHealthCareCenter.Models
             byte[] hashBytes = sha256.ComputeHash(bytes);
             return Convert.ToBase64String(hashBytes);
         }
-        // 8.3 Verifies if the entered password matches the stored hashed password.
-        public static bool VerifyPassword(string enteredPassword, string storedHashedPassword)
-        {
-            string enteredHash = HashPassword(enteredPassword);
-            return enteredHash == storedHashedPassword;
-        }
-        //8.4 Prompts the user to enter a password and validates it against the stored hash.
-        public static bool EnterPasswordWithAttempts(string storedHashedPassword)
+
+        //8.3 Implement the user to enter and confirm a password during sign-up.
+        public static string EnterPasswordForSignUp()
         {
             int tries = 0;
 
             while (tries < 3)
             {
-                Console.Write("Enter your password: ");
-                string enteredPassword = ReadPassword();
+                Console.Write("Enter a new password: ");
+                string password = ReadPassword();
 
-                if (VerifyPassword(enteredPassword, storedHashedPassword))
+                // Validate password (at least 6 chars, contains letter & number)
+                bool validPassword = UserValidator.ValidatePassword(password);
+
+                if (!validPassword)
                 {
-                    Console.WriteLine("\n✅ Login successful.");
-                    return true;
+                    Console.WriteLine("\n❌ Password must be at least 6 characters long and contain letters and numbers.");
+                    tries++;
+                    continue;
+                }
+
+                Console.Write("Confirm password: ");
+                string confirmPassword = ReadPassword();
+
+                if (password == confirmPassword)
+                {
+                    string hashedPassword = HashPassword(password);
+                    Console.WriteLine("\n✅ Password set successfully!");
+                    return hashedPassword;
                 }
                 else
                 {
+                    Console.WriteLine("\n❌ Passwords do not match. Try again.");
                     tries++;
-                    Console.WriteLine("\n❌ Incorrect password. Attempts left: " + (3 - tries));
                 }
             }
 
-            Console.WriteLine("\n⛔ You have exceeded the maximum number of attempts.");
-            Console.WriteLine("Your account has been locked. Please contact admin.");
-            return false;
+            Console.WriteLine("\n⚠ You have exceeded the maximum number of attempts.");
+            return "null";
         }
 
         // ==================================== 9.Branch ID ============================== 
