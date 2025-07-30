@@ -198,8 +198,25 @@ namespace CodeLineHealthCareCenter.Models
             clinic.clinicStatus = isActive;
             Console.WriteLine("Clinic status updated successfully.");
         }
+        // Method to update the details of a clinic
+        public void UpdateClinicDetails(int clinicId, string clinicName, string location, decimal price)
+        {
+            var clinic = Clinics.FirstOrDefault(c => c.ClinicId == clinicId);
+            if (clinic == null)
+            {
+                Console.WriteLine("Clinic not found.");
+                return;
+            }
+            clinic.ClinicName = clinicName;
+            clinic.Location = location;
+            clinic.Price = price;
+            Console.WriteLine("Clinic details updated successfully.");
+        }
 
        
+
+
+
 
 
 
