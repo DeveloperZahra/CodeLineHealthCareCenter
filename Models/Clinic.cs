@@ -160,8 +160,25 @@ namespace CodeLineHealthCareCenter.Models
         {
             Console.WriteLine("Branch name-based search requires branch details integration.");
         }
+        // Method to get all clinics by department ID
+        public void GetClinicByDepartmentId(int departmentId)
+        {
+            var filteredClinics = Clinics.Where(c => c.DepartmentId == departmentId).ToList();
+            if (!filteredClinics.Any())
+            {
+                Console.WriteLine("No clinics found for the given department.");
+                return;
+            }
+            foreach (var clinic in filteredClinics)
+            {
+                clinic.ViewClinicInfo();
+            }
+        }
 
-        
+       
+
+
+
 
 
 
