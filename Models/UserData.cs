@@ -118,7 +118,7 @@ namespace CodeLineHealthCareCenter.Models
                     }
                     else
                     {
-                        Console.WriteLine("❌ Invalid National ID. May National ID is null, empty, or consists only of whitespace.");
+                        Console.WriteLine("❌ Invalid National ID. May National ID is null, empty, or not exactly 3 characters long");
                         tries++;
                     }
 
@@ -149,9 +149,7 @@ namespace CodeLineHealthCareCenter.Models
                     phoneNumber = Console.ReadLine();
 
                     // ✅ Validate phone number: must be digits only and between 8-12 digits
-                    bool isValidPhone = !string.IsNullOrWhiteSpace(phoneNumber) &&
-                                        phoneNumber.All(char.IsDigit) &&
-                                        phoneNumber.Length >= 8 && phoneNumber.Length <= 12;
+                    bool isValidPhone = UserValidator.ValidatePhoneNumber(phoneNumber);
 
                     if (isValidPhone)
                     {
@@ -160,7 +158,7 @@ namespace CodeLineHealthCareCenter.Models
                     }
                     else
                     {
-                        Console.WriteLine("❌ Invalid Phone Number. It must contain only digits and be 8-12 digits long.");
+                        Console.WriteLine("❌ Invalid Phone Number. It must be at least 8 digits.");
                         tries++;
                     }
 
