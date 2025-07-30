@@ -42,9 +42,14 @@ namespace CodeLineHealthCareCenter
         public static void ValidateGender(string gender) // Validates the gender of a user
         {
             if (string.IsNullOrWhiteSpace(gender))
-                throw new ArgumentException("Gender cannot be empty.");
+                throw new ArgumentException("Gender cannot be empty."); 
         }
 
+        public static void ValidateRole(string role) // Validates the role of a user
+        {
+            if (string.IsNullOrWhiteSpace(role))
+                throw new ArgumentException("Role cannot be empty.");
+        }
 
 
     }
