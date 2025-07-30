@@ -120,8 +120,24 @@ namespace CodeLineHealthCareCenter.Models
 
             Console.WriteLine("Booking updated successfully.");
         }
+        // 5.5 Get all bookings
+        public void GetAllBooking()
+        {
+            if (Bookings.Count == 0)
+            {
+                Console.WriteLine("No bookings available.");
+                return;
+            }
 
-      
+            foreach (var booking in Bookings)
+            {
+                DisplayBookingDetails(booking);
+            }
+        }
+
+        
+
+
 
 
 
