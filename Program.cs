@@ -82,7 +82,7 @@ namespace CodeLineHealthCareCenter
                     newUser = new SuperAdmin
                     {
                         Id = users.Count + 1,   // Assign a unique Id based on the current number of users + 1
-                        FullName = name,
+                        FullName = name, // Set the full name of the new user
                         Email = email,
                         Password = password
                     };
