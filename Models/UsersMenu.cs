@@ -192,7 +192,9 @@ namespace CodeLineHealthCareCenter.Models
                         // Placeholder for appointment booking functionality
                         Console.WriteLine("📅 [Patient] Book Appointment - Not implemented");
                         break;
+
                     case "2":
+                        // Placeholder for viewing patient's own appointments
                         Console.WriteLine("📋 [Patient] View My Appointments - Not implemented");
                         break;
                     case "0":
