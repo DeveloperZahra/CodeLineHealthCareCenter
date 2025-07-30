@@ -155,8 +155,15 @@ namespace CodeLineHealthCareCenter.Models
             }
             Console.WriteLine("Clinic Name: " + clinic.ClinicName);
         }
+        // Method to get all clinics by branch name 
+        public void GetClinicByBranchName(string branchName)
+        {
+            Console.WriteLine("Branch name-based search requires branch details integration.");
+        }
 
-       
+        
+
+
 
 
 
