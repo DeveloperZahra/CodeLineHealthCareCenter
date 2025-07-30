@@ -175,7 +175,20 @@ namespace CodeLineHealthCareCenter.Models
             }
         }
 
-       
+        // Method to get the price of a clinic by its ID
+        public void GetPrice(int clinicId)
+        {
+            var clinic = Clinics.FirstOrDefault(c => c.ClinicId == clinicId);
+            if (clinic == null)
+            {
+                Console.WriteLine("Clinic not found.");
+                return;
+            }
+            Console.WriteLine("Clinic Price: " + clinic.Price);
+        }
+
+        
+
 
 
 
