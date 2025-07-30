@@ -1,101 +1,98 @@
-﻿using CodeLineHealthCareCenter.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using HospitalSystemTeamTask.Services;
 
-namespace CodeLineHealthCareCenter
+namespace CodeLineHealthCareCenter.Models
 {
-    class Clinic
+    public class Clinic : IClinicService
     {
-        // 1. Class Fields
-        public int id; // Unique identifier for the clinic
-        public string name; // Name of the clinic
-        public int departmentId; // ID of the department the clinic 
-        public int branchId; // ID of the branch the clinic is located in
 
-        // Dictionary<doctorId, availableTime>
-        public Dictionary<int, string> doctorSchedules;
+        // Private static counter to generate unique IDs for clinics
+        private static int clinicCounter = 0;
 
+        // Private field to store the status of the clinic (open or closed)
+        private bool clinicStatus = true;
 
-        // 2. Class Properties
-        public int Id // Unique identifier for the clinic
+        // Private fields for location and price
+        private string location;
+        private decimal price;
+
+        // Property for unique clinic ID (read-only)
+        public int ClinicId { get; private set; }
+
+        // Property for clinic name
+        public string ClinicName { get; set; }
+
+        // Property for department ID that the clinic belongs to
+        public int DepartmentId { get; set; }
+
+        // Property for branch ID that the clinic belongs to
+        public int BranchId { get; set; }
+
+        // Property for floor ID where the clinic is located
+        public int FloorId { get; set; }
+
+        // Property for room ID where the clinic is located
+        public int RoomId { get; set; }
+
+        /// <summary>
+        ///  Static list to store all clinics created in the system.
+        /// </summary>
+        
+        // Property for the clinic location
+        public string Location
         {
-            get { return id; }
-            set { id = value; }
-        }
-        public string Name // Name of the clinic
-        {
-            get { return name; }
-            set { name = value; }
-        }
-        public int DepartmentId // ID of the department the clinic belongs to
-        {
-            get { return departmentId; }
-            set { departmentId = value; }
-        }
-        public int BranchId // ID of the branch the clinic is located in
-        {
-            get { return branchId; }
-            set { branchId = value; }
-        }
-        public Dictionary<int, string> DoctorSchedules // Dictionary to hold doctor schedules with doctor ID as key and available time as value
-        {
-            get { return doctorSchedules; }
-            set { doctorSchedules = value; }
-        }
-
-
-        // 3. Class Constructors
-
-        // Default constructor
-
-        public Clinic()
-        {
-            doctorSchedules = new Dictionary<int, string>(); // initialize empty dictionary
+            get { return location; }
+            set { location = value; }
         }
 
-        // Constructor with parameters
-        public Clinic(int id, string name, int departmentId, int branchId) // Unique identifier for the clinic, Name of the clinic, ID of the department the clinic belongs to, ID of the branch the clinic is located in
+        // Property for the price of clinic services
+        public decimal Price
         {
-            this.id = id; // Unique identifier for the clinic
-            this.name = name; // Name of the clinic
-            this.departmentId = departmentId; // ID of the department the clinic belongs to
-            this.branchId = branchId; // ID of the branch the clinic is located in
-            this.doctorSchedules = new Dictionary<int, string>(); // initialize empty dictionary
+            get { return price; }
+            set { price = value; }
         }
 
-        // 4. Class Methods
-
-        //  update available time for existing doctor (by ID)
-        public void AssignDoctorTime(int doctorId, string availableTime)
+        // Property to get the current status of the clinic (open or closed)
+        public bool ClinicStatus
         {
-            doctorSchedules[doctorId] = availableTime; //  update
+            get { return clinicStatus; }
         }
 
 
-        // Print info (you can fetch doctor names by ID from Admin if needed)
-        public void PrintClinicInfo()
+        //===================================== Lists =====================================
+        ///  wamt Clinics +Doctors + ClinicSpots 
+        // Static list to store all clinics created in the system
+        public static List<Clinic> Clinics = new List<Clinic>();
+
+        // List of available appointment times for the clinic
+        public List<DateTime> ClinicSpots { get; set; } = new List<DateTime>();
+
+
+        // Constructor to create a new clinic with required details
+        public Clinic(string clinicName, string location, int departmentId, int branchId, int floorId, int roomId, decimal price)
         {
-            Console.WriteLine($"Clinic ID: {id}");
-            Console.WriteLine($"Name: {name}");
-            Console.WriteLine($"Department ID: {departmentId}");
-            Console.WriteLine($"Branch ID: {branchId}");
-            Console.WriteLine("Doctor Schedules:");
-            if (doctorSchedules.Count == 0)
-            {
-                Console.WriteLine("No doctor schedule assigned.");
-            }
-            else
-            {
-                foreach (var entry in doctorSchedules) 
-                {
-                    Console.WriteLine($"- Doctor ID: {entry.Key} | Available Time: {entry.Value}"); 
-                }
-            }
+            clinicCounter++; // Increment the counter to assign a new unique ID
+            ClinicId = clinicCounter; // Assign the unique ID to the clinic
+            ClinicName = clinicName; // Set clinic name
+            Location = location; // Set clinic location
+            DepartmentId = departmentId; // Set department ID
+            BranchId = branchId; // Set branch ID
+            FloorId = floorId; // Set floor ID
+            RoomId = roomId; // Set room ID
+            Price = price; // Set clinic price
         }
+
+        // Method to add a new clinic to the system
+        public void AddClinic(string clinicName, string location)
+        {
+            clinicCounter++;
+            Clinic newClinic = new Clinic(clinicName, location, 0, 0, 0, 0, 0);
+            Clinics.Add(newClinic);
+            Console.WriteLine("Clinic added successfully with ID " + newClinic.ClinicId);
+        }
+
+        
     }
-
-    
 }
