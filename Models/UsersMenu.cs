@@ -96,9 +96,13 @@ namespace CodeLineHealthCareCenter.Models
                 switch (input)
                 {
                     case "1":
+                        // Placeholder action for adding a doctor
                         Console.WriteLine("🩺 [Admin] Add Doctor - Not implemented");
                         break;
+
+
                     case "2":
+                        // Placeholder action for adding a clinic
                         Console.WriteLine("🏥 [Admin] Add Clinic - Not implemented");
                         break;
                     case "3":
