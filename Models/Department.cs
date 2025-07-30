@@ -20,10 +20,10 @@ namespace CodeLineHealthCareCenter
 
 
         //3. ======================================== Class Constructor ========================================
-        public Department(string name)
+        public Department(string name) // Constructor to initialize a new department with a name
         {
-            DepartmentCount++;
-            DepartmentId = DepartmentCount;
+            counter++;
+            DepartmentId = counter;
             DepartmentName = name;
         }
         //4. ========================================== Class Methods ================================
