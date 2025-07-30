@@ -106,7 +106,7 @@ namespace CodeLineHealthCareCenter
                         Email = email,  // Set the email of the new user
                         Password = password, // Set the password of the new user
                         BranchId = branchId,  // Set the Branch ID for the admin user
-                        DepartmentId = adminDept
+                        DepartmentId = adminDept  // Set the Department ID for the admin user
                     };
                     break;
 
