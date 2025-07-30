@@ -109,9 +109,7 @@ namespace CodeLineHealthCareCenter.Models
                     nationalId = Console.ReadLine();
 
                     // ✅ Validate National ID: must be digits only and 10 to 14 characters long
-                    bool isValidId = !string.IsNullOrWhiteSpace(nationalId) &&
-                                     nationalId.All(char.IsDigit) &&
-                                     (nationalId.Length == 10 || nationalId.Length == 14);
+                    bool isValidId = UserValidator.ValidateNationalId(nationalId);
 
                     if (isValidId)
                     {
@@ -120,7 +118,7 @@ namespace CodeLineHealthCareCenter.Models
                     }
                     else
                     {
-                        Console.WriteLine("❌ Invalid National ID. It must be 10 or 14 digits only.");
+                        Console.WriteLine("❌ Invalid National ID. May National ID is null, empty, or consists only of whitespace.");
                         tries++;
                     }
 
