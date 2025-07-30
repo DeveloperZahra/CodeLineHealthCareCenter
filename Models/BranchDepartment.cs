@@ -40,13 +40,17 @@ namespace CodeLineHealthCareCenter
         //4.1 Adds a new department to a specific branch.
         public void AddDepartmentToBranch(int branchID)
         {
+            Console.WriteLine("Enter Branch Department ID: ");
+            int branchDepartmentId = int.Parse(Console.ReadLine());
             Console.Write("Enter Department ID: ");
             int departmentId = int.Parse(Console.ReadLine());
+            Console.Write("Enter Floor ID: ");
+            int FloorId = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter the branch Name");
             string branchName = Console.ReadLine();
             Console.WriteLine("Enter the department name");
             string departmentName = Console.ReadLine();
-            BranchDepartment newRelation = new BranchDepartment(branchID, departmentId, departmentName,branchName,true);
+            BranchDepartment newRelation = new BranchDepartment(branchDepartmentId,branchID, departmentId, FloorId, departmentName,branchName,true);
             branchDepartments.Add(newRelation);
 
             Console.WriteLine($" Department {departmentId} added to Branch {branchID}.");
