@@ -106,8 +106,19 @@ namespace CodeLineHealthCareCenter.Models
                 clinic.ViewClinicInfo();
             }
         }
+        // Method to get a clinic by its unique ID
+        public void GetClinicById(int clinicId)
+        {
+            var clinic = Clinics.FirstOrDefault(c => c.ClinicId == clinicId);
+            if (clinic == null)
+            {
+                Console.WriteLine("Clinic not found.");
+                return;
+            }
+            clinic.ViewClinicInfo();
+        }
 
-        
+
 
 
     }
