@@ -36,7 +36,7 @@ namespace CodeLineHealthCareCenter.Utilities
                 }
 
                 string jsonData = File.ReadAllText(filePath); // Read the file content
-                var dataList = JsonSerializer.Deserialize<List<T>>(jsonData);
+                var dataList = JsonSerializer.Deserialize<List<T>>(jsonData); // Deserialize the JSON data into a list of type T
                 Console.WriteLine($"✅ Loaded from {filePath}");
                 return dataList ?? new List<T>();
             }
