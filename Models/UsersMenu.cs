@@ -166,6 +166,38 @@ namespace CodeLineHealthCareCenter.Models
         }
 
 
+        // =================== Patient Menu ====================
+        static void PatientMenu()
+        {
+            bool back = false;
+            while (!back)
+            {
+                Console.WriteLine("\n🏥 Patient Dashboard:");
+                Console.WriteLine("1. Book Appointment");
+                Console.WriteLine("2. View My Appointments");
+                Console.WriteLine("0. Back");
+                Console.Write("Choose: ");
+                string input = Console.ReadLine();
+
+                switch (input)
+                {
+                    case "1":
+                        Console.WriteLine("📅 [Patient] Book Appointment - Not implemented");
+                        break;
+                    case "2":
+                        Console.WriteLine("📋 [Patient] View My Appointments - Not implemented");
+                        break;
+                    case "0":
+                        back = true;
+                        break;
+                    default:
+                        Console.WriteLine("❌ Invalid choice.");
+                        break;
+                }
+            }
+        }
+    }
+}
 
 
 
