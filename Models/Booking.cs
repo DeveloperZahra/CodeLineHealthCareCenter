@@ -1,83 +1,78 @@
-﻿using HospitalSystemTeamTask.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using HospitalSystemTeamTask.Services;
-using System.Security.Claims;
 
-namespace CodeLineHealthCareCenter
+namespace CodeLineHealthCareCenter.Models
 {
-    class Booking   
+    public class Booking : IBookingService
     {
-        // 1. Class Fields
-        public int id; // Unique identifier for the booking
-        public int patientId; // Unique identifier for the patient
-        public int clinicId; // Unique identifier for the clinic
-        public DateTime appointmentDate; // Date and time of the appointment
-        public string appointmentType; // Type of appointment (e.g., consultation, follow-up)
+        // =============================== 1. Fields ===============================
+        private static int bookingCounter = 0; // Counter to generate unique booking IDs
 
-        //2. Class Properties
-        public int Id //Unique identifier for the booking
-        {
-            get { return id; }
-            set { id = value; }
-        }
+        // =============================== 2. Properties ===========================
+        public int BookingId { get; private set; } // Unique identifier for the booking
+        public DateTime BookingDateTime { get; set; } // Date and time of the appointment
+        public int ClinicId { get; set; } // ID of the clinic for the appointment
+        public int DoctorId { get; set; } // ID of the doctor for the appointment
+        public int PatientId { get; set; } // ID of the patient booking the appointment
+        public string AppointmentType { get; set; } // Type of appointment (consultation, follow-up, etc.)
 
-        public int PatientId // Unique identifier for the patient
+        // =============================== 3. Static List ==========================
+        public static List<Booking> Bookings = new List<Booking>(); // Stores all bookings in the system
+
+        // =============================== 4. Constructor ==========================
+        public Booking()
         {
-            get { return patientId; }
-            set { patientId = value; }
-        }
-        public int ClinicId // Unique identifier for the clinic
-        {
-            get { return clinicId; }
-            set { clinicId = value; }
-        }
-        public DateTime AppointmentDate // Date and time of the appointment
-        {
-            get { return appointmentDate; }
-            set { appointmentDate = value; }
-        }
-        public string AppointmentType // Type of appointment (e.g., consultation, follow-up)
-        {
-            get { return appointmentType; }
-            set { appointmentType = value; }
+            bookingCounter++;
+            BookingId = bookingCounter;
         }
 
-        // 3. Class Constructor
-
-        // Default constructor
-        public Booking() { }
-
-        // Constructor with parameters
-        public Booking(int id, int patientId, int clinicId, DateTime appointmentDate, string appointmentType) 
+        public Booking(DateTime bookingDateTime, int clinicId, int doctorId, int patientId, string appointmentType)
+            : this()
         {
-            this.id = id; // Unique identifier for the booking
-            this.patientId = patientId; // Unique identifier for the patient
-            this.clinicId = clinicId; // Unique identifier for the clinic
-            this.appointmentDate = appointmentDate; // Date and time of the appointment
-            this.appointmentType = appointmentType; // Type of appointment (e.g., consultation, follow-up)
+            BookingDateTime = bookingDateTime;
+            ClinicId = clinicId;
+            DoctorId = doctorId;
+            PatientId = patientId;
+            AppointmentType = appointmentType;
         }
 
-        // 4. Class Methods
-        public void Reschedule(DateTime newDate) //Method to reschedule the appointment
+        // =============================== 5. Methods ==============================
+        /// <summary>
+        ///   Interface methods for booking management
+        /// </summary>
+        // 5.1 Book a new appointment
+        public void BookAppointment()
         {
-            appointmentDate = newDate; // Update the appointment date
-        }
-        public void Cancel() //Method to cancel the appointment
-        {
-            appointmentType = "Canceled"; // Update the appointment type to indicate cancellation
+            Console.WriteLine("=== Book a New Appointment ===");
+
+            // Step 1: Select department
+            Department.GetAllDepartments();
+            int departmentId = UserValidator.IntValidation("Enter Department ID");
+
+            // Step 2: Select clinic in department
+            GetAllClinicsByDepartmentId(departmentId);
+            int clinicId = UserValidator.IntValidation("Enter Clinic ID");
+
+            // Step 3: Select doctor in clinic
+            GetAllDoctorsByClinicId(clinicId);
+            int doctorId = UserValidator.IntValidation("Enter Doctor ID");
+
+            // Step 4: Select service in clinic
+            GetAllServicesByClinicId(clinicId);
+            int serviceId = UserValidator.IntValidation("Enter Service ID");
+
+            // Step 5: Select available appointment spot
+            GetAllSpotsByClinicId(clinicId, departmentId);
+            DateTime spotDateTime = UserValidator.DateTimeValidation("Enter Spot Date and Time (yyyy-MM-dd HH:mm)");
+
+            // Step 6: Create booking
+            Booking newBooking = new Booking(spotDateTime, clinicId, doctorId, serviceId, "Consultation");
+            Bookings.Add(newBooking);
+
+            Console.WriteLine($"Booking created successfully! Booking ID: {newBooking.BookingId}");
         }
 
-        public void DisplayBookingDetails() //Method to display booking details
-        {
-            Console.WriteLine($"Booking ID: {id}"); // Unique identifier for the booking
-            Console.WriteLine($"Patient ID: {patientId}"); // Unique identifier for the patient
-            Console.WriteLine($"Clinic ID: {clinicId}"); // Unique identifier for the clinic
-            Console.WriteLine($"Appointment Date: {appointmentDate}"); // Date and time of the appointment
-            Console.WriteLine($"Appointment Type: {appointmentType}"); // Type of appointment (e.g., consultation, follow-up)
-        }
     }
 }
