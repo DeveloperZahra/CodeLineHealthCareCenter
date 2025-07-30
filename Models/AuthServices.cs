@@ -138,7 +138,13 @@ namespace CodeLineHealthCareCenter.Models
             currentUser = user;
         }
 
-        
+        // getting the current user
+        public static User GetCurrentUser()
+        {
+            return currentUser;
+        }
+
+
 
 
 
