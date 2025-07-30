@@ -155,7 +155,10 @@ namespace CodeLineHealthCareCenter.Models
                         // Exit the loop and return to the previous menu
                         back = true;
                         break;
+
+
                     default:
+                        // Handle invalid menu choices
                         Console.WriteLine("❌ Invalid choice.");
                         break;
                 }
