@@ -472,7 +472,7 @@ namespace CodeLineHealthCareCenter.Models
             }
         }
 
-        // ===================================11. Specialty =================================
+        // =================================== 11. Specialty =================================
         /// Input Data Specility for doctore
         // Displays a list of available specialties and allows the user to select one by entering its number.
         public static string EnterSpecialty()
@@ -530,6 +530,56 @@ namespace CodeLineHealthCareCenter.Models
             {
                 Console.WriteLine($"⚠ An error occurred: {ex.Message}");
                 return "null";
+            }
+        }
+
+        // =================================== 12. Date Of Birth ================================
+        /// Input Data Specility for Patient
+        // Implement the user to enter their Date of Birth (DOB) with validation and limited attempts.
+        public static DateTime EnterDateOfBirth()
+        {
+            int tries = 0;
+
+            try
+            {
+                do
+                {
+                    Console.Write("Enter Date of Birth (format: yyyy-MM-dd): ");
+                    string input = Console.ReadLine();
+
+                    // ✅ Validate date format
+                    if (DateTime.TryParse(input, out DateTime dob))
+                    {
+                        int age = DateTime.Now.Year - dob.Year;
+                        if (dob.Date > DateTime.Now.AddYears(-age)) age--; // Adjust if birthday hasn't occurred this year
+
+                        // ✅ Validate age range (1 - 120 years)
+                        if (age >= 1 && age <= 120)
+                        {
+                            Console.WriteLine("✅ Valid Date of Birth.");
+                            return dob;
+                        }
+                        else
+                        {
+                            Console.WriteLine("❌ Invalid age. Age must be between 1 and 120 years.");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("❌ Invalid date format. Please use yyyy-MM-dd (e.g., 1990-05-21).");
+                    }
+
+                    tries++;
+
+                } while (tries < 3); // Allow up to 3 attempts
+
+                Console.WriteLine("⚠ You have exceeded the maximum number of attempts.");
+                return DateTime.MinValue; // Indicate failure
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"⚠ An error occurred: {ex.Message}");
+                return DateTime.MinValue;
             }
         }
 
