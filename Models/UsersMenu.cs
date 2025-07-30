@@ -115,7 +115,9 @@ namespace CodeLineHealthCareCenter.Models
                         // Set the flag to true to exit the menu loop
                         back = true;
                         break;
+
                     default:
+                        // Handle any invalid menu input
                         Console.WriteLine("❌ Invalid choice.");
                         break;
                 }
