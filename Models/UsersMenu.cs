@@ -17,6 +17,7 @@ namespace CodeLineHealthCareCenter.Models
             // Keep showing the menu until the user chooses to go back
             while (!back)
             {
+                // Display SuperAdmin menu options with icons
                 Console.WriteLine("\n👑 SuperAdmin Dashboard:");
                 Console.WriteLine("1. Add Branch");
                 Console.WriteLine("2. Add Department");
