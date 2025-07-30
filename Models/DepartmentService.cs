@@ -20,7 +20,7 @@ namespace CodeLineHealthCareCenter
         // 1. Get all departments
         public void GetAllDepartments()
         {
-            if (departments.Count == 0) // Check if there are no departments
+            if (departments.Count == 0) // Check if the list of departments is empty
             {
                 Console.WriteLine(" No departments found.");
                 return;
