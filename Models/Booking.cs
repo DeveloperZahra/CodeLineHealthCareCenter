@@ -48,7 +48,7 @@ namespace CodeLineHealthCareCenter.Models
             Console.WriteLine("=== Book a New Appointment ===");
 
             // Step 1: Select department
-            Department.GetAllDepartments();
+            new Department("temp").GetAllDepartments();
             int departmentId = UserValidator.IntValidation("Enter Department ID");
 
             // Step 2: Select clinic in department
