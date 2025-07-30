@@ -1,12 +1,21 @@
-﻿namespace CodeLineHealthCareCenter
+﻿using System;
+using System.Collections.Generic;
+using CodeLineHealthCareCenter.Models;  // Import custom models (User, Doctor, Patient, etc.)
+
+
+
+namespace CodeLineHealthCareCenter
 {
-    internal class Program
+    public class Program
     {
+      
+
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
         }
 
+        // Displays the main welcome screen with SignUp, SignIn, and Exit options
         static void ShowWelcomeScreen()
         {
             // while loop to display wellcome screen every true value untill user enter 0 value to exist from loop 
@@ -14,7 +23,7 @@
             {
                 Console.Clear();
                 Console.WriteLine("==================================");
-                Console.WriteLine("  🌟 Welcome to Hospital System 🌟   ");
+                Console.WriteLine("  🏥 Welcome to Hospital System 🏥   ");
                 Console.WriteLine("==================================");
                 Console.WriteLine("1. Sign Up");
                 Console.WriteLine("2. Sign In");
@@ -42,12 +51,15 @@
             }
         }
 
-        // create Sign Up class
-        static void SignUp() 
-        
-        { 
-            Console.WriteLine("Wellcome To SignUp....");
-        }
+        // Create sign up Class 
+        static void SignUp()
+
+        {
+           
+            Console.WriteLine("=== Sign Up====");
+
+
+            }
 
         // Create Sign In Class
         static void SignIn()
