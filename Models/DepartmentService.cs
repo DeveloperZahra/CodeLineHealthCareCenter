@@ -34,6 +34,22 @@ namespace CodeLineHealthCareCenter
             }
         }
 
+        // 2. Update department by ID
+        public void UpdateDepartment(int departmentId)
+        {
+            var dept = departments.FirstOrDefault(d => d.DepartmentId == departmentId);
+            if (dept != null)
+            {
+                Console.Write("Enter new department name: ");
+                dept.DepartmentName = Console.ReadLine();
+                Console.WriteLine("✅ Department updated successfully.");
+            }
+            else
+            {
+                Console.WriteLine("❌ Department not found.");
+            }
+        }
+
         // 2. Set department active/inactive
         public void SetActiveStatus(int departmentId, bool isActive)
         {
