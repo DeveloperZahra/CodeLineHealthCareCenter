@@ -84,7 +84,7 @@ namespace CodeLineHealthCareCenter.Models
                 Console.WriteLine("\n🛠 Admin Dashboard:");
                 Console.WriteLine("1. Add Doctor");  // Option to add a new doctor
                 Console.WriteLine("2. Add Clinic"); // Option to add a new clinic
-                Console.WriteLine("3. View Appointments");
+                Console.WriteLine("3. View Appointments");   // Option to view appointment schedule
                 Console.WriteLine("0. Back");
                 Console.Write("Choose: ");
                 string input = Console.ReadLine();
