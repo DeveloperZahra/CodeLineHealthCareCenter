@@ -548,13 +548,13 @@ namespace CodeLineHealthCareCenter.Models
                     Console.Write("Enter Date of Birth (format: yyyy-MM-dd): ");
                     string input = Console.ReadLine();
 
-                    // ✅ Validate date format
+                    // Validate date format
                     if (DateTime.TryParse(input, out DateTime dob))
                     {
                         int age = DateTime.Now.Year - dob.Year;
                         if (dob.Date > DateTime.Now.AddYears(-age)) age--; // Adjust if birthday hasn't occurred this year
 
-                        // ✅ Validate age range (1 - 120 years)
+                        // Validate age range (1 - 120 years)
                         if (age >= 1 && age <= 120)
                         {
                             Console.WriteLine("✅");

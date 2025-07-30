@@ -58,6 +58,7 @@ namespace CodeLineHealthCareCenter.Models
             // 3️⃣ Add the new doctor to the static list
             doctors.Add(newDoctor);
 
+
             // 4️⃣ Confirmation message
             Console.WriteLine($"✅ Doctor '{newDoctor.UserName}' added successfully with ID: {newDoctor.UserId}");
         }
