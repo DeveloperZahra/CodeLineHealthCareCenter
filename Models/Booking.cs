@@ -181,7 +181,6 @@ namespace CodeLineHealthCareCenter.Models
                 DisplayBookingDetails(booking);
             }
         }
-
         // 5.9 Get available appointments by clinic and date
         public void GetAvailableAppointmentsByClinicIdAndDate(DateTime date, int clinicId)
         {
@@ -205,102 +204,7 @@ namespace CodeLineHealthCareCenter.Models
             }
         }
 
-        // 5.10 Schedule a new appointment
-        public void ScheduleAppointment(int patientId, int clinicId, DateTime date, TimeSpan time)
-        {
-            Booking newBooking = new Booking(date.Date + time, clinicId, 0, patientId, "Scheduled");
-            Bookings.Add(newBooking);
 
-            Console.WriteLine($"New appointment scheduled successfully. Booking ID: {newBooking.BookingId}");
-        }
-
-        // ========================== Helper Methods ==========================
-
-        // Display details of a booking
-        private void DisplayBookingDetails(Booking booking)
-        {
-            Console.WriteLine("----------------------------------");
-            Console.WriteLine($"Booking ID: {booking.BookingId}");
-            Console.WriteLine($"Patient ID: {booking.PatientId}");
-            Console.WriteLine($"Clinic ID: {booking.ClinicId}");
-            Console.WriteLine($"Doctor ID: {booking.DoctorId}");
-            Console.WriteLine($"Date & Time: {booking.BookingDateTime}");
-            Console.WriteLine($"Type: {booking.AppointmentType}");
-            Console.WriteLine("----------------------------------");
-        }
-
-        // List clinics by department
-        public static void GetAllClinicsByDepartmentId(int departmentId)
-        {
-            var clinics = BranchDepartment.Departments
-                .Where(d => d.DepartmentId == departmentId)
-                .SelectMany(d => d.Clinics)
-                .ToList();
-
-            if (clinics.Count == 0)
-            {
-                Console.WriteLine("No clinics found.");
-                return;
-            }
-
-            foreach (var clinic in clinics)
-            {
-                Console.WriteLine($"Clinic ID: {clinic.ClinicId}, Name: {clinic.ClinicName}");
-            }
-        }
-
-        // List doctors by clinic
-        public static void GetAllDoctorsByClinicId(int clinicId)
-        {
-            var doctors = BranchDepartment.Doctors.Where(d => d.ClinicID == clinicId).ToList();
-
-            if (doctors.Count == 0)
-            {
-                Console.WriteLine("No doctors found for this clinic.");
-                return;
-            }
-
-            foreach (var doctor in doctors)
-            {
-                Console.WriteLine($"Doctor ID: {doctor.DoctorID}, Name: {doctor.UserName}, Specialization: {doctor.DoctorSpecialization}");
-            }
-        }
-
-        // List services by clinic
-        public static void GetAllServicesByClinicId(int clinicId)
-        {
-            var services = Service.Services.Where(s => s.ClinicId == clinicId).ToList();
-
-            if (services.Count == 0)
-            {
-                Console.WriteLine("No services found for this clinic.");
-                return;
-            }
-
-            foreach (var service in services)
-            {
-                Console.WriteLine($"Service ID: {service.ServiceId}, Name: {service.ServiceName}, Price: {service.Price}");
-            }
-        }
-
-        // List available appointment spots by clinic
-        public static void GetAllSpotsByClinicId(int clinicId, int departmentId)
-        {
-            var clinic = BranchDepartment.Departments
-                .FirstOrDefault(d => d.DepartmentId == departmentId)?
-                .Clinics.FirstOrDefault(c => c.ClinicId == clinicId);
-
-            if (clinic == null || clinic.ClinicSpots.Count == 0)
-            {
-                Console.WriteLine("No available spots.");
-                return;
-            }
-
-            foreach (var spot in clinic.ClinicSpots)
-            {
-                Console.WriteLine($"Available Spot: {spot}");
-            }
-        }
 
 
 
