@@ -27,7 +27,7 @@ namespace CodeLineHealthCareCenter.Models
         : base(name, email, password, nationalId, phoneNumber, gender, "Doctor") // Call parent User constructor
         {
             // Generate a custom doctor ID (starts with "D")
-            UserId = "D" + UserCount;
+            UserId = "D" + "," + UserCount;
 
             // Assign doctor-specific properties
             Specialty = specialization;
