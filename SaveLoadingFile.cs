@@ -43,7 +43,7 @@ namespace CodeLineHealthCareCenter.Utilities
             catch (Exception ex)
             {
                 Console.WriteLine($"❌ Error loading file: {ex.Message}"); // Handle any exceptions that occur during loading
-                return new List<T>();
+                return new List<T>(); // Return an empty list in case of error
             }
         }
 
