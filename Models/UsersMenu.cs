@@ -80,6 +80,7 @@ namespace CodeLineHealthCareCenter.Models
             // Loop to display the Admin menu continuously
             while (!back)
             {
+                // Display Admin dashboard menu 
                 Console.WriteLine("\n🛠 Admin Dashboard:");
                 Console.WriteLine("1. Add Doctor");
                 Console.WriteLine("2. Add Clinic");
