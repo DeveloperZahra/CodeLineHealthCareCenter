@@ -32,5 +32,11 @@ namespace CodeLineHealthCareCenter
             if (string.IsNullOrWhiteSpace(nationalId) || nationalId.Length != 10)
                 throw new ArgumentException("National ID must be 10 digits."); // Check if the national ID is null, empty, or not exactly 10 characters long
         }
+
+        public static void ValidatePhoneNumber(string phoneNumber) // Validates the phone number of a user
+        {
+            if (string.IsNullOrWhiteSpace(phoneNumber) || phoneNumber.Length < 10)
+                throw new ArgumentException("Phone number must be at least 10 digits long."); // Check if the phone number is null, empty, or less than 10 characters long
+        }
     }
 }
