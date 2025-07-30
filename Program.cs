@@ -90,6 +90,7 @@ namespace CodeLineHealthCareCenter
 
                 // Check if the user role is "admin"
                 case "admin":
+                    // Prompt the user to enter the Branch ID and read it from console input
                     Console.Write("Branch ID: ");
                     int branchId = int.Parse(Console.ReadLine());
 
