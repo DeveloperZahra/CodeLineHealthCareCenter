@@ -30,7 +30,7 @@ namespace CodeLineHealthCareCenter
         public static void ValidateNationalId(string nationalId) // Validates the national ID of a user
         {
             if (string.IsNullOrWhiteSpace(nationalId) || nationalId.Length != 10)
-                throw new ArgumentException("National ID must be 10 digits.");
+                throw new ArgumentException("National ID must be 10 digits."); // Check if the national ID is null, empty, or not exactly 10 characters long
         }
     }
 }
