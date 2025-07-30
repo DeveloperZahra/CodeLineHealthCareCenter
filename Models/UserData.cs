@@ -222,5 +222,53 @@ namespace CodeLineHealthCareCenter.Models
                 return "null";
             }
         }
+        // ================================== 6. Role ==========================================
+        public static string EnterRole()
+        {
+            string role = "";
+            int tries = 0;
+
+            // Allowed roles
+            string[] validRoles = { "Admin", "Doctor", "Patient", "Super Admin" };
+
+            try
+            {
+                do
+                {
+                    Console.Write("Enter Role (Admin / Doctor / Patient / Super Admin): ");
+                    role = Console.ReadLine()?.Trim();
+
+                    // ✅ Validate role: must match one of the valid roles (case-insensitive)
+                    bool isValidRole = !string.IsNullOrWhiteSpace(role) &&
+                                       Array.Exists(validRoles, r => r.Equals(role, StringComparison.OrdinalIgnoreCase));
+
+                    if (isValidRole)
+                    {
+                        // Normalize role format (capitalize first letter of each word)
+                        string formattedRole = string.Join(" ", role.Split(' ')
+                            .Select(word => char.ToUpper(word[0]) + word.Substring(1).ToLower()));
+
+                        Console.WriteLine("✅ Valid Role.");
+                        return formattedRole;
+                    }
+                    else
+                    {
+                        Console.WriteLine("❌ Invalid Role. Please enter one of the following: Admin, Doctor, Patient, Super Admin.");
+                        tries++;
+                    }
+
+                } while (tries < 3);
+
+                // If user fails 3 times
+                Console.WriteLine("⚠ You have exceeded the maximum number of attempts.");
+                Console.WriteLine("Please try again later.");
+                return "null";
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"⚠ An error occurred: {ex.Message}");
+                return "null";
+            }
+        }
     }
 }
