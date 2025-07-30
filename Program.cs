@@ -29,8 +29,7 @@
                         SignUp();
                         break;
                     case '2':
-                        Console.WriteLine("SignIn Process....");
-                        //SignIn();
+                        SignIn();
                         break;
                     case '0':
                         Console.WriteLine("Thank you for using the system!");

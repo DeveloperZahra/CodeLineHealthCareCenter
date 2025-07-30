@@ -4,53 +4,64 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+//using CodeLineHealthCareCenter.Services;
+using HospitalSystemTeamTask.Services;
+using CodeLineHealthCareCenter.Models;
+
+
 
 namespace CodeLineHealthCareCenter.Models
 {
     // Doctor class inherits from the base class User
-    public class Doctor : User
+    public class Doctor : User, IDoctorService
     {
-        // The doctor's medical specialty (e.g., Cardiology, Pediatrics)
-        public string Specialty { get; set; }
-
-        // The ID of the department the doctor belongs to
-    public int DepartmentId { get; set; }
-
-        // Parameterized constructor to initialize a new doctor
-        public Doctor(int id, string fullName, string email, string password, string specialty, int departmentId)
+        // 1. ================================ Class feilds ==================================================
+        
+        public string Specialty { get; set; } // The doctor's medical specialty (e.g., Cardiology, Pediatrics)     
+        public int DepartmentId { get; set; }  // The ID of the department the doctor belongs to
+        public int BranchId { get; set; } // The ID of the branch the doctor belongs to
+        // 2. ============================== Doctor List ====================================================
+        public static List<Doctor> doctors = new List<Doctor>();
+        // 3. ============================= Class Constructor ================================================
+        public Doctor(string name,string email,string password,string nationalId,string phoneNumber,string gender,string specialization, int branchId, int departmentId)
+        : base(name, email, password, nationalId, phoneNumber, gender, "Doctor") // Call parent User constructor
         {
-            this.Id = id;
-            this.FullName = fullName;
-            this.Email = email;
-            this.Password = password;
-            this.Specialty = specialty;
-            this.DepartmentId = departmentId;
+            // Generate a custom doctor ID (starts with "D")
+            UserId = "D" + UserCount;
+
+            // Assign doctor-specific properties
+            Specialty = specialization;
+            BranchId = branchId;
+            DepartmentId = departmentId;
+
+            // By default, the doctor account is active
+            IsActive = true;
         }
 
-        // Override GetRole method to specify this user is a Doctor
-        public override string GetRole()
+
+        // 4. ========================================== Doctore Methods ================================================
+        /// implement method of IDoctoreServices Interface 
+        // 4.1 Adds a new doctor to the system and stores it in the static list.
+        public void AddDoctor(string name, string email, string password, string nationalId, string phoneNumber, string gender, string specialization, int branchId, int departmentId)
         {
-            return "Doctor";
+            // 1️⃣ Check if a doctor with the same email already exists
+            bool exists = doctors.Exists(d => d.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+            if (exists)
+            {
+                Console.WriteLine("❌ Doctor with this email already exists!");
+                return;
+            }
+
+            // 2️⃣ Create a new Doctor object
+            Doctor newDoctor = new Doctor(name, email, password, nationalId, phoneNumber, gender, specialization, branchId, departmentId);
+
+            // 3️⃣ Add the new doctor to the static list
+            doctors.Add(newDoctor);
+
+            // 4️⃣ Confirmation message
+            Console.WriteLine($"✅ Doctor '{newDoctor.UserName}' added successfully with ID: {newDoctor.UserId}");
         }
 
-        // Method to simulate viewing appointments for this doctor
-        public void ViewAppointments()
-        {
-            Console.WriteLine($"Doctor {FullName} is viewing their appointments...");
-            // Here you would add logic to retrieve appointments from a list or database
-        }
-
-        // Method to display doctor information
-        public void DisplayInfo()
-        {
-            Console.WriteLine("=== Doctor Information ===");
-            Console.WriteLine($"ID         : {Id}");
-            Console.WriteLine($"Name       : {FullName}");
-            Console.WriteLine($"Email      : {Email}");
-            Console.WriteLine($"Specialty  : {Specialty}");
-            Console.WriteLine($"Department : {DepartmentId}");
-            Console.WriteLine("==========================");
-        }
 
 
 
