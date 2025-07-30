@@ -4,16 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace CodeLineHealthCareCenter
 {
-    public class DepartmentService : Service // DepartmentService inherits from Service
+    public class DepartmentService //// DepartmentService class that provides operations for Department objects directly
     {
-        public DepartmentService(List<Department> departments) : base(departments) { } // Constructor to initialize the service with a list of departments
-        
+        private List<Department> departments = new List<Department>(); // List to store all departments
+
+
+        public DepartmentService(List<Department> departments)
+        {
+            this.departments = departments;
+        }
+
+
         // 1. Get all departments
         public void GetAllDepartments()
         {
-            if (departments.Count == 0) // Check if there are no departments
+            if (departments.Count == 0) // Check if the list of departments is empty
             {
                 Console.WriteLine(" No departments found.");
                 return;
@@ -27,7 +35,23 @@ namespace CodeLineHealthCareCenter
             }
         }
 
-        // 2. Set department active/inactive
+        // 2. Update department by ID
+        public void UpdateDepartment(int departmentId)
+        {
+            var dept = departments.FirstOrDefault(d => d.DepartmentId == departmentId);
+            if (dept != null)
+            {
+                Console.Write("Enter new department name: "); // Prompt user for new department name
+                dept.DepartmentName = Console.ReadLine();
+                Console.WriteLine(" Department updated successfully.");
+            }
+            else
+            {
+                Console.WriteLine(" Department not found.");
+            }
+        }
+
+        // 3. Set department active/inactive
         public void SetActiveStatus(int departmentId, bool isActive)
         {
             var dept = departments.FirstOrDefault(d => d.DepartmentId == departmentId); // Find the department by ID
@@ -41,7 +65,7 @@ namespace CodeLineHealthCareCenter
                 Console.WriteLine("  Department not found."); 
             }
         }
-        // 3. Get department by name
+        // 4. Get department by name
         public void GetDepartmentByName(string name) 
         {
             var dept = departments.FirstOrDefault(d => d.DepartmentName.Equals(name, StringComparison.OrdinalIgnoreCase)); // Find the department by name
@@ -51,7 +75,7 @@ namespace CodeLineHealthCareCenter
                 Console.WriteLine(" Department not found.");
         }
 
-        // 4. Get department by ID
+        // 5. Get department by ID
         public void GetDepartmentById(int id)
         {
             var dept = departments.FirstOrDefault(d => d.DepartmentId == id); // Find the department by ID
@@ -61,6 +85,14 @@ namespace CodeLineHealthCareCenter
                 Console.WriteLine(" Department not found."); 
         }
 
-
+        // 6. Get department name by ID (return string)
+        public string GetDepartmentName(int id)
+        {
+            var dept = departments.FirstOrDefault(d => d.DepartmentId == id);
+            return dept != null ? dept.DepartmentName : "Department not found.";
+        }
     }
+
+
 }
+
