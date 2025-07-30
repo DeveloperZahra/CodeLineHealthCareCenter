@@ -25,7 +25,7 @@ namespace CodeLineHealthCareCenter.Models
         : base(name, email, password, nationalId, phoneNumber, gender, "Admin") // Call parent User constructor
         {
             // Generate a custom Admin ID (starts with "A")
-            UserId = "A" + UserCount;
+            UserId = "A"+ "," + UserCount;
 
             // Assign admin-specific properties
             BranchId = branchId;
