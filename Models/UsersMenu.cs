@@ -150,7 +150,9 @@ namespace CodeLineHealthCareCenter.Models
                         // Placeholder for the "View Appointments" functionality
                         Console.WriteLine("📆 [Doctor] View Appointments - Not implemented");
                         break;
+
                     case "0":
+                        // Exit the loop and return to the previous menu
                         back = true;
                         break;
                     default:
