@@ -202,7 +202,9 @@ namespace CodeLineHealthCareCenter.Models
                         // User selected to go back, so we set the flag to true to exit the loop
                         back = true;
                         break;
+
                     default:
+                        // Handle invalid input that doesn't match any case
                         Console.WriteLine("❌ Invalid choice.");
                         break;
                 }
