@@ -49,26 +49,26 @@ namespace CodeLineHealthCareCenter
             }
         }
 
-        // create Sign Up class
+        // Function to handle user registration
         static void SignUp()
 
         {
             Console.Clear();
             Console.WriteLine("=== Sign Up====");
 
+            // Collect user details
             Console.Write("Full Name: ");
             string name = Console.ReadLine();
 
             Console.Write("Email: ");
             string email = Console.ReadLine();
 
-            // Ensure email is not already taken
-            if (users.Exists(u => u.Email == email))
-            {
-                Console.WriteLine("Email is already registered. Please sign in.");
-                Console.ReadKey();
-                return;
-            }
+            Console.Write("Password: ");
+            string password = Console.ReadLine();
+
+            // Ask for user role
+            Console.Write("Role (Doctor / Patient / Admin / SuperAdmin): ");
+            string role = Console.ReadLine().ToLower();
 
 
         }
