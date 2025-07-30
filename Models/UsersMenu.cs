@@ -129,6 +129,9 @@ namespace CodeLineHealthCareCenter.Models
         {
             // A flag used to keep the menu active until the user chooses to go back
             bool back = false;
+
+
+            // Loop to continuously display the Doctor menu until the user exits
             while (!back)
             {
                 Console.WriteLine("\n🩺 Doctor Dashboard:");
