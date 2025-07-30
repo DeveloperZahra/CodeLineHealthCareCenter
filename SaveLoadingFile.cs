@@ -35,7 +35,7 @@ namespace CodeLineHealthCareCenter.Utilities
                     return new List<T>();
                 }
 
-                string jsonData = File.ReadAllText(filePath);
+                string jsonData = File.ReadAllText(filePath); // Read the file content
                 var dataList = JsonSerializer.Deserialize<List<T>>(jsonData);
                 Console.WriteLine($"✅ Loaded from {filePath}");
                 return dataList ?? new List<T>();
