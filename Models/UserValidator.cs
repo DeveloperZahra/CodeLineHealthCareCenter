@@ -8,47 +8,59 @@ namespace CodeLineHealthCareCenter
 {
     public static class UserValidator
     {
-        public static void ValidateName(string name)
+        public static bool ValidateName(string name)
         // Validates the name of a user
         {
             if (string.IsNullOrWhiteSpace(name)) // Check if the name is null, empty, or consists only of whitespace
-                throw new ArgumentException("Name cannot be empty."); 
+                return false;
+            else return true;
         }
 
-        public static void ValidateEmail(string email) // Validates the email format of a user
+        public static bool ValidateEmail(string email) // Validates the email format of a user
         {
-            if (string.IsNullOrWhiteSpace(email) || !email.Contains("@") || !email.Contains(".")) 
-                throw new ArgumentException("Invalid email format."); // Check if the email is null, empty, or does not contain '@' or '.'
+            if (string.IsNullOrWhiteSpace(email) || !email.Contains("@") || !email.Contains("."))
+                return false; // Check if the email is null, empty, or does not contain '@' or '.'
+            else return true;
         }
 
-        public static void ValidatePassword(string password) // Validates the password of a user
+        public static bool ValidatePassword(string password) // Validates the password of a user
         {
             if (string.IsNullOrWhiteSpace(password) || password.Length < 6)
-                throw new ArgumentException("Password must be at least 6 characters long.");// Check if the password is null, empty, or less than 6 characters long
+                return false;// Check if the password is null, empty, or less than 6 characters long
+            else return true;
         }
 
-        public static void ValidateNationalId(string nationalId) // Validates the national ID of a user
+        public static bool ValidateNationalId(string nationalId) // Validates the national ID of a user
         {
-            if (string.IsNullOrWhiteSpace(nationalId) || nationalId.Length != 10)
-                throw new ArgumentException("National ID must be 10 digits."); // Check if the national ID is null, empty, or not exactly 10 characters long
+            if (string.IsNullOrWhiteSpace(nationalId) || nationalId.Length != 3)
+                return false; // Check if the national ID is null, empty, or not exactly 3 characters long
+
+            else return true;
         }
 
-        public static void ValidatePhoneNumber(string phoneNumber) // Validates the phone number of a user
+        public static bool ValidatePhoneNumber(string phoneNumber) // Validates the phone number of a user
         {
             if (string.IsNullOrWhiteSpace(phoneNumber) || phoneNumber.Length < 8)
-                throw new ArgumentException("Phone number must be at least 8 digits.");// Check if the phone number is null, empty, or less than 8 characters long
+                return false;// Check if the phone number is null, empty, or less than 8 characters long
+            else return true;
         }
 
-        public static void ValidateGender(string gender) // Validates the gender of a user
+        public static bool ValidateGender(string gender) // Validates the gender of a user
         {
-            if (string.IsNullOrWhiteSpace(gender))
-                throw new ArgumentException("Gender cannot be empty."); 
+            if (string.IsNullOrWhiteSpace(gender) &&
+                                         (gender.Equals("M", StringComparison.OrdinalIgnoreCase) ||
+                                          gender.Equals("F", StringComparison.OrdinalIgnoreCase)))
+            {
+                return false;
+            }
+            else {  return true; }
         }
 
-        public static void ValidateRole(string role) // Validates the role of a user
+        public static bool ValidateRole(string role) // Validates the role of a user
         {
             if (string.IsNullOrWhiteSpace(role))
-                throw new ArgumentException("Role cannot be empty."); // Check if the role is null, empty, or consists only of whitespace
+                return false; // Check if the role is null, empty, or consists only of whitespace
+            else return true;
         }
 
 

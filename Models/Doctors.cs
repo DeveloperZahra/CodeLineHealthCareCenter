@@ -27,7 +27,7 @@ namespace CodeLineHealthCareCenter.Models
         : base(name, email, password, nationalId, phoneNumber, gender, "Doctor") // Call parent User constructor
         {
             // Generate a custom doctor ID (starts with "D")
-            UserId = "D" + UserCount;
+            UserId = "D" + "," + UserCount;
 
             // Assign doctor-specific properties
             Specialty = specialization;
@@ -57,6 +57,7 @@ namespace CodeLineHealthCareCenter.Models
 
             // 3️⃣ Add the new doctor to the static list
             doctors.Add(newDoctor);
+
 
             // 4️⃣ Confirmation message
             Console.WriteLine($"✅ Doctor '{newDoctor.UserName}' added successfully with ID: {newDoctor.UserId}");

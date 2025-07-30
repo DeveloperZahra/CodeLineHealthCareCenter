@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace CodeLineHealthCareCenter
 {
     // Represents a branch of the hospital, including its details and associated floors.
-    class Branch : IBranchService
+    public class Branch : IBranchService
     {
         // 1. ============================== Class Field and Property =====================================
         public int BranchId { get; set; }// Unique identifier for the branch. 
@@ -23,7 +23,7 @@ namespace CodeLineHealthCareCenter
         public static int BranchCount = 0;// Keeps track of the total number of branches created.
 
         // A list to store all branches (acting as an in-memory database)
-        private List<Branch> branches = new List<Branch>();
+        public static List<Branch> branches = new List<Branch>();
 
 
 
