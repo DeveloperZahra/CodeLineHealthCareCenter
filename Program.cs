@@ -88,6 +88,25 @@ namespace CodeLineHealthCareCenter
                     };
                     break;
 
+                // Check if the user role is "admin"
+                case "admin":
+                    Console.Write("Branch ID: ");
+                    int branchId = int.Parse(Console.ReadLine());
+
+                    Console.Write("Department ID: ");
+                    int adminDept = int.Parse(Console.ReadLine());
+
+                    newUser = new Admin
+                    {
+                        Id = users.Count + 1,
+                        FullName = name,
+                        Email = email,
+                        Password = password,
+                        BranchId = branchId,
+                        DepartmentId = adminDept
+                    };
+                    break;
+
 
 
             }
