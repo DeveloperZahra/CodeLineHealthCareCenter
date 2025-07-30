@@ -32,7 +32,7 @@ namespace CodeLineHealthCareCenter.Utilities
                 if (!File.Exists(filePath)) // Check if the file exists
                 {
                     Console.WriteLine($"⚠️ File not found: {filePath}"); // If file does not exist, return an empty list
-                    return new List<T>();
+                    return new List<T>(); // Return an empty list if file does not exist
                 }
 
                 string jsonData = File.ReadAllText(filePath); // Read the file content
