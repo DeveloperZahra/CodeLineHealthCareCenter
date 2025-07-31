@@ -64,7 +64,7 @@ namespace CodeLineHealthCareCenter.Models
             {
                 do
                 {
-                    Console.Write("Enter Email Address: ");
+                    Console.Write("Enter Your Email: ");
                     email = Console.ReadLine();
 
                     // Validate email format using a simple regex
