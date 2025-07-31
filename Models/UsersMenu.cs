@@ -117,6 +117,7 @@ namespace CodeLineHealthCareCenter.Models
                     case "2":
                         // Placeholder action for viewing appointments
                         Console.WriteLine("📅 [Admin] View Appointments - Not implemented");
+                        Admin.AddAdmin(); // Call the method to add a new Admin user to the system
                         break;
 
                     case "0":
