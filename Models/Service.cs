@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace CodeLineHealthCareCenter
 {
-    class Service
+    public class Service 
     {
         // ===================== Static Storage for All Services =====================
         public static List<Service> Services = new List<Service>();
