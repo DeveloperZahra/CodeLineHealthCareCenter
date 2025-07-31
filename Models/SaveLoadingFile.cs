@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CodeLineHealthCareCenter.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,8 +8,14 @@ using System.Threading.Tasks;
 
 namespace CodeLineHealthCareCenter.Utilities
 {
+
+
     public static class SaveLoadingFile
     {
+
+        // files
+        public static string DoctorFile = "doctors.txt"; 
+
         // Method to save data to a file
         public static void SaveToFile<T>(List<T> dataList, string filePath)
         {
@@ -34,13 +41,13 @@ namespace CodeLineHealthCareCenter.Utilities
                         lines.Add(line); // Add each line to the list
                     }
                 }
-                Console.WriteLine($"📂 Data loaded from '{filePath}' successfully.");
+                Console.WriteLine($"📂 Data loaded from '{filePath}' successfully."); 
             }
             else
             {
-                Console.WriteLine($"⚠️ File '{filePath}' does not exist.");
+                Console.WriteLine($"⚠️ File '{filePath}' does not exist."); 
             }
-            return lines;
+            return lines; 
         }
     }
 }
