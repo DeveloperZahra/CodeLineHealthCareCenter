@@ -66,6 +66,7 @@ namespace CodeLineHealthCareCenter.Models
                     case "5":
                         // Placeholder for viewing overall system data
                         Console.WriteLine("[SuperAdmin] View System Data - Not implemented");
+                        SuperAdmin.AddSuperAdmin();// Call the method to add a new SuperAdmin user to the system
                         break;
 
                     case "0":
