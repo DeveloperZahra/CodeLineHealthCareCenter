@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace CodeLineHealthCareCenter.Models
 {
@@ -21,6 +23,7 @@ namespace CodeLineHealthCareCenter.Models
 
             // Keep showing the menu until the user chooses to go back
             while (!back)
+
             {
                 Console.Clear(); // Clear the console for a fresh display
                 // Display SuperAdmin menu options with icons
@@ -38,12 +41,16 @@ namespace CodeLineHealthCareCenter.Models
 
                 // Process the user's input using a switch statement
                 switch (input)
+
                 {
+
                     case "1":
+
                         string branchAddress = UserData.EnterAddress(); // Get the branch address from user input
                         string phoneNumber = UserData.EnterPhoneNumber(); // Get the branch phone number from user input
                         CallMethodFromBranch.AddBranch(branchAddress, phoneNumber); // Call the method to add a new branch with the provided details
                         Console.ReadLine(); // Wait for user input before continuing
+
                         break;
                         
 
@@ -52,6 +59,7 @@ namespace CodeLineHealthCareCenter.Models
                         // Placeholder for adding a new department
                         CallMethodFromDepartment.AddDepartment();
                         Console.ReadLine(); // Wait for user input before continuing
+
                         break;
 
 
@@ -68,6 +76,7 @@ namespace CodeLineHealthCareCenter.Models
                         int adminDepartmentId = UserData.EnterDepartmentId(BranchDepartment.Departments); // Get the admin department ID from user input
                         CallMethodFromAdmin.AddAdmin(adminName, adminEmail, adminPassword, adminNationalId , adminPhoneNumber, adminGender, adminBranchId, adminDepartmentId); // Call the method to add a new admin with the provided details
                         Console.ReadLine(); 
+
                         break;
                     case "4":
                         
@@ -84,6 +93,7 @@ namespace CodeLineHealthCareCenter.Models
                         string DSpecialization = UserData.EnterSpecialty(); // Get the doctor's specialization from user input
                         CallMethodFromDoctor.AddDoctor(DName, DEmail, DPassword, DNationalId, DPhoneNumber, DGender, DSpecialization, DBranchId, DDepartmentId); // Call the method to add a new doctor
                         Console.ReadLine(); // Wait for user input before continuing
+
                         break;
 
                     case "0":
@@ -140,6 +150,7 @@ namespace CodeLineHealthCareCenter.Models
                         // Placeholder for viewing appointments functionality
                         CallMethodFromBooking.GetAllBooking(); // Call the method to view all appointments
                         Console.ReadLine(); // Wait for user input before continuing
+
                         break;
 
                     case "0":
@@ -187,6 +198,7 @@ namespace CodeLineHealthCareCenter.Models
 
                         CallMethodFromBooking.GetBookingsByDoctorId(doctorId); // Call the method to get appointments for the specified doctor ID
                         Console.ReadLine(); // Wait for user input before continuing
+
                         break;
 
                     case "0":
@@ -243,6 +255,7 @@ namespace CodeLineHealthCareCenter.Models
                     case "3":
                         CallMethodFromBooking.CancelAppointment(); // Call the method to cancel the specified appointment
                         Console.ReadLine(); // Wait for user input before continuing
+
                         break;
 
                     case "0":
