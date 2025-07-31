@@ -63,6 +63,7 @@ namespace CodeLineHealthCareCenter.Models
                         string adminNationalId = UserData.EnterNationalID();// Get the admin national ID from user input
                         string adminPhoneNumber = UserData.EnterPhoneNumber(); // Get the admin phone number from user input
                         string adminGender = UserData.EnterGender(); // Get the admin gender from user input
+                        int adminBranchId = UserData.EnterBranchId(Branch.branches); // Get the admin branch ID from user input
                         CallMethodFromAdmin.AddAdmin();
                         break;
                     case "4":
