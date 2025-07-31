@@ -14,42 +14,31 @@ namespace CodeLineHealthCareCenter.Models
     public class AuthServices : IAuthService
     {
         private static User currentUser = null; // Stores the currently logged-in user
-        // Registers a new Patien (Sign Up).
+                                                // Registers a new Patien (Sign Up).
         public void SignUp()
         {
-            string name = "";
-            string email = "";
-            string nationalId = "";
-            string password = "";
-            string phone = "";
-            string gender = "";
-
             Console.WriteLine("=== SIGN UP ===");
 
-            string SuperAdminCode = "5566"; // Predefined code for Super Admin
+            // Predefined Super Admin Code
+            const string SuperAdminCode = "5566";
 
-            // object to access Super Admin methods
-            SuperAdmin CallToMethodSuperAdmin = new SuperAdmin();
-            Patient CallToMethodPatient = new Patient();
-            // Step 1: Ask user to select the type of account
+            // Ask the user to select the type of account
             Console.WriteLine("Select User Type to Sign Up:");
             Console.WriteLine("1. Super Admin");
             Console.WriteLine("2. Patient");
             Console.Write("Enter your choice (1 or 2): ");
             string choice = Console.ReadLine();
 
-            // Step 2: Super Admin Sign-Up
+            // Common input variables
+            string name, email, nationalId, phone, gender, hashedPassword;
+
+            // ========== SUPER ADMIN SIGN-UP ==========
             if (choice == "1")
             {
-                // Ask user for the Super Admin code
+                // Validate Super Admin Code
                 Console.Write("Enter Super Admin Code: ");
                 string enteredCode = Console.ReadLine();
-
-                // Validate if the entered code is a valid integer
-                int parsedCode;
-                bool isNumeric = int.TryParse(enteredCode, out parsedCode);
-
-                if (!isNumeric || parsedCode != int.Parse(SuperAdminCode))
+                if (!int.TryParse(enteredCode, out int parsedCode) || parsedCode != int.Parse(SuperAdminCode))
                 {
                     Console.WriteLine("Invalid Super Admin Code. Registration failed.");
                     return;
@@ -57,121 +46,110 @@ namespace CodeLineHealthCareCenter.Models
 
                 Console.WriteLine("Super Admin Code is valid. Proceeding with registration...");
 
-                // Collect user input data
+                // Get Name
                 name = UserData.EnterUserName();
-                if (name == "null")
-                {
-                    Console.ReadLine();
-                    return;
-                }
-                else
-                {
+                if (name == "null") return;
 
+                // Get Email (Ensure uniqueness)
+                do
+                {
                     email = UserData.EnterUserEmail();
-                    if (email == "null")
-                    {
-                        Console.ReadLine();
-                        return;
+                    if (email == "null") return;
 
-                    }
+                    if (!UserValidator.IsEmailUnique(email))
+                        Console.WriteLine("This email is already registered. Please try a different email.");
                     else
-                    {
-                        nationalId = UserData.EnterNationalID();
-                        if (nationalId == "null")
-                        {
-                            Console.ReadLine();
-                            return;
+                        break;
 
-                        }
-                        else if (SuperAdmin.SuperAdmins.Any(sa => sa.NationalID.Equals(nationalId, StringComparison.OrdinalIgnoreCase)))
-                        {
-                            Console.WriteLine("National ID already registered as Super Admin. It Should be uniq");
-                            return;
-                        }
-                        else
-                        {
-                            phone = UserData.EnterPhoneNumber();
-                            if (phone == "null")
-                            {
-                                Console.ReadLine();
-                                return;
-                            }
-                            else
-                            {
-                                gender = UserData.EnterGender();
-                                if (gender == "null")
-                                {
-                                    Console.ReadLine();
-                                    return;
-                                }
-                                else
-                                {
-                                    //bool isActive = UserData.EnterIsActive();
-                                    string hashedPassword = UserData.EnterPasswordForSignUp();
-                                    if (hashedPassword == "null")
-                                    {
-                                        Console.ReadLine();
-                                        return;
-                                    }
-                                    else if (SuperAdmin.SuperAdmins.Any(sa => sa.Password.Equals(hashedPassword, StringComparison.OrdinalIgnoreCase)))
-                                    {
-                                        Console.WriteLine("Email already registered as Super Admin. Please sign in.");
-                                        return;
-                                    }
-                                    else
-                                    {
-                                       
-                                        CallToMethodSuperAdmin.AddSuperAdmin(name, email, hashedPassword, nationalId, phone, gender);
-                                        Console.WriteLine($"Super Admin '{name}' registered successfully!");
-                                        Console.ReadLine();
-                                        
-                                    }
-                                }
+                } while (true);
 
-                            }
-                        }
-
-                    }
-                }
-                // Check if email already exists in SuperAdmin list
-                if (SuperAdmin.SuperAdmins.Any(sa => sa.Email.Equals(email, StringComparison.OrdinalIgnoreCase)))
+                // Get National ID (Ensure uniqueness)
+                do
                 {
-                    Console.WriteLine("Email already registered as Super Admin. Please sign in.");
-                    return;
-                }
-             
+                    nationalId = UserData.EnterNationalID();
+                    if (nationalId == "null") return;
+
+                    if (!UserValidator.IsNationalIdUnique(nationalId))
+                        Console.WriteLine("This National ID is already registered. Please try a different one.");
+                    else
+                        break;
+
+                } while (true);
+
+                // Get other details
+                phone = UserData.EnterPhoneNumber();
+                if (phone == "null") return;
+
+                gender = UserData.EnterGender();
+                if (gender == "null") return;
+
+                hashedPassword = UserData.EnterPasswordForSignUp();
+                if (hashedPassword == "null") return;
+
+                // Create new Super Admin and add to list
+                SuperAdmin newSuperAdmin = new SuperAdmin(name, email, hashedPassword, nationalId, phone, gender);
+                SuperAdmin.SuperAdmins.Add(newSuperAdmin);
+
+                Console.WriteLine($"Super Admin '{name}' registered successfully!");
             }
 
-            // Step 3: Patient Sign-Up
-            //else if (choice == "2")
-            //{
-            //    // Collect user input data
-            //    string name = UserData.EnterUserName();
-            //    string email = UserData.EnterUserEmail();
-            //    string nationalId = UserData.EnterNationalID();
-            //    string phone = UserData.EnterPhoneNumber();
-            //    string gender = UserData.EnterGender();
-            //    //bool isActive = UserData.EnterIsActive();
-            //    string hashedPassword = UserData.EnterPasswordForSignUp();
-            //    DateTime dateOfBirth = UserData.EnterDateOfBirth();
+            // ========== PATIENT SIGN-UP ==========
+            else if (choice == "2")
+            {
+                // Get Name
+                name = UserData.EnterUserName();
+                if (name == "null") return;
 
-            //    // Check if email already exists in Patients list
-            //    if (Patient.patients.Any(p => p.Email.Equals(email, StringComparison.OrdinalIgnoreCase)))
-            //    {
-            //        Console.WriteLine("Email already registered as Patient. Please sign in.");
-            //        return;
-            //    }
+                // Get Email (Ensure uniqueness)
+                do
+                {
+                    email = UserData.EnterUserEmail();
+                    if (email == "null") return;
 
-            //    CallToMethodPatient.AddPatient(name, dateOfBirth, email, hashedPassword, nationalId, phone, gender);
-            //    Console.WriteLine($"Super Patient '{name}' registered successfully!");
-            //    Console.ReadLine();
+                    if (!UserValidator.IsEmailUnique(email))
+                        Console.WriteLine("This email is already registered. Please try a different email.");
+                    else
+                        break;
 
-            //}
+                } while (true);
+
+                // Get National ID (Ensure uniqueness)
+                do
+                {
+                    nationalId = UserData.EnterNationalID();
+                    if (nationalId == "null") return;
+
+                    if (!UserValidator.IsNationalIdUnique(nationalId))
+                        Console.WriteLine("This National ID is already registered. Please try a different one.");
+                    else
+                        break;
+
+                } while (true);
+
+                // Get other details
+                phone = UserData.EnterPhoneNumber();
+                if (phone == "null") return;
+
+                gender = UserData.EnterGender();
+                if (gender == "null") return;
+
+                hashedPassword = UserData.EnterPasswordForSignUp();
+                if (hashedPassword == "null") return;
+
+                DateTime dateOfBirth = UserData.EnterDateOfBirth();
+
+                // Create new Patient and add to list
+                Patient newPatient = new Patient(name, dateOfBirth, email, hashedPassword, nationalId, phone, gender);
+                Patient.patients.Add(newPatient);
+
+                Console.WriteLine($"Patient '{name}' registered successfully!");
+            }
             else
             {
                 Console.WriteLine("Invalid choice. Please try again.");
             }
         }
+
 
 
 
@@ -196,7 +174,8 @@ namespace CodeLineHealthCareCenter.Models
 
             if (foundUser == null)
             {
-                Console.WriteLine("❌ Email not found. Please Sign Up first.");
+                Console.WriteLine("Email not found. Please Sign Up first.");
+                Console.ReadLine();
                 return;
             }
 
@@ -210,12 +189,13 @@ namespace CodeLineHealthCareCenter.Models
 
                 if (HashPassw == foundUser.Password)
                 {
-                    Console.WriteLine($"\n✅ Welcome, {foundUser.UserName}! You are logged in as {foundUser.Role}.");
+                    Console.WriteLine($"\nWelcome, {foundUser.UserName}! You are logged in as {foundUser.Role}.");
                     SetCurrentUser(foundUser);
                     switch (foundUser.Role)
                     {
                         case "Super Admin":
                             Console.WriteLine(" =============== Welcome to Super Admin Menu ================");
+                            Console.ReadLine();
                             //SuperAdminMenu(foundUser);
                             break;
                         case "Admin":
@@ -236,7 +216,7 @@ namespace CodeLineHealthCareCenter.Models
                 else
                 {
                     tries++;
-                    Console.WriteLine($"\n❌ Incorrect password. Attempts left: {3 - tries}");
+                    Console.WriteLine($"\nIncorrect password. Attempts left: {3 - tries}");
                 }
             }
 
