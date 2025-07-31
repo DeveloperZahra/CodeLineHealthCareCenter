@@ -25,6 +25,12 @@ namespace CodeLineHealthCareCenter
 
 
         //3. ======================================== Class Constructor ========================================
+        public Department() // Default constructor
+        {
+            counter++;
+            DepartmentId = counter;
+            DepartmentName = "Default Department"; // Default name for the department
+        }
         public Department(string name) // Constructor to initialize a new department with a name
         {
             counter++;
