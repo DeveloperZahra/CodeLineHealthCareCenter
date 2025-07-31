@@ -1,4 +1,5 @@
-﻿using HospitalSystemTeamTask.Services;
+﻿using CodeLineHealthCareCenter.Models;
+using HospitalSystemTeamTask.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,9 @@ namespace CodeLineHealthCareCenter
 
 
         //2. Class Lists 
-        private List<Department> departments = new List<Department>();
+        // public static List<Department> departments = new List<Department>();'
+        public List<Clinic> Clinics { get; set; } = new List<Clinic>();
+
 
 
         //3. ======================================== Class Constructor ========================================
@@ -35,7 +38,7 @@ namespace CodeLineHealthCareCenter
             string name = Console.ReadLine();
 
             Department newDept = new Department(name);
-            departments.Add(newDept);
+            BranchDepartment.Departments.Add(newDept);
 
             Console.WriteLine($"Department '{newDept.DepartmentName}' created successfully!");
         }
@@ -43,14 +46,14 @@ namespace CodeLineHealthCareCenter
         // 4.2 Displays all departments stored in the list
         public void GetAllDepartments()
         {
-            if (departments.Count == 0)
+            if (BranchDepartment.Departments.Count == 0)
             {
                 Console.WriteLine("No departments found.");
                 return;
             }
 
             Console.WriteLine("List of Departments:");
-            foreach (var dept in departments)
+            foreach (var dept in BranchDepartment.Departments)
             {
                 Console.WriteLine($"ID: {dept.DepartmentId}, Name: {dept.DepartmentName}");
             }
@@ -59,7 +62,7 @@ namespace CodeLineHealthCareCenter
         //4.3 Updates an existing department's details.
         public void UpdateDepartment(int branchId, int departmentId)
         {
-            Department dept = departments.FirstOrDefault(d => d.DepartmentId == departmentId);
+            Department dept = BranchDepartment.Departments.FirstOrDefault(d => d.DepartmentId == departmentId);
 
             if (dept != null)
             {
@@ -76,7 +79,7 @@ namespace CodeLineHealthCareCenter
         //4.4 Changes the active status of a department.
         public void SetDepartmentActiveStatus(int departmentId, bool isActive)
         {
-            Department dept = departments.FirstOrDefault(d => d.DepartmentId == departmentId);
+            Department dept = BranchDepartment.Departments.FirstOrDefault(d => d.DepartmentId == departmentId);
             if (dept != null)
             {
                 string status = isActive ? "Active" : "Inactive";
@@ -90,7 +93,7 @@ namespace CodeLineHealthCareCenter
         //4.5 Finds and displays a department by its name.
         public void GetDepartmentByName(string departmentName)
         {
-            Department dept = departments.FirstOrDefault(d => d.DepartmentName.Equals(departmentName, StringComparison.OrdinalIgnoreCase));
+            Department dept = BranchDepartment.Departments.FirstOrDefault(d => d.DepartmentName.Equals(departmentName, StringComparison.OrdinalIgnoreCase));
             if (dept != null)
                 Console.WriteLine($"Department Found: ID={dept.DepartmentId}, Department Name ={dept.DepartmentName}");
             else
@@ -99,7 +102,7 @@ namespace CodeLineHealthCareCenter
         //4.6 Finds and displays a department by its ID.
         public void GetDepartmentByid(int departmentId)
         {
-            Department dept = departments.FirstOrDefault(d => d.DepartmentId == departmentId);
+            Department dept = BranchDepartment.Departments.FirstOrDefault(d => d.DepartmentId == departmentId);
             if (dept != null)
                 Console.WriteLine($"Department Found: Name={dept.DepartmentName}");
             else
@@ -109,7 +112,7 @@ namespace CodeLineHealthCareCenter
         //4.7 Returns the name of a department by its ID.
         public string GetDepartmentName(int departmentId)
         {
-            Department dept = departments.FirstOrDefault(d => d.DepartmentId == departmentId);
+            Department dept = BranchDepartment.Departments.FirstOrDefault(d => d.DepartmentId == departmentId);
             if (dept != null)
             {
                 return dept.DepartmentName;

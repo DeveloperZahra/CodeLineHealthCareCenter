@@ -1,20 +1,24 @@
-﻿using HospitalSystemTeamTask.DTO_s;
-using HospitalSystemTeamTask.Models;
+﻿//using HospitalSystemTeamTask.DTO_s;
+using HospitalSystemTeamTask.Services;
+using CodeLineHealthCareCenter.Models;
+
+
 
 namespace HospitalSystemTeamTask.Services
 {
     public interface IClinicService
     {
-        void AddClinic(ClinicInput input);
-        IEnumerable<Clinic> GetAllClinic();
-        IEnumerable<Clinic> GetClinicByBranchDep(int bid, int depid);
-        Clinic GetClinicById(int clinicId);
-        Clinic GetClinicByName(string clinicName);
-        string GetClinicName(int cid);
-        IEnumerable<Clinic> GetClinicsByBranchName(string branchName);
-        IEnumerable<Clinic> GetClinicsByDepartmentId(int departmentId);
-        decimal GetPrice(int clinicId);
-        void SetClinicStatus(int clinicId);
-        void UpdateClinicDetails(int CID, ClinicInput input);
+        void AddClinic(string clinicName, string location);
+        void GetAllClinics();
+        void GetClinicById(int clinicId);
+        void GetClinicByBranchDep(int branchId, int departmentId);
+        void GetClinicByName(string clinicName);
+        void GetClinicName(int clinicId);
+        void GetClinicByBranchName(string branchName);
+        void GetClinicByDepartmentId(int departmentId);
+        void GetPrice(int clinicId);
+        void SetClinicStatus(int clinicId, bool isActive);
+        void UpdateClinicDetails(int clinicId, string clinicName, string location, decimal price);
+        void DeleteClinic(int clinicId);
     }
 }
