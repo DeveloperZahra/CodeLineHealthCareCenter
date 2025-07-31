@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CodeLineHealthCareCenter.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,8 +30,8 @@ namespace CodeLineHealthCareCenter
             Console.Write("Enter service name: "); // Prompt user for service name
             string name = Console.ReadLine();
 
-            Console.Write("Enter service description: "); // Prompt user for service description
-            string description = Console.ReadLine();
+            Console.Write("Enter Clinic  Id: "); // Prompt user for  Clinic  Id
+            int clinicId = int.Parse(Console.ReadLine());
 
             Console.Write("Enter service price: "); // Prompt user for service price
             if (!decimal.TryParse(Console.ReadLine(), out decimal price))
@@ -38,6 +39,15 @@ namespace CodeLineHealthCareCenter
                 Console.WriteLine(" Invalid price entered.");
                 return;
             }
+
+            // Create and add the new service
+            var newService = new Service
+            {
+                ServiceId = department.Services.Count + 1, // auto-increment id
+                ServiceName = name,
+                ClinicId = clinicId,
+                Price = price
+            };
 
         }
         // 1. Get all departments
