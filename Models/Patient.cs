@@ -38,7 +38,7 @@ namespace CodeLineHealthCareCenter
         //4. ================================================ Patients Methods ===================================
         /// implement method in IPatientServices Interface
         // 4.1 Adds a new patient to the system.
-        public void AddPatient(string name, DateTime dateOfBirth, string email, string password, string nationalId, string phoneNumber, string gender, string city)
+        public void AddPatient(string name, DateTime dateOfBirth, string email, string password, string nationalId, string phoneNumber, string gender)
         {
             // Check if patient with the same email already exists
             bool exists = patients.Exists(p => p.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
