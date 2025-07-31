@@ -29,6 +29,9 @@ namespace CodeLineHealthCareCenter
             Console.Write("Enter service name: "); // Prompt user for service name
             string name = Console.ReadLine();
 
+            Console.Write("Enter service description: "); // Prompt user for service description
+            string description = Console.ReadLine();
+
         }
         // 1. Get all departments
         public void GetAllDepartments()
