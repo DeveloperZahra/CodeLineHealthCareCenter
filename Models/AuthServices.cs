@@ -23,6 +23,7 @@ namespace CodeLineHealthCareCenter.Models
 
             // object to access Super Admin methods
             SuperAdmin CallToMethodSuperAdmin = new SuperAdmin();
+            Patient CallToMethodPatient = new Patient();
             // Step 1: Ask user to select the type of account
             Console.WriteLine("Select User Type to Sign Up:");
             Console.WriteLine("1. Super Admin");
@@ -79,7 +80,7 @@ namespace CodeLineHealthCareCenter.Models
                 string nationalId = UserData.EnterNationalID();
                 string phone = UserData.EnterPhoneNumber();
                 string gender = UserData.EnterGender();
-                bool isActive = UserData.EnterIsActive();
+                //bool isActive = UserData.EnterIsActive();
                 string hashedPassword = UserData.EnterPasswordForSignUp();
                 DateTime dateOfBirth = UserData.EnterDateOfBirth();
 
@@ -90,15 +91,10 @@ namespace CodeLineHealthCareCenter.Models
                     return;
                 }
 
-                // Create a new Patient object
-                Patient newPatient = new Patient(name, dateOfBirth, email, hashedPassword, nationalId, phone, gender)
-                {
-                    IsActive = isActive
-                };
+                CallToMethodPatient.AddPatient(name, dateOfBirth, email, hashedPassword, nationalId, phone, gender);
+                Console.WriteLine($"Super Patient '{name}' registered successfully!");
+                Console.ReadLine();
 
-                // Add to list
-                Patient.patients.Add(newPatient);
-                Console.WriteLine($"Patient '{newPatient.UserName}' registered successfully!");
             }
             else
             {
