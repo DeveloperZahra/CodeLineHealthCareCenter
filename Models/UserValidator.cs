@@ -86,6 +86,14 @@ namespace CodeLineHealthCareCenter
                 }
 
             } while (IntFlag);
+            if (IntFlag)
+            {
+                Console.WriteLine($"{message} not accepted, please try again.");
+                Console.ReadLine();
+                IntInput = -1; // return -1 to indicate an error
+                return IntInput; // Exit the method if input is invalid
+            } 
+           
             //to return tne char input ...
             return IntInput;
         }
