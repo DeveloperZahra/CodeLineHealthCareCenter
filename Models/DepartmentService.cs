@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CodeLineHealthCareCenter.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,42 @@ namespace CodeLineHealthCareCenter
             this.departments = departments;
         }
 
+        // 0. Add a new service to an existing department
+        public void AddServiceToDepartment(int departmentId)
+        {
+            var department = departments.FirstOrDefault(d => d.DepartmentId == departmentId); // Find the department by ID
+            if (department == null)
+            {
+                Console.WriteLine(" Department not found.");
+                return;
+            }
+            Console.Write("Enter service name: "); // Prompt user for service name
+            string name = Console.ReadLine();
 
+            Console.Write("Enter Clinic  Id: "); // Prompt user for  Clinic  Id
+            int clinicId = int.Parse(Console.ReadLine());
+
+            Console.Write("Enter service price: "); // Prompt user for service price
+            if (!decimal.TryParse(Console.ReadLine(), out decimal price))
+            {
+                Console.WriteLine(" Invalid price entered.");
+                return;
+            }
+
+            // Create and add the new service
+            var newService = new Service
+            {
+                ServiceId = department.Services.Count + 1, // auto-increment id
+                ServiceName = name,
+                ClinicId = clinicId,
+                Price = price
+            };
+
+            department.Services.Add(newService); // Add the new service to the department's service list
+            Console.WriteLine(" Service added successfully to department.");
+        }
+
+        
         // 1. Get all departments
         public void GetAllDepartments()
         {

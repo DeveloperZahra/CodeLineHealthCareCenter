@@ -6,6 +6,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using CodeLineHealthCareCenter.Models;
+using CodeLineHealthCareCenter.Utilities;
 
 
 namespace CodeLineHealthCareCenter.Models
@@ -52,6 +53,8 @@ namespace CodeLineHealthCareCenter.Models
 
             // 3️⃣ Add the new admin to the static list
             Admins.Add(newAdmin);
+
+            SaveLoadingFile.SaveToFile(Admins, SaveLoadingFile.AdminFile); // Save the updated list to file
 
             // 4️⃣ Confirmation message
             Console.WriteLine($"✅ Admin '{newAdmin.UserName}' added successfully with ID: {newAdmin.UserId}");
