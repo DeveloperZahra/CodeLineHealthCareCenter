@@ -4,9 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CodeLineHealthCareCenter
@@ -42,6 +44,28 @@ namespace CodeLineHealthCareCenter
             }
         }
         // 4============== Constructor ==============
+        /// Default constructor initializes a user with default values.
+        public User()
+        {
+            // Increment the global user counter to generate a unique ID
+            UserCount++;
+
+            // Assign a default unique ID
+            UserId = "U" + "," + UserCount;
+
+            // Assign default values (يمكنك تعديلها حسب احتياجك)
+            UserName = "Default Name";
+            Email = "default@example.com";
+            Password = "Default123"; // سيُمرر عبر خاصية Password وبالتالي يتم التحقق من صحته
+            NationalID = "0000000000";
+            PhoneNumber = "0000000000";
+            Gender = "Unknown";
+            Role = "Guest";
+
+            // By default, the account is active
+            IsActive = true;
+        }
+
         public User(string name, string email, string password, string nationalId, string phoneNumber, string gender, string role)
         {
             // Increment the global user counter to generate a unique ID
