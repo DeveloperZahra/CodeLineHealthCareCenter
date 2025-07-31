@@ -252,7 +252,7 @@ namespace CodeLineHealthCareCenter.Models
 
                     default:
                         // Handle invalid input that doesn't match any case
-                        Console.WriteLine("❌ Invalid choice.");
+                        Console.WriteLine("Invalid choice.");
                         break;
                 }
             }
