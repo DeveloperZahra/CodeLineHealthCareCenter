@@ -220,6 +220,20 @@ namespace CodeLineHealthCareCenter.Models
 
             Console.WriteLine($"New appointment scheduled successfully. Booking ID: {newBooking.BookingId}");
         }
+        // 5.11 Get all bookings for a specific doctor
+        public void GetBookingsByDoctorId(int doctorId)
+        {
+            var doctorBookings = Bookings.Where(b => b.DoctorId == doctorId).ToList();
+            if (doctorBookings.Count == 0)
+            {
+                Console.WriteLine("No bookings found for this doctor.");
+                return;
+            }
+            foreach (var booking in doctorBookings)
+            {
+                DisplayBookingDetails(booking);
+            }
+        }
 
         // ========================== Helper Methods ==========================
 
