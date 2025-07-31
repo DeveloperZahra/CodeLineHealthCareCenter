@@ -26,8 +26,10 @@ namespace CodeLineHealthCareCenter
                 Console.WriteLine("❌ Department not found.");
                 return;
             }
+            Console.Write("Enter service name: "); // Prompt user for service name
+            string name = Console.ReadLine();
 
-
+        }
         // 1. Get all departments
         public void GetAllDepartments()
         {
