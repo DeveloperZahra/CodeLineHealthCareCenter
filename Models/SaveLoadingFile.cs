@@ -26,6 +26,7 @@ namespace CodeLineHealthCareCenter.Utilities
         public static string BranchDepartmentFile = "branchDepartments.txt"; 
         public static string AdminFile = "Admin.txt";
         public static string ServiceFile = "Service.txt";
+        public static string DepartmentServiceFile = "DepartmentService.txt"; 
 
         // Method to save data to a file
         public static void SaveToFile<T>(List<T> dataList, string filePath)

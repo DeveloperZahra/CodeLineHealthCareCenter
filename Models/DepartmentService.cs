@@ -18,6 +18,8 @@ namespace CodeLineHealthCareCenter
         }
 
 
+
+
         // 1. Get all departments
         public void GetAllDepartments()
         {
