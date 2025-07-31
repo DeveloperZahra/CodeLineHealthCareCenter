@@ -1,14 +1,19 @@
-﻿//using HospitalSystemTeamTask.DTO_s;
-//using HospitalSystemTeamTask.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-//namespace HospitalSystemTeamTask.Services
-//{
-//    public interface IPatientRecordService
-//    {
-//        IEnumerable<PatientRecordOutput> GetAllRecords();
-//        void CreateRecord(PatientRecordInputDTO record, int doctorId);
-//        void UpdateRecord(int rid, string? treatment, string? inspection, int doctorId);
-//        void DeleteRecord(int rid);
-//        public IEnumerable<PatientRecordOutput> GetRecords(int patientId);
-//    }
-//}
+namespace CodelineHealthCareCenter.Services
+{
+    interface IPatientRecordService
+    {
+        void AddPatientRecord(int patientId, string recordDetails);
+        void UpdatePatientRecord(int recordId, string newDetails);
+        void DeletePatientRecord(int recordId);
+        void GetPatientRecordById(int recordId);
+        void GetAllPatientRecords();
+        void GetRecordsByPatientId(int patientId);
+        void GetRecordsByClinicIdAndDate(int clinicId, DateTime date);
+    }
+}
