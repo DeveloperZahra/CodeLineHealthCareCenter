@@ -62,6 +62,7 @@ namespace CodeLineHealthCareCenter.Models
                         string adminPassword = UserData.EnterPasswordForSignUp(); // Get the admin password from user input
                         string adminNationalId = UserData.EnterNationalID();// Get the admin national ID from user input
                         string adminPhoneNumber = UserData.EnterPhoneNumber(); // Get the admin phone number from user input
+                        string adminGender = UserData.EnterGender(); // Get the admin gender from user input
                         CallMethodFromAdmin.AddAdmin();
                         break;
                     case "4":
