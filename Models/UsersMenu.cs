@@ -229,7 +229,7 @@ namespace CodeLineHealthCareCenter.Models
                 switch (input)
                 {
                     case "1":
-                        CallMethodFromBooking.BookAppointment(); // Call the method to book a new appointment
+                        CallMethodFromBooking.BookAppointment(); // Call the method to book a new appointment 
                         Console.ReadLine(); // Wait for user input before continuing
                         break;
 
