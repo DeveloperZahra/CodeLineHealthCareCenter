@@ -111,6 +111,7 @@ namespace CodeLineHealthCareCenter.Models
                     case "1":
                         // Placeholder action for adding a clinic
                         Console.WriteLine("🏥 [Admin] Add Clinic - Not implemented");
+                        Admin.AddAdmin(); // Call the method to add a new Admin user to the system
                         break;
 
                     case "2":
