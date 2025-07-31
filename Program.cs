@@ -12,18 +12,19 @@ namespace CodeLineHealthCareCenter
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            ShowWelcomeScreen();
         }
 
         // Displays the main welcome screen with SignUp, SignIn, and Exit options
         static void ShowWelcomeScreen()
         {
+            bool isRunning = true;
             // while loop to display wellcome screen every true value untill user enter 0 value to exist from loop 
-            while (true)
+            while (isRunning)
             {
                 Console.Clear();
                 Console.WriteLine("==================================");
-                Console.WriteLine("  🏥 Welcome to Hospital System 🏥   ");
+                Console.WriteLine(" Welcome to Hospital System ");
                 Console.WriteLine("==================================");
                 Console.WriteLine("1. Sign Up");
                 Console.WriteLine("2. Sign In");
@@ -35,13 +36,16 @@ namespace CodeLineHealthCareCenter
                 switch (Console.ReadKey(true).KeyChar)
                 {
                     case '1':
-                        SignUp();
+                        Console.WriteLine("============= SignUp ====================");
+                        //SignUp();
                         break;
                     case '2':
-                        SignIn();
+                        Console.WriteLine("============= SignIp ====================");
+                        //SignIn();
                         break;
                     case '0':
                         Console.WriteLine("Thank you for using the system!");
+                        isRunning = false; // Exit the loop
                         return;
                     default:
                         //ShowError("Invalid choice! Please try again.");
@@ -50,23 +54,6 @@ namespace CodeLineHealthCareCenter
 
             }
         }
-
-        // Create sign up Class 
-        static void SignUp()
-
-        {
-           
-            Console.WriteLine("=== Sign Up====");
-
-
-            }
-
-        // Create Sign In Class
-        static void SignIn()
-        {
-            Console.WriteLine("Wellcome To SignIn....");
-        }
-
        
     }
 }

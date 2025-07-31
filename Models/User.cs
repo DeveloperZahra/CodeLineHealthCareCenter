@@ -48,7 +48,7 @@ namespace CodeLineHealthCareCenter
             UserCount++;
 
             // Assign a unique ID (can be customized later in child classes)
-            UserId = "U" + UserCount;
+            UserId = "U" + "," + UserCount;
 
             // Assign values to properties
             UserName = name;

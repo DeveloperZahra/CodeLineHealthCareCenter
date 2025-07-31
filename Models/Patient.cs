@@ -18,10 +18,10 @@ namespace CodeLineHealthCareCenter
         public static List<Patient> patients = new List<Patient>();
 
         // 3. ====================== Constructor ========================================
-        public Patient(string name, DateTime dateOfBirth, string email, string password, string nationalId, string phoneNumber, string gender, string city)
+        public Patient(string name, DateTime dateOfBirth, string email, string password, string nationalId, string phoneNumber, string gender)
         : base(name, email, password, nationalId, phoneNumber, gender, "Patient")
         {
-            UserId = "P" + UserCount; // Override default ID format for patients
+            UserId = "P" + "," + UserCount; // Override default ID format for patients
             DateOfBirth = dateOfBirth;
         }
 
@@ -40,7 +40,7 @@ namespace CodeLineHealthCareCenter
             }
 
             // Create a new Patient object
-            Patient newPatient = new Patient(name, dateOfBirth, email, password, nationalId, phoneNumber, gender, city);
+            Patient newPatient = new Patient(name, dateOfBirth, email, password, nationalId, phoneNumber, gender);
 
             // Add to the static list
             patients.Add(newPatient);

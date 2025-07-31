@@ -1,79 +1,60 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 
 namespace CodeLineHealthCareCenter
 {
     class Service
     {
-        protected List<Department> departments = new List<Department>(); // List to store departments
+        // ===================== Static Storage for All Services =====================
+        public static List<Service> Services = new List<Service>();
 
-        public Service(List<Department> departments) // Constructor to initialize the service with a list of departments
+        // ===================== Properties =====================
+        public int ServiceId { get; set; }       // Unique ID for the service
+        public string ServiceName { get; set; }  // Name of the service
+        public int ClinicId { get; set; }        // The clinic this service belongs to
+        public decimal Price { get; set; }       // Price of the service
+
+        // ===================== Constructors =====================
+        public Service(int serviceId, string serviceName, int clinicId, decimal price)
         {
-            this.departments = departments; // Initialize the service with the provided list of departments
+            ServiceId = serviceId;
+            ServiceName = serviceName;
+            ClinicId = clinicId;
+            Price = price;
         }
 
-        public virtual void Add(Department department) 
+        // Default constructor for flexibility
+        public Service() { }
+
+        // ===================== Methods =====================
+
+        // Add a new service
+        public static void AddService(Service service)
         {
-            departments.Add(department); 
-            Console.WriteLine(" Department added successfully.");
+            Services.Add(service);
+            Console.WriteLine($"Service '{service.ServiceName}' added successfully.");
         }
 
-
-        protected List<Service> services = new List<Service>(); // List to store services
-
-        // Add a new service to the list
-        public virtual void Add(Service service)
+        // Remove a service by ID
+        public static bool RemoveService(int serviceId)
         {
-            services.Add(service); // Add the service to the list
-            Console.WriteLine(" Service added successfully."); 
-        }
-
-        // Get all services
-        public virtual List<Service> GetAll()
-        {
-            return services;
-        }
-
-        // Find service based on a matching condition
-        public virtual Service GetBy(Predicate<Service> match)
-        {
-            return services.Find(match); // Find the first service that matches the condition
-        }
-
-        // Remove service based on a matching condition
-        public virtual bool Remove(Predicate<Service> match)
-        {
-            var service = services.Find(match); // Find the first service that matches the condition
+            var service = Services.FirstOrDefault(s => s.ServiceId == serviceId);
             if (service != null)
             {
-                services.Remove(service); // Remove the service from the list
-                Console.WriteLine(" Service removed.");
+                Services.Remove(service);
+                Console.WriteLine("Service removed successfully.");
                 return true;
             }
-            Console.WriteLine(" Service not found.");
+
+            Console.WriteLine("Service not found.");
             return false;
         }
 
-        // Print all services using a custom action
-        public virtual void PrintAll(Action<Service> printAction)
+        // Get all services for a specific clinic
+        public static List<Service> GetServicesByClinicId(int clinicId)
         {
-            if (services.Count == 0) 
-            {
-                Console.WriteLine(" No services found.");
-                return;
-            }
-
-            foreach (var service in services) 
-            {
-                printAction(service); // Call the provided action to print each service
-            }
+            return Services.Where(s => s.ClinicId == clinicId).ToList();
         }
-
-
-
     }
 }

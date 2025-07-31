@@ -21,7 +21,7 @@ namespace CodeLineHealthCareCenter
         : base(name, email, password, nationalId, phoneNumber, gender, "Super Admin") // Call parent User constructor
         {
             // Generate a custom SuperAdmin ID (starts with "SA")
-            UserId = "SA" + UserCount;
+            UserId = "SA" + "," + UserCount;
 
             // SuperAdmin accounts are active by default
             IsActive = true;
