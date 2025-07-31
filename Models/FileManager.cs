@@ -58,7 +58,23 @@ namespace CodeLineHealthCareCenter.Utilities
             SaveDataToFile(Booking.Bookings, "bookings.json");
             SaveDataToFile(Service.Services, "services.json");
 
-            Console.WriteLine("✅ All data saved successfully.");
+            Console.WriteLine("All data saved successfully.");
+        }
+        // Load all data from their respective files
+        public static void LoadAllData()
+        {
+            Patient.patients = LoadDataFromFile<Patient>("patients.json");
+            Doctor.doctors = LoadDataFromFile<Doctor>("doctors.json");
+            SuperAdmin.SuperAdmins = LoadDataFromFile<SuperAdmin>("superadmins.json");
+            Admin.Admins = LoadDataFromFile<Admin>("admins.json");
+            Branch.branches = LoadDataFromFile<Branch>("branches.json");
+            BranchDepartment.Departments = LoadDataFromFile<Department>("departments.json");
+            BranchDepartment.branchDepartments = LoadDataFromFile<BranchDepartment>("branchdepartments.json");
+            Clinic.Clinics = LoadDataFromFile<Clinic>("clinics.json");
+            Booking.Bookings = LoadDataFromFile<Booking>("bookings.json");
+            Service.Services = LoadDataFromFile<Service>("services.json");
+
+            Console.WriteLine("All data loaded successfully.");
         }
     }
 }
