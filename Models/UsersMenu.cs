@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace CodeLineHealthCareCenter.Models
 {
@@ -16,6 +18,9 @@ namespace CodeLineHealthCareCenter.Models
 
             // Keep showing the menu until the user chooses to go back
             while (!back)
+
+              
+            
             {
                 Console.Clear(); // Clear the console for a fresh display
                 // Display SuperAdmin menu options with icons
@@ -33,10 +38,13 @@ namespace CodeLineHealthCareCenter.Models
 
                 // Process the user's input using a switch statement
                 switch (input)
+
                 {
+
                     case "1":
                         // Placeholder for adding a new branch
                         Console.WriteLine("[SuperAdmin] Add Branch - Not implemented");
+                        SuperAdmin.AddSuperAdmin();
                         break;
                         
 
@@ -44,6 +52,7 @@ namespace CodeLineHealthCareCenter.Models
                     case "2":
                         // Placeholder for adding a new department
                         Console.WriteLine("[SuperAdmin] Add Department - Not implemented");
+
                         break;
 
 
