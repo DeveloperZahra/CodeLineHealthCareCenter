@@ -22,7 +22,7 @@ namespace CodeLineHealthCareCenter
         public Patient(string name, DateTime dateOfBirth, string email, string password, string nationalId, string phoneNumber, string gender)
         : base(name, email, password, nationalId, phoneNumber, gender, "Patient")
         {
-            UserId = "P" + "," + UserCount; // Override default ID format for patients
+            UserId = UserCount; // Override default ID format for patients
             DateOfBirth = dateOfBirth;
         }
 

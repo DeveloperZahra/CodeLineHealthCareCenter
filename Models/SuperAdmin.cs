@@ -22,7 +22,7 @@ namespace CodeLineHealthCareCenter
         : base(name, email, password, nationalId, phoneNumber, gender, "Super Admin") // Call parent User constructor
         {
             // Generate a custom SuperAdmin ID (starts with "SA")
-            UserId = "SA" + "," + UserCount;
+            UserId = UserCount;
 
             // SuperAdmin accounts are active by default
             IsActive = true;
@@ -38,7 +38,7 @@ namespace CodeLineHealthCareCenter
             bool exists = SuperAdmins.Exists(sa => sa.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
             if (exists)
             {
-                Console.WriteLine("❌ Super Admin with this email already exists!");
+                Console.WriteLine("Super Admin with this email already exists!");
                 return;
             }
 
@@ -50,7 +50,7 @@ namespace CodeLineHealthCareCenter
 
             SaveLoadingFile.SaveToFile(SuperAdmins, SaveLoadingFile.SuperAdminFile); // Save to file
 
-            Console.WriteLine($"✅ Super Admin '{newSuperAdmin.UserName}' added successfully with ID: {newSuperAdmin.UserId}");
+            Console.WriteLine($"Super Admin '{newSuperAdmin.UserName}' added successfully with ID: {newSuperAdmin.UserId}");
         }
 
 
