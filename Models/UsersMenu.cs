@@ -48,7 +48,7 @@ namespace CodeLineHealthCareCenter.Models
 
                     case "2":
                         // Placeholder for adding a new department
-                        AddDepartment();
+                        CallMethodFromDepartment.AddDepartment();
                         Console.ReadLine(); // Wait for user input before continuing
                         break;
 
