@@ -23,7 +23,7 @@ namespace CodeLineHealthCareCenter.Utilities
         // Generic Load Method (Assumes T has a Parse Method or Manual Parsing is Needed)
         public static List<string> LoadFromFile(string filePath)
         {
-            List<string> lines = new List<string>();
+            List<string> lines = new List<string>(); // Initialize an empty list to store lines
             if (File.Exists(filePath))
             {
                 using (StreamReader reader = new StreamReader(filePath))
