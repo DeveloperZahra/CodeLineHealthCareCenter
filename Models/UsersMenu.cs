@@ -14,6 +14,7 @@ namespace CodeLineHealthCareCenter.Models
             // Create branch oject to call methods in classes
             Branch CallMethodFromBranch = new Branch(); // object to be able to call those methods( which are non static methods) in this class in other class
             Department CallMethodFromDepartment = new Department(); // object to be able to call those methods( which are non static methods) in this class in other class
+            Admin CallMethodFromAdmin = new Admin(); // Create an instance of the Admin class to access its methods
             // Flag to control the loop and allow the user to go back
             bool back = false;
 
@@ -55,7 +56,10 @@ namespace CodeLineHealthCareCenter.Models
 
                     // Placeholder for adding a new admin user
                     case "3":
-                        Console.WriteLine("[SuperAdmin] Add Admin - Not implemented");
+                        // enter admin name from user input
+                        string adminName = UserData.EnterUserName(); // Get the admin name from user input
+                        string adminEmail = UserData.EnterUserEmail(); // Get the admin email from user input
+                        CallMethodFromAdmin.AddAdmin();
                         break;
                     case "4":
                         // Placeholder action for adding a doctor
