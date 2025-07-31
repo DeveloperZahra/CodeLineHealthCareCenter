@@ -35,8 +35,8 @@ namespace CodeLineHealthCareCenter.Models
                 switch (input)
                 {
                     case "1":
-                        // Placeholder for adding a new branch
-                        Console.WriteLine("[SuperAdmin] Add Branch - Not implemented");
+                        string address = UserData.EnterAddress(); // Get the branch address from user input
+                        AddBranch(branchAddress, phoneNumber);
                         break;
                         
 
