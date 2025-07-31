@@ -586,7 +586,7 @@ namespace CodeLineHealthCareCenter.Models
 
         // =================================== 13. Address ====================================
 
-        public static string EnterUserAddress()
+        public static string EnterAddress()
         {
             string address = "";
             int tries = 0; // Counter for the number of attempts
