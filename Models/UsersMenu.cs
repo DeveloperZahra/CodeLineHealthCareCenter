@@ -140,7 +140,6 @@ namespace CodeLineHealthCareCenter.Models
                         // Placeholder for viewing appointments functionality
                         CallMethodFromBooking.GetAllBooking(); // Call the method to view all appointments
                         Console.ReadLine(); // Wait for user input before continuing
-
                         break;
 
                     case "0":
@@ -159,6 +158,9 @@ namespace CodeLineHealthCareCenter.Models
         // =================== Doctor Menu ====================
         static void DoctorMenu()
         {
+            Booking CallMethodFromBooking = new Booking(); // Create an instance of the Booking class to access its methods
+
+
             // A flag used to keep the menu active until the user chooses to go back
             bool back = false;
 
@@ -179,8 +181,12 @@ namespace CodeLineHealthCareCenter.Models
                 switch (input)
                 {
                     case "1":
-                        // Placeholder for the "View Appointments" functionality
-                        Console.WriteLine("📆 [Doctor] View Appointments - Not implemented");
+                        // Prompt the user to enter the doctor's ID to view their appointments
+                        Console.Write("Enter Doctor ID: ");
+                        int doctorId = int.Parse(Console.ReadLine()); // Read the doctor's ID from user input
+
+                        CallMethodFromBooking.GetBookingsByDoctorId(doctorId); // Call the method to get appointments for the specified doctor ID
+                        Console.ReadLine(); // Wait for user input before continuing
                         break;
 
                     case "0":
@@ -201,6 +207,8 @@ namespace CodeLineHealthCareCenter.Models
         // =================== Patient Menu ====================
         static void PatientMenu()
         {
+            Booking CallMethodFromBooking = new Booking(); // Create an instance of the Booking class to access its methods
+
             // Boolean flag used to control when to exit the menu
             bool back = false;
 
@@ -221,8 +229,8 @@ namespace CodeLineHealthCareCenter.Models
                 switch (input)
                 {
                     case "1":
-                        // Placeholder for appointment booking functionality
-                        Console.WriteLine("📅 [Patient] Book Appointment - Not implemented");
+                        CallMethodFromBooking.BookAppointment(); // Call the method to book a new appointment
+                        Console.ReadLine(); // Wait for user input before continuing
                         break;
 
                     case "2":
