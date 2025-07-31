@@ -20,6 +20,7 @@ namespace CodeLineHealthCareCenter.Utilities
         public static string PatientFile = "patients.txt";
         public static string BookingFile = "Booking.txt";
         public static string BranchFile = "branches.txt";
+        public static string DepartmentFile = "departments.txt";
 
         // Method to save data to a file
         public static void SaveToFile<T>(List<T> dataList, string filePath)
