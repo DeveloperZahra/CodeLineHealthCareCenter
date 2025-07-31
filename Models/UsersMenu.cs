@@ -79,9 +79,6 @@ namespace CodeLineHealthCareCenter.Models
 
                         break;
                     case "4":
-                        
-                        break;
-                    case "5":
                         string DName = UserData.EnterUserName(); // Get the Doctor name from user input
                         string DEmail = UserData.EnterUserEmail(); // Get the Doctor email from user input
                         string DPassword = UserData.EnterPasswordForSignUp(); // Get the Doctor password from user input
@@ -93,6 +90,11 @@ namespace CodeLineHealthCareCenter.Models
                         string DSpecialization = UserData.EnterSpecialty(); // Get the doctor's specialization from user input
                         CallMethodFromDoctor.AddDoctor(DName, DEmail, DPassword, DNationalId, DPhoneNumber, DGender, DSpecialization, DBranchId, DDepartmentId); // Call the method to add a new doctor
                         Console.ReadLine(); // Wait for user input before continuing
+                        break;
+                    case "5":
+
+                        Console.WriteLine("\nSystem Data........ Still Do not implement"); // Display system data header
+
 
                         break;
 
