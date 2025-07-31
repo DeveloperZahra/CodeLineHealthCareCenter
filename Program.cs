@@ -14,6 +14,7 @@ namespace CodeLineHealthCareCenter
         static void Main(string[] args)
         {
             SaveLoadingFile.LoadFromFile(SaveLoadingFile.DoctorFile); // Load doctors from file
+            SaveLoadingFile.LoadFromFile(SaveLoadingFile.SuperAdminFile); // Load super admins from file
             ShowWelcomeScreen();
         }
 
