@@ -158,6 +158,7 @@ namespace CodeLineHealthCareCenter.Models
                     case "1":
                         // Placeholder for the "View Appointments" functionality
                         Console.WriteLine("📆 [Doctor] View Appointments - Not implemented");
+                        Doctor.AddDoctor(); // Call the method to add a new Doctor to the system
                         break;
 
                     case "0":
