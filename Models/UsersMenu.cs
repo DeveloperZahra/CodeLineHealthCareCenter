@@ -42,7 +42,7 @@ namespace CodeLineHealthCareCenter.Models
                     case "1":
                         // Placeholder for adding a new branch
                         Console.WriteLine("[SuperAdmin] Add Branch - Not implemented");
-                        SuperAdmin.AddSuperAdmin();
+                        SuperAdmin.AddSuperAdmin(); // Call the method to add a new SuperAdmin user to the system
                         break;
                         
 
@@ -50,13 +50,14 @@ namespace CodeLineHealthCareCenter.Models
                     case "2":
                         // Placeholder for adding a new department
                         Console.WriteLine("[SuperAdmin] Add Department - Not implemented");
-                        SuperAdmin.AddSuperAdmin();
+                        SuperAdmin.AddSuperAdmin(); // Call the method to add a new SuperAdmin user to the system
                         break;
 
 
                     // Placeholder for adding a new admin user
                     case "3":
                         Console.WriteLine("[SuperAdmin] Add Admin - Not implemented");
+                        SuperAdmin.AddSuperAdmin();// Call the method to add a new SuperAdmin user to the system
                         break;
                     case "4":
                         // Placeholder action for adding a doctor
