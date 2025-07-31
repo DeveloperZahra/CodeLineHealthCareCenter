@@ -1,4 +1,5 @@
 ﻿using CodeLineHealthCareCenter.Models;
+using CodeLineHealthCareCenter.Utilities;
 using HospitalSystemTeamTask.Services;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace CodeLineHealthCareCenter
         public int DepartmentId { get; set; }
         public string DepartmentName { get; set; }
         private static int counter = 0; // Static counter to keep track of the number of departments created
+        public List<Service> Services { get; set; } = new List<Service>(); // List to store services associated with the department
 
 
         //2. Class Lists 
@@ -39,6 +41,8 @@ namespace CodeLineHealthCareCenter
 
             Department newDept = new Department(name);
             BranchDepartment.Departments.Add(newDept);
+
+            SaveLoadingFile.SaveToFile(BranchDepartment.Departments, SaveLoadingFile.DepartmentFile); // Save the updated list to the file
 
             Console.WriteLine($"Department '{newDept.DepartmentName}' created successfully!");
         }
