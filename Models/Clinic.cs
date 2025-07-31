@@ -252,13 +252,10 @@ namespace CodeLineHealthCareCenter.Models
             foreach (var doc in Doctor.doctors)
                 Console.WriteLine($"{doc.UserId} - {doc.UserName} ({doc.Specialty})");
 
-            Console.WriteLine("Enter Doctor IDs to assign (comma separated):");
-            string input = Console.ReadLine();
-            var ids = input.Split(',').Select(id => id.Trim()).ToList();
+            Console.WriteLine("Enter Doctor IDs to assign:");
+            int inputId = int.Parse(Console.ReadLine());
 
-            foreach (var id in ids)
-            {
-                var doctor = Doctor.doctors.FirstOrDefault(d => d.UserId == id);
+             var doctor = Doctor.doctors.FirstOrDefault(d => d.UserId == inputId);
                 if (doctor != null)
                 {
                     clinic.Doctors.Add(doctor);
@@ -266,9 +263,9 @@ namespace CodeLineHealthCareCenter.Models
                 }
                 else
                 {
-                    Console.WriteLine($"Doctor with ID {id} not found.");
+                    Console.WriteLine($"Doctor with ID {inputId} not found.");
                 }
             }
-        }
+        
     }
 }
