@@ -17,12 +17,14 @@ namespace CodeLineHealthCareCenter.Models
             // Keep showing the menu until the user chooses to go back
             while (!back)
             {
+                Console.Clear(); // Clear the console for a fresh display
                 // Display SuperAdmin menu options with icons
-                Console.WriteLine("\n👑 SuperAdmin Dashboard:");
+                Console.WriteLine("\nSuperAdmin Dashboard:");
                 Console.WriteLine("1. Add Branch");
                 Console.WriteLine("2. Add Department");
                 Console.WriteLine("3. Add Admin");
-                Console.WriteLine("4. View System Data");
+                Console.WriteLine("4. Add Doctor");  // Option to add a new doctor
+                Console.WriteLine("5. View System Data");
                 Console.WriteLine("0. Back");
 
                 // Prompt the user to choose an option
@@ -34,26 +36,28 @@ namespace CodeLineHealthCareCenter.Models
                 {
                     case "1":
                         // Placeholder for adding a new branch
-                        Console.WriteLine("🔧 [SuperAdmin] Add Branch - Not implemented");
+                        Console.WriteLine("[SuperAdmin] Add Branch - Not implemented");
                         break;
                         
 
 
                     case "2":
                         // Placeholder for adding a new department
-                        Console.WriteLine("🔧 [SuperAdmin] Add Department - Not implemented");
+                        Console.WriteLine("[SuperAdmin] Add Department - Not implemented");
                         break;
 
 
                     // Placeholder for adding a new admin user
                     case "3":
-                        Console.WriteLine("🔧 [SuperAdmin] Add Admin - Not implemented");
+                        Console.WriteLine("[SuperAdmin] Add Admin - Not implemented");
                         break;
-
-
                     case "4":
+                        // Placeholder action for adding a doctor
+                        Console.WriteLine("🩺 [Admin] Add Doctor - Not implemented");
+                        break;
+                    case "5":
                         // Placeholder for viewing overall system data
-                        Console.WriteLine("📊 [SuperAdmin] View System Data - Not implemented");
+                        Console.WriteLine("[SuperAdmin] View System Data - Not implemented");
                         break;
 
                     case "0":
@@ -81,10 +85,9 @@ namespace CodeLineHealthCareCenter.Models
             while (!back)
             {
                 // Display Admin dashboard menu 
-                Console.WriteLine("\n🛠 Admin Dashboard:");
-                Console.WriteLine("1. Add Doctor");  // Option to add a new doctor
-                Console.WriteLine("2. Add Clinic"); // Option to add a new clinic
-                Console.WriteLine("3. View Appointments");   // Option to view appointment schedule
+                Console.WriteLine("\n Admin Dashboard:");
+                Console.WriteLine("1. Add Clinic"); // Option to add a new clinic
+                Console.WriteLine("2. View Appointments");   // Option to view appointment schedule
                 Console.WriteLine("0. Back");   // Option to go back to the previous menu
 
                 // Prompt the user to select an option
@@ -95,18 +98,13 @@ namespace CodeLineHealthCareCenter.Models
                 // Evaluate the user's choice using switch-case
                 switch (input)
                 {
+
                     case "1":
-                        // Placeholder action for adding a doctor
-                        Console.WriteLine("🩺 [Admin] Add Doctor - Not implemented");
-                        break;
-
-
-                    case "2":
                         // Placeholder action for adding a clinic
                         Console.WriteLine("🏥 [Admin] Add Clinic - Not implemented");
                         break;
 
-                    case "3":
+                    case "2":
                         // Placeholder action for viewing appointments
                         Console.WriteLine("📅 [Admin] View Appointments - Not implemented");
                         break;
@@ -135,7 +133,7 @@ namespace CodeLineHealthCareCenter.Models
             while (!back)
             {
                 // Display the Doctor dashboard with options
-                Console.WriteLine("\n🩺 Doctor Dashboard:");
+                Console.WriteLine("\n Doctor Dashboard:");
                 Console.WriteLine("1. View Appointments");  // Option for doctor to view their scheduled appointments
                 Console.WriteLine("0. Back");  // Option to go back to the previous screen/menu
 
@@ -176,7 +174,7 @@ namespace CodeLineHealthCareCenter.Models
             while (!back)
             {
                 // Display the Patient dashboard with available options
-                Console.WriteLine("\n🏥 Patient Dashboard:");
+                Console.WriteLine("\n Patient Dashboard:");
                 Console.WriteLine("1. Book Appointment");  // Option to book a new appointment
                 Console.WriteLine("2. View My Appointments");   // Option to view all appointments booked by the patient
                 Console.WriteLine("0. Back");  // Option to return to the previous menu
