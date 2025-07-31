@@ -201,6 +201,7 @@ namespace CodeLineHealthCareCenter.Models
                     case "1":
                         // Placeholder for appointment booking functionality
                         Console.WriteLine("📅 [Patient] Book Appointment - Not implemented");
+                        Patient.AddPatient(); // Call the method to add/register a new Patient in the system
                         break;
 
                     case "2":
