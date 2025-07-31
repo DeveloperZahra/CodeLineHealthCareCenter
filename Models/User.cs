@@ -196,7 +196,7 @@ namespace CodeLineHealthCareCenter
         }
 
         // 4.2 Deactivates a user by their ID
-        public void DeactivateUser(string userId ,string role)
+        public void DeactivateUser(int userId ,string role)
         {
             if (role == "Super Admin")
             {
@@ -348,7 +348,7 @@ namespace CodeLineHealthCareCenter
             Console.WriteLine($"ID: {user.UserId}, Name: {user.UserName}, Email: {user.Email}, Role: {user.Role}, Active: {user.IsActive}");
         }
         // 4.5 Prints user details by ID and role
-        public void GetUserById(string userId, string role)
+        public void GetUserById(int userId, string role)
         {
             switch (role)
             {
@@ -410,7 +410,7 @@ namespace CodeLineHealthCareCenter
         }
 
         //4.6 Updates a user's password if the current password matches.
-        public void UpdatePassword(string userId, string role, string currentPassword, string newPassword)
+        public void UpdatePassword(int userId, string role, string currentPassword, string newPassword)
         {
             switch (role)
             {
@@ -484,7 +484,7 @@ namespace CodeLineHealthCareCenter
         }
 
         // 4.7 Updates a user's details (name, email, phone, address) based on their role and userId.
-        public void UpdateUser(string userId, string role)
+        public void UpdateUser(int userId, string role)
         {
             bool hasUpdates = false;
             bool continueUpdating = true;
@@ -548,7 +548,7 @@ namespace CodeLineHealthCareCenter
         }
 
         // 4.8 Helper method to update the correct user based on role and field
-        private void UpdateField(string userId, string role, string field, string newValue)
+        private void UpdateField(int userId, string role, string field, string newValue)
         {
             object user = null;
 
@@ -568,13 +568,13 @@ namespace CodeLineHealthCareCenter
                     user = Patient.patients.FirstOrDefault(u => u.UserId == userId);
                     break;
                 default:
-                    Console.WriteLine($"⚠️ Unrecognized role '{role}'.");
+                    Console.WriteLine($"Unrecognized role '{role}'.");
                     return;
             }
 
             if (user == null)
             {
-                Console.WriteLine($"⚠️ No user found with ID {userId} for role {role}.");
+                Console.WriteLine($"No user found with ID {userId} for role {role}.");
                 return;
             }
 
@@ -586,7 +586,7 @@ namespace CodeLineHealthCareCenter
             }
             else
             {
-                Console.WriteLine($"⚠️ Cannot update the field '{field}'.");
+                Console.WriteLine($"Cannot update the field '{field}'.");
             }
         }
 
