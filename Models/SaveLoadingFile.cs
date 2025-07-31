@@ -26,12 +26,12 @@ namespace CodeLineHealthCareCenter.Utilities
             List<string> lines = new List<string>(); // Initialize an empty list to store lines
             if (File.Exists(filePath))
             {
-                using (StreamReader reader = new StreamReader(filePath))
+                using (StreamReader reader = new StreamReader(filePath)) 
                 {
                     string line;
-                    while ((line = reader.ReadLine()) != null)
+                    while ((line = reader.ReadLine()) != null) 
                     {
-                        lines.Add(line);
+                        lines.Add(line); // Add each line to the list
                     }
                 }
                 Console.WriteLine($"📂 Data loaded from '{filePath}' successfully.");
