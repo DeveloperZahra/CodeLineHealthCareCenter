@@ -23,7 +23,7 @@ namespace CodeLineHealthCareCenter
             var department = departments.FirstOrDefault(d => d.DepartmentId == departmentId); // Find the department by ID
             if (department == null)
             {
-                Console.WriteLine("❌ Department not found.");
+                Console.WriteLine(" Department not found.");
                 return;
             }
             Console.Write("Enter service name: "); // Prompt user for service name
@@ -31,6 +31,13 @@ namespace CodeLineHealthCareCenter
 
             Console.Write("Enter service description: "); // Prompt user for service description
             string description = Console.ReadLine();
+
+            Console.Write("Enter service price: "); // Prompt user for service price
+            if (!decimal.TryParse(Console.ReadLine(), out decimal price))
+            {
+                Console.WriteLine(" Invalid price entered.");
+                return;
+            }
 
         }
         // 1. Get all departments
