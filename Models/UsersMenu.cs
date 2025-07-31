@@ -65,7 +65,8 @@ namespace CodeLineHealthCareCenter.Models
                         string adminGender = UserData.EnterGender(); // Get the admin gender from user input
                         int adminBranchId = UserData.EnterBranchId(Branch.branches); // Get the admin branch ID from user input
                         int adminDepartmentId = UserData.EnterDepartmentId(BranchDepartment.Departments); // Get the admin department ID from user input
-                        CallMethodFromAdmin.AddAdmin();
+                        CallMethodFromAdmin.AddAdmin(adminName, adminEmail, adminPassword, adminNationalId , adminPhoneNumber, adminGender, adminBranchId, adminDepartmentId); // Call the method to add a new admin with the provided details
+                        Console.ReadLine(); 
                         break;
                     case "4":
                         // Placeholder action for adding a doctor
