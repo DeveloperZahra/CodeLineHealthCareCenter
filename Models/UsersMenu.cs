@@ -35,8 +35,9 @@ namespace CodeLineHealthCareCenter.Models
                 switch (input)
                 {
                     case "1":
-                        string address = UserData.EnterAddress(); // Get the branch address from user input
-                        AddBranch(branchAddress, phoneNumber);
+                        string branchAddress = UserData.EnterAddress(); // Get the branch address from user input
+                        string phoneNumber = UserData.EnterPhoneNumber(); // Get the branch phone number from user input
+                        Branch.AddBranch(branchAddress, phoneNumber); // Call the method to add a new branch with the provided details
                         break;
                         
 
