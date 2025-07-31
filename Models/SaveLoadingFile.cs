@@ -13,15 +13,15 @@ namespace CodeLineHealthCareCenter.Utilities
     public static class SaveLoadingFile
     {
 
-        // files
-        public static string DoctorFile = "doctors.txt";
+        // Static file names for different entities in the healthcare system
+        public static string DoctorFile = "doctors.txt"; 
         public static string SuperAdminFile = "superAdmins.txt";
         public static string ClinicFile = "clinics.txt";
         public static string PatientFile = "patients.txt";
         public static string BookingFile = "Booking.txt";
         public static string BranchFile = "branches.txt";
         public static string DepartmentFile = "departments.txt";
-        public static string BranchDepartmentFile = "branchDepartments.txt";
+        public static string BranchDepartmentFile = "branchDepartments.txt"; 
         public static string AdminFile = "Admin.txt";
         public static string ServiceFile = "Service.txt";
 
