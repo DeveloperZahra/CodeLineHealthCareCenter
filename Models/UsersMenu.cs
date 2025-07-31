@@ -218,7 +218,8 @@ namespace CodeLineHealthCareCenter.Models
                 // Display the Patient dashboard with available options
                 Console.WriteLine("\n Patient Dashboard:");
                 Console.WriteLine("1. Book Appointment");  // Option to book a new appointment
-                Console.WriteLine("2. View My Appointments");   // Option to view all appointments booked by the patient
+                Console.WriteLine("2. View Your Appointments");   // Option to view all appointments booked by the patient
+                Console.WriteLine("3. Cancel Appointment");
                 Console.WriteLine("0. Back");  // Option to return to the previous menu
 
                 // Ask the user to enter their choice
@@ -234,8 +235,14 @@ namespace CodeLineHealthCareCenter.Models
                         break;
 
                     case "2":
-                        // Placeholder for viewing patient's own appointments
-                        Console.WriteLine("📋 [Patient] View My Appointments - Not implemented");
+                        Console.Write("Enter Patient ID: ");
+                        int patientId = int.Parse(Console.ReadLine()); // Read the patient's ID from user input
+                        CallMethodFromBooking.GetBookingsByDoctorId(patientId); // Call the method to view all appointments booked by the patient
+                        Console.ReadLine(); // Wait for user input before continuing
+                        break;
+                    case "3":
+                        CallMethodFromBooking.CancelAppointment(); // Call the method to cancel the specified appointment
+                        Console.ReadLine(); // Wait for user input before continuing
                         break;
 
                     case "0":
