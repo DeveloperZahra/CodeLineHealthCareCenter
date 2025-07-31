@@ -1,4 +1,5 @@
 ﻿using CodeLineHealthCareCenter.Models;
+using CodeLineHealthCareCenter.Utilities;
 using HospitalSystemTeamTask.Services;
 
 using System;
@@ -44,6 +45,8 @@ namespace CodeLineHealthCareCenter
 
             // Add to the static list
             patients.Add(newPatient);
+
+            SaveLoadingFile.SaveToFile(patients, SaveLoadingFile.PatientFile); // Save the updated list to file
 
             // Confirmation message
             Console.WriteLine($"Patient '{newPatient.UserName}' added successfully with ID: {newPatient.UserId}");

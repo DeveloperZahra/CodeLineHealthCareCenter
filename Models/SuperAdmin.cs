@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HospitalSystemTeamTask.Services;
 using CodeLineHealthCareCenter.Services;
+using CodeLineHealthCareCenter.Utilities;
 
 
 namespace CodeLineHealthCareCenter
@@ -46,6 +47,8 @@ namespace CodeLineHealthCareCenter
 
             // 3️⃣ Add to static list
             SuperAdmins.Add(newSuperAdmin);
+
+            SaveLoadingFile.SaveToFile(SuperAdmins, SaveLoadingFile.SuperAdminFile); // Save to file
 
             Console.WriteLine($"✅ Super Admin '{newSuperAdmin.UserName}' added successfully with ID: {newSuperAdmin.UserId}");
         }

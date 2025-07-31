@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CodeLineHealthCareCenter.Utilities;
 using HospitalSystemTeamTask.Services;
 
 namespace CodeLineHealthCareCenter.Models
@@ -70,6 +71,8 @@ namespace CodeLineHealthCareCenter.Models
             // Step 6: Create booking
             Booking newBooking = new Booking(spotDateTime, clinicId, doctorId, serviceId, "Consultation");
             Bookings.Add(newBooking);
+
+            SaveLoadingFile.SaveToFile(Bookings, SaveLoadingFile.BookingFile); // Save the booking to file
 
             Console.WriteLine($"Booking created successfully! Booking ID: {newBooking.BookingId}");
         }
