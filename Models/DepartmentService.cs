@@ -49,7 +49,11 @@ namespace CodeLineHealthCareCenter
                 Price = price
             };
 
+            department.Services.Add(newService); // Add the new service to the department's service list
+            Console.WriteLine(" Service added successfully to department.");
         }
+
+        
         // 1. Get all departments
         public void GetAllDepartments()
         {
