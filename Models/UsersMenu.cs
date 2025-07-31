@@ -83,6 +83,7 @@ namespace CodeLineHealthCareCenter.Models
                         int DDepartmentId = UserData.EnterDepartmentId(BranchDepartment.Departments); // Get the Doctor department ID from user input
                         string DSpecialization = UserData.EnterSpecialty(); // Get the doctor's specialization from user input
                         CallMethodFromDoctor.AddDoctor(DName, DEmail, DPassword, DNationalId, DPhoneNumber, DGender, DSpecialization, DBranchId, DDepartmentId); // Call the method to add a new doctor
+                        Console.ReadLine(); // Wait for user input before continuing
                         break;
 
                     case "0":
@@ -92,7 +93,7 @@ namespace CodeLineHealthCareCenter.Models
 
                     default:
                         // Handle invalid input from the user
-                        Console.WriteLine("❌ Invalid choice.");
+                        Console.WriteLine("Invalid choice.");
                         break;
                 }
             }
@@ -103,6 +104,8 @@ namespace CodeLineHealthCareCenter.Models
         // =================== Admin Menu ====================
         static void AdminMenu()
         {
+            // Create an instance of the class to access its methods
+            Clinic CallMethodFromClinic = new Clinic(); // Create an instance of the Admin class to access its methods
             // A flag to keep the menu running until the user chooses to go back
             bool back = false;
 
@@ -125,8 +128,11 @@ namespace CodeLineHealthCareCenter.Models
                 {
 
                     case "1":
-                        // Placeholder action for adding a clinic
-                        Console.WriteLine("🏥 [Admin] Add Clinic - Not implemented");
+                        // Prompt the user to enter clinic details
+                        string clinicName = UserData.EnterUserName(); // Get the clinic name from user input
+                        string clinicLocation = UserData.EnterAddress(); // Get the clinic location from user input
+                        CallMethodFromClinic.AddClinic(clinicName, clinicLocation); // Call the method to add a new clinic
+                        Console.ReadLine(); // Wait for user input before continuing
                         break;
 
                     case "2":
