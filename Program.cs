@@ -21,6 +21,7 @@ namespace CodeLineHealthCareCenter
             SaveLoadingFile.LoadFromFile(SaveLoadingFile.DepartmentFile); // Load departments from file
             SaveLoadingFile.LoadFromFile(SaveLoadingFile.BranchDepartmentFile); // Load branch-department relationships from file
             SaveLoadingFile.LoadFromFile(SaveLoadingFile.ClinicFile); // Load clinics from file
+            SaveLoadingFile.LoadFromFile(SaveLoadingFile.BookingFile); // Load bookings from file
             ShowWelcomeScreen();
         }
 
