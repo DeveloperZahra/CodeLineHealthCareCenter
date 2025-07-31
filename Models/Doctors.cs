@@ -28,7 +28,7 @@ namespace CodeLineHealthCareCenter.Models
         public Doctor() : base() // Call parent User constructor
         {
             // Generate a custom doctor ID (starts with "D")
-            UserId = "D" + "," + UserCount;
+            UserId = UserCount;
             // By default, the doctor account is active
             IsActive = true;
         }
@@ -36,7 +36,7 @@ namespace CodeLineHealthCareCenter.Models
         : base(name, email, password, nationalId, phoneNumber, gender, "Doctor") // Call parent User constructor
         {
             // Generate a custom doctor ID (starts with "D")
-            UserId = "D" + "," + UserCount;
+            UserId =  UserCount;
 
             // Assign doctor-specific properties
             Specialty = specialization;
