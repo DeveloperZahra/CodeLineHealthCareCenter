@@ -12,7 +12,7 @@ namespace CodeLineHealthCareCenter.Models
     public class UserData
     {    public static int tries = 0;
         /// =================================== General User Input Data ===============================
-        // ================================== 1. User Name ====================================
+        // ================================== 1. User Name====================================
         public static string EnterUserName()
         {
             string userName = "";
@@ -581,6 +581,49 @@ namespace CodeLineHealthCareCenter.Models
             {
                 Console.WriteLine($"⚠ An error occurred: {ex.Message}");
                 return DateTime.MinValue;
+            }
+        }
+
+        // =================================== 13. Address ====================================
+
+        public static string EnterUserAddress()
+        {
+            string address = "";
+            int tries = 0; // Counter for the number of attempts
+
+            try
+            {
+                do
+                {
+                    Console.Write("Enter User Address: ");
+                    address = Console.ReadLine();
+
+                    // تحقق أن العنوان ليس فارغًا ويحتوي على 5 أحرف على الأقل
+                    bool isValidAddress = !string.IsNullOrWhiteSpace(address) && address.Length >= 5;
+
+                    if (isValidAddress)
+                    {
+                        Console.WriteLine($"Sucessfully save Enter {address}");
+                        return address; // Return the valid address
+                    }
+                    else
+                    {
+                        Console.WriteLine(" Invalid Address. Please enter at least 5 characters.");
+                        tries++;
+                    }
+
+                } while (tries < 3); // Allow a maximum of 3 attempts
+
+                // If user fails 3 times
+                Console.WriteLine(" You have exceeded the maximum number of attempts.");
+                Console.WriteLine("Please try again later.");
+                return "null"; // Return "null" to indicate failure
+            }
+            catch (Exception ex)
+            {
+                // Handle any unexpected exceptions
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return "null";
             }
         }
 
