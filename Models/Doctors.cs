@@ -67,7 +67,6 @@ namespace CodeLineHealthCareCenter.Models
             // 3️⃣ Add the new doctor to the static list
             doctors.Add(newDoctor);
 
-            SaveLoadingFile.SaveToFile(doctors, SaveLoadingFile.DoctorFile); // Save the updated list to the file
 
 
             // 4️⃣ Confirmation message

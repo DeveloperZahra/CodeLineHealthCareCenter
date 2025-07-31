@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CodeLineHealthCareCenter.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -131,6 +132,42 @@ namespace CodeLineHealthCareCenter
             return DateTimeInput; // Return the validated input
         }
 
+
+        /// ========================Check Exist Data==============================
+        // Checks if the given email already exists in any user list (SuperAdmin, Admin, Doctor, Patient).
+        public static bool IsEmailUnique(string email)
+        {
+            // Check if email already exists in SuperAdmins
+            bool existsInSuperAdmins = SuperAdmin.SuperAdmins.Any(u =>
+                u.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+
+            // Check if email already exists in Admins
+            bool existsInAdmins = Admin.Admins.Any(u =>
+                u.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+
+            // Check if email already exists in Doctors
+            bool existsInDoctors = Doctor.doctors.Any(u =>
+                u.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+
+            // Check if email already exists in Patients
+            bool existsInPatients = Patient.patients.Any(u =>
+                u.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+
+            // If found in any list → return false (not unique)
+            return !(existsInSuperAdmins || existsInAdmins || existsInDoctors || existsInPatients);
+        }
+
+        
+        /// Checks if the given National ID already exists in any user list.
+        public static bool IsNationalIdUnique(string nationalId)
+        {
+            bool existsInSuperAdmins = SuperAdmin.SuperAdmins.Any(u => u.NationalID == nationalId);
+            bool existsInAdmins = Admin.Admins.Any(u => u.NationalID == nationalId);
+            bool existsInDoctors = Doctor.doctors.Any(u => u.NationalID == nationalId);
+            bool existsInPatients = Patient.patients.Any(u => u.NationalID == nationalId);
+
+            return !(existsInSuperAdmins || existsInAdmins || existsInDoctors || existsInPatients);
+        }
 
     }
 }

@@ -56,7 +56,6 @@ namespace CodeLineHealthCareCenter
             // 3️⃣ Add to static list
             SuperAdmins.Add(newSuperAdmin);
 
-            SaveLoadingFile.SaveToFile(SuperAdmins, SaveLoadingFile.SuperAdminFile); // Save to file
 
             //Console.WriteLine($"Super Admin '{newSuperAdmin.UserName}' added successfully with ID: {newSuperAdmin.UserId}");
         }

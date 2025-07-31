@@ -61,7 +61,6 @@ namespace CodeLineHealthCareCenter
             Branch newBranch = new Branch(branchAddress, phoneNumber); // Create a new branch object
             branches.Add(newBranch); // Add it to the list
 
-            SaveLoadingFile.SaveToFile(branches, SaveLoadingFile.BranchFile); // Save the updated list to a file
 
             Console.WriteLine($"Branch '{newBranch.BranchName}' added successfully!");
         }

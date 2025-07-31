@@ -72,7 +72,6 @@ namespace CodeLineHealthCareCenter.Models
             Booking newBooking = new Booking(spotDateTime, clinicId, doctorId, serviceId, "Consultation");
             Bookings.Add(newBooking);
 
-            SaveLoadingFile.SaveToFile(Bookings, SaveLoadingFile.BookingFile); // Save the booking to file
 
             Console.WriteLine($"Booking created successfully! Booking ID: {newBooking.BookingId}");
         }
