@@ -40,6 +40,19 @@ namespace CodeLineHealthCareCenter.Models
         public List<Doctor> Doctors { get; set; } = new List<Doctor>();
 
         // ========================== Constructor ==========================
+        /// defualt constructor
+        public Clinic()
+        {
+            clinicCounter++;
+            ClinicId = clinicCounter;
+            ClinicName = "Default Clinic";
+            Location = "Default Location";
+            DepartmentId = 0;
+            BranchId = 0;
+            FloorId = 0;
+            RoomId = 0;
+            Price = 0.0m; // Default price
+        }
         public Clinic(string clinicName, string location, int departmentId, int branchId, int floorId, int roomId, decimal price)
         {
             clinicCounter++;
