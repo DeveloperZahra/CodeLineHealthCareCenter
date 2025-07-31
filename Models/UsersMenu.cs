@@ -19,8 +19,6 @@ namespace CodeLineHealthCareCenter.Models
             // Keep showing the menu until the user chooses to go back
             while (!back)
 
-              
-            
             {
                 Console.Clear(); // Clear the console for a fresh display
                 // Display SuperAdmin menu options with icons
@@ -52,7 +50,7 @@ namespace CodeLineHealthCareCenter.Models
                     case "2":
                         // Placeholder for adding a new department
                         Console.WriteLine("[SuperAdmin] Add Department - Not implemented");
-
+                        SuperAdmin.AddSuperAdmin();
                         break;
 
 
