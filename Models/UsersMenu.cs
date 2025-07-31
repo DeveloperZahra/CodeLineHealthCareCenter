@@ -15,6 +15,7 @@ namespace CodeLineHealthCareCenter.Models
             Branch CallMethodFromBranch = new Branch(); // object to be able to call those methods( which are non static methods) in this class in other class
             Department CallMethodFromDepartment = new Department(); // object to be able to call those methods( which are non static methods) in this class in other class
             Admin CallMethodFromAdmin = new Admin(); // Create an instance of the Admin class to access its methods
+            Doctor CallMethodFromDoctor = new Doctor(); // Create an instance of the Doctor class to access its methods
             // Flag to control the loop and allow the user to go back
             bool back = false;
 
@@ -69,8 +70,7 @@ namespace CodeLineHealthCareCenter.Models
                         Console.ReadLine(); 
                         break;
                     case "4":
-                        // Placeholder action for adding a doctor
-                        Console.WriteLine("🩺 [Admin] Add Doctor - Not implemented");
+                        
                         break;
                     case "5":
                         // Placeholder for viewing overall system data
