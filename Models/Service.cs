@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CodeLineHealthCareCenter.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -33,6 +34,9 @@ namespace CodeLineHealthCareCenter
         public static void AddService(Service service)
         {
             Services.Add(service);
+
+            SaveLoadingFile.SaveToFile(Services, SaveLoadingFile.ServiceFile); // Save the updated list to file
+
             Console.WriteLine($"Service '{service.ServiceName}' added successfully.");
         }
 
