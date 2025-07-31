@@ -21,7 +21,7 @@ namespace CodeLineHealthCareCenter
 
         //2.  ============== Properties =================
         public static int UserCount = 0;
-        public string UserId { get; set; } // User Id 
+        public int UserId { get; set; } // User Id 
         public string UserName { get; set; } // name of the user
         public string Email { get; set; } // User's email address
         public string NationalID { get; set; } // National ID of the user
@@ -51,7 +51,7 @@ namespace CodeLineHealthCareCenter
             UserCount++;
 
             // Assign a default unique ID
-            UserId = "U" + "," + UserCount;
+            UserId =  UserCount;
 
             // Assign default values (يمكنك تعديلها حسب احتياجك)
             UserName = "Default Name";
@@ -72,7 +72,7 @@ namespace CodeLineHealthCareCenter
             UserCount++;
 
             // Assign a unique ID (can be customized later in child classes)
-            UserId = "U" + "," + UserCount;
+            UserId =  UserCount;
 
             // Assign values to properties
             UserName = name;
