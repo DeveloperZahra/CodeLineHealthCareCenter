@@ -106,6 +106,7 @@ namespace CodeLineHealthCareCenter.Models
         {
             // Create an instance of the class to access its methods
             Clinic CallMethodFromClinic = new Clinic(); // Create an instance of the Admin class to access its methods
+            Booking CallMethodFromBooking = new Booking(); // Create an instance of the Booking class to access its methods
             // A flag to keep the menu running until the user chooses to go back
             bool back = false;
 
@@ -136,8 +137,10 @@ namespace CodeLineHealthCareCenter.Models
                         break;
 
                     case "2":
-                        // Placeholder action for viewing appointments
-                        Console.WriteLine("📅 [Admin] View Appointments - Not implemented");
+                        // Placeholder for viewing appointments functionality
+                        CallMethodFromBooking.GetAllBooking(); // Call the method to view all appointments
+                        Console.ReadLine(); // Wait for user input before continuing
+
                         break;
 
                     case "0":
