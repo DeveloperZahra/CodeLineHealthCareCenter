@@ -14,7 +14,8 @@ namespace CodeLineHealthCareCenter.Utilities
     {
 
         // files
-        public static string DoctorFile = "doctors.txt"; 
+        public static string DoctorFile = "doctors.txt";
+        public static string SuperAdminFile = "superAdmins.txt";
 
         // Method to save data to a file
         public static void SaveToFile<T>(List<T> dataList, string filePath)
