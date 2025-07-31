@@ -58,7 +58,7 @@ namespace CodeLineHealthCareCenter
 
             SaveLoadingFile.SaveToFile(SuperAdmins, SaveLoadingFile.SuperAdminFile); // Save to file
 
-            Console.WriteLine($"Super Admin '{newSuperAdmin.UserName}' added successfully with ID: {newSuperAdmin.UserId}");
+            //Console.WriteLine($"Super Admin '{newSuperAdmin.UserName}' added successfully with ID: {newSuperAdmin.UserId}");
         }
 
 
