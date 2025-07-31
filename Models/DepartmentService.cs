@@ -20,7 +20,7 @@ namespace CodeLineHealthCareCenter
         // 0. Add a new service to an existing department
         public void AddServiceToDepartment(int departmentId)
         {
-            var department = departments.FirstOrDefault(d => d.DepartmentId == departmentId);
+            var department = departments.FirstOrDefault(d => d.DepartmentId == departmentId); // Find the department by ID
             if (department == null)
             {
                 Console.WriteLine("❌ Department not found.");
