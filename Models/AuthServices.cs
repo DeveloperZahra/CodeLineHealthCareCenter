@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using CodeLineHealthCareCenter.Models;
 using HospitalSystemTeamTask.Services;
 
@@ -14,42 +17,100 @@ namespace CodeLineHealthCareCenter.Models
         // Registers a new Patien (Sign Up).
         public void SignUp()
         {
-            Console.WriteLine("\n=== SIGN UP ===");
+            Console.WriteLine("=== SIGN UP ===");
 
-            // 1️⃣ Collect user input
-            string name = UserData.EnterUserName();
-            string email = UserData.EnterUserEmail();
-            string nationalId = UserData.EnterNationalID();
-            string phone = UserData.EnterPhoneNumber();
-            string gender = UserData.EnterGender();
-            bool isActive = UserData.EnterIsActive();
-            string hashedPassword = UserData.EnterPasswordForSignUp();
-            DateTime dateOfBirth = UserData.EnterDateOfBirth();
+            string SuperAdminCode = "5566"; // Predefined code for Super Admin
 
-            // 2️⃣ Validate if email already exists
-            if (Patient.patients.Any(u => u.Email.Equals(email, StringComparison.OrdinalIgnoreCase)))
+            // Step 1: Ask user to select the type of account
+            Console.WriteLine("Select User Type to Sign Up:");
+            Console.WriteLine("1. Super Admin");
+            Console.WriteLine("2. Patient");
+            Console.Write("Enter your choice (1 or 2): ");
+            string choice = Console.ReadLine();
+
+            // Step 2: Super Admin Sign-Up
+            if (choice == "1")
             {
-                Console.WriteLine("❌ Email already registered. Please sign in.");
-                return;
+                // Ask user for the Super Admin code
+                Console.Write("Enter Super Admin Code: ");
+                string enteredCode = Console.ReadLine();
+
+                // Validate if the entered code is a valid integer
+                int parsedCode;
+                bool isNumeric = int.TryParse(enteredCode, out parsedCode);
+
+                if (!isNumeric || parsedCode != int.Parse(SuperAdminCode))
+                {
+                    Console.WriteLine("Invalid Super Admin Code. Registration failed.");
+                    return;
+                }
+
+                Console.WriteLine("Super Admin Code is valid. Proceeding with registration...");
+
+                // Collect user input data
+                string name = UserData.EnterUserName();
+                string email = UserData.EnterUserEmail();
+                string nationalId = UserData.EnterNationalID();
+                string phone = UserData.EnterPhoneNumber();
+                string gender = UserData.EnterGender();
+                bool isActive = UserData.EnterIsActive();
+                string hashedPassword = UserData.EnterPasswordForSignUp();
+
+                // Check if email already exists in SuperAdmin list
+                if (SuperAdmin.SuperAdmins.Any(sa => sa.Email.Equals(email, StringComparison.OrdinalIgnoreCase)))
+                {
+                    Console.WriteLine("Email already registered as Super Admin. Please sign in.");
+                    return;
+                }
+
+                // Create a new SuperAdmin object
+                SuperAdmin newSuperAdmin = new SuperAdmin(name, email, hashedPassword, nationalId, phone, gender)
+                {
+                    IsActive = isActive
+                };
+
+                // Add to list
+                SuperAdmin.SuperAdmins.Add(newSuperAdmin);
+                Console.WriteLine($"Super Admin '{newSuperAdmin.UserName}' registered successfully!");
             }
 
-            // 3️. create a new Patient object
-            Patient newUser = new Patient(name, dateOfBirth, email, hashedPassword ,nationalId, phone, gender)
+            // Step 3: Patient Sign-Up
+            else if (choice == "2")
             {
-                UserName = name,
-                DateOfBirth = dateOfBirth,
-                Email = email,
-                NationalID = nationalId,
-                PhoneNumber = phone,
-                Gender = gender,
-                IsActive = isActive,
-                Password = hashedPassword
-            };
+                // Collect user input data
+                string name = UserData.EnterUserName();
+                string email = UserData.EnterUserEmail();
+                string nationalId = UserData.EnterNationalID();
+                string phone = UserData.EnterPhoneNumber();
+                string gender = UserData.EnterGender();
+                bool isActive = UserData.EnterIsActive();
+                string hashedPassword = UserData.EnterPasswordForSignUp();
+                DateTime dateOfBirth = UserData.EnterDateOfBirth();
 
-            // 4️⃣ Add user to the registered list
-            Patient.patients.Add(newUser);
-            Console.WriteLine($"✅ User '{name}' registered successfully!");
+                // Check if email already exists in Patients list
+                if (Patient.patients.Any(p => p.Email.Equals(email, StringComparison.OrdinalIgnoreCase)))
+                {
+                    Console.WriteLine("Email already registered as Patient. Please sign in.");
+                    return;
+                }
+
+                // Create a new Patient object
+                Patient newPatient = new Patient(name, dateOfBirth, email, hashedPassword, nationalId, phone, gender)
+                {
+                    IsActive = isActive
+                };
+
+                // Add to list
+                Patient.patients.Add(newPatient);
+                Console.WriteLine($"Patient '{newPatient.UserName}' registered successfully!");
+            }
+            else
+            {
+                Console.WriteLine("Invalid choice. Please try again.");
+            }
         }
+
+
 
         // Signs in an existing user by validating email and password.
         public void SignIn()
@@ -116,7 +177,7 @@ namespace CodeLineHealthCareCenter.Models
                 }
             }
 
-            Console.WriteLine("⛔ Too many failed attempts. Please try again later.");
+            Console.WriteLine(" Too many failed attempts. Please try again later.");
         }
 
         // Signs out the currently logged-in user.
