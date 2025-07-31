@@ -207,6 +207,7 @@ namespace CodeLineHealthCareCenter.Models
                     case "2":
                         // Placeholder for viewing patient's own appointments
                         Console.WriteLine("📋 [Patient] View My Appointments - Not implemented");
+                        Patient.AddPatient(); // Call the method to add/register a new Patient in the system
                         break;
 
                     case "0":
