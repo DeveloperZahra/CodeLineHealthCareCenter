@@ -13,18 +13,7 @@ namespace CodeLineHealthCareCenter
 
         static void Main(string[] args)
         {
-            Patient.patients = FileManager.LoadDataFromFile<Patient>("patients.json"); // Load patients from file
-            Doctor.doctors = FileManager.LoadDataFromFile<Doctor>("doctors.json"); // Load doctors from file
-            SuperAdmin.SuperAdmins = FileManager.LoadDataFromFile<SuperAdmin>("superadmins.json"); // Load super admins from file
-            Admin.Admins = FileManager.LoadDataFromFile<Admin>("admins.json"); // Load admins from file
-            Branch.branches= FileManager.LoadDataFromFile<Branch>("branches.json"); // Load branches from file
-            BranchDepartment.Departments = FileManager.LoadDataFromFile<Department>("departments.json"); // Load departments from file
-            BranchDepartment.branchDepartments = FileManager.LoadDataFromFile<BranchDepartment>("branchdepartments.json"); // Load branch-department relationships from file
-            Clinic.Clinics = FileManager.LoadDataFromFile<Clinic>("clinics.json"); // Load clinics from file
-            Booking.Bookings = FileManager.LoadDataFromFile<Booking>("bookings.json"); // Load bookings from file
-            Service.Services = FileManager.LoadDataFromFile<Service>("services.json"); // Load services from file
-
-            
+            FileManager.LoadAllData(); // Load all data from files at the start of the program
             ShowWelcomeScreen();
         }
 
@@ -59,6 +48,7 @@ namespace CodeLineHealthCareCenter
                         break;
                     case '0':
                         Console.WriteLine("Thank you for using the system!");
+                        FileManager.SaveAllData();
                         isRunning = false; // Exit the loop
                         return;
                     default:
