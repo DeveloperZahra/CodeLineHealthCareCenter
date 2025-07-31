@@ -19,6 +19,14 @@ namespace CodeLineHealthCareCenter
         public static List<Patient> patients = new List<Patient>();
 
         // 3. ====================== Constructor ========================================
+        /// defualt constructor
+        public Patient ()
+            : base()
+        {
+            // Initialize the UserId with a unique value
+            UserId = UserCount; // Override default ID format for patients
+            DateOfBirth = DateTime.MinValue; // Default date of birth
+        }
         public Patient(string name, DateTime dateOfBirth, string email, string password, string nationalId, string phoneNumber, string gender)
         : base(name, email, password, nationalId, phoneNumber, gender, "Patient")
         {
