@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CodeLineHealthCareCenter.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
@@ -41,6 +42,23 @@ namespace CodeLineHealthCareCenter.Utilities
                 Console.WriteLine($"Error loading data: {ex.Message}");
                 return new List<T>();
             }
+        }
+
+        // Save all data to their respective files
+        public static void SaveAllData()
+        {
+            SaveDataToFile(Patient.patients, "patients.json");
+            SaveDataToFile(Doctor.doctors, "doctors.json");
+            SaveDataToFile(SuperAdmin.SuperAdmins, "superadmins.json");
+            SaveDataToFile(Admin.Admins, "admins.json");
+            SaveDataToFile(Branch.branches, "branches.json");
+            SaveDataToFile(BranchDepartment.Departments, "departments.json");
+            SaveDataToFile(BranchDepartment.branchDepartments, "branchdepartments.json");
+            SaveDataToFile(Clinic.Clinics, "clinics.json");
+            SaveDataToFile(Booking.Bookings, "bookings.json");
+            SaveDataToFile(Service.Services, "services.json");
+
+            Console.WriteLine("✅ All data saved successfully.");
         }
     }
 }
