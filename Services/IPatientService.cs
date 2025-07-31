@@ -6,7 +6,7 @@ namespace HospitalSystemTeamTask.Services
 {
     public interface IPatientService
     {
-        void AddPatient(string name, DateTime DateOFBirthday, string email, string password, string nationalId, string phoneNumber, string gender, string city);
+        void AddPatient(string name, DateTime DateOFBirthday, string email, string password, string nationalId, string phoneNumber, string gender);
 
         //void GetAllPatients();
         //void GetPatientById(int Pid);

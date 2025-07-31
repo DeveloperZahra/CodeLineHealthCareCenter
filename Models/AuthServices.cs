@@ -21,6 +21,9 @@ namespace CodeLineHealthCareCenter.Models
 
             string SuperAdminCode = "5566"; // Predefined code for Super Admin
 
+            // object to access Super Admin methods
+            SuperAdmin CallToMethodSuperAdmin = new SuperAdmin();
+            Patient CallToMethodPatient = new Patient();
             // Step 1: Ask user to select the type of account
             Console.WriteLine("Select User Type to Sign Up:");
             Console.WriteLine("1. Super Admin");
@@ -53,7 +56,7 @@ namespace CodeLineHealthCareCenter.Models
                 string nationalId = UserData.EnterNationalID();
                 string phone = UserData.EnterPhoneNumber();
                 string gender = UserData.EnterGender();
-                bool isActive = UserData.EnterIsActive();
+                //bool isActive = UserData.EnterIsActive();
                 string hashedPassword = UserData.EnterPasswordForSignUp();
 
                 // Check if email already exists in SuperAdmin list
@@ -62,16 +65,10 @@ namespace CodeLineHealthCareCenter.Models
                     Console.WriteLine("Email already registered as Super Admin. Please sign in.");
                     return;
                 }
+                CallToMethodSuperAdmin.AddSuperAdmin(name, email, hashedPassword, nationalId, phone, gender);
+                Console.WriteLine($"Super Admin '{name}' registered successfully!");
+                Console.ReadLine();
 
-                // Create a new SuperAdmin object
-                SuperAdmin newSuperAdmin = new SuperAdmin(name, email, hashedPassword, nationalId, phone, gender)
-                {
-                    IsActive = isActive
-                };
-
-                // Add to list
-                SuperAdmin.SuperAdmins.Add(newSuperAdmin);
-                Console.WriteLine($"Super Admin '{newSuperAdmin.UserName}' registered successfully!");
             }
 
             // Step 3: Patient Sign-Up
@@ -83,7 +80,7 @@ namespace CodeLineHealthCareCenter.Models
                 string nationalId = UserData.EnterNationalID();
                 string phone = UserData.EnterPhoneNumber();
                 string gender = UserData.EnterGender();
-                bool isActive = UserData.EnterIsActive();
+                //bool isActive = UserData.EnterIsActive();
                 string hashedPassword = UserData.EnterPasswordForSignUp();
                 DateTime dateOfBirth = UserData.EnterDateOfBirth();
 
@@ -94,15 +91,10 @@ namespace CodeLineHealthCareCenter.Models
                     return;
                 }
 
-                // Create a new Patient object
-                Patient newPatient = new Patient(name, dateOfBirth, email, hashedPassword, nationalId, phone, gender)
-                {
-                    IsActive = isActive
-                };
+                CallToMethodPatient.AddPatient(name, dateOfBirth, email, hashedPassword, nationalId, phone, gender);
+                Console.WriteLine($"Super Patient '{name}' registered successfully!");
+                Console.ReadLine();
 
-                // Add to list
-                Patient.patients.Add(newPatient);
-                Console.WriteLine($"Patient '{newPatient.UserName}' registered successfully!");
             }
             else
             {

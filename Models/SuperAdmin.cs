@@ -18,6 +18,14 @@ namespace CodeLineHealthCareCenter
         public static List<SuperAdmin> SuperAdmins = new List<SuperAdmin>();
 
         // 2. ================================= Constructore ======================================
+        /// defualt constructor
+        public SuperAdmin() : base() // Call parent User constructor
+        {
+            // Generate a custom SuperAdmin ID (starts with "SA")
+            UserId = UserCount;
+            // SuperAdmin accounts are active by default
+            IsActive = true;
+        }
         public SuperAdmin(string name, string email, string password, string nationalId, string phoneNumber, string gender)
         : base(name, email, password, nationalId, phoneNumber, gender, "Super Admin") // Call parent User constructor
         {
@@ -50,7 +58,7 @@ namespace CodeLineHealthCareCenter
 
             SaveLoadingFile.SaveToFile(SuperAdmins, SaveLoadingFile.SuperAdminFile); // Save to file
 
-            Console.WriteLine($"Super Admin '{newSuperAdmin.UserName}' added successfully with ID: {newSuperAdmin.UserId}");
+            //Console.WriteLine($"Super Admin '{newSuperAdmin.UserName}' added successfully with ID: {newSuperAdmin.UserId}");
         }
 
 
