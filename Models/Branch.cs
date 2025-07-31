@@ -57,7 +57,7 @@ namespace CodeLineHealthCareCenter
         /// implements IBranchService It provides all operations for managing branches
         // 3.1. Adds a new branch to the list.
 
-        public void AddBranch(string branchAddress, string phoneNumber)
+        public static void AddBranch(string branchAddress, string phoneNumber)
         {
             Branch newBranch = new Branch(branchAddress, phoneNumber); // Create a new branch object
             branches.Add(newBranch); // Add it to the list
