@@ -13,7 +13,7 @@ namespace CodeLineHealthCareCenter
 
         static void Main(string[] args)
         {
-            SaveLoadingFile.LoadDataFromFiles(); // Load data from files at the start of the program
+            SaveLoadingFile.LoadFromFile(SaveLoadingFile.DoctorFile); // Load doctors from file
             ShowWelcomeScreen();
         }
 
