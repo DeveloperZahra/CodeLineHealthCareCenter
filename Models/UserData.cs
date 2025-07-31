@@ -30,7 +30,7 @@ namespace CodeLineHealthCareCenter.Models
 
                     if (isValidName)
                     {
-                        Console.WriteLine($"Sucessfully Enter Name");
+                        //Console.WriteLine($"Sucessfully Enter Name");
                         return userName; // Return the valid name
                     }
                     else
@@ -72,7 +72,7 @@ namespace CodeLineHealthCareCenter.Models
 
                     if (isValidEmail)
                     {
-                        Console.WriteLine($"Sucessfully Enter Email");
+                        //Console.WriteLine($"Sucessfully Enter Email");
                         return email; // Return valid email
                     }
                     else
