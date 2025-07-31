@@ -20,16 +20,26 @@ namespace CodeLineHealthCareCenter.Utilities
                 }
             }
         }
-        // Method to load data from a file
-        public static List<string> LoadFromFile(string filePath) 
+        // Generic Load Method (Assumes T has a Parse Method or Manual Parsing is Needed)
+        public static List<string> LoadFromFile(string filePath)
         {
-            List<string> lines = new List<string>(); 
-
-            if (File.Exists(filePath)) // Check if the file exists
+            List<string> lines = new List<string>();
+            if (File.Exists(filePath))
             {
-                lines.AddRange(File.ReadAllLines(filePath)); 
+                using (StreamReader reader = new StreamReader(filePath))
+                {
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        lines.Add(line);
+                    }
+                }
+                Console.WriteLine($"📂 Data loaded from '{filePath}' successfully.");
             }
-
+            else
+            {
+                Console.WriteLine($"⚠️ File '{filePath}' does not exist.");
+            }
             return lines;
         }
     }
