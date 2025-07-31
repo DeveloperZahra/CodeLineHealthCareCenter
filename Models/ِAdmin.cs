@@ -26,7 +26,7 @@ namespace CodeLineHealthCareCenter.Models
         public Admin() : base() // Call parent User constructor
         {
             // Generate a custom Admin ID (starts with "A")
-            UserId = "A" + "," + UserCount;
+            UserId = UserCount;
             // Admin accounts are active by default
             IsActive = true;
         }
@@ -34,7 +34,7 @@ namespace CodeLineHealthCareCenter.Models
         : base(name, email, password, nationalId, phoneNumber, gender, "Admin") // Call parent User constructor
         {
             // Generate a custom Admin ID (starts with "A")
-            UserId = "A"+ "," + UserCount;
+            UserId = UserCount;
 
             // Assign admin-specific properties
             BranchId = branchId;
@@ -65,7 +65,7 @@ namespace CodeLineHealthCareCenter.Models
             SaveLoadingFile.SaveToFile(Admins, SaveLoadingFile.AdminFile); // Save the updated list to file
 
             // 4️⃣ Confirmation message
-            Console.WriteLine($"✅ Admin '{newAdmin.UserName}' added successfully with ID: {newAdmin.UserId}");
+            Console.WriteLine($"Admin '{newAdmin.UserName}' added successfully with ID: {newAdmin.UserId}");
         }
 
 
