@@ -1,4 +1,5 @@
 ﻿using CodeLineHealthCareCenter.Models;
+using CodeLineHealthCareCenter.Utilities;
 using HospitalSystemTeamTask.Services;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,8 @@ namespace CodeLineHealthCareCenter
 
             Department newDept = new Department(name);
             BranchDepartment.Departments.Add(newDept);
+
+            SaveLoadingFile.SaveToFile(BranchDepartment.Departments, SaveLoadingFile.DepartmentFile); // Save the updated list to the file
 
             Console.WriteLine($"Department '{newDept.DepartmentName}' created successfully!");
         }
