@@ -1,4 +1,5 @@
 ﻿using CodeLineHealthCareCenter.Models;
+using CodeLineHealthCareCenter.Utilities;
 using HospitalSystemTeamTask.Services;
 using System;
 using System.Collections.Generic;
@@ -57,6 +58,8 @@ namespace CodeLineHealthCareCenter
             string departmentName = Console.ReadLine();
             BranchDepartment newRelation = new BranchDepartment(branchDepartmentId,branchID, departmentId, FloorId, departmentName,branchName,true);
             branchDepartments.Add(newRelation);
+
+            SaveLoadingFile.SaveToFile(branchDepartments, SaveLoadingFile.BranchDepartmentFile); // Save the updated list to the file
 
             Console.WriteLine($" Department {departmentId} added to Branch {branchID}.");
         }
