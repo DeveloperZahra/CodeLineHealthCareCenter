@@ -60,6 +60,7 @@ namespace CodeLineHealthCareCenter.Models
                         string adminName = UserData.EnterUserName(); // Get the admin name from user input
                         string adminEmail = UserData.EnterUserEmail(); // Get the admin email from user input
                         string adminPassword = UserData.EnterPasswordForSignUp(); // Get the admin password from user input
+                        string adminNationalId = UserData.EnterNationalID();// Get the admin national ID from user input
                         CallMethodFromAdmin.AddAdmin();
                         break;
                     case "4":
