@@ -11,6 +11,9 @@ namespace CodeLineHealthCareCenter.Models
         // =================== SuperAdmin Menu ====================
         static void SuperAdminMenu()
         {
+            // Create branch oject to call methods in classes
+            Branch CallMethodFromBranch = new Branch(); // object to be able to call those methods( which are non static methods) in this class in other class
+            Department CallMethodFromDepartment = new Department(); // object to be able to call those methods( which are non static methods) in this class in other class
             // Flag to control the loop and allow the user to go back
             bool back = false;
 
@@ -37,14 +40,16 @@ namespace CodeLineHealthCareCenter.Models
                     case "1":
                         string branchAddress = UserData.EnterAddress(); // Get the branch address from user input
                         string phoneNumber = UserData.EnterPhoneNumber(); // Get the branch phone number from user input
-                        Branch.AddBranch(branchAddress, phoneNumber); // Call the method to add a new branch with the provided details
+                        CallMethodFromBranch.AddBranch(branchAddress, phoneNumber); // Call the method to add a new branch with the provided details
+                        Console.ReadLine(); // Wait for user input before continuing
                         break;
                         
 
 
                     case "2":
                         // Placeholder for adding a new department
-                        Console.WriteLine("[SuperAdmin] Add Department - Not implemented");
+                        AddDepartment();
+                        Console.ReadLine(); // Wait for user input before continuing
                         break;
 
 
