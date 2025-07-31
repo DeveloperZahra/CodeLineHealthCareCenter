@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace CodeLineHealthCareCenter.Models
 {
@@ -16,6 +18,7 @@ namespace CodeLineHealthCareCenter.Models
 
             // Keep showing the menu until the user chooses to go back
             while (!back)
+
             {
                 Console.Clear(); // Clear the console for a fresh display
                 // Display SuperAdmin menu options with icons
@@ -33,10 +36,13 @@ namespace CodeLineHealthCareCenter.Models
 
                 // Process the user's input using a switch statement
                 switch (input)
+
                 {
+
                     case "1":
                         // Placeholder for adding a new branch
                         Console.WriteLine("[SuperAdmin] Add Branch - Not implemented");
+                        SuperAdmin.AddSuperAdmin(); // Call the method to add a new SuperAdmin user to the system
                         break;
                         
 
@@ -44,12 +50,14 @@ namespace CodeLineHealthCareCenter.Models
                     case "2":
                         // Placeholder for adding a new department
                         Console.WriteLine("[SuperAdmin] Add Department - Not implemented");
+                        SuperAdmin.AddSuperAdmin(); // Call the method to add a new SuperAdmin user to the system
                         break;
 
 
                     // Placeholder for adding a new admin user
                     case "3":
                         Console.WriteLine("[SuperAdmin] Add Admin - Not implemented");
+                        SuperAdmin.AddSuperAdmin();// Call the method to add a new SuperAdmin user to the system
                         break;
                     case "4":
                         // Placeholder action for adding a doctor
@@ -58,6 +66,7 @@ namespace CodeLineHealthCareCenter.Models
                     case "5":
                         // Placeholder for viewing overall system data
                         Console.WriteLine("[SuperAdmin] View System Data - Not implemented");
+                        SuperAdmin.AddSuperAdmin();// Call the method to add a new SuperAdmin user to the system
                         break;
 
                     case "0":
@@ -102,11 +111,13 @@ namespace CodeLineHealthCareCenter.Models
                     case "1":
                         // Placeholder action for adding a clinic
                         Console.WriteLine("🏥 [Admin] Add Clinic - Not implemented");
+                        Admin.AddAdmin(); // Call the method to add a new Admin user to the system
                         break;
 
                     case "2":
                         // Placeholder action for viewing appointments
                         Console.WriteLine("📅 [Admin] View Appointments - Not implemented");
+                        Admin.AddAdmin(); // Call the method to add a new Admin user to the system
                         break;
 
                     case "0":
@@ -147,6 +158,7 @@ namespace CodeLineHealthCareCenter.Models
                     case "1":
                         // Placeholder for the "View Appointments" functionality
                         Console.WriteLine("📆 [Doctor] View Appointments - Not implemented");
+                        Doctor.AddDoctor(); // Call the method to add a new Doctor to the system
                         break;
 
                     case "0":
@@ -189,11 +201,13 @@ namespace CodeLineHealthCareCenter.Models
                     case "1":
                         // Placeholder for appointment booking functionality
                         Console.WriteLine("📅 [Patient] Book Appointment - Not implemented");
+                        Patient.AddPatient(); // Call the method to add/register a new Patient in the system
                         break;
 
                     case "2":
                         // Placeholder for viewing patient's own appointments
                         Console.WriteLine("📋 [Patient] View My Appointments - Not implemented");
+                        Patient.AddPatient(); // Call the method to add/register a new Patient in the system
                         break;
 
                     case "0":
