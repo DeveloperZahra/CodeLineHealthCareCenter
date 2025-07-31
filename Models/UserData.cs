@@ -12,7 +12,7 @@ namespace CodeLineHealthCareCenter.Models
     public class UserData
     {    public static int tries = 0;
         /// =================================== General User Input Data ===============================
-        // ================================== 1. User Name ====================================
+        // ================================== 1. User Name====================================
         public static string EnterUserName()
         {
             string userName = "";
@@ -30,26 +30,26 @@ namespace CodeLineHealthCareCenter.Models
 
                     if (isValidName)
                     {
-                        Console.WriteLine("✅");
+                        Console.WriteLine($"Sucessfully Enter Name");
                         return userName; // Return the valid name
                     }
                     else
                     {
-                        Console.WriteLine("❌ Invalid User Name. Please enter at least 3 characters.");
+                        Console.WriteLine(" Invalid User Name. Please enter at least 3 characters.");
                         tries++;
                     }
 
                 } while (tries < 3); // Allow a maximum of 3 attempts
 
                 // If user fails 3 times
-                Console.WriteLine("⚠ You have exceeded the maximum number of attempts.");
+                Console.WriteLine("You have exceeded the maximum number of attempts.");
                 Console.WriteLine("Please try again later.");
                 return "null"; // Return "null" to indicate failure
             }
             catch (Exception ex)
             {
                 // Handle any unexpected exceptions
-                Console.WriteLine($"⚠ An error occurred: {ex.Message}");
+                Console.WriteLine($" An error occurred: {ex.Message}");
                 return "null";
             }
         }
@@ -72,25 +72,25 @@ namespace CodeLineHealthCareCenter.Models
 
                     if (isValidEmail)
                     {
-                        Console.WriteLine("✅");
+                        Console.WriteLine($"Sucessfully Enter Email");
                         return email; // Return valid email
                     }
                     else
                     {
-                        Console.WriteLine("❌ Invalid Email. Please enter a valid email (e.g., user@example.com).");
+                        Console.WriteLine("Invalid Email. Please enter a valid email (e.g., user@example.com).");
                         tries++;
                     }
 
                 } while (tries < 3); // Maximum of 3 attempts
 
                 // If user fails 3 times
-                Console.WriteLine("⚠ You have exceeded the maximum number of attempts.");
+                Console.WriteLine(" You have exceeded the maximum number of attempts.");
                 Console.WriteLine("Please try again later.");
                 return "null";
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"⚠ An error occurred: {ex.Message}");
+                Console.WriteLine($" An error occurred: {ex.Message}");
                 return "null";
             }
         }
@@ -108,30 +108,30 @@ namespace CodeLineHealthCareCenter.Models
                     Console.Write("Enter National ID: ");
                     nationalId = Console.ReadLine();
 
-                    // ✅ Validate National ID: must be digits only and 10 to 14 characters long
+                    //  Validate National ID: must be digits only and 10 to 14 characters long
                     bool isValidId = UserValidator.ValidateNationalId(nationalId);
 
                     if (isValidId)
                     {
-                        Console.WriteLine("✅");
+                        Console.WriteLine($"Sucessfully Enter National ID");
                         return nationalId; // Return valid National ID
                     }
                     else
                     {
-                        Console.WriteLine("❌ Invalid National ID. May National ID is null, empty, or not exactly 3 characters long");
+                        Console.WriteLine(" Invalid National ID. May National ID is null, empty, or not exactly 3 characters long");
                         tries++;
                     }
 
                 } while (tries < 3); // Allow up to 3 attempts
 
                 // If user fails 3 times
-                Console.WriteLine("⚠ You have exceeded the maximum number of attempts.");
+                Console.WriteLine(" You have exceeded the maximum number of attempts.");
                 Console.WriteLine("Please try again later.");
                 return "null";
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"⚠ An error occurred: {ex.Message}");
+                Console.WriteLine($" An error occurred: {ex.Message}");
                 return "null";
             }
         }
@@ -148,30 +148,30 @@ namespace CodeLineHealthCareCenter.Models
                     Console.Write("Enter Phone Number: ");
                     phoneNumber = Console.ReadLine();
 
-                    // ✅ Validate phone number: must be digits only and between 8-12 digits
+                    // Validate phone number: must be digits only and between 8-12 digits
                     bool isValidPhone = UserValidator.ValidatePhoneNumber(phoneNumber);
 
                     if (isValidPhone)
                     {
-                        Console.WriteLine("✅");
+                        Console.WriteLine($"Sucessfully Enter Phone Nember");
                         return phoneNumber; // Return valid phone number
                     }
                     else
                     {
-                        Console.WriteLine("❌ Invalid Phone Number. It must be at least 8 digits.");
+                        Console.WriteLine(" Invalid Phone Number. It must be at least 8 digits.");
                         tries++;
                     }
 
                 } while (tries < 3); // Allow up to 3 attempts
 
                 // If user fails 3 times
-                Console.WriteLine("⚠ You have exceeded the maximum number of attempts.");
+                Console.WriteLine(" You have exceeded the maximum number of attempts.");
                 Console.WriteLine("Please try again later.");
                 return "null";
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"⚠ An error occurred: {ex.Message}");
+                Console.WriteLine($" An error occurred: {ex.Message}");
                 return "null";
             }
         }
@@ -188,14 +188,14 @@ namespace CodeLineHealthCareCenter.Models
                     Console.Write("Enter Gender (Male/Female): ");
                     gender = Console.ReadLine()?.Trim();
 
-                    // ✅ Validate gender: must be "Male" or "Female" (case-insensitive)
+                    // Validate gender: must be "Male" or "Female" (case-insensitive)
                     bool isValidGender = UserValidator.ValidateGender(gender);
 
                     if (isValidGender)
                     {
                         // Normalize output to start with capital letter
                         string formattedGender = char.ToUpper(gender[0]) + gender.Substring(1).ToLower();
-                        Console.WriteLine("✅");
+                        Console.WriteLine($"Sucessfully Enter gender");
                         return formattedGender;
                     }
                     else
@@ -207,13 +207,13 @@ namespace CodeLineHealthCareCenter.Models
                 } while (tries < 3); // Allow up to 3 attempts
 
                 // If user fails 3 times
-                Console.WriteLine("⚠ You have exceeded the maximum number of attempts.");
+                Console.WriteLine(" You have exceeded the maximum number of attempts.");
                 Console.WriteLine("Please try again later.");
                 return "null";
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"⚠ An error occurred: {ex.Message}");
+                Console.WriteLine($" An error occurred: {ex.Message}");
                 return "null";
             }
         }
@@ -233,7 +233,7 @@ namespace CodeLineHealthCareCenter.Models
                     Console.Write("Enter Role (Admin / Doctor / Patient / Super Admin): ");
                     role = Console.ReadLine()?.Trim();
 
-                    // ✅ Validate role: must match one of the valid roles (case-insensitive)
+                    // Validate role: must match one of the valid roles (case-insensitive)
                     bool isValidRole = UserValidator.ValidateRole(role) &&
                                        Array.Exists(validRoles, r => r.Equals(role, StringComparison.OrdinalIgnoreCase));
 
@@ -243,25 +243,25 @@ namespace CodeLineHealthCareCenter.Models
                         string formattedRole = string.Join(" ", role.Split(' ')
                             .Select(word => char.ToUpper(word[0]) + word.Substring(1).ToLower()));
 
-                        Console.WriteLine("✅");
+                        Console.WriteLine($"Sucessfully Enter role");
                         return formattedRole;
                     }
                     else
                     {
-                        Console.WriteLine("❌ Invalid Role. Please enter one of the following: Admin, Doctor, Patient, Super Admin.");
+                        Console.WriteLine("Invalid Role. Please enter one of the following: Admin, Doctor, Patient, Super Admin.");
                         tries++;
                     }
 
                 } while (tries < 3);
 
                 // If user fails 3 times
-                Console.WriteLine("⚠ You have exceeded the maximum number of attempts.");
+                Console.WriteLine(" You have exceeded the maximum number of attempts.");
                 Console.WriteLine("Please try again later.");
                 return "null";
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"⚠ An error occurred: {ex.Message}");
+                Console.WriteLine($" An error occurred: {ex.Message}");
                 return "null";
             }
         }
@@ -278,33 +278,33 @@ namespace CodeLineHealthCareCenter.Models
                     Console.Write("Is the account active? (Yes/No): ");
                     input = Console.ReadLine()?.Trim().ToLower();
 
-                    // ✅ Validate input: must be yes/no or true/false
+                    // Validate input: must be yes/no or true/false
                     if (input == "yes" || input == "true")
                     {
-                        Console.WriteLine("✅ Account set as Active.");
+                        Console.WriteLine(" Account set as Active.");
                         return true;
                     }
                     else if (input == "no" || input == "false")
                     {
-                        Console.WriteLine("✅ Account set as Inactive.");
+                        Console.WriteLine(" Account set as Inactive.");
                         return false;
                     }
                     else
                     {
-                        Console.WriteLine("❌ Invalid input. Please enter Yes or No.");
+                        Console.WriteLine(" Invalid input. Please enter Yes or No.");
                         tries++;
                     }
 
                 } while (tries < 3);
 
                 // If user fails 3 times
-                Console.WriteLine("⚠ You have exceeded the maximum number of attempts.");
+                Console.WriteLine(" You have exceeded the maximum number of attempts.");
                 Console.WriteLine("Default value set to Inactive.");
                 return false; // Default to inactive if user fails
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"⚠ An error occurred: {ex.Message}");
+                Console.WriteLine($" An error occurred: {ex.Message}");
                 return false; // Return false by default on error
             }
         }
@@ -360,7 +360,7 @@ namespace CodeLineHealthCareCenter.Models
 
                 if (!validPassword)
                 {
-                    Console.WriteLine("\n❌ Password must be at least 6 characters long and contain letters and numbers.");
+                    Console.WriteLine("\n Password must be at least 6 characters long and contain letters and numbers.");
                     tries++;
                     continue;
                 }
@@ -371,17 +371,17 @@ namespace CodeLineHealthCareCenter.Models
                 if (password == confirmPassword)
                 {
                     string hashedPassword = HashPassword(password);
-                    Console.WriteLine("\n✅ Password set successfully!");
+                    Console.WriteLine("\n Password set successfully!");
                     return hashedPassword;
                 }
                 else
                 {
-                    Console.WriteLine("\n❌ Passwords do not match. Try again.");
+                    Console.WriteLine("\n  Passwords do not match. Try again.");
                     tries++;
                 }
             }
 
-            Console.WriteLine("\n⚠ You have exceeded the maximum number of attempts.");
+            Console.WriteLine("\n  You have exceeded the maximum number of attempts.");
             return "null";
         }
 
@@ -399,31 +399,31 @@ namespace CodeLineHealthCareCenter.Models
                     Console.Write("Enter Branch ID: ");
                     string input = Console.ReadLine();
 
-                    // ✅ Try parsing the input to an integer
+                    // Try parsing the input to an integer
                     if (int.TryParse(input, out int branchId))
                     {
-                        // ✅ Check if the branch exists
+                        // Check if the branch exists
                         bool exists = branches.Any(b => b.BranchId == branchId);
 
                         if (exists)
                         {
-                            Console.WriteLine("✅");
+                            Console.WriteLine($"Sucessfully Enter Branch ID");
                             return branchId;
                         }
                     }
 
                     // If input is invalid or branch does not exist
-                    Console.WriteLine("❌ Invalid Branch ID. Please enter an existing ID.");
+                    Console.WriteLine("Invalid Branch ID. Please enter an existing ID.");
                     tries++;
 
                 } while (tries < 3);
 
-                Console.WriteLine("⚠ You have exceeded the maximum number of attempts.");
+                Console.WriteLine("You have exceeded the maximum number of attempts.");
                 return -1; // Return -1 if attempts exceeded
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"⚠ An error occurred: {ex.Message}");
+                Console.WriteLine($"An error occurred: {ex.Message}");
                 return -1;
             }
         }
@@ -450,25 +450,25 @@ namespace CodeLineHealthCareCenter.Models
 
                         if (exists)
                         {
-                            Console.WriteLine("✅");
+                            Console.WriteLine($"Sucessfully Enter Department ID");
                             return departmentId; // Return valid department ID
                         }
                     }
 
                     // If the input is invalid or department not found
-                    Console.WriteLine("❌ Invalid Department ID. Please enter an existing ID.");
+                    Console.WriteLine(" Invalid Department ID. Please enter an existing ID.");
                     tries++; // Increase the number of failed attempts
 
                 } while (tries < 3); // Allow a maximum of 3 attempts
 
                 // If user failed 3 times
-                Console.WriteLine("⚠ You have exceeded the maximum number of attempts.");
+                Console.WriteLine(" You have exceeded the maximum number of attempts.");
                 return -1; // Indicate failure
             }
             catch (Exception ex)
             {
                 // Handle unexpected errors
-                Console.WriteLine($"⚠ An error occurred: {ex.Message}");
+                Console.WriteLine($" An error occurred: {ex.Message}");
                 return -1; // Indicate failure
             }
         }
@@ -513,23 +513,23 @@ namespace CodeLineHealthCareCenter.Models
                         if (selectedIndex >= 1 && selectedIndex <= specialties.Count)
                         {
                             string selectedSpecialty = specialties[selectedIndex - 1];
-                            Console.WriteLine($"✅ You selected: {selectedSpecialty}");
+                            Console.WriteLine($"You selected: {selectedSpecialty}");
                             return selectedSpecialty;
                         }
                     }
 
                     // If input is invalid
-                    Console.WriteLine("❌ Invalid selection. Please enter a valid number.");
+                    Console.WriteLine("Invalid selection. Please enter a valid number.");
                     tries++;
 
                 } while (tries < 3); // Allow up to 3 attempts
 
-                Console.WriteLine("⚠ You have exceeded the maximum number of attempts.");
+                Console.WriteLine("You have exceeded the maximum number of attempts.");
                 return "null"; // Indicate failure
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"⚠ An error occurred: {ex.Message}");
+                Console.WriteLine($"An error occurred: {ex.Message}");
                 return "null";
             }
         }
@@ -557,30 +557,73 @@ namespace CodeLineHealthCareCenter.Models
                         // Validate age range (1 - 120 years)
                         if (age >= 1 && age <= 120)
                         {
-                            Console.WriteLine("✅");
+                            Console.WriteLine($"Sucessfully Enter age");
                             return dob;
                         }
                         else
                         {
-                            Console.WriteLine("❌ Invalid age. Age must be between 1 and 120 years.");
+                            Console.WriteLine("Invalid age. Age must be between 1 and 120 years.");
                         }
                     }
                     else
                     {
-                        Console.WriteLine("❌ Invalid date format. Please use yyyy-MM-dd (e.g., 1990-05-21).");
+                        Console.WriteLine("Invalid date format. Please use yyyy-MM-dd (e.g., 1990-05-21).");
                     }
 
                     tries++;
 
                 } while (tries < 3); // Allow up to 3 attempts
 
-                Console.WriteLine("⚠ You have exceeded the maximum number of attempts.");
+                Console.WriteLine("You have exceeded the maximum number of attempts.");
                 return DateTime.MinValue; // Indicate failure
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"⚠ An error occurred: {ex.Message}");
+                Console.WriteLine($"An error occurred: {ex.Message}");
                 return DateTime.MinValue;
+            }
+        }
+
+        // =================================== 13. Address ====================================
+
+        public static string EnterAddress()
+        {
+            string address = "";
+            int tries = 0; // Counter for the number of attempts
+
+            try
+            {
+                do
+                {
+                    Console.Write("Enter User Address: ");
+                    address = Console.ReadLine();
+
+                    //validat fpr input data 
+                    bool isValidAddress = !string.IsNullOrWhiteSpace(address) && address.Length >= 2;
+
+                    if (isValidAddress)
+                    {
+                        Console.WriteLine($"Sucessfully save Enter address");
+                        return address; // Return the valid address
+                    }
+                    else
+                    {
+                        Console.WriteLine(" Invalid Address. Please enter at least 5 characters.");
+                        tries++;
+                    }
+
+                } while (tries < 3); // Allow a maximum of 3 attempts
+
+                // If user fails 3 times
+                Console.WriteLine(" You have exceeded the maximum number of attempts.");
+                Console.WriteLine("Please try again later.");
+                return "null"; // Return "null" to indicate failure
+            }
+            catch (Exception ex)
+            {
+                // Handle any unexpected exceptions
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return "null";
             }
         }
 

@@ -24,11 +24,19 @@ namespace CodeLineHealthCareCenter.Models
         // 2. ============================== Doctor List ====================================================
         public static List<Doctor> doctors = new List<Doctor>();
         // 3. ============================= Class Constructor ================================================
+        /// Defualt Constructor 
+        public Doctor() : base() // Call parent User constructor
+        {
+            // Generate a custom doctor ID (starts with "D")
+            UserId = UserCount;
+            // By default, the doctor account is active
+            IsActive = true;
+        }
         public Doctor(string name,string email,string password,string nationalId,string phoneNumber,string gender,string specialization, int branchId, int departmentId)
         : base(name, email, password, nationalId, phoneNumber, gender, "Doctor") // Call parent User constructor
         {
             // Generate a custom doctor ID (starts with "D")
-            UserId = "D" + "," + UserCount;
+            UserId =  UserCount;
 
             // Assign doctor-specific properties
             Specialty = specialization;

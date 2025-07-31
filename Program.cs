@@ -29,6 +29,7 @@ namespace CodeLineHealthCareCenter
         // Displays the main welcome screen with SignUp, SignIn, and Exit options
         static void ShowWelcomeScreen()
         {
+            AuthServices CallMethodsfromauthServices = new AuthServices(); // Create an instance of AuthServices to handle user authentication
             bool isRunning = true;
             // while loop to display wellcome screen every true value untill user enter 0 value to exist from loop 
             while (isRunning)
@@ -48,11 +49,11 @@ namespace CodeLineHealthCareCenter
                 {
                     case '1':
                         Console.WriteLine("============= SignUp ====================");
-                        //SignUp();
+                        CallMethodsfromauthServices.SignUp();
                         break;
                     case '2':
                         Console.WriteLine("============= SignIp ====================");
-                        //SignIn();
+                        CallMethodsfromauthServices.SignIn();
                         break;
                     case '0':
                         Console.WriteLine("Thank you for using the system!");

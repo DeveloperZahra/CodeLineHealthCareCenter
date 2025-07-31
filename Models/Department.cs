@@ -25,6 +25,12 @@ namespace CodeLineHealthCareCenter
 
 
         //3. ======================================== Class Constructor ========================================
+        public Department() // Default constructor
+        {
+            counter++;
+            DepartmentId = counter;
+            DepartmentName = "Default Department"; // Default name for the department
+        }
         public Department(string name) // Constructor to initialize a new department with a name
         {
             counter++;
@@ -34,7 +40,7 @@ namespace CodeLineHealthCareCenter
         //4. ========================================== Class Methods ================================
         /// Implement IDepartmentServices Methods 
         // 4.1 Creates a new department for the specified branch.
-        public void CreateDepartment()
+        public void AddDepartment()
         {
             Console.Write("Enter department name: ");
             string name = Console.ReadLine();

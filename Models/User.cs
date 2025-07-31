@@ -4,9 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CodeLineHealthCareCenter
@@ -19,7 +21,7 @@ namespace CodeLineHealthCareCenter
 
         //2.  ============== Properties =================
         public static int UserCount = 0;
-        public string UserId { get; set; } // User Id 
+        public int UserId { get; set; } // User Id 
         public string UserName { get; set; } // name of the user
         public string Email { get; set; } // User's email address
         public string NationalID { get; set; } // National ID of the user
@@ -42,13 +44,35 @@ namespace CodeLineHealthCareCenter
             }
         }
         // 4============== Constructor ==============
+        /// Default constructor initializes a user with default values.
+        public User()
+        {
+            // Increment the global user counter to generate a unique ID
+            UserCount++;
+
+            // Assign a default unique ID
+            UserId =  UserCount;
+
+            // Assign default values (يمكنك تعديلها حسب احتياجك)
+            UserName = "Default Name";
+            Email = "default@example.com";
+            Password = "Default123"; // سيُمرر عبر خاصية Password وبالتالي يتم التحقق من صحته
+            NationalID = "0000000000";
+            PhoneNumber = "0000000000";
+            Gender = "Unknown";
+            Role = "Guest";
+
+            // By default, the account is active
+            IsActive = true;
+        }
+
         public User(string name, string email, string password, string nationalId, string phoneNumber, string gender, string role)
         {
             // Increment the global user counter to generate a unique ID
             UserCount++;
 
             // Assign a unique ID (can be customized later in child classes)
-            UserId = "U" + "," + UserCount;
+            UserId =  UserCount;
 
             // Assign values to properties
             UserName = name;
@@ -172,7 +196,7 @@ namespace CodeLineHealthCareCenter
         }
 
         // 4.2 Deactivates a user by their ID
-        public void DeactivateUser(string userId ,string role)
+        public void DeactivateUser(int userId ,string role)
         {
             if (role == "Super Admin")
             {
@@ -324,7 +348,7 @@ namespace CodeLineHealthCareCenter
             Console.WriteLine($"ID: {user.UserId}, Name: {user.UserName}, Email: {user.Email}, Role: {user.Role}, Active: {user.IsActive}");
         }
         // 4.5 Prints user details by ID and role
-        public void GetUserById(string userId, string role)
+        public void GetUserById(int userId, string role)
         {
             switch (role)
             {
@@ -386,7 +410,7 @@ namespace CodeLineHealthCareCenter
         }
 
         //4.6 Updates a user's password if the current password matches.
-        public void UpdatePassword(string userId, string role, string currentPassword, string newPassword)
+        public void UpdatePassword(int userId, string role, string currentPassword, string newPassword)
         {
             switch (role)
             {
@@ -460,7 +484,7 @@ namespace CodeLineHealthCareCenter
         }
 
         // 4.7 Updates a user's details (name, email, phone, address) based on their role and userId.
-        public void UpdateUser(string userId, string role)
+        public void UpdateUser(int userId, string role)
         {
             bool hasUpdates = false;
             bool continueUpdating = true;
@@ -524,7 +548,7 @@ namespace CodeLineHealthCareCenter
         }
 
         // 4.8 Helper method to update the correct user based on role and field
-        private void UpdateField(string userId, string role, string field, string newValue)
+        private void UpdateField(int userId, string role, string field, string newValue)
         {
             object user = null;
 
@@ -544,13 +568,13 @@ namespace CodeLineHealthCareCenter
                     user = Patient.patients.FirstOrDefault(u => u.UserId == userId);
                     break;
                 default:
-                    Console.WriteLine($"⚠️ Unrecognized role '{role}'.");
+                    Console.WriteLine($"Unrecognized role '{role}'.");
                     return;
             }
 
             if (user == null)
             {
-                Console.WriteLine($"⚠️ No user found with ID {userId} for role {role}.");
+                Console.WriteLine($"No user found with ID {userId} for role {role}.");
                 return;
             }
 
@@ -562,7 +586,7 @@ namespace CodeLineHealthCareCenter
             }
             else
             {
-                Console.WriteLine($"⚠️ Cannot update the field '{field}'.");
+                Console.WriteLine($"Cannot update the field '{field}'.");
             }
         }
 

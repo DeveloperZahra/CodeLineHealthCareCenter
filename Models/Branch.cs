@@ -53,7 +53,6 @@ namespace CodeLineHealthCareCenter
         }
 
         // 3. ===================================Class methods================================================
-
         /// implements IBranchService It provides all operations for managing branches
         // 3.1. Adds a new branch to the list.
 
