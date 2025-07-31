@@ -73,8 +73,16 @@ namespace CodeLineHealthCareCenter.Models
                         
                         break;
                     case "5":
-                        // Placeholder for viewing overall system data
-                        Console.WriteLine("[SuperAdmin] View System Data - Not implemented");
+                        string DName = UserData.EnterUserName(); // Get the Doctor name from user input
+                        string DEmail = UserData.EnterUserEmail(); // Get the Doctor email from user input
+                        string DPassword = UserData.EnterPasswordForSignUp(); // Get the Doctor password from user input
+                        string DNationalId = UserData.EnterNationalID();// Get the Doctor national ID from user input
+                        string DPhoneNumber = UserData.EnterPhoneNumber(); // Get the Doctor phone number from user input
+                        string DGender = UserData.EnterGender(); // Get the Doctor gender from user input
+                        int DBranchId = UserData.EnterBranchId(Branch.branches); // Get the Doctor branch ID from user input
+                        int DDepartmentId = UserData.EnterDepartmentId(BranchDepartment.Departments); // Get the Doctor department ID from user input
+                        string DSpecialization = UserData.EnterSpecialty(); // Get the doctor's specialization from user input
+                        CallMethodFromDoctor.AddDoctor(DName, DEmail, DPassword, DNationalId, DPhoneNumber, DGender, DSpecialization, DBranchId, DDepartmentId); // Call the method to add a new doctor
                         break;
 
                     case "0":
