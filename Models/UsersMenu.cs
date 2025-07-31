@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace CodeLineHealthCareCenter.Models
 {
-    public  class UsersMenu
+    public class UsersMenu
     {
         // =================== SuperAdmin Menu ====================
         static void SuperAdminMenu()
@@ -21,6 +23,7 @@ namespace CodeLineHealthCareCenter.Models
 
             // Keep showing the menu until the user chooses to go back
             while (!back)
+
             {
                 Console.Clear(); // Clear the console for a fresh display
                 // Display SuperAdmin menu options with icons
@@ -38,25 +41,39 @@ namespace CodeLineHealthCareCenter.Models
 
                 // Process the user's input using a switch statement
                 switch (input)
+
                 {
+
                     case "1":
+<<<<<<< master
                         string branchAddress = UserData.EnterAddress(); // Get the branch address from user input
                         string phoneNumber = UserData.EnterPhoneNumber(); // Get the branch phone number from user input
                         CallMethodFromBranch.AddBranch(branchAddress, phoneNumber); // Call the method to add a new branch with the provided details
                         Console.ReadLine(); // Wait for user input before continuing
+=======
+                        // Placeholder for adding a new branch
+                        Console.WriteLine("[SuperAdmin] Add Branch - Not implemented");
+                        SuperAdmin.AddSuperAdmin(); // Call the method to add a new SuperAdmin user to the system
+>>>>>>> master
                         break;
-                        
+
 
 
                     case "2":
                         // Placeholder for adding a new department
+<<<<<<< master
                         CallMethodFromDepartment.AddDepartment();
                         Console.ReadLine(); // Wait for user input before continuing
+=======
+                        Console.WriteLine("[SuperAdmin] Add Department - Not implemented");
+                        SuperAdmin.AddSuperAdmin(); // Call the method to add a new SuperAdmin user to the system
+>>>>>>> master
                         break;
 
 
                     // Placeholder for adding a new admin user
                     case "3":
+<<<<<<< master
                         // enter admin name from user input
                         string adminName = UserData.EnterUserName(); // Get the admin name from user input
                         string adminEmail = UserData.EnterUserEmail(); // Get the admin email from user input
@@ -66,13 +83,18 @@ namespace CodeLineHealthCareCenter.Models
                         string adminGender = UserData.EnterGender(); // Get the admin gender from user input
                         int adminBranchId = UserData.EnterBranchId(Branch.branches); // Get the admin branch ID from user input
                         int adminDepartmentId = UserData.EnterDepartmentId(BranchDepartment.Departments); // Get the admin department ID from user input
-                        CallMethodFromAdmin.AddAdmin(adminName, adminEmail, adminPassword, adminNationalId , adminPhoneNumber, adminGender, adminBranchId, adminDepartmentId); // Call the method to add a new admin with the provided details
-                        Console.ReadLine(); 
+                        CallMethodFromAdmin.AddAdmin(adminName, adminEmail, adminPassword, adminNationalId, adminPhoneNumber, adminGender, adminBranchId, adminDepartmentId); // Call the method to add a new admin with the provided details
+                        Console.ReadLine();
+=======
+                        Console.WriteLine("[SuperAdmin] Add Admin - Not implemented");
+                        SuperAdmin.AddSuperAdmin();// Call the method to add a new SuperAdmin user to the system
+>>>>>>> master
                         break;
                     case "4":
-                        
+
                         break;
                     case "5":
+<<<<<<< master
                         string DName = UserData.EnterUserName(); // Get the Doctor name from user input
                         string DEmail = UserData.EnterUserEmail(); // Get the Doctor email from user input
                         string DPassword = UserData.EnterPasswordForSignUp(); // Get the Doctor password from user input
@@ -84,6 +106,11 @@ namespace CodeLineHealthCareCenter.Models
                         string DSpecialization = UserData.EnterSpecialty(); // Get the doctor's specialization from user input
                         CallMethodFromDoctor.AddDoctor(DName, DEmail, DPassword, DNationalId, DPhoneNumber, DGender, DSpecialization, DBranchId, DDepartmentId); // Call the method to add a new doctor
                         Console.ReadLine(); // Wait for user input before continuing
+=======
+                        // Placeholder for viewing overall system data
+                        Console.WriteLine("[SuperAdmin] View System Data - Not implemented");
+                        SuperAdmin.AddSuperAdmin();// Call the method to add a new SuperAdmin user to the system
+>>>>>>> master
                         break;
 
                     case "0":
@@ -129,6 +156,7 @@ namespace CodeLineHealthCareCenter.Models
                 {
 
                     case "1":
+<<<<<<< master
                         // Prompt the user to enter clinic details
                         string clinicName = UserData.EnterUserName(); // Get the clinic name from user input
                         string clinicLocation = UserData.EnterAddress(); // Get the clinic location from user input
@@ -140,6 +168,17 @@ namespace CodeLineHealthCareCenter.Models
                         // Placeholder for viewing appointments functionality
                         CallMethodFromBooking.GetAllBooking(); // Call the method to view all appointments
                         Console.ReadLine(); // Wait for user input before continuing
+=======
+                        // Placeholder action for adding a clinic
+                        Console.WriteLine("🏥 [Admin] Add Clinic - Not implemented");
+                        Admin.AddAdmin(); // Call the method to add a new Admin user to the system
+                        break;
+
+                    case "2":
+                        // Placeholder action for viewing appointments
+                        Console.WriteLine("📅 [Admin] View Appointments - Not implemented");
+                        Admin.AddAdmin(); // Call the method to add a new Admin user to the system
+>>>>>>> master
                         break;
 
                     case "0":
@@ -181,12 +220,18 @@ namespace CodeLineHealthCareCenter.Models
                 switch (input)
                 {
                     case "1":
+<<<<<<< master
                         // Prompt the user to enter the doctor's ID to view their appointments
                         Console.Write("Enter Doctor ID: ");
                         int doctorId = int.Parse(Console.ReadLine()); // Read the doctor's ID from user input
 
                         CallMethodFromBooking.GetBookingsByDoctorId(doctorId); // Call the method to get appointments for the specified doctor ID
                         Console.ReadLine(); // Wait for user input before continuing
+=======
+                        // Placeholder for the "View Appointments" functionality
+                        Console.WriteLine("📆 [Doctor] View Appointments - Not implemented");
+                        Doctor.AddDoctor(); // Call the method to add a new Doctor to the system
+>>>>>>> master
                         break;
 
                     case "0":
@@ -230,6 +275,7 @@ namespace CodeLineHealthCareCenter.Models
                 switch (input)
                 {
                     case "1":
+<<<<<<< master
                         CallMethodFromBooking.BookAppointment(); // Call the method to book a new appointment 
                         Console.ReadLine(); // Wait for user input before continuing
                         break;
@@ -243,6 +289,17 @@ namespace CodeLineHealthCareCenter.Models
                     case "3":
                         CallMethodFromBooking.CancelAppointment(); // Call the method to cancel the specified appointment
                         Console.ReadLine(); // Wait for user input before continuing
+=======
+                        // Placeholder for appointment booking functionality
+                        Console.WriteLine("📅 [Patient] Book Appointment - Not implemented");
+                        Patient.AddPatient(); // Call the method to add/register a new Patient in the system
+                        break;
+
+                    case "2":
+                        // Placeholder for viewing patient's own appointments
+                        Console.WriteLine("📋 [Patient] View My Appointments - Not implemented");
+                        Patient.AddPatient(); // Call the method to add/register a new Patient in the system
+>>>>>>> master
                         break;
 
                     case "0":
@@ -277,5 +334,5 @@ namespace CodeLineHealthCareCenter.Models
 
 
 
-   
+
 
