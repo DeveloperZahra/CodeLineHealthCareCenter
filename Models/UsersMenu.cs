@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CodeLineHealthCareCenter.Models
 {
@@ -102,21 +103,105 @@ namespace CodeLineHealthCareCenter.Models
                         {
                             Console.Clear();
                             Console.WriteLine("=== View Data Categories ===");
-                            Console.WriteLine("1. View Branches");      // Option to view all branches
-                            Console.WriteLine("2. View Departments");   // Option to view all departments
-                            Console.WriteLine("3. View Admins");        // Option to view all admins
-                            Console.WriteLine("4. View Doctors");       // Option to view all doctors
+                            Console.WriteLine("1. View and manage branches");      // Option to view all branches
+                            Console.WriteLine("2. View and manage departments");   // Option to view all departments
+                            Console.WriteLine("3. View and manage Admins");        // Option to view all admins
+                            Console.WriteLine("4. View and manage Doctor");       // Option to view all doctors
                             Console.WriteLine("0. Back");               // Option to return to the previous menu
                             Console.Write("Choose: ");
                             string choice = Console.ReadLine();         // Read the user's choice
 
                             switch (choice)
                             {
+                                // Case to view and manage branches
                                 case "1":
-                                    // View all branches
-                                    CallMethodFromBranch.GetAllBranches();
-                                    Console.WriteLine("\nPress Enter to continue...");
-                                    Console.ReadLine();
+                                    bool backToViewDataCategoriesMenu = false; // Flag to control the loop for viewing data categories
+                                    while (!backToViewDataCategoriesMenu)
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine("=== View Data Categories ===");
+                                        Console.WriteLine("1. View All Branches");      // Option to view all branches
+                                        Console.WriteLine("2. Get Branch Details");   // option to view branch details by ID or name
+                                        Console.WriteLine("3. Get Branch Name ");        // Option to view banch name by id
+                                        Console.WriteLine("4.Set Branch Status ");       // Option to set branch status by id and new value of isActive
+                                        Console.WriteLine("5. Delete Branch");       // Option to delete a branch by ID
+                                        Console.WriteLine("6. Update Branch");       // Option to update branch details by ID
+                                        Console.WriteLine("0. Back");               // Option to return to the previous menu
+                                        Console.Write("Choose: ");
+                                        string choice1 = Console.ReadLine();         // Read the user's choice
+
+                                        switch (choice1)
+                                        {
+                                            case "1":
+                                                // View all branches
+                                                CallMethodFromBranch.GetAllBranches();
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "2":
+                                                // Ask the user to enter Branch ID or Name
+                                                Console.Write("Enter Branch ID or Name: ");
+                                                string inputBranchIdOrName = Console.ReadLine();
+
+                                                // Try to parse the input as an integer
+                                                if (int.TryParse(inputBranchIdOrName, out int branchId))
+                                                {
+                                                    // If parsing succeeds → input is an integer → call the method with int parameter
+                                                    CallMethodFromBranch.GetBranchDetails(branchId);
+                                                }
+                                                else
+                                                {
+                                                    // If parsing fails → input is a string → call the method with string parameter
+                                                    CallMethodFromBranch.GetBranchDetails(input);
+                                                }
+
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "3":
+                                                // Get branch name by ID
+                                                Console.Write("Enter Branch ID : ");
+                                                int branchIdForName = int.Parse(Console.ReadLine());
+                                                CallMethodFromBranch.GetBranchName(branchIdForName);
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "4":
+                                                // Set branch status
+                                                Console.Write("Enter Branch ID: ");
+                                                int branchIdForStatus = int.Parse(Console.ReadLine());
+                                                Console.Write("Enter new status (true for open, false for closed): ");
+                                                bool newStatus = UserData.EnterBranchStatus(); // Get the new status from user input
+                                                CallMethodFromBranch.SetBranchStatus(branchIdForStatus, newStatus);
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "5":
+                                                // Delete a branch
+                                                Console.Write("Enter Branch ID to delete: ");
+                                                int branchIdToDelete = int.Parse(Console.ReadLine());
+                                                CallMethodFromBranch.DeleteBranch(branchIdToDelete);
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "6":
+                                                // Update branch details
+                                                Console.Write("Enter Branch ID to update: ");
+                                                int branchIdToUpdate = int.Parse(Console.ReadLine());
+                                                CallMethodFromBranch.UpdateBranch(branchIdToUpdate);
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "0":
+                                                // Exit the loop and return to the SuperAdmin menu
+                                                backToViewDataCategoriesMenu = true;
+                                                break;
+                                            default:
+                                                Console.WriteLine("Invalid choice. Please try again.");
+                                                Console.ReadLine();
+                                                break;
+                                        }
+                                    }
                                     break;
 
                                 case "2":
