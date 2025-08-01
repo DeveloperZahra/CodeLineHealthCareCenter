@@ -202,7 +202,7 @@ namespace CodeLineHealthCareCenter
         }
 
         // 3.10 Get the total number of branches.
-        public static int GetTotalBranches()
+        public int GetTotalBranches()
         {
             return branches.Count;
         }
