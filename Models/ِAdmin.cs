@@ -162,6 +162,21 @@ namespace CodeLineHealthCareCenter.Models
 
         }
 
+        // 4.5 Views all Admins in the system.
+        public void ViewAllAdmins()
+        {
+            if (Admins.Count == 0)
+            {
+                Console.WriteLine("❌ No admins found.");
+                return;
+            }
+            Console.WriteLine("\n=== ALL ADMINS ===");
+            foreach (var admin in Admins)
+            {
+                Console.WriteLine($"ID: {admin.UserId}, Name: {admin.UserName}, Email: {admin.Email}, Phone: {admin.PhoneNumber}");
+            }
+        }
+
 
 
 
