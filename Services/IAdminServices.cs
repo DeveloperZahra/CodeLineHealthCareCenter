@@ -20,6 +20,7 @@ namespace CodeLineHealthCareCenter.Services
         void ViewAdmin(int adminId); // Views details of a specific admin by their ID
         void ViewAllAdmins(); // Views all admins in the system
         void ViewAdminsByBranch(int branchId); //   Views all admins in a specific branch
+        void ViewAdminsByDepartment(int departmentId); //   Views all admins in a specific department
 
 
 
