@@ -167,6 +167,42 @@ namespace CodeLineHealthCareCenter
             bool existsInPatients = Patient.patients.Any(u => u.NationalID == nationalId);
 
             return !(existsInSuperAdmins || existsInAdmins || existsInDoctors || existsInPatients);
+
+
+        }
+
+        public static bool VerifyPassword(string enteredPassword, string storedHashedPassword)
+        {
+            // Convert the entered password to a hash using the same saving method
+            string enteredHash = UserData.HashPassword(enteredPassword);
+
+            // Compare the resulting hash with the stored hash
+            return enteredHash == storedHashedPassword;
+        }
+
+        public static bool EnterAndCheckPassword(User foundUser)
+        {
+            int tries = 0;
+
+            while (tries < 3)
+            {
+                Console.Write("Enter Password: ");
+                string enteredPassword = UserData.ReadPassword();
+
+                if (VerifyPassword(enteredPassword, foundUser.Password))
+                {
+                    Console.WriteLine("Password verified successfully!");
+                    return true;
+                }
+                else
+                {
+                    tries++;
+                    Console.WriteLine($"Incorrect password. Attempts left: {3 - tries}");
+                }
+            }
+
+            Console.WriteLine("Too many failed attempts. Please try again later.");
+            return false;
         }
 
     }
