@@ -667,7 +667,67 @@ namespace CodeLineHealthCareCenter.Models
             }
         }
 
-       
+        // =============================== 15. Enter UserId ===========================
+        public static int EnterUserId()
+        {
+            // Combine all users into one list
+            List<User> allUsers = new List<User>();
+            allUsers.AddRange(SuperAdmin.SuperAdmins);
+            allUsers.AddRange(Admin.Admins);
+            allUsers.AddRange(Doctor.doctors);
+            allUsers.AddRange(Patient.patients);
+
+            int tries = 0; // Counter for attempts
+
+            try
+            {
+                do
+                {
+                    Console.Write("Enter User ID: ");
+                    string input = Console.ReadLine();
+
+                    // Validate if input is a valid integer
+                    if (int.TryParse(input, out int userId))
+                    {
+                        // Ensure UserId is treated as string before splitting
+                        bool exists = allUsers.Any(u =>
+                        {
+                            string idAsString = u.UserId.ToString(); // Convert to string
+                            string[] parts = idAsString.Split(','); // Now you can split
+                            if (parts.Length > 1 && int.TryParse(parts.Last(), out int parsedId))
+                                return parsedId == userId;
+                            else if (int.TryParse(idAsString, out parsedId))
+                                return parsedId == userId;
+
+                            return false;
+                        });
+
+                        if (exists)
+                        {
+                            Console.WriteLine("User ID found successfully.");
+                            return userId; // Return the valid user ID
+                        }
+                    }
+
+                    // If invalid input or user not found
+                    Console.WriteLine("Invalid or non-existing User ID. Please try again.");
+                    tries++;
+
+                } while (tries < 3); // Allow up to 3 attempts
+
+                Console.WriteLine("You have exceeded the maximum number of attempts.");
+                return -1; // Return -1 if attempts exceeded
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return -1;
+            }
+        }
+
+
+
+
 
     }
 }
