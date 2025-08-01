@@ -193,6 +193,22 @@ namespace CodeLineHealthCareCenter.Models
             }
         }
 
+        // 4.7 Views all Admins in a specific department.
+        public void ViewAdminsByDepartment(int departmentId)
+        {
+            var departmentAdmins = Admins.Where(a => a.DepartmentId == departmentId).ToList();
+            if (departmentAdmins.Count == 0)
+            {
+                Console.WriteLine($" No admins found in Department ID: {departmentId}");
+                return;
+            }
+            Console.WriteLine($"\n=== ADMINS IN DEPARTMENT {departmentId} ===");
+            foreach (var admin in departmentAdmins)
+            {
+                Console.WriteLine($"ID: {admin.UserId}, Name: {admin.UserName}, Email: {admin.Email}, Phone: {admin.PhoneNumber}");
+            }
+        }
+
 
 
 
