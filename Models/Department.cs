@@ -48,7 +48,6 @@ namespace CodeLineHealthCareCenter
             Department newDept = new Department(name);
             BranchDepartment.Departments.Add(newDept);
 
-            SaveLoadingFile.SaveToFile(BranchDepartment.Departments, SaveLoadingFile.DepartmentFile); // Save the updated list to the file
 
             Console.WriteLine($"Department '{newDept.DepartmentName}' created successfully!");
         }

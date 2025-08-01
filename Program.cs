@@ -13,16 +13,7 @@ namespace CodeLineHealthCareCenter
 
         static void Main(string[] args)
         {
-            SaveLoadingFile.LoadFromFile(SaveLoadingFile.DoctorFile); // Load doctors from file
-            SaveLoadingFile.LoadFromFile(SaveLoadingFile.SuperAdminFile); // Load super admins from file
-            SaveLoadingFile.LoadFromFile(SaveLoadingFile.PatientFile); // Load patients from file
-            SaveLoadingFile.LoadFromFile(SaveLoadingFile.AdminFile); // Load admins from file
-            SaveLoadingFile.LoadFromFile(SaveLoadingFile.BranchFile); // Load branches from file
-            SaveLoadingFile.LoadFromFile(SaveLoadingFile.DepartmentFile); // Load departments from file
-            SaveLoadingFile.LoadFromFile(SaveLoadingFile.BranchDepartmentFile); // Load branch-department relationships from file
-            SaveLoadingFile.LoadFromFile(SaveLoadingFile.ClinicFile); // Load clinics from file
-            SaveLoadingFile.LoadFromFile(SaveLoadingFile.BookingFile); // Load bookings from file
-            SaveLoadingFile.LoadFromFile(SaveLoadingFile.ServiceFile); // Load services from file
+            FileManager.LoadAllData(); // Load all data from files at the start of the program
             ShowWelcomeScreen();
         }
 
@@ -57,6 +48,7 @@ namespace CodeLineHealthCareCenter
                         break;
                     case '0':
                         Console.WriteLine("Thank you for using the system!");
+                        FileManager.SaveAllData();
                         isRunning = false; // Exit the loop
                         return;
                     default:

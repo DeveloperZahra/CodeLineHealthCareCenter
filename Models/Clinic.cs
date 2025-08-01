@@ -88,7 +88,6 @@ namespace CodeLineHealthCareCenter.Models
             // 3️⃣ Add clinic to the static list
             Clinics.Add(newClinic);
 
-            SaveLoadingFile.SaveToFile(Clinics, SaveLoadingFile.ClinicFile); // Save the updated list to the file
 
             Console.WriteLine($"Clinic '{newClinic.ClinicName}' added successfully with ID {newClinic.ClinicId}");
         }

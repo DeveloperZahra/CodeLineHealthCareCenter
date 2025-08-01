@@ -11,13 +11,15 @@ namespace CodeLineHealthCareCenter.Models
     public  class UsersMenu
     {
         // =================== SuperAdmin Menu ====================
-        static void SuperAdminMenu()
+        public static void SuperAdminMenu()
         {
+            
             // Create branch oject to call methods in classes
             Branch CallMethodFromBranch = new Branch(); // object to be able to call those methods( which are non static methods) in this class in other class
             Department CallMethodFromDepartment = new Department(); // object to be able to call those methods( which are non static methods) in this class in other class
             Admin CallMethodFromAdmin = new Admin(); // Create an instance of the Admin class to access its methods
             Doctor CallMethodFromDoctor = new Doctor(); // Create an instance of the Doctor class to access its methods
+            User CallMethodFromUser = new User(); // Create an instance of the User class to access its methods
             // Flag to control the loop and allow the user to go back
             bool back = false;
 
@@ -32,8 +34,8 @@ namespace CodeLineHealthCareCenter.Models
                 Console.WriteLine("2. Add Department");
                 Console.WriteLine("3. Add Admin");
                 Console.WriteLine("4. Add Doctor");  // Option to add a new doctor
-                Console.WriteLine("5. View System Data");
-                Console.WriteLine("0. Back");
+                Console.WriteLine("5. More...");
+                Console.WriteLine("0. SignOut");
 
                 // Prompt the user to choose an option
                 Console.Write("Choose: ");
@@ -79,9 +81,6 @@ namespace CodeLineHealthCareCenter.Models
 
                         break;
                     case "4":
-                        
-                        break;
-                    case "5":
                         string DName = UserData.EnterUserName(); // Get the Doctor name from user input
                         string DEmail = UserData.EnterUserEmail(); // Get the Doctor email from user input
                         string DPassword = UserData.EnterPasswordForSignUp(); // Get the Doctor password from user input
@@ -93,11 +92,72 @@ namespace CodeLineHealthCareCenter.Models
                         string DSpecialization = UserData.EnterSpecialty(); // Get the doctor's specialization from user input
                         CallMethodFromDoctor.AddDoctor(DName, DEmail, DPassword, DNationalId, DPhoneNumber, DGender, DSpecialization, DBranchId, DDepartmentId); // Call the method to add a new doctor
                         Console.ReadLine(); // Wait for user input before continuing
-
                         break;
+                    // Placeholder for additional options in the SuperAdmin menu
+                    case "5":
+                        bool backToSuperAdminMenu = false; // Flag to control the loop
+
+                        // Use a while loop that keeps running until the user chooses to go back
+                        while (!backToSuperAdminMenu)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("=== View Data Categories ===");
+                            Console.WriteLine("1. View Branches");      // Option to view all branches
+                            Console.WriteLine("2. View Departments");   // Option to view all departments
+                            Console.WriteLine("3. View Admins");        // Option to view all admins
+                            Console.WriteLine("4. View Doctors");       // Option to view all doctors
+                            Console.WriteLine("0. Back");               // Option to return to the previous menu
+                            Console.Write("Choose: ");
+                            string choice = Console.ReadLine();         // Read the user's choice
+
+                            switch (choice)
+                            {
+                                case "1":
+                                    // View all branches
+                                    CallMethodFromBranch.GetAllBranches();
+                                    Console.WriteLine("\nPress Enter to continue...");
+                                    Console.ReadLine();
+                                    break;
+
+                                case "2":
+                                    // View all departments
+                                    CallMethodFromDepartment.GetAllDepartments();
+                                    Console.WriteLine("\nPress Enter to continue...");
+                                    Console.ReadLine();
+                                    break;
+
+                                case "3":
+                                    // View all admins
+                                    CallMethodFromUser.GetUsersByRole("Admin");
+                                    Console.WriteLine("\nPress Enter to continue...");
+                                    Console.ReadLine();
+                                    break;
+
+                                case "4":
+                                    // View all doctors
+                                    CallMethodFromUser.GetUsersByRole("Doctor");
+                                    Console.WriteLine("\nPress Enter to continue...");
+                                    Console.ReadLine();
+                                    break;
+
+                                case "0":
+                                    // Exit the loop and return to the SuperAdmin menu
+                                    backToSuperAdminMenu = true;
+                                    break;
+
+                                default:
+                                    Console.WriteLine("Invalid choice. Please try again.");
+                                    Console.ReadLine();
+                                    break;
+                            }
+                        }
+                        break;
+
 
                     case "0":
                         // Exit the menu loop and return to the previous screen
+                        AuthServices auth = new AuthServices();
+                        auth.SignOut();  // If non-static method
                         back = true;
                         break;
 
