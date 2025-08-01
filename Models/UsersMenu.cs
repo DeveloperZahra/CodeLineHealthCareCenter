@@ -11,7 +11,7 @@ namespace CodeLineHealthCareCenter.Models
     public  class UsersMenu
     {
         // =================== SuperAdmin Menu ====================
-        static void SuperAdminMenu()
+        public static void SuperAdminMenu()
         {
             // Create branch oject to call methods in classes
             Branch CallMethodFromBranch = new Branch(); // object to be able to call those methods( which are non static methods) in this class in other class
