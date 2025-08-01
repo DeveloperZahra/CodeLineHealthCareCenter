@@ -13,6 +13,7 @@ namespace CodeLineHealthCareCenter.Models
         // =================== SuperAdmin Menu ====================
         public static void SuperAdminMenu()
         {
+            
             // Create branch oject to call methods in classes
             Branch CallMethodFromBranch = new Branch(); // object to be able to call those methods( which are non static methods) in this class in other class
             Department CallMethodFromDepartment = new Department(); // object to be able to call those methods( which are non static methods) in this class in other class
@@ -33,7 +34,7 @@ namespace CodeLineHealthCareCenter.Models
                 Console.WriteLine("3. Add Admin");
                 Console.WriteLine("4. Add Doctor");  // Option to add a new doctor
                 Console.WriteLine("5. View System Data");
-                Console.WriteLine("0. Back");
+                Console.WriteLine("0. SignOut");
 
                 // Prompt the user to choose an option
                 Console.Write("Choose: ");
@@ -100,6 +101,8 @@ namespace CodeLineHealthCareCenter.Models
 
                     case "0":
                         // Exit the menu loop and return to the previous screen
+                        AuthServices auth = new AuthServices();
+                        auth.SignOut();  // If non-static method
                         back = true;
                         break;
 
