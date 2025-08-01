@@ -44,6 +44,7 @@ namespace CodeLineHealthCareCenter.Models
                     return;
                 }
 
+
                 Console.WriteLine("Super Admin Code is valid. Proceeding with registration...");
 
                 // Get Name
@@ -91,6 +92,8 @@ namespace CodeLineHealthCareCenter.Models
                 SuperAdmin.SuperAdmins.Add(newSuperAdmin);
 
                 Console.WriteLine($"Super Admin '{name}' registered successfully!");
+                Console.WriteLine("You can now sign in with your new Super Admin account.");
+                Console.ReadLine();
             }
 
             // ========== PATIENT SIGN-UP ==========
@@ -143,6 +146,7 @@ namespace CodeLineHealthCareCenter.Models
                 Patient.patients.Add(newPatient);
 
                 Console.WriteLine($"Patient '{name}' registered successfully!");
+                Console.ReadLine();
             }
             else
             {
@@ -154,86 +158,103 @@ namespace CodeLineHealthCareCenter.Models
 
 
         // Signs in an existing user by validating email and password.
+
         public void SignIn()
         {
+            // Display sign-in header
             Console.WriteLine("\n=== SIGN IN ===");
 
+            // Step 1: Ask the user to enter their email
             Console.Write("Enter Email: ");
             string email = Console.ReadLine();
 
-            User foundUser = SuperAdmin.SuperAdmins.FirstOrDefault(u => u.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+            // Step 2: Collect all users from different user lists into one combined list
+            List<User> allUsers = new List<User>();
+            allUsers.AddRange(SuperAdmin.SuperAdmins); // Add all Super Admins
+            allUsers.AddRange(Admin.Admins);           // Add all Admins
+            allUsers.AddRange(Doctor.doctors);         // Add all Doctors
+            allUsers.AddRange(Patient.patients);       // Add all Patients
 
-            if (foundUser == null)
-                foundUser = Admin.Admins.FirstOrDefault(u => u.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+            // Step 3: Search for the user by email (case-insensitive)
+            User foundUser = allUsers.FirstOrDefault(
+                u => u.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
 
-            if (foundUser == null)
-                foundUser = Doctor.doctors.FirstOrDefault(u => u.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
-
-            if (foundUser == null)
-                foundUser = Patient.patients.FirstOrDefault(u => u.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
-
+            // Step 4: If the email does not exist, display an error and exit
             if (foundUser == null)
             {
-                Console.WriteLine("Email not found. Please Sign Up first.");
-                Console.ReadLine();
+                Console.WriteLine("Email not found. Please sign up first.");
                 return;
             }
 
-            // Verify your password (use VerifyPassword)
-            int tries = 0;
-            while (tries < 3)
+            // Step 5: Validate the password using the password verification method
+            // If authentication fails after 3 attempts, exit the sign-in process
+            if (!UserValidator.EnterAndCheckPassword(foundUser))
             {
-                Console.Write("Enter Password: ");
-                string enteredPassword = UserData.ReadPassword();
-                string HashPassw = UserData.HashPassword(enteredPassword);
-
-                if (HashPassw == foundUser.Password)
-                {
-                    Console.WriteLine($"\nWelcome, {foundUser.UserName}! You are logged in as {foundUser.Role}.");
-                    SetCurrentUser(foundUser);
-                    switch (foundUser.Role)
-                    {
-                        case "Super Admin":
-                            Console.WriteLine(" =============== Welcome to Super Admin Menu ================");
-                            Console.ReadLine();
-                            //SuperAdminMenu(foundUser);
-                            break;
-                        case "Admin":
-                            Console.WriteLine(" =============== Welcome to Admin Menu ================");
-                            //AdminMenu(foundUser);
-                            break;
-                        case "Doctor":
-                            Console.WriteLine(" =============== Welcome to Doctor Menu ================");
-                            //DoctorMenu(foundUser);
-                            break;
-                        case "Patient":
-                            Console.WriteLine(" =============== Welcome to Patient Menu ================");
-                            //PatientMenu(foundUser);
-                            break;
-                    }
-                    return;
-                }
-                else
-                {
-                    tries++;
-                    Console.WriteLine($"\nIncorrect password. Attempts left: {3 - tries}");
-                }
+                return; // Exit if password verification failed
             }
 
-            Console.WriteLine(" Too many failed attempts. Please try again later.");
+            // Step 6: If authentication is successful, greet the user
+            Console.WriteLine($"\nWelcome, {foundUser.UserName}! You are logged in as {foundUser.Role}.");
+            Console.ReadLine();
+
+            // Step 7: Store the logged-in user in the current session
+            SetCurrentUser(foundUser);
+
+            // Step 8: Navigate to the menu based on the user's role
+            switch (foundUser.Role)
+            {
+                case "Super Admin":
+                    UsersMenu.SuperAdminMenu(); // Call the Super Admin menu function
+                    Console.ReadLine();
+                    // Call the Super Admin menu function here
+                    break;
+
+                case "Admin":
+                    Console.WriteLine("=== Admin Menu ===");
+                    Console.ReadLine();
+
+                    // Call the Admin menu function here
+                    break;
+
+                case "Doctor":
+                    Console.WriteLine("=== Doctor Menu ===");
+                    Console.ReadLine();
+
+                    // Call the Doctor menu function here
+                    break;
+
+                case "Patient":
+                    Console.WriteLine("=== Patient Menu ===");
+                    Console.ReadLine();
+
+                    // Call the Patient menu function here
+                    break;
+
+                default:
+                    Console.WriteLine("Role not recognized. Contact system administrator.");
+                    Console.ReadLine();
+
+                    break;
+            }
+
+            // End of SignIn method
+            return;
         }
+
+
+
 
         // Signs out the currently logged-in user.
         public void SignOut()
         {
             if (currentUser != null)
             {
-                Console.WriteLine($"👋 User '{currentUser.UserName}' has been signed out successfully.");
+                Console.WriteLine($"User '{currentUser.UserName}' has been signed out successfully.");
                 currentUser = null; // Clear the logged-in user
             }
             else
             {
-                Console.WriteLine("⚠ No user is currently signed in.");
+                Console.WriteLine("No user is currently signed in.");
             }
         }
 
