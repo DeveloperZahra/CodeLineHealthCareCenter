@@ -177,6 +177,22 @@ namespace CodeLineHealthCareCenter.Models
             }
         }
 
+        // 4.6 Views all Admins in a specific branch.
+        public void ViewAdminsByBranch(int branchId)
+        {
+            var branchAdmins = Admins.Where(a => a.BranchId == branchId).ToList();
+            if (branchAdmins.Count == 0)
+            {
+                Console.WriteLine($"❌ No admins found in Branch ID: {branchId}");
+                return;
+            }
+            Console.WriteLine($"\n=== ADMINS IN BRANCH {branchId} ===");
+            foreach (var admin in branchAdmins)
+            {
+                Console.WriteLine($"ID: {admin.UserId}, Name: {admin.UserName}, Email: {admin.Email}, Phone: {admin.PhoneNumber}");
+            }
+        }
+
 
 
 
