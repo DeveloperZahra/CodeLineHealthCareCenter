@@ -627,8 +627,8 @@ namespace CodeLineHealthCareCenter.Models
             }
         }
 
-        // ================================= 14. Branch status==========================
-        public static bool EnterBranchStatus()
+        // ================================= 14. Enter status==========================
+        public static bool EnterStatus()
         {
             string input = "";
             int tries = 0;
@@ -667,6 +667,7 @@ namespace CodeLineHealthCareCenter.Models
             }
         }
 
+       
 
     }
 }
