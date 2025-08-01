@@ -100,20 +100,20 @@ namespace CodeLineHealthCareCenter
             }
         }
         //4.5 Finds and displays a department by its name.
-        public void GetDepartmentByName(string departmentName)
+        public void GetDepartmentDetail(string departmentName)
         {
             Department dept = BranchDepartment.Departments.FirstOrDefault(d => d.DepartmentName.Equals(departmentName, StringComparison.OrdinalIgnoreCase));
             if (dept != null)
-                Console.WriteLine($"Department Found: ID={dept.DepartmentId}, Department Name ={dept.DepartmentName}");
+                Console.WriteLine($"Department Found.... \n Department ID: {dept.DepartmentId}\n Department Name: {dept.DepartmentName}\n Department Clinic: {dept.Clinics}");
             else
                 Console.WriteLine("Department not found.");
         }
         //4.6 Finds and displays a department by its ID.
-        public void GetDepartmentByid(int departmentId)
+        public void GetDepartmentDetail(int departmentId)
         {
             Department dept = BranchDepartment.Departments.FirstOrDefault(d => d.DepartmentId == departmentId);
             if (dept != null)
-                Console.WriteLine($"Department Found: Name={dept.DepartmentName}");
+                Console.WriteLine($"Department Found.... \n Department ID: {dept.DepartmentId}\n Department Name: {dept.DepartmentName}\n Department Clinic: {dept.Clinics}");
             else
                 Console.WriteLine("Department not found.");
         }
