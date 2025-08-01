@@ -294,10 +294,77 @@ namespace CodeLineHealthCareCenter.Models
                                     Console.WriteLine("\nPress Enter to continue...");
                                     Console.ReadLine();
                                     break;
-
+                                // Case to view and manage admins
                                 case "3":
-                                    // View all admins
-                                    CallMethodFromUser.GetUsersByRole("Admin");
+                                    bool backToViewDataCategoriesMenu3 = false; // Flag to control the loop for viewing data categories
+                                    while (!backToViewDataCategoriesMenu3)
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine("=== Manage Admins ===");
+                                        Console.WriteLine("1. View All Admins");      // Option to view all admins
+                                        Console.WriteLine("2. Get Admin Details");   // option to view admin details by ID 
+                                        Console.WriteLine("3. Update Admin"); // Option to update admin details by ID
+                                        Console.WriteLine("4. Remove Admin"); // Option to remove an admin by ID
+                                        Console.WriteLine("5. View Admins By Branch"); // Option to view admins by branch
+                                        Console.WriteLine("6. View Admins By Department"); // Option to view admins by department
+                                        Console.WriteLine("0. Back");               // Option to return to the previous menu
+                                        string choice3 = Console.ReadLine();         // Read the user's choice
+
+                                        switch (choice3) { 
+                                            case "1":
+                                            // View all admins
+                                            CallMethodFromAdmin.ViewAllAdmins();
+                                            Console.WriteLine("\nPress Enter to continue...");
+                                            Console.ReadLine();
+                                            break;
+                                        case "2":
+                                            // Get admin details by ID
+                                            int adminId = UserData.EnterUserId(); // Get the admin ID from user input
+                                                CallMethodFromAdmin.ViewAdmin(adminId);
+                                            Console.WriteLine("\nPress Enter to continue...");
+                                            Console.ReadLine();
+                                            break;
+                                        case "3":
+                                            // Update admin details by ID
+                                           
+                                            int adminIdToUpdate = UserData.EnterUserId(); // Get the admin ID from user input
+
+                                                CallMethodFromAdmin.UpdateAdmin(adminIdToUpdate);
+                                            Console.WriteLine("\nPress Enter to continue...");
+                                            Console.ReadLine();
+                                            break;
+                                        case "4":
+                                            // Remove an admin by ID
+                                            int adminIdToRemove = UserData.EnterUserId();
+                                            CallMethodFromAdmin.RemoveAdmin(adminIdToRemove);
+                                            Console.WriteLine("\nPress Enter to continue...");
+                                            Console.ReadLine();
+                                            break;
+                                        case "5":
+                                            // View admins by branch
+                                            int BranchId = UserData.EnterBranchId(Branch.branches); // Get the branch ID from user input
+                                            CallMethodFromAdmin.ViewAdminsByBranch(BranchId); // Call the method to view admins by branch
+                                            Console.WriteLine("\nPress Enter to continue...");
+                                            Console.ReadLine();
+                                            break;
+                                        case "6":
+                                            // View admins by department
+                                            int DepartmentId = UserData.EnterDepartmentId(BranchDepartment.Departments); // Get the department ID from user input
+                                                CallMethodFromAdmin.ViewAdminsByDepartment(DepartmentId); // Call the method to view admins by department
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                            Console.ReadLine();
+                                            break;
+                                        case "0":
+                                            // Exit the loop and return to the SuperAdmin menu
+                                            backToViewDataCategoriesMenu3 = true;
+                                            break;
+                                        default:
+                                            Console.WriteLine("Invalid choice. Please try again.");
+                                            Console.ReadLine();
+                                            break;
+                                        }
+                                        // View all admins
+                                        CallMethodFromUser.GetUsersByRole("Admin");
                                     Console.WriteLine("\nPress Enter to continue...");
                                     Console.ReadLine();
                                     break;
