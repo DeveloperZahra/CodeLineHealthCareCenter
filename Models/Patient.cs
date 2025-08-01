@@ -26,6 +26,7 @@ namespace CodeLineHealthCareCenter
             // Initialize the UserId with a unique value
             UserId = UserCount; // Override default ID format for patients
             DateOfBirth = DateTime.MinValue; // Default date of birth
+            Role = "Patient"; // Set role to Patient
         }
         public Patient(string name, DateTime dateOfBirth, string email, string password, string nationalId, string phoneNumber, string gender)
         : base(name, email, password, nationalId, phoneNumber, gender, "Patient")
