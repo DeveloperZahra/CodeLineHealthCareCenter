@@ -19,6 +19,7 @@ namespace CodeLineHealthCareCenter.Models
             Department CallMethodFromDepartment = new Department(); // object to be able to call those methods( which are non static methods) in this class in other class
             Admin CallMethodFromAdmin = new Admin(); // Create an instance of the Admin class to access its methods
             Doctor CallMethodFromDoctor = new Doctor(); // Create an instance of the Doctor class to access its methods
+            User CallMethodFromUser = new User(); // Create an instance of the User class to access its methods
             // Flag to control the loop and allow the user to go back
             bool back = false;
 
@@ -33,7 +34,7 @@ namespace CodeLineHealthCareCenter.Models
                 Console.WriteLine("2. Add Department");
                 Console.WriteLine("3. Add Admin");
                 Console.WriteLine("4. Add Doctor");  // Option to add a new doctor
-                Console.WriteLine("5. View System Data");
+                Console.WriteLine("5. More...");
                 Console.WriteLine("0. SignOut");
 
                 // Prompt the user to choose an option
@@ -93,10 +94,44 @@ namespace CodeLineHealthCareCenter.Models
                         Console.ReadLine(); // Wait for user input before continuing
                         break;
                     case "5":
+                        bool backToSuperAdminMenu = false; // Flag to control the loop for viewing data categories
+                        while (backToSuperAdminMenu)
+                        Console.WriteLine("Select a data category to view details.");
+                        Console.WriteLine("1. View Branches"); // Option to view all branches
+                        Console.WriteLine("2. View Departments"); // Option to view all departments
+                        Console.WriteLine("3. View Admins"); // Option to view all admins
+                        Console.WriteLine("4. View Doctors"); // Option to view all doctors
+                        Console.WriteLine("0. Back"); // Option to go back to the previous menu
+                        Console.Write("Choose: ");
+                        string choice = Console.ReadLine(); // Read the user's choice
 
-                        Console.WriteLine("\nSystem Data........ Still Do not implement"); // Display system data header
-
-
+                        switch (choice)
+                        {
+                            case "1":
+                                // Call the method to view all branches
+                                CallMethodFromBranch.GetAllBranches();
+                                Console.ReadLine(); // Wait for user input before continuing
+                                break;
+                            case "2":
+                                // Call the method to view all departments
+                                CallMethodFromDepartment.GetAllDepartments();
+                                Console.ReadLine(); // Wait for user input before continuing
+                                break;
+                            
+                            case "3":
+                                // Call the method to view all admins
+                                CallMethodFrom.GetAllAdmins();
+                                Console.ReadLine(); // Wait for user input before continuing
+                                break;
+                            case "4":
+                                // Call the method to view all doctors
+                                CallMethodFromDoctor.GetAllDoctors();
+                                Console.ReadLine(); // Wait for user input before continuing
+                                break;
+                            case "0":
+                                backToSuperAdminMenu = true; // Set the flag to true to exit the loop and return to the SuperAdmin menu
+                                break;
+                        }
                         break;
 
                     case "0":
