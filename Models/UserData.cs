@@ -627,6 +627,46 @@ namespace CodeLineHealthCareCenter.Models
             }
         }
 
+        // ================================= 14. Branch status==========================
+        public static bool EnterBranchStatus()
+        {
+            string input = "";
+            int tries = 0;
+            try
+            {
+                do
+                {
+                    Console.Write("Is the branch active? (Yes/No): ");
+                    input = Console.ReadLine()?.Trim().ToLower();
+                    // Validate input: must be yes/no or true/false
+                    if (input == "yes" || input == "true")
+                    {
+                        Console.WriteLine(" Branch set as Active.");
+                        return true;
+                    }
+                    else if (input == "no" || input == "false")
+                    {
+                        Console.WriteLine(" Branch set as Inactive.");
+                        return false;
+                    }
+                    else
+                    {
+                        Console.WriteLine(" Invalid input. Please enter Yes or No.");
+                        tries++;
+                    }
+                } while (tries < 3);
+                // If user fails 3 times
+                Console.WriteLine(" You have exceeded the maximum number of attempts.");
+                Console.WriteLine("Default value set to Inactive.");
+                return false; // Default to inactive if user fails
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return false; // Return false by default on error
+            }
+        }
+
 
     }
 }
