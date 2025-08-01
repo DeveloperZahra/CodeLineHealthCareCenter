@@ -141,6 +141,29 @@ namespace CodeLineHealthCareCenter.Models
             Console.WriteLine(" Changes saved to file.");
         }
 
+        // 4.4 Views details of a specific Admin by their ID.
+        public void ViewAdmin(int adminId)
+        {
+            Admin admin = Admins.FirstOrDefault(a => a.UserId == adminId);
+
+            if (admin == null)
+            {
+                Console.WriteLine("❌ Admin not found.");
+                return;
+            }
+            Console.WriteLine("\n=== ADMIN DETAILS ===");
+            Console.WriteLine($"ID: {admin.UserId}");
+            Console.WriteLine($"Name: {admin.UserName}");
+            Console.WriteLine($"Email: {admin.Email}");
+            Console.WriteLine($"Phone: {admin.PhoneNumber}");
+            Console.WriteLine($"National ID: {admin.NationalID}");
+            Console.WriteLine($"Branch ID: {admin.BranchId}");
+            Console.WriteLine($"Department ID: {admin.DepartmentId}");
+
+        }
+
+
+
 
 
     }
