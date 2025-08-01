@@ -15,7 +15,8 @@ namespace HospitalSystemTeamTask.Services
         void SetBranchStatus(int branchId, bool isActive);
         void UpdateBranch(int branchId);
         void DeleteBranch(int branchId);
-        void CancelBranch(int branchId); 
+        void CancelBranch(int branchId);
+        int GetTotalBranches();
 
     }
 }
