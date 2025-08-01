@@ -19,7 +19,8 @@ namespace CodeLineHealthCareCenter.Services
         void UpdateAdmin(int adminId); // Updates an admin's details by their ID
         void ViewAdmin(int adminId); // Views details of a specific admin by their ID
         void ViewAllAdmins(); // Views all admins in the system
-        
+        void ViewAdminsByBranch(int branchId); //   Views all admins in a specific branch
+
 
 
 
