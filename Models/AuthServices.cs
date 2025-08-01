@@ -14,7 +14,14 @@ namespace CodeLineHealthCareCenter.Models
     public class AuthServices : IAuthService
     {
         private static User currentUser = null; // Stores the currently logged-in user
-                                                // Registers a new Patien (Sign Up).
+        
+        // defualt constructor
+                                                
+        public AuthServices()
+        {
+           
+        }
+
         public void SignUp()
         {
             Console.WriteLine("=== SIGN UP ===");
