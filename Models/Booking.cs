@@ -125,17 +125,70 @@ namespace CodeLineHealthCareCenter.Models
         // 5.5 Get all bookings
         public void GetAllBooking()
         {
-            if (Bookings.Count == 0)
+            // Check if there are any bookings at all
+            if (Bookings == null || Bookings.Count == 0)
             {
                 Console.WriteLine("No bookings available.");
                 return;
             }
 
-            foreach (var booking in Bookings)
+            // Ask the user for Branch ID and Department ID
+            int branchId = UserData.EnterBranchId(Branch.branches);
+            if(branchId == -1)
             {
-                DisplayBookingDetails(booking);
+                Console.WriteLine("Invalid Branch ID.");
+                return;
+            }
+            else
+            {
+                // Validate that the branch exists
+                if (!BranchDepartment.branchDepartments.Any(b => b.branchId == branchId))
+                {
+                    Console.WriteLine("Branch not found.");
+                    return;
+                }
+            }
+
+            int departmentId = UserData.EnterDepartmentId(BranchDepartment.Departments);
+            if (departmentId == -1)
+            {
+                Console.WriteLine("Invalid Department ID.");
+                return;
+            }
+            else
+            {
+                // Validate that the department exists
+                if (!BranchDepartment.branchDepartments.Any(b => b.departmentId == departmentId))
+                {
+                    Console.WriteLine("Department not found.");
+                    return;
+                }
+            }
+
+            // Filter bookings based on branch and department
+            var filteredBookings = Bookings.Where(b =>
+            {
+                // Find the clinic associated with the booking
+                var clinic = Clinic.Clinics.FirstOrDefault(c => c.ClinicId == b.ClinicId);
+
+                // Check if clinic exists and matches both branch and department
+                return clinic != null && clinic.BranchId == branchId && clinic.DepartmentId == departmentId;
+            }).ToList();
+
+            // Show result
+            if (filteredBookings.Count == 0)
+            {
+                Console.WriteLine("No bookings found for the selected Branch and Department.");
+                return;
+            }
+
+            Console.WriteLine($"\nBookings for Branch ID {branchId} and Department ID {departmentId}:");
+            foreach (var booking in filteredBookings)
+            {
+                DisplayBookingDetails(booking); // Reuse your existing method to display booking details
             }
         }
+
         // 5.6 Get booking by ID
         public void GetBookingById(int id)
         {
