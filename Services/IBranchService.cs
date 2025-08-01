@@ -7,11 +7,15 @@ namespace HospitalSystemTeamTask.Services
     {
         void AddBranch(string branchAddress, string phoneNumber);
         void GetAllBranches();
-        void GetBranchById(int branchId);
-        void GetBranchDetails(string branchName, int  branchId);
-        void GetBranchDetailsByBranchName(string branchName);
+        //void GetBranchById(int branchId);
+        void GetBranchDetails(string branchName);
+        void GetBranchDetails(int branchId);
+        //void GetBranchDetailsByBranchName(string branchName);
         string GetBranchName(int branchId);
         void SetBranchStatus(int branchId, bool isActive);
         void UpdateBranch(int branchId);
+        void DeleteBranch(int branchId);
+        void CancelBranch(int branchId); 
+
     }
 }
