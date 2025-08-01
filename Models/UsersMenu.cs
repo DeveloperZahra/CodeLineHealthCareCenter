@@ -263,7 +263,7 @@ namespace CodeLineHealthCareCenter.Models
                                                 break;
                                             case "4":
                                                 // Set department active status
-                                                
+
                                                 int departmentIdForStatus = UserData.EnterDepartmentId(BranchDepartment.Departments); // Get the department ID from user input
                                                 bool newStatus = UserData.EnterStatus(); // Get the new status from user input
                                                 CallMethodFromDepartment.SetDepartmentActiveStatus(departmentIdForStatus, newStatus);
@@ -310,85 +310,120 @@ namespace CodeLineHealthCareCenter.Models
                                         Console.WriteLine("0. Back");               // Option to return to the previous menu
                                         string choice3 = Console.ReadLine();         // Read the user's choice
 
-                                        switch (choice3) { 
+                                        switch (choice3)
+                                        {
                                             case "1":
-                                            // View all admins
-                                            CallMethodFromAdmin.ViewAllAdmins();
-                                            Console.WriteLine("\nPress Enter to continue...");
-                                            Console.ReadLine();
-                                            break;
-                                        case "2":
-                                            // Get admin details by ID
-                                            int adminId = UserData.EnterUserId(); // Get the admin ID from user input
+                                                // View all admins
+                                                CallMethodFromAdmin.ViewAllAdmins();
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "2":
+                                                // Get admin details by ID
+                                                int adminId = UserData.EnterUserId(); // Get the admin ID from user input
                                                 CallMethodFromAdmin.ViewAdmin(adminId);
-                                            Console.WriteLine("\nPress Enter to continue...");
-                                            Console.ReadLine();
-                                            break;
-                                        case "3":
-                                            // Update admin details by ID
-                                           
-                                            int adminIdToUpdate = UserData.EnterUserId(); // Get the admin ID from user input
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "3":
+                                                // Update admin details by ID
+
+                                                int adminIdToUpdate = UserData.EnterUserId(); // Get the admin ID from user input
 
                                                 CallMethodFromAdmin.UpdateAdmin(adminIdToUpdate);
-                                            Console.WriteLine("\nPress Enter to continue...");
-                                            Console.ReadLine();
-                                            break;
-                                        case "4":
-                                            // Remove an admin by ID
-                                            int adminIdToRemove = UserData.EnterUserId();
-                                            CallMethodFromAdmin.RemoveAdmin(adminIdToRemove);
-                                            Console.WriteLine("\nPress Enter to continue...");
-                                            Console.ReadLine();
-                                            break;
-                                        case "5":
-                                            // View admins by branch
-                                            int BranchId = UserData.EnterBranchId(Branch.branches); // Get the branch ID from user input
-                                            CallMethodFromAdmin.ViewAdminsByBranch(BranchId); // Call the method to view admins by branch
-                                            Console.WriteLine("\nPress Enter to continue...");
-                                            Console.ReadLine();
-                                            break;
-                                        case "6":
-                                            // View admins by department
-                                            int DepartmentId = UserData.EnterDepartmentId(BranchDepartment.Departments); // Get the department ID from user input
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "4":
+                                                // Remove an admin by ID
+                                                int adminIdToRemove = UserData.EnterUserId();
+                                                CallMethodFromAdmin.RemoveAdmin(adminIdToRemove);
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "5":
+                                                // View admins by branch
+                                                int BranchId = UserData.EnterBranchId(Branch.branches); // Get the branch ID from user input
+                                                CallMethodFromAdmin.ViewAdminsByBranch(BranchId); // Call the method to view admins by branch
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "6":
+                                                // View admins by department
+                                                int DepartmentId = UserData.EnterDepartmentId(BranchDepartment.Departments); // Get the department ID from user input
                                                 CallMethodFromAdmin.ViewAdminsByDepartment(DepartmentId); // Call the method to view admins by department
                                                 Console.WriteLine("\nPress Enter to continue...");
-                                            Console.ReadLine();
-                                            break;
-                                        case "0":
+                                                Console.ReadLine();
+                                                break;
+                                            case "0":
+                                                // Exit the loop and return to the SuperAdmin menu
+                                                backToViewDataCategoriesMenu3 = true;
+                                                break;
+                                            default:
+                                                Console.WriteLine("Invalid choice. Please try again.");
+                                                Console.ReadLine();
+                                                break;
+                                        }
+                                    }
+                                    
+                                    break;
+
+                                // Case to view and manage doctors
+                                case "4":
+                                    bool backToViewDataCategoriesMenu4 = false; // Flag to control the loop for viewing data categories
+                                    while (!backToViewDataCategoriesMenu4)
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine("=== Manage Doctors ===");
+                                        Console.WriteLine("1. View All Doctors");      // Option to view all doctors
+                                        Console.WriteLine("2. Get Doctor Details");   // option to view doctor details by ID
+                                        Console.WriteLine("3. Update Doctor"); // Option to delete a doctor by ID
+                                        Console.WriteLine("0. back"); // Option to go back to the previous menu
+                                        string choice4 = Console.ReadLine();         // Read the user's choice
+                                        switch (choice4)
+                                        {
+                                            case "1":
+                                                // View all doctors
+                                                CallMethodFromUser.GetUsersByRole("Doctor");
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "2":
+                                                // Get doctor details by ID
+                                                int doctorId = UserData.EnterUserId(); // Get the doctor ID from user input
+                                                CallMethodFromUser.GetUserById(doctorId, "Doctor"); // Call the method to get doctor details
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "3":
+                                                // Delete a doctor by ID
+                                                int doctorIdToDelete = UserData.EnterUserId(); // Get the doctor ID from user input
+                                                CallMethodFromUser.UpdateUser(doctorIdToDelete, "Doctor"); // Call the method to delete the doctor
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "0":
+                                                // Exit the loop and return to the SuperAdmin menu
+                                                backToViewDataCategoriesMenu4 = true;
+                                                break;
+                                        }
+                                    } 
+                                  break;
+                                     
+
+                                case "0":
                                             // Exit the loop and return to the SuperAdmin menu
-                                            backToViewDataCategoriesMenu3 = true;
+                                            backToSuperAdminMenu = true;
                                             break;
-                                        default:
+
+                                default:
                                             Console.WriteLine("Invalid choice. Please try again.");
                                             Console.ReadLine();
                                             break;
-                                        }
-                                        // View all admins
-                                        CallMethodFromUser.GetUsersByRole("Admin");
-                                    Console.WriteLine("\nPress Enter to continue...");
-                                    Console.ReadLine();
-                                    break;
-
-                                case "4":
-                                    // View all doctors
-                                    CallMethodFromUser.GetUsersByRole("Doctor");
-                                    Console.WriteLine("\nPress Enter to continue...");
-                                    Console.ReadLine();
-                                    break;
-
-                                case "0":
-                                    // Exit the loop and return to the SuperAdmin menu
-                                    backToSuperAdminMenu = true;
-                                    break;
-
-                                default:
-                                    Console.WriteLine("Invalid choice. Please try again.");
-                                    Console.ReadLine();
-                                    break;
                             }
                         }
-                        break;
-
+                            
+                    break;
 
                     case "0":
                         // Exit the menu loop and return to the previous screen
