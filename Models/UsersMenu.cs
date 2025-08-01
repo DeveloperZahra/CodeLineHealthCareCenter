@@ -524,9 +524,7 @@ namespace CodeLineHealthCareCenter.Models
                 {
                     case "1":
                         // Prompt the user to enter the doctor's ID to view their appointments
-                        Console.Write("Enter Doctor ID: ");
-                        int doctorId = int.Parse(Console.ReadLine()); // Read the doctor's ID from user input
-
+                        int doctorId = UserData.EnterUserId(); // Get the doctor's ID from user input
                         CallMethodFromBooking.GetBookingsByDoctorId(doctorId); // Call the method to get appointments for the specified doctor ID
                         Console.ReadLine(); // Wait for user input before continuing
 
@@ -578,8 +576,7 @@ namespace CodeLineHealthCareCenter.Models
                         break;
 
                     case "2":
-                        Console.Write("Enter Patient ID: ");
-                        int patientId = int.Parse(Console.ReadLine()); // Read the patient's ID from user input
+                        int patientId = UserData.EnterUserId(); // Get the patient's ID from user input
                         CallMethodFromBooking.GetBookingsByDoctorId(patientId); // Call the method to view all appointments booked by the patient
                         Console.ReadLine(); // Wait for user input before continuing
                         break;
