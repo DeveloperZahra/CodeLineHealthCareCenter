@@ -93,46 +93,66 @@ namespace CodeLineHealthCareCenter.Models
                         CallMethodFromDoctor.AddDoctor(DName, DEmail, DPassword, DNationalId, DPhoneNumber, DGender, DSpecialization, DBranchId, DDepartmentId); // Call the method to add a new doctor
                         Console.ReadLine(); // Wait for user input before continuing
                         break;
+                    // Placeholder for additional options in the SuperAdmin menu
                     case "5":
-                        bool backToSuperAdminMenu = false; // Flag to control the loop for viewing data categories
-                        while (backToSuperAdminMenu)
-                        Console.WriteLine("Select a data category to view details.");
-                        Console.WriteLine("1. View Branches"); // Option to view all branches
-                        Console.WriteLine("2. View Departments"); // Option to view all departments
-                        Console.WriteLine("3. View Admins"); // Option to view all admins
-                        Console.WriteLine("4. View Doctors"); // Option to view all doctors
-                        Console.WriteLine("0. Back"); // Option to go back to the previous menu
-                        Console.Write("Choose: ");
-                        string choice = Console.ReadLine(); // Read the user's choice
+                        bool backToSuperAdminMenu = false; // Flag to control the loop
 
-                        switch (choice)
+                        // Use a while loop that keeps running until the user chooses to go back
+                        while (!backToSuperAdminMenu)
                         {
-                            case "1":
-                                // Call the method to view all branches
-                                CallMethodFromBranch.GetAllBranches();
-                                Console.ReadLine(); // Wait for user input before continuing
-                                break;
-                            case "2":
-                                // Call the method to view all departments
-                                CallMethodFromDepartment.GetAllDepartments();
-                                Console.ReadLine(); // Wait for user input before continuing
-                                break;
-                            
-                            case "3":
-                                // Call the method to view all admins
-                                CallMethodFrom.GetAllAdmins();
-                                Console.ReadLine(); // Wait for user input before continuing
-                                break;
-                            case "4":
-                                // Call the method to view all doctors
-                                CallMethodFromDoctor.GetAllDoctors();
-                                Console.ReadLine(); // Wait for user input before continuing
-                                break;
-                            case "0":
-                                backToSuperAdminMenu = true; // Set the flag to true to exit the loop and return to the SuperAdmin menu
-                                break;
+                            Console.Clear();
+                            Console.WriteLine("=== View Data Categories ===");
+                            Console.WriteLine("1. View Branches");      // Option to view all branches
+                            Console.WriteLine("2. View Departments");   // Option to view all departments
+                            Console.WriteLine("3. View Admins");        // Option to view all admins
+                            Console.WriteLine("4. View Doctors");       // Option to view all doctors
+                            Console.WriteLine("0. Back");               // Option to return to the previous menu
+                            Console.Write("Choose: ");
+                            string choice = Console.ReadLine();         // Read the user's choice
+
+                            switch (choice)
+                            {
+                                case "1":
+                                    // View all branches
+                                    CallMethodFromBranch.GetAllBranches();
+                                    Console.WriteLine("\nPress Enter to continue...");
+                                    Console.ReadLine();
+                                    break;
+
+                                case "2":
+                                    // View all departments
+                                    CallMethodFromDepartment.GetAllDepartments();
+                                    Console.WriteLine("\nPress Enter to continue...");
+                                    Console.ReadLine();
+                                    break;
+
+                                case "3":
+                                    // View all admins
+                                    CallMethodFromUser.GetUsersByRole("Admin");
+                                    Console.WriteLine("\nPress Enter to continue...");
+                                    Console.ReadLine();
+                                    break;
+
+                                case "4":
+                                    // View all doctors
+                                    CallMethodFromUser.GetUsersByRole("Doctor");
+                                    Console.WriteLine("\nPress Enter to continue...");
+                                    Console.ReadLine();
+                                    break;
+
+                                case "0":
+                                    // Exit the loop and return to the SuperAdmin menu
+                                    backToSuperAdminMenu = true;
+                                    break;
+
+                                default:
+                                    Console.WriteLine("Invalid choice. Please try again.");
+                                    Console.ReadLine();
+                                    break;
+                            }
                         }
                         break;
+
 
                     case "0":
                         // Exit the menu loop and return to the previous screen
