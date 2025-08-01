@@ -25,6 +25,7 @@ namespace CodeLineHealthCareCenter
             UserId = UserCount;
             // SuperAdmin accounts are active by default
             IsActive = true;
+            Role = "Super Admin"; // Set the role to Super Admin
         }
         public SuperAdmin(string name, string email, string password, string nationalId, string phoneNumber, string gender)
         : base(name, email, password, nationalId, phoneNumber, gender, "Super Admin") // Call parent User constructor
