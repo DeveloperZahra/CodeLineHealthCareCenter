@@ -66,6 +66,23 @@ namespace CodeLineHealthCareCenter.Models
             Console.WriteLine($"Admin '{newAdmin.UserName}' added successfully with ID: {newAdmin.UserId}");
         }
 
+        // 4.2 Removes an Admin user by their ID.
+        public void RemoveAdmin(int adminId)
+        {
+            // Find the admin by ID
+            Admin adminToRemove = Admins.FirstOrDefault(a => a.UserId == adminId);
+            if (adminToRemove != null)
+            {
+                // Remove the admin from the list
+                Admins.Remove(adminToRemove);
+                Console.WriteLine($"Admin with ID {adminId} has been removed.");
+            }
+            else
+            {
+                Console.WriteLine($"Admin with ID {adminId} not found.");
+            }
+        }
 
+        
     }
 }
