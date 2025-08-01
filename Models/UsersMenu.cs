@@ -119,7 +119,7 @@ namespace CodeLineHealthCareCenter.Models
                                     while (!backToViewDataCategoriesMenu)
                                     {
                                         Console.Clear();
-                                        Console.WriteLine("=== View Data Categories ===");
+                                        Console.WriteLine("=== Manage Branches ===");
                                         Console.WriteLine("1. View All Branches");      // Option to view all branches
                                         Console.WriteLine("2. Get Branch Details");   // option to view branch details by ID or name
                                         Console.WriteLine("3. Get Branch Name ");        // Option to view banch name by id
@@ -172,7 +172,7 @@ namespace CodeLineHealthCareCenter.Models
                                                 Console.Write("Enter Branch ID: ");
                                                 int branchIdForStatus = int.Parse(Console.ReadLine());
                                                 Console.Write("Enter new status (true for open, false for closed): ");
-                                                bool newStatus = UserData.EnterBranchStatus(); // Get the new status from user input
+                                                bool newStatus = UserData.EnterStatus(); // Get the new status from user input
                                                 CallMethodFromBranch.SetBranchStatus(branchIdForStatus, newStatus);
                                                 Console.WriteLine("\nPress Enter to continue...");
                                                 Console.ReadLine();
@@ -211,8 +211,84 @@ namespace CodeLineHealthCareCenter.Models
                                         }
                                     }
                                     break;
-
+                                // Case to view and manage departments
                                 case "2":
+                                    bool backToViewDataCategoriesMenu2 = false; // Flag to control the loop for viewing data categories
+                                    while (!backToViewDataCategoriesMenu2)
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine("=== Manage departments ===");
+                                        Console.WriteLine("1. View All Departments");      // Option to view all departments
+                                        Console.WriteLine("2. Get Department Details");   // option to view department details by ID or name
+                                        Console.WriteLine("3. Update Department"); // Option to update department details by ID
+                                        Console.WriteLine("4. Set Department Active Status"); // Option to set department active status by ID and new value of isActive
+                                        Console.WriteLine("5. Get Department Name"); // Option to get department name by ID
+
+                                        string choice2 = Console.ReadLine();         // Read the user's choice
+                                        switch (choice2)
+                                        {
+                                            case "1":
+                                                // View all departments
+                                                CallMethodFromDepartment.GetAllDepartments();
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "2":
+                                                // Ask the user to enter Department ID or Name
+                                                Console.Write("Enter Department ID or Name: ");
+                                                string inputDepartmentIdOrName = Console.ReadLine();
+                                                // Try to parse the input as an integer
+                                                if (int.TryParse(inputDepartmentIdOrName, out int departmentId))
+                                                {
+                                                    // If parsing succeeds → input is an integer → call the method with int parameter
+                                                    CallMethodFromDepartment.GetDepartmentDetail(departmentId);
+                                                }
+                                                else
+                                                {
+                                                    // If parsing fails → input is a string → call the method with string parameter
+                                                    CallMethodFromDepartment.GetDepartmentDetail(inputDepartmentIdOrName);
+                                                }
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "3":
+                                                // Update department details
+
+                                                int BranchID = UserData.EnterBranchId(Branch.branches);
+                                                int DepartmentID = UserData.EnterDepartmentId(BranchDepartment.Departments);
+
+                                                CallMethodFromDepartment.UpdateDepartment(BranchID, DepartmentID);
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "4":
+                                                // Set department active status
+                                                
+                                                int departmentIdForStatus = UserData.EnterDepartmentId(BranchDepartment.Departments); // Get the department ID from user input
+                                                bool newStatus = UserData.EnterStatus(); // Get the new status from user input
+                                                CallMethodFromDepartment.SetDepartmentActiveStatus(departmentIdForStatus, newStatus);
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "5":
+                                                // Get department name by ID
+                                                int departmentIdForName = UserData.EnterDepartmentId(BranchDepartment.Departments); // Get the department ID from user input
+                                                CallMethodFromDepartment.GetDepartmentName(departmentIdForName);
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "0":
+                                                // Exit the loop and return to the SuperAdmin menu
+                                                backToViewDataCategoriesMenu2 = true;
+                                                break;
+                                            default:
+                                                Console.WriteLine("Invalid choice. Please try again.");
+                                                Console.ReadLine();
+                                                break;
+                                        }
+                                    }
+
+
                                     // View all departments
                                     CallMethodFromDepartment.GetAllDepartments();
                                     Console.WriteLine("\nPress Enter to continue...");
