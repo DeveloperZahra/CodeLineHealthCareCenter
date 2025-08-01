@@ -17,10 +17,7 @@ namespace CodeLineHealthCareCenter.Models
         
         // defualt constructor
                                                 
-        public AuthServices()
-        {
-           
-        }
+        
 
         public void SignUp()
         {
