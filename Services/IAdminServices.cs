@@ -18,7 +18,9 @@ namespace CodeLineHealthCareCenter.Services
         void RemoveAdmin(int adminId); // Removes an admin by their ID
         void UpdateAdmin(int adminId); // Updates an admin's details by their ID
         void ViewAdmin(int adminId); // Views details of a specific admin by their ID
+        void ViewAllAdmins(); // Views all admins in the system
         
+
 
 
     }
