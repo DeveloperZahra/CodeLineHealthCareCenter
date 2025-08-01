@@ -53,10 +53,10 @@ namespace CodeLineHealthCareCenter
             // Assign a default unique ID
             UserId =  UserCount;
 
-            // Assign default values (يمكنك تعديلها حسب احتياجك)
+            // Assign default values 
             UserName = "Default Name";
             Email = "default@example.com";
-            Password = "Default123"; // سيُمرر عبر خاصية Password وبالتالي يتم التحقق من صحته
+            Password = "Default123"; 
             NationalID = "0000000000";
             PhoneNumber = "0000000000";
             Gender = "Unknown";
