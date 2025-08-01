@@ -83,25 +83,11 @@ namespace CodeLineHealthCareCenter
 
         }
 
-        // 3.3 Finds and displays details of a branch by its ID.
-        public void GetBranchById(int branchId)
-        {
-            Branch branch = branches.FirstOrDefault(b => b.BranchId == branchId);
-            if (branch != null)
-            {
-                Console.WriteLine($"Branch Found: ID={branch.BranchId}, Name={branch.BranchName}, Address={branch.BranchAddress}, Status={(branch.BranchStatus ? "Open" : "Closed")}");
-            }
-            else
-            {
-                Console.WriteLine("Branch not found.");
-            }
-        }
-
         //3.4 Finds and displays details of a branch by name OR ID.
-        public void GetBranchDetails(string branchName, int branchId)
+        public void GetBranchDetails(int branchId)
         {
             // check if branch object with the input name and branch id id found 
-            Branch branch = branches.FirstOrDefault(b =>b.BranchId == branchId || b.BranchName.Equals(branchName, StringComparison.OrdinalIgnoreCase));
+            Branch branch = branches.FirstOrDefault(b => b.BranchId == branchId);
 
             if (branch != null)
             {
@@ -112,14 +98,15 @@ namespace CodeLineHealthCareCenter
                 Console.WriteLine("Branch not found.");
             }
         }
-
-        // 3.5 Finds and displays details of a branch by its name only.
-        public void GetBranchDetailsByBranchName(string branchName)
+        //3.4 Finds and displays details of a branch by name OR ID.
+        public void GetBranchDetails(string branchName)
         {
-            Branch branch = branches.FirstOrDefault(b => b.BranchName.Equals(branchName, StringComparison.OrdinalIgnoreCase));
+            // check if branch object with the input name and branch id id found 
+            Branch branch = branches.FirstOrDefault(b => b.BranchName==branchName);
+
             if (branch != null)
             {
-                Console.WriteLine($"Branch Found: ID={branch.BranchId}, Name={branch.BranchName}, Address={branch.BranchAddress}");
+                Console.WriteLine($"Branch Details: ID={branch.BranchId}, Name={branch.BranchName}, Address={branch.BranchAddress}, Status={(branch.BranchStatus ? "Open" : "Closed")}");
             }
             else
             {
@@ -198,6 +185,42 @@ namespace CodeLineHealthCareCenter
                 Console.WriteLine("Branch not found.");
             }
         }
+
+        // 3.9 Delete a branch by its ID.
+        public void DeleteBranch(int branchId)
+        {
+            Branch branch = branches.FirstOrDefault(b => b.BranchId == branchId);
+            if (branch != null)
+            {
+                branches.Remove(branch);
+                Console.WriteLine($"Branch '{branch.BranchName}' deleted successfully!");
+            }
+            else
+            {
+                Console.WriteLine("Branch not found.");
+            }
+        }
+
+        // 3.10 Get the total number of branches.
+        public int GetTotalBranches()
+        {
+            return branches.Count;
+        }
+        // 3.11 Cancel branch 
+        public void CancelBranch(int branchId)
+        {
+            Branch branch = branches.FirstOrDefault(b => b.BranchId == branchId);
+            if (branch != null)
+            {
+                branch.BranchStatus = false ;
+                Console.WriteLine($"Branch '{branch.BranchName}' has been canceled successfully!");
+            }
+            else
+            {
+                Console.WriteLine("Branch not found.");
+            }
+        }
+
 
 
 

@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CodeLineHealthCareCenter.Models
 {
@@ -102,57 +103,327 @@ namespace CodeLineHealthCareCenter.Models
                         {
                             Console.Clear();
                             Console.WriteLine("=== View Data Categories ===");
-                            Console.WriteLine("1. View Branches");      // Option to view all branches
-                            Console.WriteLine("2. View Departments");   // Option to view all departments
-                            Console.WriteLine("3. View Admins");        // Option to view all admins
-                            Console.WriteLine("4. View Doctors");       // Option to view all doctors
+                            Console.WriteLine("1. View and manage branches");      // Option to view all branches
+                            Console.WriteLine("2. View and manage departments");   // Option to view all departments
+                            Console.WriteLine("3. View and manage Admins");        // Option to view all admins
+                            Console.WriteLine("4. View and manage Doctor");       // Option to view all doctors
                             Console.WriteLine("0. Back");               // Option to return to the previous menu
                             Console.Write("Choose: ");
                             string choice = Console.ReadLine();         // Read the user's choice
 
                             switch (choice)
                             {
+                                // Case to view and manage branches
                                 case "1":
-                                    // View all branches
-                                    CallMethodFromBranch.GetAllBranches();
-                                    Console.WriteLine("\nPress Enter to continue...");
-                                    Console.ReadLine();
-                                    break;
+                                    bool backToViewDataCategoriesMenu = false; // Flag to control the loop for viewing data categories
+                                    while (!backToViewDataCategoriesMenu)
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine("=== Manage Branches ===");
+                                        Console.WriteLine("1. View All Branches");      // Option to view all branches
+                                        Console.WriteLine("2. Get Branch Details");   // option to view branch details by ID or name
+                                        Console.WriteLine("3. Get Branch Name ");        // Option to view banch name by id
+                                        Console.WriteLine("4. Set Branch Status ");       // Option to set branch status by id and new value of isActive
+                                        Console.WriteLine("5. Delete Branch");       // Option to delete a branch by ID
+                                        Console.WriteLine("6. Update Branch");       // Option to update branch details by ID
+                                        Console.WriteLine("7. Get Totle Number of branch"); // Option to get the total number of branches
+                                        Console.WriteLine("0. Back");               // Option to return to the previous menu
+                                        Console.Write("Choose: ");
+                                        string choice1 = Console.ReadLine();         // Read the user's choice
 
+                                        switch (choice1)
+                                        {
+                                            case "1":
+                                                // View all branches
+                                                CallMethodFromBranch.GetAllBranches();
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "2":
+                                                // Ask the user to enter Branch ID or Name
+                                                Console.Write("Enter Branch ID or Name: ");
+                                                string inputBranchIdOrName = Console.ReadLine();
+
+                                                // Try to parse the input as an integer
+                                                if (int.TryParse(inputBranchIdOrName, out int branchId))
+                                                {
+                                                    // If parsing succeeds → input is an integer → call the method with int parameter
+                                                    CallMethodFromBranch.GetBranchDetails(branchId);
+                                                }
+                                                else
+                                                {
+                                                    // If parsing fails → input is a string → call the method with string parameter
+                                                    CallMethodFromBranch.GetBranchDetails(input);
+                                                }
+
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "3":
+                                                // Get branch name by ID
+                                                Console.Write("Enter Branch ID : ");
+                                                int branchIdForName = int.Parse(Console.ReadLine());
+                                                CallMethodFromBranch.GetBranchName(branchIdForName);
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "4":
+                                                // Set branch status
+                                                Console.Write("Enter Branch ID: ");
+                                                int branchIdForStatus = int.Parse(Console.ReadLine());
+                                                Console.Write("Enter new status (true for open, false for closed): ");
+                                                bool newStatus = UserData.EnterStatus(); // Get the new status from user input
+                                                CallMethodFromBranch.SetBranchStatus(branchIdForStatus, newStatus);
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "5":
+                                                // Delete a branch
+                                                Console.Write("Enter Branch ID to delete: ");
+                                                int branchIdToDelete = int.Parse(Console.ReadLine());
+                                                CallMethodFromBranch.DeleteBranch(branchIdToDelete);
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "6":
+                                                // Update branch details
+                                                Console.Write("Enter Branch ID to update: ");
+                                                int branchIdToUpdate = int.Parse(Console.ReadLine());
+                                                CallMethodFromBranch.UpdateBranch(branchIdToUpdate);
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "7":
+                                                // Get the total number of branches
+                                                int totalBranches = CallMethodFromBranch.GetTotalBranches();
+                                                Console.WriteLine($"Total number of branches: {totalBranches}");
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "0":
+                                                // Exit the loop and return to the SuperAdmin menu
+                                                backToViewDataCategoriesMenu = true;
+                                                break;
+                                            default:
+                                                Console.WriteLine("Invalid choice. Please try again.");
+                                                Console.ReadLine();
+                                                break;
+                                        }
+                                    }
+                                    break;
+                                // Case to view and manage departments
                                 case "2":
+                                    bool backToViewDataCategoriesMenu2 = false; // Flag to control the loop for viewing data categories
+                                    while (!backToViewDataCategoriesMenu2)
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine("=== Manage departments ===");
+                                        Console.WriteLine("1. View All Departments");      // Option to view all departments
+                                        Console.WriteLine("2. Get Department Details");   // option to view department details by ID or name
+                                        Console.WriteLine("3. Update Department"); // Option to update department details by ID
+                                        Console.WriteLine("4. Set Department Active Status"); // Option to set department active status by ID and new value of isActive
+                                        Console.WriteLine("5. Get Department Name"); // Option to get department name by ID
+
+                                        string choice2 = Console.ReadLine();         // Read the user's choice
+                                        switch (choice2)
+                                        {
+                                            case "1":
+                                                // View all departments
+                                                CallMethodFromDepartment.GetAllDepartments();
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "2":
+                                                // Ask the user to enter Department ID or Name
+                                                Console.Write("Enter Department ID or Name: ");
+                                                string inputDepartmentIdOrName = Console.ReadLine();
+                                                // Try to parse the input as an integer
+                                                if (int.TryParse(inputDepartmentIdOrName, out int departmentId))
+                                                {
+                                                    // If parsing succeeds → input is an integer → call the method with int parameter
+                                                    CallMethodFromDepartment.GetDepartmentDetail(departmentId);
+                                                }
+                                                else
+                                                {
+                                                    // If parsing fails → input is a string → call the method with string parameter
+                                                    CallMethodFromDepartment.GetDepartmentDetail(inputDepartmentIdOrName);
+                                                }
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "3":
+                                                // Update department details
+
+                                                int BranchID = UserData.EnterBranchId(Branch.branches);
+                                                int DepartmentID = UserData.EnterDepartmentId(BranchDepartment.Departments);
+
+                                                CallMethodFromDepartment.UpdateDepartment(BranchID, DepartmentID);
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "4":
+                                                // Set department active status
+
+                                                int departmentIdForStatus = UserData.EnterDepartmentId(BranchDepartment.Departments); // Get the department ID from user input
+                                                bool newStatus = UserData.EnterStatus(); // Get the new status from user input
+                                                CallMethodFromDepartment.SetDepartmentActiveStatus(departmentIdForStatus, newStatus);
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "5":
+                                                // Get department name by ID
+                                                int departmentIdForName = UserData.EnterDepartmentId(BranchDepartment.Departments); // Get the department ID from user input
+                                                CallMethodFromDepartment.GetDepartmentName(departmentIdForName);
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "0":
+                                                // Exit the loop and return to the SuperAdmin menu
+                                                backToViewDataCategoriesMenu2 = true;
+                                                break;
+                                            default:
+                                                Console.WriteLine("Invalid choice. Please try again.");
+                                                Console.ReadLine();
+                                                break;
+                                        }
+                                    }
+
+
                                     // View all departments
                                     CallMethodFromDepartment.GetAllDepartments();
                                     Console.WriteLine("\nPress Enter to continue...");
                                     Console.ReadLine();
                                     break;
-
+                                // Case to view and manage admins
                                 case "3":
-                                    // View all admins
-                                    CallMethodFromUser.GetUsersByRole("Admin");
-                                    Console.WriteLine("\nPress Enter to continue...");
-                                    Console.ReadLine();
+                                    bool backToViewDataCategoriesMenu3 = false; // Flag to control the loop for viewing data categories
+                                    while (!backToViewDataCategoriesMenu3)
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine("=== Manage Admins ===");
+                                        Console.WriteLine("1. View All Admins");      // Option to view all admins
+                                        Console.WriteLine("2. Get Admin Details");   // option to view admin details by ID 
+                                        Console.WriteLine("3. Update Admin"); // Option to update admin details by ID
+                                        Console.WriteLine("4. Remove Admin"); // Option to remove an admin by ID
+                                        Console.WriteLine("5. View Admins By Branch"); // Option to view admins by branch
+                                        Console.WriteLine("6. View Admins By Department"); // Option to view admins by department
+                                        Console.WriteLine("0. Back");               // Option to return to the previous menu
+                                        string choice3 = Console.ReadLine();         // Read the user's choice
+
+                                        switch (choice3)
+                                        {
+                                            case "1":
+                                                // View all admins
+                                                CallMethodFromAdmin.ViewAllAdmins();
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "2":
+                                                // Get admin details by ID
+                                                int adminId = UserData.EnterUserId(); // Get the admin ID from user input
+                                                CallMethodFromAdmin.ViewAdmin(adminId);
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "3":
+                                                // Update admin details by ID
+
+                                                int adminIdToUpdate = UserData.EnterUserId(); // Get the admin ID from user input
+
+                                                CallMethodFromAdmin.UpdateAdmin(adminIdToUpdate);
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "4":
+                                                // Remove an admin by ID
+                                                int adminIdToRemove = UserData.EnterUserId();
+                                                CallMethodFromAdmin.RemoveAdmin(adminIdToRemove);
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "5":
+                                                // View admins by branch
+                                                int BranchId = UserData.EnterBranchId(Branch.branches); // Get the branch ID from user input
+                                                CallMethodFromAdmin.ViewAdminsByBranch(BranchId); // Call the method to view admins by branch
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "6":
+                                                // View admins by department
+                                                int DepartmentId = UserData.EnterDepartmentId(BranchDepartment.Departments); // Get the department ID from user input
+                                                CallMethodFromAdmin.ViewAdminsByDepartment(DepartmentId); // Call the method to view admins by department
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "0":
+                                                // Exit the loop and return to the SuperAdmin menu
+                                                backToViewDataCategoriesMenu3 = true;
+                                                break;
+                                            default:
+                                                Console.WriteLine("Invalid choice. Please try again.");
+                                                Console.ReadLine();
+                                                break;
+                                        }
+                                    }
+                                    
                                     break;
 
+                                // Case to view and manage doctors
                                 case "4":
-                                    // View all doctors
-                                    CallMethodFromUser.GetUsersByRole("Doctor");
-                                    Console.WriteLine("\nPress Enter to continue...");
-                                    Console.ReadLine();
-                                    break;
+                                    bool backToViewDataCategoriesMenu4 = false; // Flag to control the loop for viewing data categories
+                                    while (!backToViewDataCategoriesMenu4)
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine("=== Manage Doctors ===");
+                                        Console.WriteLine("1. View All Doctors");      // Option to view all doctors
+                                        Console.WriteLine("2. Get Doctor Details");   // option to view doctor details by ID
+                                        Console.WriteLine("3. Update Doctor"); // Option to delete a doctor by ID
+                                        Console.WriteLine("0. back"); // Option to go back to the previous menu
+                                        string choice4 = Console.ReadLine();         // Read the user's choice
+                                        switch (choice4)
+                                        {
+                                            case "1":
+                                                // View all doctors
+                                                CallMethodFromUser.GetUsersByRole("Doctor");
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "2":
+                                                // Get doctor details by ID
+                                                int doctorId = UserData.EnterUserId(); // Get the doctor ID from user input
+                                                CallMethodFromUser.GetUserById(doctorId, "Doctor"); // Call the method to get doctor details
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "3":
+                                                // Delete a doctor by ID
+                                                int doctorIdToDelete = UserData.EnterUserId(); // Get the doctor ID from user input
+                                                CallMethodFromUser.UpdateUser(doctorIdToDelete, "Doctor"); // Call the method to delete the doctor
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "0":
+                                                // Exit the loop and return to the SuperAdmin menu
+                                                backToViewDataCategoriesMenu4 = true;
+                                                break;
+                                        }
+                                    } 
+                                  break;
+                                     
 
                                 case "0":
-                                    // Exit the loop and return to the SuperAdmin menu
-                                    backToSuperAdminMenu = true;
-                                    break;
+                                            // Exit the loop and return to the SuperAdmin menu
+                                            backToSuperAdminMenu = true;
+                                            break;
 
                                 default:
-                                    Console.WriteLine("Invalid choice. Please try again.");
-                                    Console.ReadLine();
-                                    break;
+                                            Console.WriteLine("Invalid choice. Please try again.");
+                                            Console.ReadLine();
+                                            break;
                             }
                         }
-                        break;
-
+                            
+                    break;
 
                     case "0":
                         // Exit the menu loop and return to the previous screen
@@ -253,9 +524,7 @@ namespace CodeLineHealthCareCenter.Models
                 {
                     case "1":
                         // Prompt the user to enter the doctor's ID to view their appointments
-                        Console.Write("Enter Doctor ID: ");
-                        int doctorId = int.Parse(Console.ReadLine()); // Read the doctor's ID from user input
-
+                        int doctorId = UserData.EnterUserId(); // Get the doctor's ID from user input
                         CallMethodFromBooking.GetBookingsByDoctorId(doctorId); // Call the method to get appointments for the specified doctor ID
                         Console.ReadLine(); // Wait for user input before continuing
 
@@ -307,8 +576,7 @@ namespace CodeLineHealthCareCenter.Models
                         break;
 
                     case "2":
-                        Console.Write("Enter Patient ID: ");
-                        int patientId = int.Parse(Console.ReadLine()); // Read the patient's ID from user input
+                        int patientId = UserData.EnterUserId(); // Get the patient's ID from user input
                         CallMethodFromBooking.GetBookingsByDoctorId(patientId); // Call the method to view all appointments booked by the patient
                         Console.ReadLine(); // Wait for user input before continuing
                         break;
