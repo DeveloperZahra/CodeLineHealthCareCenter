@@ -83,6 +83,65 @@ namespace CodeLineHealthCareCenter.Models
             }
         }
 
-        
+        // 4.3 Updates an Admin's details by their ID.
+        public void UpdateAdmin(int adminId)
+        {
+            // 1. Find the admin by ID
+            Admin adminToUpdate = Admins.FirstOrDefault(a => a.UserId == adminId);
+
+            if (adminToUpdate == null)
+            {
+                Console.WriteLine("❌ Admin not found.");
+                return;
+            }
+
+            Console.WriteLine("\n=== UPDATE ADMIN DETAILS ===");
+            Console.WriteLine("Leave input empty to keep the current value.\n");
+
+            // 2. Update Name
+            string newName = UserData.EnterUserName();
+            if (newName != "null" && !string.IsNullOrWhiteSpace(newName))
+                adminToUpdate.UserName = newName;
+
+            // 3. Update Email (check uniqueness)
+            string newEmail = UserData.EnterUserEmail();
+            if (newEmail != "null" && !string.IsNullOrWhiteSpace(newEmail))
+            {
+                bool emailExists = Admins.Any(a =>
+                    a.Email.Equals(newEmail, StringComparison.OrdinalIgnoreCase) && a.UserId != adminId);
+
+                if (emailExists)
+                {
+                    Console.WriteLine("❌ Email already exists. Update cancelled.");
+                    return;
+                }
+                adminToUpdate.Email = newEmail;
+            }
+
+            // 4. Update Phone (check uniqueness)
+            string newPhone = UserData.EnterPhoneNumber();
+            if (newPhone != "null" && !string.IsNullOrWhiteSpace(newPhone))
+            {
+                bool phoneExists = Admins.Any(a =>
+                    a.PhoneNumber.Equals(newPhone, StringComparison.OrdinalIgnoreCase) && a.UserId != adminId);
+
+                if (phoneExists)
+                {
+                    Console.WriteLine("❌ Phone number already exists. Update cancelled.");
+                    return;
+                }
+                adminToUpdate.PhoneNumber = newPhone;
+            }
+
+            // 5. Confirmation
+            Console.WriteLine($"Admin '{adminToUpdate.UserName}' updated successfully!");
+
+            //  6. Save changes to file (Best Practice)
+            FileManager.SaveDataToFile(Admins, "admins.json");
+            Console.WriteLine(" Changes saved to file.");
+        }
+
+
+
     }
 }
