@@ -123,9 +123,10 @@ namespace CodeLineHealthCareCenter.Models
                                         Console.WriteLine("1. View All Branches");      // Option to view all branches
                                         Console.WriteLine("2. Get Branch Details");   // option to view branch details by ID or name
                                         Console.WriteLine("3. Get Branch Name ");        // Option to view banch name by id
-                                        Console.WriteLine("4.Set Branch Status ");       // Option to set branch status by id and new value of isActive
+                                        Console.WriteLine("4. Set Branch Status ");       // Option to set branch status by id and new value of isActive
                                         Console.WriteLine("5. Delete Branch");       // Option to delete a branch by ID
                                         Console.WriteLine("6. Update Branch");       // Option to update branch details by ID
+                                        Console.WriteLine("7. Get Totle Number of branch"); // Option to get the total number of branches
                                         Console.WriteLine("0. Back");               // Option to return to the previous menu
                                         Console.Write("Choose: ");
                                         string choice1 = Console.ReadLine();         // Read the user's choice
@@ -189,6 +190,13 @@ namespace CodeLineHealthCareCenter.Models
                                                 Console.Write("Enter Branch ID to update: ");
                                                 int branchIdToUpdate = int.Parse(Console.ReadLine());
                                                 CallMethodFromBranch.UpdateBranch(branchIdToUpdate);
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "7":
+                                                // Get the total number of branches
+                                                int totalBranches = CallMethodFromBranch.GetTotalBranches();
+                                                Console.WriteLine($"Total number of branches: {totalBranches}");
                                                 Console.WriteLine("\nPress Enter to continue...");
                                                 Console.ReadLine();
                                                 break;
