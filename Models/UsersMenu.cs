@@ -223,6 +223,7 @@ namespace CodeLineHealthCareCenter.Models
                                         Console.WriteLine("3. Update Department"); // Option to update department details by ID
                                         Console.WriteLine("4. Set Department Active Status"); // Option to set department active status by ID and new value of isActive
                                         Console.WriteLine("5. Get Department Name"); // Option to get department name by ID
+                                        Console.WriteLine("0. Back");               // Option to return to the previous menu
 
                                         string choice2 = Console.ReadLine();         // Read the user's choice
                                         switch (choice2)
@@ -443,7 +444,7 @@ namespace CodeLineHealthCareCenter.Models
 
 
         // =================== Admin Menu ====================
-        static void AdminMenu()
+        public static void AdminMenu()
         {
             // Create an instance of the class to access its methods
             Clinic CallMethodFromClinic = new Clinic(); // Create an instance of the Admin class to access its methods
@@ -498,7 +499,7 @@ namespace CodeLineHealthCareCenter.Models
         }
 
         // =================== Doctor Menu ====================
-        static void DoctorMenu()
+        public static void DoctorMenu()
         {
             Booking CallMethodFromBooking = new Booking(); // Create an instance of the Booking class to access its methods
 
@@ -546,7 +547,7 @@ namespace CodeLineHealthCareCenter.Models
 
 
         // =================== Patient Menu ====================
-        static void PatientMenu()
+        public static void PatientMenu()
         {
             Booking CallMethodFromBooking = new Booking(); // Create an instance of the Booking class to access its methods
 

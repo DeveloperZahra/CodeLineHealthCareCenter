@@ -30,8 +30,8 @@ namespace CodeLineHealthCareCenter.Models
         }
 
         public Booking(DateTime bookingDateTime, int clinicId, int doctorId, int patientId, string appointmentType)
-            : this()
         {
+            BookingId = ++bookingCounter;
             BookingDateTime = bookingDateTime;
             ClinicId = clinicId;
             DoctorId = doctorId;
@@ -47,7 +47,12 @@ namespace CodeLineHealthCareCenter.Models
         public void BookAppointment()
         {
             Console.WriteLine("=== Book a New Appointment ===");
-
+            // step 1 : check if there data in department list 
+            if (BranchDepartment.branchDepartments.Count == 0)
+            {
+                Console.WriteLine("No departments available.");
+                return;
+            }
             // Step 1: Select department
             new Department("temp").GetAllDepartments();
             int departmentId = UserValidator.IntValidation("Enter Department ID");

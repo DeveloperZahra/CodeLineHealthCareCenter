@@ -14,17 +14,13 @@ namespace CodeLineHealthCareCenter.Models
     public class AuthServices : IAuthService
     {
         private static User currentUser = null; // Stores the currently logged-in user
-        
-        // defualt constructor
-                                                
-        
+        private const string SuperAdminCode = "5566"; // Default Super Admin Code
 
+
+        //user registration for Super Admin or Patient accounts.
         public void SignUp()
         {
-            Console.WriteLine("=== SIGN UP ===");
-
-            // Predefined Super Admin Code
-            const string SuperAdminCode = "5566";
+            Console.WriteLine("=== SIGN UP MENU ===");
 
             // Ask the user to select the type of account
             Console.WriteLine("Select User Type to Sign Up:");
@@ -199,7 +195,7 @@ namespace CodeLineHealthCareCenter.Models
 
             // Step 6: If authentication is successful, greet the user
             Console.WriteLine($"\nWelcome, {foundUser.UserName}! You are logged in as {foundUser.Role}.");
-            Console.ReadLine();
+            Program.PauseForUser();
 
             // Step 7: Store the logged-in user in the current session
             SetCurrentUser(foundUser);
@@ -209,29 +205,22 @@ namespace CodeLineHealthCareCenter.Models
             {
                 case "Super Admin":
                     UsersMenu.SuperAdminMenu(); // Call the Super Admin menu function
-                    Console.ReadLine();
-                    // Call the Super Admin menu function here
+                    Program.PauseForUser();
                     break;
 
                 case "Admin":
-                    Console.WriteLine("=== Admin Menu ===");
-                    Console.ReadLine();
-
-                    // Call the Admin menu function here
+                    UsersMenu.AdminMenu(); // Call the Admin menu function
+                    Program.PauseForUser();
                     break;
 
                 case "Doctor":
-                    Console.WriteLine("=== Doctor Menu ===");
-                    Console.ReadLine();
-
-                    // Call the Doctor menu function here
-                    break;
+                   UsersMenu.DoctorMenu(); // Call the Doctor menu function
+                   Program.PauseForUser();
+                   break;
 
                 case "Patient":
-                    Console.WriteLine("=== Patient Menu ===");
-                    Console.ReadLine();
-
-                    // Call the Patient menu function here
+                    UsersMenu.PatientMenu(); // Call the Patient menu function
+                    Program.PauseForUser();
                     break;
 
                 default:
