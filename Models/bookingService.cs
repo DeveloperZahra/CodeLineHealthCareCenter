@@ -9,7 +9,7 @@ namespace CodeLineHealthCareCenter.Models
         //   newStatus - the new status to assign (e.g., "Completed", "Canceled")
         internal static void UpdateBookingStatus(int bookingId, string newStatus)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException();        // This method is not implemented yet and will throw an exception if called
         }
     }
 }
