@@ -585,7 +585,7 @@ namespace CodeLineHealthCareCenter.Models
             {
                 Console.Clear(); // Clear the console screen to refresh the UI before displaying the Patient Dashboard
                 // Display the Patient dashboard with available options
-                Console.WriteLine("\n Patient Dashboard:");
+                Console.WriteLine("\n🧑‍⚕️ Patient Dashboard:"); // Display the header for the Patient Dashboard
                 Console.WriteLine("1. Book Appointment");  // Option to book a new appointment
                 Console.WriteLine("2. View Your Appointments");   // Option to view all appointments booked by the patient
                 Console.WriteLine("3. Cancel Appointment");
