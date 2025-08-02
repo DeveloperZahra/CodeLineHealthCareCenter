@@ -551,7 +551,7 @@ namespace CodeLineHealthCareCenter.Models
 
                     case "3":
                         branchService.GetAllBranches();  // Call the method that retrieves and displays a list of all branches in the system
-                        Console.WriteLine("\nPress Enter to continue...");
+                        Console.WriteLine("\nPress Enter to continue...");  // Prompt the user to press Enter so they have time to read the output
                         Console.ReadLine();
                         break;
 
