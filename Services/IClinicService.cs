@@ -8,7 +8,7 @@ namespace HospitalSystemTeamTask.Services
 {
     public interface IClinicService
     {
-        void AddClinic(string clinicName, string location);
+        void AddClinic(string clinicName, string location, int departmentId, int branchId, int floorId, int roomId, decimal price);
         void GetAllClinics();
         void GetClinicById(int clinicId);
         void GetClinicByBranchDep(int branchId, int departmentId);
