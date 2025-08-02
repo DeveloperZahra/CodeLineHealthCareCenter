@@ -519,7 +519,7 @@ namespace CodeLineHealthCareCenter.Models
                 Console.WriteLine("1. View Appointments");  // Option for doctor to view their scheduled appointments
                 Console.WriteLine("2. Update Appointment Status"); // Show menu option to update the status of a specific appointment (e.g., completed, canceled)
                 // Optional menu option for the doctor to view available branches in the system
-                Console.WriteLine("3. View Branches"); 
+                Console.WriteLine("3. View Branches");  // Useful if the doctor needs branch-related info
                 Console.WriteLine("0. Back");  // Option to go back to the previous screen/menu
 
                 // Prompt user for their choice
