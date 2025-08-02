@@ -540,6 +540,9 @@ namespace CodeLineHealthCareCenter.Models
                         case "2":
                         // Prompt the user to enter the appointment/booking ID they want to update
                         int bookingId = UserData.EnterBookingId(); // Enter the booking ID
+                        // Prompt the user to enter the new status for the selected appointment (e.g., Completed, Canceled)
+                        string newStatus = UserData.EnterAppointmentStatus(); // Enter the new appointment status
+
 
                     case "0":
                         // Exit the loop and return to the previous menu
