@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HospitalSystemTeamTask.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -542,6 +543,9 @@ namespace CodeLineHealthCareCenter.Models
                         int bookingId = UserData.EnterBookingId(); // Enter the booking ID
                         // Prompt the user to enter the new status for the selected appointment (e.g., Completed, Canceled)
                         string newStatus = UserData.EnterAppointmentStatus(); // Enter the new appointment status
+                        bookingService.UpdateBookingStatus(bookingId, newStatus);   // Call the method to update the status of the specified booking
+
+                        break; 
 
 
                     case "0":
