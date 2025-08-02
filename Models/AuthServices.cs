@@ -14,17 +14,13 @@ namespace CodeLineHealthCareCenter.Models
     public class AuthServices : IAuthService
     {
         private static User currentUser = null; // Stores the currently logged-in user
-        
-        // defualt constructor
-                                                
-        
+        private const string SuperAdminCode = "5566"; // Default Super Admin Code
 
+
+        //user registration for Super Admin or Patient accounts.
         public void SignUp()
         {
-            Console.WriteLine("=== SIGN UP ===");
-
-            // Predefined Super Admin Code
-            const string SuperAdminCode = "5566";
+            Console.WriteLine("=== SIGN UP MENU ===");
 
             // Ask the user to select the type of account
             Console.WriteLine("Select User Type to Sign Up:");
@@ -263,11 +259,7 @@ namespace CodeLineHealthCareCenter.Models
         }
 
 
-        // setting the current user after successful sign-in
-        public static void SetCurrentUser(User user)
-        {
-            currentUser = user;
-        }
+       
 
         // getting the current user
         public static User GetCurrentUser()
