@@ -725,9 +725,14 @@ namespace CodeLineHealthCareCenter.Models
             }
         }
 
+        internal static int EnterBookingId()
+        {
+            throw new NotImplementedException();
+        }
 
-
-
-
+        internal static string EnterAppointmentStatus()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
