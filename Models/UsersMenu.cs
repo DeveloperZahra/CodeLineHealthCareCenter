@@ -575,6 +575,7 @@ namespace CodeLineHealthCareCenter.Models
         public static void PatientMenu()
         {
             Booking CallMethodFromBooking = new Booking(); // Create an instance of the Booking class to access its methods
+            Branch branchService = new Branch(); // Create a new instance of the Branch class to access branch-related methods and data
 
             // Boolean flag used to control when to exit the menu
             bool back = false;
