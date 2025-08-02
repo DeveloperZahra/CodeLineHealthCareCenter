@@ -52,7 +52,7 @@ namespace CodeLineHealthCareCenter.Models
                 Console.WriteLine("Super Admin Code is valid. Proceeding with registration...");
 
                 // Get Name
-                name = UserData.EnterUserName();
+                name = UserData.EnterName("Super Admin");
                 if (name == "null") return;
 
                 // Get Email (Ensure uniqueness)
@@ -104,7 +104,7 @@ namespace CodeLineHealthCareCenter.Models
             else if (choice == "2")
             {
                 // Get Name
-                name = UserData.EnterUserName();
+                name = UserData.EnterName("patient");
                 if (name == "null") return;
 
                 // Get Email (Ensure uniqueness)
