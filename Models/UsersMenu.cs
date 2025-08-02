@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -511,6 +512,7 @@ namespace CodeLineHealthCareCenter.Models
             // Loop to continuously display the Doctor menu until the user exits
             while (!back)
             {
+                Console.Clear(); // Clear the console to refresh the screen for a cleaner user interface
                 // Display the Doctor dashboard with options
                 Console.WriteLine("\n Doctor Dashboard:");
                 Console.WriteLine("1. View Appointments");  // Option for doctor to view their scheduled appointments
