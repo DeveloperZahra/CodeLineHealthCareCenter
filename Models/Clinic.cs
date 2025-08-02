@@ -71,10 +71,11 @@ namespace CodeLineHealthCareCenter.Models
         /// <summary>
         /// Adds a new clinic and optionally assigns doctors to it.
         /// </summary>
-        public void AddClinic(string clinicName, string location)
+        public void AddClinic(string clinicName, string location, int departmentId, int branchId, int floorId, int roomId, decimal price)
         {
+
             // 1️⃣ Create a new clinic object
-            Clinic newClinic = new Clinic(clinicName, location, 0, 0, 0, 0, 0);
+            Clinic newClinic = new Clinic(clinicName, location, departmentId, branchId, floorId, roomId, price);
 
             // 2️⃣ Optionally assign doctors to this clinic
             Console.WriteLine("Do you want to assign doctors to this clinic? (yes/no)");
@@ -241,30 +242,57 @@ namespace CodeLineHealthCareCenter.Models
         /// </summary>
         private void AssignDoctorsToClinic(Clinic clinic)
         {
+            // 1️⃣ Check if there are any doctors available
             if (Doctor.doctors.Count == 0)
             {
                 Console.WriteLine("No doctors available to assign.");
                 return;
             }
 
-            Console.WriteLine("Available Doctors:");
+            // 2️⃣ Show available doctors
+            Console.WriteLine("\n=== Available Doctors ===");
             foreach (var doc in Doctor.doctors)
-                Console.WriteLine($"{doc.UserId} - {doc.UserName} ({doc.Specialty})");
-
-            Console.WriteLine("Enter Doctor IDs to assign:");
-            int inputId = int.Parse(Console.ReadLine());
-
-             var doctor = Doctor.doctors.FirstOrDefault(d => d.UserId == inputId);
-                if (doctor != null)
-                {
-                    clinic.Doctors.Add(doctor);
-                    Console.WriteLine($"Doctor {doctor.UserName} assigned to clinic.");
-                }
-                else
-                {
-                    Console.WriteLine($"Doctor with ID {inputId} not found.");
-                }
+            {
+                Console.WriteLine($"{doc.UserId} - {doc.UserName} | {doc.Specialty} | Email: {doc.Email}");
             }
-        
+
+            // 3️⃣ Ask user to enter doctor ID
+            int doctorId = UserValidator.IntValidation("Enter Doctor ID to assign");
+
+            // 4️⃣ Find doctor from the main doctor list
+            var doctor = Doctor.doctors.FirstOrDefault(d => d.UserId == doctorId);
+            if (doctor == null)
+            {
+                Console.WriteLine("Doctor not found.");
+                return;
+            }
+
+            // 5️⃣ Check if the doctor is already assigned to this clinic
+            if (clinic.Doctors.Any(d => d.UserId == doctor.UserId))
+            {
+                Console.WriteLine($"Doctor {doctor.UserName} is already assigned to this clinic.");
+                return;
+            }
+
+            // 6️⃣ Create a new doctor object specific to this clinic
+            Doctor assignedDoctor = new Doctor(
+                doctor.UserName,
+                doctor.Email,
+                doctor.Password,
+                doctor.NationalID,
+                doctor.PhoneNumber,
+                doctor.Gender,
+                doctor.Specialty,
+                clinic.BranchId,
+                clinic.DepartmentId
+            );
+
+            // 7️⃣ Add the doctor to the clinic
+            clinic.Doctors.Add(assignedDoctor);
+
+            Console.WriteLine($"Doctor {doctor.UserName} has been assigned to Clinic '{clinic.ClinicName}'.");
+        }
+
+
     }
 }
