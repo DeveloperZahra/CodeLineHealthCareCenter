@@ -589,6 +589,7 @@ namespace CodeLineHealthCareCenter.Models
                 Console.WriteLine("1. Book Appointment");  // Option to book a new appointment
                 Console.WriteLine("2. View My Appointments");   // Option to view all appointments booked by the patient
                 Console.WriteLine("3. Cancel Appointment"); // Show option to allow the patient to cancel an existing appointment
+                Console.WriteLine("4. View Branches"); // Show option to allow the patient to view available branches in the healthcare system
                 Console.WriteLine("0. Back");  // Option to return to the previous menu
 
                 // Ask the user to enter their choice
