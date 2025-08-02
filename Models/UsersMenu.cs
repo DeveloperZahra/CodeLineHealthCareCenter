@@ -608,6 +608,7 @@ namespace CodeLineHealthCareCenter.Models
                     case "2":
                         int patientId = UserData.EnterUserId(); // Get the patient's ID from user input
                         CallMethodFromBooking.GetBookingsByDoctorId(patientId); // Call the method to view all appointments booked by the patient
+                        Console.WriteLine("\nPress Enter to continue..."); // Display a message prompting the user to press Enter before proceeding
                         Console.ReadLine(); // Wait for user input before continuing
                         break;
                     case "3":
