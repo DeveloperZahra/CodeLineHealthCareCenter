@@ -55,11 +55,11 @@ namespace CodeLineHealthCareCenter
         // 4.2 Displays all departments stored in the list
         public void GetAllDepartments()
         {
-            if (BranchDepartment.Departments.Count == 0)
-            {
-                Console.WriteLine("No departments found.");
-                return;
-            }
+            //if (BranchDepartment.Departments.Count == 0)
+            //{
+            //    Console.WriteLine("No departments found.");
+            //    return;
+            //}
 
             Console.WriteLine("List of Departments:");
             foreach (var dept in BranchDepartment.Departments)
