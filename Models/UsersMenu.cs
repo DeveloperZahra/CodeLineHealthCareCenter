@@ -601,6 +601,7 @@ namespace CodeLineHealthCareCenter.Models
                 {
                     case "1":
                         CallMethodFromBooking.BookAppointment(); // Call the method to book a new appointment 
+                        Console.WriteLine("\nPress Enter to continue..."); // Display a message prompting the user to press Enter before proceeding
                         Console.ReadLine(); // Wait for user input before continuing
                         break;
 
