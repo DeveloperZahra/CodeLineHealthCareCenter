@@ -615,8 +615,8 @@ namespace CodeLineHealthCareCenter.Models
                     case "3":
                         int bookingId = UserData.EnterBookingId();// Prompt the user to enter the booking ID and store it in the variable bookingId
                         CallMethodFromBooking.CancelAppointment(); // Call the method to cancel the specified appointment
+                        Console.WriteLine("\nPress Enter to continue..."); // Display a message prompting the user to press Enter before proceeding
                         Console.ReadLine(); // Wait for user input before continuing
-
                         break;
 
                     case "0":
