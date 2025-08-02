@@ -517,7 +517,7 @@ namespace CodeLineHealthCareCenter.Models
                 // Display the Doctor dashboard with options
                 Console.WriteLine("\n🩺 Doctor Dashboard:"); // Display the Doctor's dashboard header
                 Console.WriteLine("1. View Appointments");  // Option for doctor to view their scheduled appointments
-                Console.WriteLine("2. Update Appointment Status");
+                Console.WriteLine("2. Update Appointment Status"); // Show menu option to update the status of a specific appointment (e.g., completed, canceled)
                 Console.WriteLine("3. View Branches");
                 Console.WriteLine("0. Back");  // Option to go back to the previous screen/menu
 
