@@ -132,6 +132,28 @@ namespace CodeLineHealthCareCenter
             return DateTimeInput; // Return the validated input
         }
 
+        // 3. decimal data type
+        public static decimal DecimalValidation(string message)
+        {
+            bool DecimalFlag; // to handle user decimal error input
+            decimal DecimalInput = 0;
+            do
+            {
+                DecimalFlag = false;
+                try
+                {
+                    Console.WriteLine($"Enter {message}:");
+                    DecimalInput = decimal.Parse(Console.ReadLine());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"{message} not accepted due to: " + e.Message);
+                    Console.ReadLine();
+                    DecimalFlag = true; // ask user again
+                }
+            } while (DecimalFlag);
+            return DecimalInput; // Return the validated input
+        }
 
         /// ========================Check Exist Data==============================
         // Checks if the given email already exists in any user list (SuperAdmin, Admin, Doctor, Patient).

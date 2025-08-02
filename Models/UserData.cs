@@ -13,7 +13,7 @@ namespace CodeLineHealthCareCenter.Models
     {    public static int tries = 0;
         /// =================================== General User Input Data ===============================
         // ================================== 1. User Name====================================
-        public static string EnterUserName()
+        public static string EnterName(string TypeOfName)
         {
             string userName = "";
             int tries = 0; // Counter for the number of attempts
@@ -22,7 +22,7 @@ namespace CodeLineHealthCareCenter.Models
             {
                 do
                 {
-                    Console.Write("Enter User Name: ");
+                    Console.Write($"Enter {TypeOfName} Name: ");
                     userName = Console.ReadLine();
 
                     // Check if the input is valid (not empty and at least 3 characters)
@@ -586,7 +586,7 @@ namespace CodeLineHealthCareCenter.Models
 
         // =================================== 13. Address ====================================
 
-        public static string EnterAddress()
+        public static string EnterAddress(string AddressForWhat)
         {
             string address = "";
             int tries = 0; // Counter for the number of attempts
@@ -595,7 +595,7 @@ namespace CodeLineHealthCareCenter.Models
             {
                 do
                 {
-                    Console.Write("Enter User Address: ");
+                    Console.Write($"Enter {AddressForWhat} Address: ");
                     address = Console.ReadLine();
 
                     //validat fpr input data 
@@ -727,12 +727,64 @@ namespace CodeLineHealthCareCenter.Models
 
         internal static int EnterBookingId()
         {
-            throw new NotImplementedException();
+            int tries = 0;
+
+            while (tries < 3) // Allow up to 3 attempts
+            {
+                Console.Write("Enter Booking ID: ");
+                string input = Console.ReadLine();
+
+                // Check if input is a valid integer
+                if (int.TryParse(input, out int bookingId))
+                {
+                    // Check if the booking exists in the list
+                    bool exists = Booking.Bookings.Any(b => b.BookingId == bookingId);
+                    if (exists)
+                    {
+                        Console.WriteLine("Booking ID found successfully.");
+                        return bookingId; // Return valid booking ID
+                    }
+                    else
+                    {
+                        Console.WriteLine("Booking ID not found. Please enter a valid ID.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please enter a number.");
+                }
+
+                tries++;
+            }
+
+            Console.WriteLine("Maximum attempts reached. Returning -1.");
+            return -1; // Return -1 if user fails after 3 tries
         }
+
 
         internal static string EnterAppointmentStatus()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("\nSelect Appointment Status:");
+            Console.WriteLine("1. Scheduled");
+            Console.WriteLine("2. Completed");
+            Console.WriteLine("3. Canceled");
+            Console.Write("Enter your choice (1-3): ");
+
+            string choice = Console.ReadLine();
+
+            switch (choice)
+            {
+                case "1":
+                    return "Scheduled";
+                case "2":
+                    return "Completed";
+                case "3":
+                    return "Canceled";
+                default:
+                    Console.WriteLine("❌ Invalid choice. Defaulting to 'Scheduled'.");
+                    return "Scheduled";
+            }
         }
+
     }
 }

@@ -42,8 +42,8 @@ namespace CodeLineHealthCareCenter
         // 4.1 Creates a new department for the specified branch.
         public void AddDepartment()
         {
-            Console.Write("Enter department name: ");
-            string name = Console.ReadLine();
+            
+            string name = UserData.EnterName("Department Name");
 
             Department newDept = new Department(name);
             BranchDepartment.Departments.Add(newDept);
