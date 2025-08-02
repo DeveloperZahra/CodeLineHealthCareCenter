@@ -502,7 +502,7 @@ namespace CodeLineHealthCareCenter.Models
         public static void DoctorMenu()
         {
             Booking CallMethodFromBooking = new Booking(); // Create an instance of the Booking class to access its methods
-
+            Branch branchService = new Branch(); // Create a new instance of the Branch class to access its methods and manage branch-related operations
 
             // A flag used to keep the menu active until the user chooses to go back
             bool back = false;
