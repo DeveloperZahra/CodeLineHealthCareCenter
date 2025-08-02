@@ -51,7 +51,7 @@ namespace CodeLineHealthCareCenter.Models
 
                     case "1":
 
-                        string branchAddress = UserData.EnterAddress(); // Get the branch address from user input
+                        string branchAddress = UserData.EnterAddress("Branch"); // Get the branch address from user input
                         string phoneNumber = UserData.EnterPhoneNumber(); // Get the branch phone number from user input
                         CallMethodFromBranch.AddBranch(branchAddress, phoneNumber); // Call the method to add a new branch with the provided details
                         Console.ReadLine(); // Wait for user input before continuing
@@ -71,7 +71,7 @@ namespace CodeLineHealthCareCenter.Models
                     // Placeholder for adding a new admin user
                     case "3":
                         // enter admin name from user input
-                        string adminName = UserData.EnterUserName(); // Get the admin name from user input
+                        string adminName = UserData.EnterName("Admin"); // Get the admin name from user input
                         string adminEmail = UserData.EnterUserEmail(); // Get the admin email from user input
                         string adminPassword = UserData.EnterPasswordForSignUp(); // Get the admin password from user input
                         string adminNationalId = UserData.EnterNationalID();// Get the admin national ID from user input
@@ -84,7 +84,7 @@ namespace CodeLineHealthCareCenter.Models
 
                         break;
                     case "4":
-                        string DName = UserData.EnterUserName(); // Get the Doctor name from user input
+                        string DName = UserData.EnterName("Doctor"); // Get the Doctor name from user input
                         string DEmail = UserData.EnterUserEmail(); // Get the Doctor email from user input
                         string DPassword = UserData.EnterPasswordForSignUp(); // Get the Doctor password from user input
                         string DNationalId = UserData.EnterNationalID();// Get the Doctor national ID from user input
@@ -455,46 +455,98 @@ namespace CodeLineHealthCareCenter.Models
             bool back = false;
 
             // Loop to display the Admin menu continuously
-            while (!back)
+            bool exitMenu = false;
+
+            while (!exitMenu)
             {
-                // Display Admin dashboard menu 
-                Console.WriteLine("\n Admin Dashboard:");
-                Console.WriteLine("1. Add Clinic"); // Option to add a new clinic
-                Console.WriteLine("2. View Appointments");   // Option to view appointment schedule
-                Console.WriteLine("0. Back");   // Option to go back to the previous menu
+                Console.WriteLine("\n=== Clinic Management Menu ===");
+                Console.WriteLine("1. Add Clinic");
+                Console.WriteLine("2. View All Clinics in My Branch & Department");
+                Console.WriteLine("3. View Clinic by ID");
+                Console.WriteLine("4. Update Clinic Details");
+                Console.WriteLine("5. Delete Clinic");
+                Console.WriteLine("0. Back to Previous Menu");
+                Console.Write("Enter your choice: ");
+                string choice = Console.ReadLine();
 
-                // Prompt the user to select an option
-                Console.Write("Choose: ");
-                string input = Console.ReadLine(); // Read user input from the console
-
-
-                // Evaluate the user's choice using switch-case
-                switch (input)
+                switch (choice)
                 {
-
                     case "1":
-                        // Prompt the user to enter clinic details
-                        string clinicName = UserData.EnterUserName(); // Get the clinic name from user input
-                        string clinicLocation = UserData.EnterAddress(); // Get the clinic location from user input
-                        CallMethodFromClinic.AddClinic(clinicName, clinicLocation); // Call the method to add a new clinic
-                        Console.ReadLine(); // Wait for user input before continuing
+                        // Add Clinic ONLY for current admin's branch & department
+                        string clinicName = UserData.EnterName("clinic");
+                        string clinicLocation = UserData.EnterAddress("Clinic");
+                        decimal price = UserValidator.DecimalValidation("Enter Clinic Price");
+
+                        CallMethodFromClinic.AddClinic(clinicName, clinicLocation, AuthServices.currentAdmin.DepartmentId, AuthServices.currentAdmin.BranchId, 0, 0, price);
                         break;
 
                     case "2":
-                        // Placeholder for viewing appointments functionality
-                        CallMethodFromBooking.GetAllBooking(); // Call the method to view all appointments
-                        Console.ReadLine(); // Wait for user input before continuing
+                        // Show clinics only for admin's assigned branch & department
+                        var filteredClinics = Clinic.Clinics
+                            .Where(c => c.BranchId == AuthServices.currentAdmin.BranchId && c.DepartmentId == AuthServices.currentAdmin.DepartmentId)
+                            .ToList();
 
+                        if (!filteredClinics.Any())
+                        {
+                            Console.WriteLine("No clinics found for your branch and department.");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Clinics for Branch {AuthServices.currentAdmin.BranchId} & Department {AuthServices.currentAdmin.DepartmentId}:");
+                            foreach (var c in filteredClinics)
+                                c.ViewClinicInfo();
+                        }
+                        break;
+
+                    case "3":
+                        int clinicId = UserValidator.IntValidation("Enter Clinic ID");
+                        var clinic = Clinic.Clinics.FirstOrDefault(c => c.ClinicId == clinicId
+                                                             && c.BranchId == AuthServices.currentAdmin.BranchId
+                                                             && c.DepartmentId == AuthServices.currentAdmin.DepartmentId);
+                        if (clinic != null)
+                            clinic.ViewClinicInfo();
+                        else
+                            Console.WriteLine("Clinic not found or not in your branch/department.");
+                        break;
+
+                    case "4":
+                        int updateId = UserValidator.IntValidation("Enter Clinic ID to Update");
+                        var clinicToUpdate = Clinic.Clinics.FirstOrDefault(c => c.ClinicId == updateId
+                                                                     && c.BranchId == AuthServices.currentAdmin.BranchId
+                                                                     && c.DepartmentId == AuthServices.currentAdmin.DepartmentId);
+                        if (clinicToUpdate == null)
+                        {
+                            Console.WriteLine(" Clinic not found or not in your branch/department.");
+                            break;
+                        }
+
+                        string newName = UserData.EnterName("new clinic");
+                        string newLocation = UserData.EnterAddress("New Adress");
+                        decimal newPrice = UserValidator.DecimalValidation("Enter New Price");
+
+                        CallMethodFromClinic.UpdateClinicDetails(updateId, newName, newLocation, newPrice);
+                        break;
+
+                    case "5":
+                        int deleteId = UserValidator.IntValidation("Enter Clinic ID to Delete");
+                        var clinicToDelete = Clinic.Clinics.FirstOrDefault(c => c.ClinicId == deleteId
+                                                                     && c.BranchId == AuthServices.currentAdmin.BranchId
+                                                                     && c.DepartmentId == AuthServices.currentAdmin.DepartmentId);
+                        if (clinicToDelete == null)
+                        {
+                            Console.WriteLine("⚠ Clinic not found or not in your branch/department.");
+                            break;
+                        }
+
+                        CallMethodFromClinic.DeleteClinic(deleteId);
                         break;
 
                     case "0":
-                        // Set the flag to true to exit the menu loop
-                        back = true;
+                        exitMenu = true;
                         break;
 
                     default:
-                        // Handle any invalid menu input
-                        Console.WriteLine("❌ Invalid choice.");
+                        Console.WriteLine("⚠ Invalid choice. Please try again.");
                         break;
                 }
             }
@@ -533,7 +585,7 @@ namespace CodeLineHealthCareCenter.Models
                     case "1":
                         // Prompt the user to enter the doctor's ID to view their appointments
                         int doctorId = UserData.EnterUserId(); // Get the doctor's ID from user input
-                        CallMethodFromBooking.GetBookingsByDoctorId(doctorId); // Call the method to get appointments for the specified doctor ID
+                        CallMethodFromBooking.GetBookingsById(doctorId); // Call the method to get appointments for the specified doctor ID
                         Console.WriteLine("\nPress Enter to continue..."); // Prompt the user to press Enter before continuing, useful for pausing the screen
                         Console.ReadLine(); // Wait for user input before continuing
                         break;
@@ -585,7 +637,7 @@ namespace CodeLineHealthCareCenter.Models
             {
                 Console.Clear(); // Clear the console screen to refresh the UI before displaying the Patient Dashboard
                 // Display the Patient dashboard with available options
-                Console.WriteLine("\n🧑‍⚕️ Patient Dashboard:"); // Display the header for the Patient Dashboard
+                Console.WriteLine("\n Patient Dashboard:"); // Display the header for the Patient Dashboard
                 Console.WriteLine("1. Book Appointment");  // Option to book a new appointment
                 Console.WriteLine("2. View My Appointments");   // Option to view all appointments booked by the patient
                 Console.WriteLine("3. Cancel Appointment"); // Show option to allow the patient to cancel an existing appointment
@@ -607,7 +659,7 @@ namespace CodeLineHealthCareCenter.Models
 
                     case "2":
                         int patientId = UserData.EnterUserId(); // Get the patient's ID from user input
-                        CallMethodFromBooking.GetBookingsByDoctorId(patientId); // Call the method to view all appointments booked by the patient
+                        CallMethodFromBooking.GetBookingsById(patientId); // Call the method to view all appointments booked by the patient
                         Console.WriteLine("\nPress Enter to continue..."); // Display a message prompting the user to press Enter before proceeding
                         Console.ReadLine(); // Wait for user input before continuing
                         break;

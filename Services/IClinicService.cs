@@ -19,5 +19,6 @@ namespace HospitalSystemTeamTask.Services
         void SetClinicStatus(int clinicId, bool isActive);
         void UpdateClinicDetails(int clinicId, string clinicName, string location, decimal price);
         void DeleteClinic(int clinicId);
+        void GetAllDoctorsByClinicId(int clinicId);
     }
 }
