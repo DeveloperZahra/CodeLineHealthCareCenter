@@ -583,6 +583,7 @@ namespace CodeLineHealthCareCenter.Models
             // Loop that displays the menu until the user chooses to go back
             while (!back)
             {
+                Console.Clear(); // Clear the console screen to refresh the UI before displaying the Patient Dashboard
                 // Display the Patient dashboard with available options
                 Console.WriteLine("\n Patient Dashboard:");
                 Console.WriteLine("1. Book Appointment");  // Option to book a new appointment
