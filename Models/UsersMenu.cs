@@ -513,9 +513,12 @@ namespace CodeLineHealthCareCenter.Models
             while (!back)
             {
                 Console.Clear(); // Clear the console to refresh the screen for a cleaner user interface
+
                 // Display the Doctor dashboard with options
-                Console.WriteLine("\n Doctor Dashboard:");
+                Console.WriteLine("\n🩺 Doctor Dashboard:"); // Display the Doctor's dashboard header
                 Console.WriteLine("1. View Appointments");  // Option for doctor to view their scheduled appointments
+                Console.WriteLine("2. Update Appointment Status");
+                Console.WriteLine("3. View Branches");
                 Console.WriteLine("0. Back");  // Option to go back to the previous screen/menu
 
                 // Prompt user for their choice
