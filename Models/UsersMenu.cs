@@ -544,7 +544,8 @@ namespace CodeLineHealthCareCenter.Models
                         // Prompt the user to enter the new status for the selected appointment (e.g., Completed, Canceled)
                         string newStatus = UserData.EnterAppointmentStatus(); // Enter the new appointment status
                         bookingService.UpdateBookingStatus(bookingId, newStatus);   // Call the method to update the status of the specified booking
-                        Console.WriteLine("\nPress Enter to continue..."); // Prompt the user to press Enter before returning to the menu 
+                        Console.WriteLine("\nPress Enter to continue..."); // Prompt the user to press Enter before returning to the menu
+                        Console.ReadLine();   // Wait for user input to pause the screen                                                  // 
 
                         break; 
 
