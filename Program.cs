@@ -66,7 +66,7 @@ namespace CodeLineHealthCareCenter
         }
 
         // Waits for user input before continuing
-        static void PauseForUser()
+        public static void PauseForUser()
         {
             Console.WriteLine("\nPress any key to continue...");
             Console.ReadKey();
