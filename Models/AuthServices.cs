@@ -13,7 +13,11 @@ namespace CodeLineHealthCareCenter.Models
 {
     public class AuthServices : IAuthService
     {
-        private static User currentUser = null; // Stores the currently logged-in user
+        public static SuperAdmin currentSuperAdmin= null; // Stores the currently logged-in user
+        public static Admin currentAdmin = null; // Stores the currently logged-in user
+        public static Doctor currentDoctor = null; // Stores the currently logged-in user
+        public static Patient currentPatient = null; // Stores the currently logged-in user
+
         private const string SuperAdminCode = "5566"; // Default Super Admin Code
 
 
@@ -240,28 +244,87 @@ namespace CodeLineHealthCareCenter.Models
         // Signs out the currently logged-in user.
         public void SignOut()
         {
-            if (currentUser != null)
+            if (currentSuperAdmin != null)
             {
-                Console.WriteLine($"User '{currentUser.UserName}' has been signed out successfully.");
-                currentUser = null; // Clear the logged-in user
+                Console.WriteLine($"Super Admin '{currentSuperAdmin.UserName}' has been signed out successfully.");
+                currentSuperAdmin = null;
+            }
+            else if (currentAdmin != null)
+            {
+                Console.WriteLine($"Admin '{currentAdmin.UserName}' has been signed out successfully.");
+                currentAdmin = null;
+            }
+            else if (currentDoctor != null)
+            {
+                Console.WriteLine($"Doctor '{currentDoctor.UserName}' has been signed out successfully.");
+                currentDoctor = null;
+            }
+            else if (currentPatient != null)
+            {
+                Console.WriteLine($"Patient '{currentPatient.UserName}' has been signed out successfully.");
+                currentPatient = null;
             }
             else
             {
-                Console.WriteLine("No user is currently signed in.");
+                Console.WriteLine(" No user is currently signed in.");
             }
         }
+
 
 
         // setting the current user after successful sign-in
         public static void SetCurrentUser(User user)
         {
-            currentUser = user;
+            if (user is SuperAdmin)
+            {
+                currentSuperAdmin = (SuperAdmin)user;
+                currentAdmin = null;
+                currentDoctor = null;
+                currentPatient = null;
+            }
+            else if (user is Admin)
+            {
+                currentAdmin = (Admin)user;
+                currentSuperAdmin = null;
+                currentDoctor = null;
+                currentPatient = null;
+            }
+            else if (user is Doctor)
+            {
+                currentDoctor = (Doctor)user;
+                currentSuperAdmin = null;
+                currentAdmin = null;
+                currentPatient = null;
+            }
+            else if (user is Patient)
+            {
+                currentPatient = (Patient)user;
+                currentSuperAdmin = null;
+                currentAdmin = null;
+                currentDoctor = null;
+            }
         }
 
         // getting the current user
-        public static User GetCurrentUser()
+        public static User GetCurrentUser(User user)
         {
-            return currentUser;
+           if (user is SuperAdmin)
+            {
+                return currentSuperAdmin;
+            }
+            else if (user is Admin)
+            {
+                return currentAdmin;
+            }
+            else if (user is Doctor)
+            {
+                return currentDoctor;
+            }
+            else if (user is Patient)
+            {
+                return currentPatient;
+            }
+            return null; // If no user matches, return null
         }
 
 
