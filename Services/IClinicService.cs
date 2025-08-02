@@ -10,8 +10,8 @@ namespace HospitalSystemTeamTask.Services
     {
         void AddClinic(string clinicName, string location, int departmentId, int branchId, int floorId, int roomId, decimal price);
         void GetClinicsByBranchAndDepartment();
-        void GetClinicById(int clinicId);
-        void GetClinicByName(string clinicName);
+        void GetClinic(int clinicId);
+        void GetClinic(string clinicName);
         void GetClinicName(int clinicId);
         void GetClinicByBranchName(string branchName);
         void GetClinicByDepartmentId(int departmentId);
