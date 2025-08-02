@@ -259,7 +259,11 @@ namespace CodeLineHealthCareCenter.Models
         }
 
 
-       
+        // setting the current user after successful sign-in
+        public static void SetCurrentUser(User user)
+        {
+            currentUser = user;
+        }
 
         // getting the current user
         public static User GetCurrentUser()
