@@ -195,7 +195,7 @@ namespace CodeLineHealthCareCenter.Models
 
             // Step 6: If authentication is successful, greet the user
             Console.WriteLine($"\nWelcome, {foundUser.UserName}! You are logged in as {foundUser.Role}.");
-            Console.ReadLine();
+            Program.PauseForUser();
 
             // Step 7: Store the logged-in user in the current session
             SetCurrentUser(foundUser);
@@ -205,29 +205,22 @@ namespace CodeLineHealthCareCenter.Models
             {
                 case "Super Admin":
                     UsersMenu.SuperAdminMenu(); // Call the Super Admin menu function
-                    Console.ReadLine();
-                    // Call the Super Admin menu function here
+                    Program.PauseForUser();
                     break;
 
                 case "Admin":
-                    Console.WriteLine("=== Admin Menu ===");
-                    Console.ReadLine();
-
-                    // Call the Admin menu function here
+                    UsersMenu.AdminMenu(); // Call the Admin menu function
+                    Program.PauseForUser();
                     break;
 
                 case "Doctor":
-                    Console.WriteLine("=== Doctor Menu ===");
-                    Console.ReadLine();
-
-                    // Call the Doctor menu function here
-                    break;
+                   UsersMenu.DoctorMenu(); // Call the Doctor menu function
+                   Program.PauseForUser();
+                   break;
 
                 case "Patient":
-                    Console.WriteLine("=== Patient Menu ===");
-                    Console.ReadLine();
-
-                    // Call the Patient menu function here
+                    UsersMenu.PatientMenu(); // Call the Patient menu function
+                    Program.PauseForUser();
                     break;
 
                 default:
