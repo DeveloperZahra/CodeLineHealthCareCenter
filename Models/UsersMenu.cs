@@ -535,8 +535,11 @@ namespace CodeLineHealthCareCenter.Models
                         CallMethodFromBooking.GetBookingsByDoctorId(doctorId); // Call the method to get appointments for the specified doctor ID
                         Console.WriteLine("\nPress Enter to continue..."); // Prompt the user to press Enter before continuing, useful for pausing the screen
                         Console.ReadLine(); // Wait for user input before continuing
-
                         break;
+
+                        case "2":
+                        // Prompt the user to enter the appointment/booking ID they want to update
+                        int bookingId = UserData.EnterBookingId(); // Enter the booking ID
 
                     case "0":
                         // Exit the loop and return to the previous menu
