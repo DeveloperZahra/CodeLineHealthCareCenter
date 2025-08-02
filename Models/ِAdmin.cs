@@ -29,6 +29,7 @@ namespace CodeLineHealthCareCenter.Models
             UserId = UserCount;
             // Admin accounts are active by default
             IsActive = true;
+            Role = "Admin"; // Set the role to Admin
         }
         public Admin(string name, string email, string password, string nationalId, string phoneNumber, string gender, int branchId, int departmentId)
         : base(name, email, password, nationalId, phoneNumber, gender, "Admin") // Call parent User constructor
