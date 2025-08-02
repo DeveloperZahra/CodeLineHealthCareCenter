@@ -622,7 +622,7 @@ namespace CodeLineHealthCareCenter.Models
                     case "4":
                         branchService.GetAllBranches();// Call the method to retrieve and display all branches available in the system
                         Console.WriteLine("\nPress Enter to continue...");  // Prompt the user to press Enter to pause the screen and allow time to read the output
-                        Console.ReadLine();     // Wait for the user to press Enter before continuing
+                        Console.ReadLine(); 
                         break;
 
                     case "0":
