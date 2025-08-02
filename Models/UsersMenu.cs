@@ -1,7 +1,9 @@
-﻿using System;
+﻿using HospitalSystemTeamTask.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -502,7 +504,7 @@ namespace CodeLineHealthCareCenter.Models
         public static void DoctorMenu()
         {
             Booking CallMethodFromBooking = new Booking(); // Create an instance of the Booking class to access its methods
-
+            Branch branchService = new Branch(); // Create a new instance of the Branch class to access its methods and manage branch-related operations
 
             // A flag used to keep the menu active until the user chooses to go back
             bool back = false;
@@ -511,9 +513,14 @@ namespace CodeLineHealthCareCenter.Models
             // Loop to continuously display the Doctor menu until the user exits
             while (!back)
             {
+                Console.Clear(); // Clear the console to refresh the screen for a cleaner user interface
+
                 // Display the Doctor dashboard with options
-                Console.WriteLine("\n Doctor Dashboard:");
+                Console.WriteLine("\n🩺 Doctor Dashboard:"); // Display the Doctor's dashboard header
                 Console.WriteLine("1. View Appointments");  // Option for doctor to view their scheduled appointments
+                Console.WriteLine("2. Update Appointment Status"); // Show menu option to update the status of a specific appointment (e.g., completed, canceled)
+                // Optional menu option for the doctor to view available branches in the system
+                Console.WriteLine("3. View Branches");  // Useful if the doctor needs branch-related info
                 Console.WriteLine("0. Back");  // Option to go back to the previous screen/menu
 
                 // Prompt user for their choice
@@ -527,8 +534,26 @@ namespace CodeLineHealthCareCenter.Models
                         // Prompt the user to enter the doctor's ID to view their appointments
                         int doctorId = UserData.EnterUserId(); // Get the doctor's ID from user input
                         CallMethodFromBooking.GetBookingsByDoctorId(doctorId); // Call the method to get appointments for the specified doctor ID
+                        Console.WriteLine("\nPress Enter to continue..."); // Prompt the user to press Enter before continuing, useful for pausing the screen
                         Console.ReadLine(); // Wait for user input before continuing
+                        break;
 
+                        case "2":
+                        // Prompt the user to enter the appointment/booking ID they want to update
+                        int bookingId = UserData.EnterBookingId(); // Enter the booking ID
+                        // Prompt the user to enter the new status for the selected appointment (e.g., Completed, Canceled)
+                        string newStatus = UserData.EnterAppointmentStatus(); // Enter the new appointment status
+                        bookingService.UpdateBookingStatus(bookingId, newStatus);   // Call the method to update the status of the specified booking
+                        Console.WriteLine("\nPress Enter to continue..."); // Prompt the user to press Enter before returning to the menu
+                        Console.ReadLine();   // Wait for user input to pause the screen                                                  // 
+
+                        break;
+
+                    case "3":
+                        branchService.GetAllBranches();  // Call the method that retrieves and displays a list of all branches in the system
+                        Console.WriteLine("\nPress Enter to continue...");  // Prompt the user to press Enter so they have time to read the output
+                        Console.ReadLine();
+                        // Pause execution until the user presses Enter
                         break;
 
                     case "0":
@@ -550,6 +575,7 @@ namespace CodeLineHealthCareCenter.Models
         public static void PatientMenu()
         {
             Booking CallMethodFromBooking = new Booking(); // Create an instance of the Booking class to access its methods
+            Branch branchService = new Branch(); // Create a new instance of the Branch class to access branch-related methods and data
 
             // Boolean flag used to control when to exit the menu
             bool back = false;
@@ -557,11 +583,13 @@ namespace CodeLineHealthCareCenter.Models
             // Loop that displays the menu until the user chooses to go back
             while (!back)
             {
+                Console.Clear(); // Clear the console screen to refresh the UI before displaying the Patient Dashboard
                 // Display the Patient dashboard with available options
-                Console.WriteLine("\n Patient Dashboard:");
+                Console.WriteLine("\n🧑‍⚕️ Patient Dashboard:"); // Display the header for the Patient Dashboard
                 Console.WriteLine("1. Book Appointment");  // Option to book a new appointment
-                Console.WriteLine("2. View Your Appointments");   // Option to view all appointments booked by the patient
-                Console.WriteLine("3. Cancel Appointment");
+                Console.WriteLine("2. View My Appointments");   // Option to view all appointments booked by the patient
+                Console.WriteLine("3. Cancel Appointment"); // Show option to allow the patient to cancel an existing appointment
+                Console.WriteLine("4. View Branches"); // Show option to allow the patient to view available branches in the healthcare system
                 Console.WriteLine("0. Back");  // Option to return to the previous menu
 
                 // Ask the user to enter their choice
@@ -573,18 +601,28 @@ namespace CodeLineHealthCareCenter.Models
                 {
                     case "1":
                         CallMethodFromBooking.BookAppointment(); // Call the method to book a new appointment 
+                        Console.WriteLine("\nPress Enter to continue..."); // Display a message prompting the user to press Enter before proceeding
                         Console.ReadLine(); // Wait for user input before continuing
                         break;
 
                     case "2":
                         int patientId = UserData.EnterUserId(); // Get the patient's ID from user input
                         CallMethodFromBooking.GetBookingsByDoctorId(patientId); // Call the method to view all appointments booked by the patient
+                        Console.WriteLine("\nPress Enter to continue..."); // Display a message prompting the user to press Enter before proceeding
                         Console.ReadLine(); // Wait for user input before continuing
                         break;
-                    case "3":
-                        CallMethodFromBooking.CancelAppointment(); // Call the method to cancel the specified appointment
-                        Console.ReadLine(); // Wait for user input before continuing
 
+                    case "3":
+                        int bookingId = UserData.EnterBookingId();// Prompt the user to enter the booking ID and store it in the variable bookingId
+                        CallMethodFromBooking.CancelAppointment(); // Call the method to cancel the specified appointment
+                        Console.WriteLine("\nPress Enter to continue..."); // Display a message prompting the user to press Enter before proceeding
+                        Console.ReadLine(); // Wait for user input before continuing
+                        break;
+
+                    case "4":
+                        branchService.GetAllBranches();// Call the method to retrieve and display all branches available in the system
+                        Console.WriteLine("\nPress Enter to continue...");  // Prompt the user to press Enter to pause the screen and allow time to read the output
+                        Console.ReadLine(); 
                         break;
 
                     case "0":
