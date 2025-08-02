@@ -619,6 +619,12 @@ namespace CodeLineHealthCareCenter.Models
                         Console.ReadLine(); // Wait for user input before continuing
                         break;
 
+                    case "4":
+                        branchService.GetAllBranches();// Call the method to retrieve and display all branches available in the system
+                        Console.WriteLine("\nPress Enter to continue...");
+                        Console.ReadLine();
+                        break;
+
                     case "0":
                         // User selected to go back, so we set the flag to true to exit the loop
                         back = true;
