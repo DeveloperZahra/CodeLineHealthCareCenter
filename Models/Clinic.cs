@@ -34,10 +34,12 @@ namespace CodeLineHealthCareCenter.Models
         public static List<Clinic> Clinics = new List<Clinic>();
 
         // List of available time slots
-        public List<DateTime> ClinicSpots { get; set; } = new List<DateTime>();
+        public List<ClinicSpots> ClinicSpots { get; set; } = new List<ClinicSpots>();
 
         // List of doctors assigned to this clinic
         public List<Doctor> Doctors { get; set; } = new List<Doctor>();
+
+
 
         // ========================== Constructor ==========================
         /// defualt constructor
@@ -73,25 +75,64 @@ namespace CodeLineHealthCareCenter.Models
         /// </summary>
         public void AddClinic(string clinicName, string location, int departmentId, int branchId, int floorId, int roomId, decimal price)
         {
-
             // 1️⃣ Create a new clinic object
             Clinic newClinic = new Clinic(clinicName, location, departmentId, branchId, floorId, roomId, price);
 
-            // 2️⃣ Optionally assign doctors to this clinic
+            // 2️⃣ Ask if doctors should be assigned to this clinic
             Console.WriteLine("Do you want to assign doctors to this clinic? (yes/no)");
             string choice = Console.ReadLine()?.Trim().ToLower();
 
             if (choice == "yes")
             {
-                AssignDoctorsToClinic(newClinic);
+                AssignDoctorsToClinic(newClinic); // Assign doctors
             }
 
-            // 3️⃣ Add clinic to the static list
+            // 3️⃣ Create appointment spots for this clinic
+            Console.WriteLine("Enter number of appointment spots to add:");
+            int spotCount = UserValidator.IntValidation("Number of Spots");
+
+            for (int i = 0; i < spotCount; i++)
+            {
+                DateTime spotTime = UserValidator.DateTimeValidation(
+                    $"Enter Spot #{i + 1} Date and Time (yyyy-MM-dd HH:mm)");
+
+                // ✅ Check if this spot already exists for this clinic
+                bool spotExists = newClinic.ClinicSpots.Any(s => s.Date_Time == spotTime);
+
+                if (spotExists)
+                {
+                    Console.WriteLine($"⚠ Spot at {spotTime} already exists for this clinic. Please enter a different time.");
+                    i--; // Decrease i so user can re-enter for the same spot number
+                    continue;
+                }
+
+                // ✅ Create a new ClinicSpots object
+                ClinicSpots spot = new ClinicSpots(newClinic.ClinicId, spotTime, false); // default IsActive = false (not booked)
+
+                // ✅ Add the new spot to the clinic's spot list
+                newClinic.ClinicSpots.Add(spot);
+
+                Console.WriteLine($"✅ Spot #{i + 1} added for {spotTime}");
+            }
+
+            // 4️⃣ Show status of added spots
+            if (newClinic.ClinicSpots.Count == 0)
+            {
+                Console.WriteLine("⚠ No appointment spots added.");
+            }
+            else
+            {
+                Console.WriteLine($"✅ {newClinic.ClinicSpots.Count} appointment spots added successfully.");
+            }
+
+            // 5️⃣ Add clinic to the static list (ONLY ONCE)
             Clinics.Add(newClinic);
 
-
-            Console.WriteLine($"Clinic '{newClinic.ClinicName}' added successfully with ID {newClinic.ClinicId}");
+            Console.WriteLine($"🏥 Clinic '{clinicName}' added successfully with ID {newClinic.ClinicId}");
         }
+
+
+
 
         /// <summary>
         /// Displays all clinics.
