@@ -547,8 +547,13 @@ namespace CodeLineHealthCareCenter.Models
                         Console.WriteLine("\nPress Enter to continue..."); // Prompt the user to press Enter before returning to the menu
                         Console.ReadLine();   // Wait for user input to pause the screen                                                  // 
 
-                        break; 
+                        break;
 
+                    case "3":
+                        branchService.GetAllBranches();  // Call the method that retrieves and displays a list of all branches in the system
+                        Console.WriteLine("\nPress Enter to continue...");
+                        Console.ReadLine();
+                        break;
 
                     case "0":
                         // Exit the loop and return to the previous menu
