@@ -23,6 +23,8 @@ namespace CodeLineHealthCareCenter.Models
             Admin CallMethodFromAdmin = new Admin(); // Create an instance of the Admin class to access its methods
             Doctor CallMethodFromDoctor = new Doctor(); // Create an instance of the Doctor class to access its methods
             User CallMethodFromUser = new User(); // Create an instance of the User class to access its methods
+            BranchDepartment branchDeptService = new BranchDepartment(0, 0, 0, 0, "", "");
+
             // Flag to control the loop and allow the user to go back
             bool back = false;
 
@@ -129,6 +131,7 @@ namespace CodeLineHealthCareCenter.Models
                                         Console.WriteLine("5. Delete Branch");       // Option to delete a branch by ID
                                         Console.WriteLine("6. Update Branch");       // Option to update branch details by ID
                                         Console.WriteLine("7. Get Totle Number of branch"); // Option to get the total number of branches
+                                        Console.WriteLine("8. Assign Departments to specific branch");
                                         Console.WriteLine("0. Back");               // Option to return to the previous menu
                                         Console.Write("Choose: ");
                                         string choice1 = Console.ReadLine();         // Read the user's choice
@@ -199,6 +202,13 @@ namespace CodeLineHealthCareCenter.Models
                                                 // Get the total number of branches
                                                 int totalBranches = CallMethodFromBranch.GetTotalBranches();
                                                 Console.WriteLine($"Total number of branches: {totalBranches}");
+                                                Console.WriteLine("\nPress Enter to continue...");
+                                                Console.ReadLine();
+                                                break;
+                                            case "8":
+                                                // Assign departments to a specific branch
+                                                int branchIdForAssignment = UserData.EnterBranchId(Branch.branches); // Get the branch ID from user input
+                                                branchDeptService.AssignDepartmentsToBranch(branchIdForAssignment); // Call the method to assign departments to the specified branch
                                                 Console.WriteLine("\nPress Enter to continue...");
                                                 Console.ReadLine();
                                                 break;
