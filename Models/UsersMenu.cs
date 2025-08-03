@@ -80,7 +80,7 @@ namespace CodeLineHealthCareCenter.Models
                         string adminPhoneNumber = UserData.EnterPhoneNumber(); // Get the admin phone number from user input
                         string adminGender = UserData.EnterGender(); // Get the admin gender from user input
                         int adminBranchId = UserData.EnterBranchId(Branch.branches); // Get the admin branch ID from user input
-                        int adminDepartmentId = UserData.EnterDepartmentId(BranchDepartment.Departments); // Get the admin department ID from user input
+                        int adminDepartmentId = UserData.EnterDepartmentId(BranchDepartment.Departments, adminBranchId); // Get the admin department ID from user input
                         CallMethodFromAdmin.AddAdmin(adminName, adminEmail, adminPassword, adminNationalId , adminPhoneNumber, adminGender, adminBranchId, adminDepartmentId); // Call the method to add a new admin with the provided details
                         Console.ReadLine(); 
 
@@ -93,7 +93,7 @@ namespace CodeLineHealthCareCenter.Models
                         string DPhoneNumber = UserData.EnterPhoneNumber(); // Get the Doctor phone number from user input
                         string DGender = UserData.EnterGender(); // Get the Doctor gender from user input
                         int DBranchId = UserData.EnterBranchId(Branch.branches); // Get the Doctor branch ID from user input
-                        int DDepartmentId = UserData.EnterDepartmentId(BranchDepartment.Departments); // Get the Doctor department ID from user input
+                        int DDepartmentId = UserData.EnterDepartmentId(BranchDepartment.Departments, DBranchId); // Get the Doctor department ID from user input
                         string DSpecialization = UserData.EnterSpecialty(); // Get the doctor's specialization from user input
                         CallMethodFromDoctor.AddDoctor(DName, DEmail, DPassword, DNationalId, DPhoneNumber, DGender, DSpecialization, DBranchId, DDepartmentId); // Call the method to add a new doctor
                         Console.ReadLine(); // Wait for user input before continuing

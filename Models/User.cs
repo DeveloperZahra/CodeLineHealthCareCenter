@@ -14,6 +14,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace CodeLineHealthCareCenter
 {
     // Base class for all users in the system (patients, doctors, admins, super admins).
+    
     public class User : IUserService
     {
         // 1. ============== private feild ==============
@@ -496,6 +497,8 @@ namespace CodeLineHealthCareCenter
                 Console.WriteLine("2. Email");
                 Console.WriteLine("3. Phone Number");
                 Console.WriteLine("4. Address");
+                Console.WriteLine("5. Branch");
+                Console.WriteLine("6. Department");
                 Console.WriteLine("0. Cancel / Finish");
 
                 string choice = Console.ReadLine();
@@ -529,6 +532,12 @@ namespace CodeLineHealthCareCenter
                         string newAddress = Console.ReadLine();
                         UpdateField(userId, role, "Address", newAddress);
                         hasUpdates = true;
+                        break;
+                    case "5":
+                        int branchID = UserData.EnterBranchId(Branch.branches);
+                        
+                        int 
+
                         break;
 
                     case "0":
