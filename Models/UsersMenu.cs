@@ -80,7 +80,7 @@ namespace CodeLineHealthCareCenter.Models
                         string adminPhoneNumber = UserData.EnterPhoneNumber(); // Get the admin phone number from user input
                         string adminGender = UserData.EnterGender(); // Get the admin gender from user input
                         int adminBranchId = UserData.EnterBranchId(Branch.branches); // Get the admin branch ID from user input
-                        int adminDepartmentId = UserData.EnterDepartmentId(BranchDepartment.Departments); // Get the admin department ID from user input
+                        int adminDepartmentId = UserData.EnterDepartmentId(BranchDepartment.Departments, adminBranchId); // Get the admin department ID from user input
                         CallMethodFromAdmin.AddAdmin(adminName, adminEmail, adminPassword, adminNationalId , adminPhoneNumber, adminGender, adminBranchId, adminDepartmentId); // Call the method to add a new admin with the provided details
                         Console.ReadLine(); 
 
