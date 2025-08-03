@@ -150,6 +150,21 @@ namespace CodeLineHealthCareCenter.Models
                 Console.WriteLine("-------------------------------------------");
             }
         }
+        public static void UpdateBookingStatus(int bookingId, string newStatus)
+        {
+            var booking = Bookings.FirstOrDefault(b => b.BookingId == bookingId);
+            if (booking != null)
+            {
+                booking.AppointmentType = newStatus;
+                Console.WriteLine($"Booking ID {bookingId} status updated to '{newStatus}'.");
+            }
+            else
+            {
+                Console.WriteLine($" Booking ID {bookingId} not found.");
+            }
+        }
+            
+     
 
     }
 }

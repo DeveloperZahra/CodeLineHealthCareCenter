@@ -72,31 +72,157 @@ namespace CodeLineHealthCareCenter.Models
 
                     // Placeholder for adding a new admin user
                     case "3":
-                        // enter admin name from user input
-                        string adminName = UserData.EnterName("Admin"); // Get the admin name from user input
-                        string adminEmail = UserData.EnterUserEmail(); // Get the admin email from user input
-                        string adminPassword = UserData.EnterPasswordForSignUp(); // Get the admin password from user input
-                        string adminNationalId = UserData.EnterNationalID();// Get the admin national ID from user input
-                        string adminPhoneNumber = UserData.EnterPhoneNumber(); // Get the admin phone number from user input
-                        string adminGender = UserData.EnterGender(); // Get the admin gender from user input
-                        int adminBranchId = UserData.EnterBranchId(Branch.branches); // Get the admin branch ID from user input
-                        int adminDepartmentId = UserData.EnterDepartmentId(BranchDepartment.Departments, adminBranchId); // Get the admin department ID from user input
-                        CallMethodFromAdmin.AddAdmin(adminName, adminEmail, adminPassword, adminNationalId , adminPhoneNumber, adminGender, adminBranchId, adminDepartmentId); // Call the method to add a new admin with the provided details
-                        Console.ReadLine(); 
+                        // ✅ Enter admin name
+                        string adminName = UserData.EnterName("Admin");
+                        if (adminName == "null")
+                        {
+                            Console.WriteLine("Admin name is required. Process stopped.");
+                            return;
+                        }
+
+                        // ✅ Enter admin email
+                        string adminEmail = UserData.EnterUserEmail();
+                        if (adminEmail == "null")
+                        {
+                            Console.WriteLine("Admin email is required. Process stopped.");
+                            return;
+                        }
+
+                        // ✅ Enter admin password
+                        string adminPassword = UserData.EnterPasswordForSignUp();
+                        if (adminPassword == "null")
+                        {
+                            Console.WriteLine("Admin password is required. Process stopped.");
+                            return;
+                        }
+
+                        // ✅ Enter admin national ID
+                        string adminNationalId = UserData.EnterNationalID();
+                        if (adminNationalId == "null")
+                        {
+                            Console.WriteLine("Admin national ID is required. Process stopped.");
+                            return;
+                        }
+
+                        // ✅ Enter admin phone number
+                        string adminPhoneNumber = UserData.EnterPhoneNumber();
+                        if (adminPhoneNumber == "null")
+                        {
+                            Console.WriteLine("Admin phone number is required. Process stopped.");
+                            return;
+                        }
+
+                        // ✅ Enter admin gender
+                        string adminGender = UserData.EnterGender();
+                        if (adminGender == "null")
+                        {
+                            Console.WriteLine("Admin gender is required. Process stopped.");
+                            return;
+                        }
+
+                        // ✅ Enter branch ID
+                        int adminBranchId = UserData.EnterBranchId(Branch.branches);
+                        if (adminBranchId == -1)
+                        {
+                            Console.WriteLine("Invalid Branch ID. Process stopped.");
+                            return;
+                        }
+
+                        // ✅ Enter department ID
+                        int adminDepartmentId = UserData.EnterDepartmentId(BranchDepartment.Departments, adminBranchId);
+                        if (adminDepartmentId == -1)
+                        {
+                            Console.WriteLine("Invalid Department ID. Process stopped.");
+                            return;
+                        }
+
+                        // Only add admin if all inputs are valid
+                        CallMethodFromAdmin.AddAdmin(
+                            adminName,
+                            adminEmail,
+                            adminPassword,
+                            adminNationalId,
+                            adminPhoneNumber,
+                            adminGender,
+                            adminBranchId,
+                            adminDepartmentId
+                        );
+
+                        Console.WriteLine("Admin added successfully!");
+                        Console.ReadLine();
+
 
                         break;
                     case "4":
-                        string DName = UserData.EnterName("Doctor"); // Get the Doctor name from user input
-                        string DEmail = UserData.EnterUserEmail(); // Get the Doctor email from user input
-                        string DPassword = UserData.EnterPasswordForSignUp(); // Get the Doctor password from user input
-                        string DNationalId = UserData.EnterNationalID();// Get the Doctor national ID from user input
-                        string DPhoneNumber = UserData.EnterPhoneNumber(); // Get the Doctor phone number from user input
-                        string DGender = UserData.EnterGender(); // Get the Doctor gender from user input
-                        int DBranchId = UserData.EnterBranchId(Branch.branches); // Get the Doctor branch ID from user input
-                        int DDepartmentId = UserData.EnterDepartmentId(BranchDepartment.Departments, DBranchId); // Get the Doctor department ID from user input
-                        string DSpecialization = UserData.EnterSpecialty(); // Get the doctor's specialization from user input
-                        CallMethodFromDoctor.AddDoctor(DName, DEmail, DPassword, DNationalId, DPhoneNumber, DGender, DSpecialization, DBranchId, DDepartmentId); // Call the method to add a new doctor
-                        Console.ReadLine(); // Wait for user input before continuing
+                        string DName = UserData.EnterName("Doctor");
+                        if (DName == "null")
+                        {
+                            Console.WriteLine("Doctor name is Unsave. Process stopped.");
+                            return;
+                        }
+
+                        string DEmail = UserData.EnterUserEmail();
+                        if (DEmail == "null")
+                        {
+                            Console.WriteLine(" Doctor email is Unsave. Process stopped.");
+                            return;
+                        }
+
+                        string DPassword = UserData.EnterPasswordForSignUp();
+                        if (DPassword == "null")
+                        {
+                            Console.WriteLine("Doctor password is Unsave. Process stopped.");
+                            return;
+                        }
+
+                        string DNationalId = UserData.EnterNationalID();
+                        if (DNationalId == "null")
+                        {
+                            Console.WriteLine("Doctor national ID is Unsave. Process stopped.");
+                            return;
+                        }
+
+                        string DPhoneNumber = UserData.EnterPhoneNumber();
+                        if (DPhoneNumber == "null")
+                        {
+                            Console.WriteLine("Doctor phone number is Unsave. Process stopped.");
+                            return;
+                        }
+
+                        string DGender = UserData.EnterGender();
+                        if (DGender == "null")
+                        {
+                            Console.WriteLine("Doctor gender is Unsave. Process stopped.");
+                            return;
+                        }
+
+                        int DBranchId = UserData.EnterBranchId(Branch.branches);
+                        if (DBranchId == -1)
+                        {
+                            Console.WriteLine("Invalid Branch ID. Process stopped.");
+                            return;
+                        }
+
+                        int DDepartmentId = UserData.EnterDepartmentId(BranchDepartment.Departments, DBranchId);
+                        if (DDepartmentId == -1)
+                        {
+                            Console.WriteLine("Invalid Department ID. Process stopped.");
+                            return;
+                        }
+
+                        string DSpecialization = UserData.EnterSpecialty();
+                        if (DSpecialization == "null")
+                        {
+                            Console.WriteLine(" Doctor specialization is required. Process stopped.");
+                            return;
+                        }
+
+                        // ✅ Only call AddDoctor if all inputs are valid
+                        CallMethodFromDoctor.AddDoctor(DName, DEmail, DPassword, DNationalId, DPhoneNumber, DGender, DSpecialization, DBranchId, DDepartmentId);
+
+                        Console.WriteLine("Doctor added successfully!");
+                        Console.ReadLine();
+
                         break;
                     // Placeholder for additional options in the SuperAdmin menu
                     case "5":
@@ -368,6 +494,7 @@ namespace CodeLineHealthCareCenter.Models
                                                 Console.WriteLine("\nPress Enter to continue...");
                                                 Console.ReadLine();
                                                 break;
+                                           
                                             case "0":
                                                 // Exit the loop and return to the SuperAdmin menu
                                                 backToViewDataCategoriesMenu3 = true;
@@ -488,6 +615,7 @@ namespace CodeLineHealthCareCenter.Models
                         decimal price = UserValidator.DecimalValidation("Enter Clinic Price");
 
                         CallMethodFromClinic.AddClinic(clinicName, clinicLocation, AuthServices.currentAdmin.DepartmentId, AuthServices.currentAdmin.BranchId, 0, 0, price);
+                        Console.ReadLine();
                         break;
 
                     case "2":
@@ -506,6 +634,8 @@ namespace CodeLineHealthCareCenter.Models
                             foreach (var c in filteredClinics)
                                 c.ViewClinicInfo();
                         }
+                        Console.ReadLine();
+
                         break;
 
                     case "3":
@@ -517,6 +647,8 @@ namespace CodeLineHealthCareCenter.Models
                             clinic.ViewClinicInfo();
                         else
                             Console.WriteLine("Clinic not found or not in your branch/department.");
+                        Console.ReadLine();
+
                         break;
 
                     case "4":
@@ -535,6 +667,8 @@ namespace CodeLineHealthCareCenter.Models
                         decimal newPrice = UserValidator.DecimalValidation("Enter New Price");
 
                         CallMethodFromClinic.UpdateClinicDetails(updateId, newName, newLocation, newPrice);
+                        Console.ReadLine();
+
                         break;
 
                     case "5":
@@ -549,6 +683,8 @@ namespace CodeLineHealthCareCenter.Models
                         }
 
                         CallMethodFromClinic.DeleteClinic(deleteId);
+                        Console.ReadLine();
+
                         break;
 
                     case "0":
@@ -556,7 +692,7 @@ namespace CodeLineHealthCareCenter.Models
                         break;
 
                     default:
-                        Console.WriteLine("⚠ Invalid choice. Please try again.");
+                        Console.WriteLine("Invalid choice. Please try again.");
                         break;
                 }
             }
@@ -565,72 +701,90 @@ namespace CodeLineHealthCareCenter.Models
         // =================== Doctor Menu ====================
         public static void DoctorMenu()
         {
-            Booking CallMethodFromBooking = new Booking(); // Create an instance of the Booking class to access its methods
-            Branch branchService = new Branch(); // Create a new instance of the Branch class to access its methods and manage branch-related operations
+            // ✅ Create service instances
+            Booking bookingService = new Booking();
+            Branch branchService = new Branch();
 
-            // A flag used to keep the menu active until the user chooses to go back
-            bool back = false;
-
-
-            // Loop to continuously display the Doctor menu until the user exits
-            while (!back)
+            // ✅ Get the currently logged-in doctor (no need to enter ID every time)
+            if (AuthServices.currentDoctor == null)
             {
-                Console.Clear(); // Clear the console to refresh the screen for a cleaner user interface
+                Console.WriteLine("⚠ No doctor is currently signed in.");
+                return;
+            }
 
-                // Display the Doctor dashboard with options
-                Console.WriteLine("\n🩺 Doctor Dashboard:"); // Display the Doctor's dashboard header
-                Console.WriteLine("1. View Appointments");  // Option for doctor to view their scheduled appointments
-                Console.WriteLine("2. Update Appointment Status"); // Show menu option to update the status of a specific appointment (e.g., completed, canceled)
-                // Optional menu option for the doctor to view available branches in the system
-                Console.WriteLine("3. View Branches");  // Useful if the doctor needs branch-related info
-                Console.WriteLine("0. Back");  // Option to go back to the previous screen/menu
+            bool exitMenu = false;
 
-                // Prompt user for their choice
-                Console.Write("Choose: ");
-                string input = Console.ReadLine(); // Read the input from the console
+            while (!exitMenu)
+            {
+                Console.Clear();
+                Console.WriteLine($"\n Doctor Dashboard - Welcome Dr. {AuthServices.currentDoctor.UserName}");
+                Console.WriteLine("===========================================");
+                Console.WriteLine("1️ View My Appointments");
+                Console.WriteLine("2️ Update Appointment Status");
+                Console.WriteLine("3️  View My Branch & Department Info");
+                Console.WriteLine("0️  Back to Main Menu");
+                Console.WriteLine("===========================================");
+                Console.Write("Choose an option: ");
 
-                // Process the input using switch-case
-                switch (input)
+                string choice = Console.ReadLine();
+
+                switch (choice)
                 {
-                    case "1":
-                        // Prompt the user to enter the doctor's ID to view their appointments
-                        int doctorId = UserData.EnterUserId(); // Get the doctor's ID from user input
-                        CallMethodFromBooking.GetBookingsById(doctorId); // Call the method to get appointments for the specified doctor ID
-                        Console.WriteLine("\nPress Enter to continue..."); // Prompt the user to press Enter before continuing, useful for pausing the screen
-                        Console.ReadLine(); // Wait for user input before continuing
-                        break;
-
-                        case "2":
-                        // Prompt the user to enter the appointment/booking ID they want to update
-                        int bookingId = UserData.EnterBookingId(); // Enter the booking ID
-                        // Prompt the user to enter the new status for the selected appointment (e.g., Completed, Canceled)
-                        string newStatus = UserData.EnterAppointmentStatus(); // Enter the new appointment status
-                        bookingService.UpdateBookingStatus(bookingId, newStatus);   // Call the method to update the status of the specified booking
-                        Console.WriteLine("\nPress Enter to continue..."); // Prompt the user to press Enter before returning to the menu
-                        Console.ReadLine();   // Wait for user input to pause the screen                                                  // 
-
-                        break;
-
-                    case "3":
-                        branchService.GetAllBranches();  // Call the method that retrieves and displays a list of all branches in the system
-                        Console.WriteLine("\nPress Enter to continue...");  // Prompt the user to press Enter so they have time to read the output
+                    case "1": //  View Appointments
+                        Console.Clear();
+                        bookingService.GetBookingsById(AuthServices.currentDoctor.UserId);
+                        Console.WriteLine("\nPress Enter to return...");
                         Console.ReadLine();
-                        // Pause execution until the user presses Enter
                         break;
 
-                    case "0":
-                        // Exit the loop and return to the previous menu
-                        back = true;
+                    case "2": // Update Appointment Status
+                        Console.Clear();
+                        Console.WriteLine("=== Update Appointment Status ===");
+                        int bookingId = UserData.EnterBookingId();
+
+                        if (bookingId == -1)
+                        {
+                            Console.WriteLine("Invalid Booking ID.");
+                        }
+                        else
+                        {
+                            string newStatus = UserData.EnterAppointmentStatus();
+                            Booking.UpdateBookingStatus(bookingId, newStatus);
+                        }
+
+                        Console.WriteLine("\nPress Enter to return...");
+                        Console.ReadLine();
                         break;
 
+                    case "3": // View Doctor’s Branch & Department Info
+                        Console.Clear();
+                        Console.WriteLine("=== My Branch & Department Info ===");
+
+                        Branch myBranch = Branch.branches
+                            .FirstOrDefault(b => b.BranchId == AuthServices.currentDoctor.BranchId);
+
+                        Department myDept = BranchDepartment.Departments
+                            .FirstOrDefault(d => d.DepartmentId == AuthServices.currentDoctor.DepartmentId);
+
+                        Console.WriteLine($"Doctor Name   : Dr. {AuthServices.currentDoctor.UserName}");
+                        Console.WriteLine($"Branch Name   : {myBranch?.BranchName ?? "Not Assigned"}");
+                        Console.WriteLine($"Department    : {myDept?.DepartmentName ?? "Not Assigned"}");
+
+                        Console.WriteLine("\nPress Enter to return...");
+                        Console.ReadLine();
+                        break;
+
+                    case "0": // Exit
+                        exitMenu = true;
+                        break;
 
                     default:
-                        // Handle invalid menu choices
-                        Console.WriteLine("❌ Invalid choice.");
+                        Console.WriteLine(" Invalid choice. Please try again.");
                         break;
                 }
             }
         }
+
 
 
         // =================== Patient Menu ====================
