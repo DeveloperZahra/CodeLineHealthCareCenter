@@ -58,11 +58,14 @@ namespace CodeLineHealthCareCenter
 
         public void AddBranch(string branchAddress, string phoneNumber)
         {
-            Branch newBranch = new Branch(branchAddress, phoneNumber); // Create a new branch object
-            branches.Add(newBranch); // Add it to the list
-
+            Branch newBranch = new Branch(branchAddress, phoneNumber);
+            Branch.branches.Add(newBranch);
 
             Console.WriteLine($"Branch '{newBranch.BranchName}' added successfully!");
+
+            // Immediately assign departments after creating the branch
+            BranchDepartment branchDept = new BranchDepartment(0, 0, 0, 0, "", "");
+            branchDept.AssignDepartmentsToBranch(newBranch.BranchId);
         }
 
         // 3.2 Displays all branches stored in the list.
