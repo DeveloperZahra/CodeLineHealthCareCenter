@@ -46,16 +46,7 @@ namespace CodeLineHealthCareCenter
             else return true;
         }
 
-        public static bool ValidateGender(string gender) // Validates the gender of a user
-        {
-            if (string.IsNullOrWhiteSpace(gender) &&
-                                         (gender.Equals("M", StringComparison.OrdinalIgnoreCase) ||
-                                          gender.Equals("F", StringComparison.OrdinalIgnoreCase)))
-            {
-                return false;
-            }
-            else {  return true; }
-        }
+        
 
         public static bool ValidateRole(string role) // Validates the role of a user
         {
