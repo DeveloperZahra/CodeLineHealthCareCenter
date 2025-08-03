@@ -64,7 +64,7 @@ namespace CodeLineHealthCareCenter.Models
             {
                 do
                 {
-                    Console.Write("Enter Your Email: ");
+                    Console.Write("Enter Your Email (format: emailaddress@gmail.com): ");
                     email = Console.ReadLine();
 
                     // Validate email format using a simple regex
@@ -77,7 +77,7 @@ namespace CodeLineHealthCareCenter.Models
                     }
                     else
                     {
-                        Console.WriteLine("Invalid Email. Please enter a valid email (e.g., user@example.com).");
+                        Console.WriteLine("Invalid Email. Please enter a valid email (e.g., emailaddress@example.com).");
                         tries++;
                     }
 
@@ -105,7 +105,7 @@ namespace CodeLineHealthCareCenter.Models
             {
                 do
                 {
-                    Console.Write("Enter National ID: ");
+                    Console.Write("Enter National ID (must be exactly 3 digit): ");
                     nationalId = Console.ReadLine();
 
                     //  Validate National ID: must be digits only and 10 to 14 characters long
@@ -145,10 +145,10 @@ namespace CodeLineHealthCareCenter.Models
             {
                 do
                 {
-                    Console.Write("Enter Phone Number: ");
+                    Console.Write("Enter Phone Number {must be digits only and between 8 digit}: ");
                     phoneNumber = Console.ReadLine();
 
-                    // Validate phone number: must be digits only and between 8-12 digits
+                    // Validate phone number: must be digits only and between 8 digits
                     bool isValidPhone = UserValidator.ValidatePhoneNumber(phoneNumber);
 
                     if (isValidPhone)
@@ -183,88 +183,89 @@ namespace CodeLineHealthCareCenter.Models
 
             try
             {
-                do
+                while (tries < 3) // Allow up to 3 attempts
                 {
-                    Console.Write("Enter Gender (Male/Female): ");
-                    gender = Console.ReadLine()?.Trim();
+                    Console.WriteLine("Enter Gender:");
+                    Console.WriteLine(" 1. Male");
+                    Console.WriteLine(" 2. Female");
+                    Console.Write("Select option (1 or 2): ");
 
-                    // Validate gender: must be "Male" or "Female" (case-insensitive)
-                    bool isValidGender = UserValidator.ValidateGender(gender);
+                    string genderOption = Console.ReadLine()?.Trim();
 
-                    if (isValidGender)
+                    if (genderOption == "1")
                     {
-                        // Normalize output to start with capital letter
-                        string formattedGender = char.ToUpper(gender[0]) + gender.Substring(1).ToLower();
-                        Console.WriteLine($"Sucessfully Enter gender");
-                        return formattedGender;
+                        return "Male"; // Return immediately if valid
+                    }
+                    else if (genderOption == "2")
+                    {
+                        return "Female"; // Return immediately if valid
                     }
                     else
                     {
-                        Console.WriteLine("❌ Invalid Gender. Gender cannot be empty. and only be ( M/F ).");
+                        Console.WriteLine("Incorrect option selected. Please try again.");
                         tries++;
                     }
-
-                } while (tries < 3); // Allow up to 3 attempts
+                }
 
                 // If user fails 3 times
-                Console.WriteLine(" You have exceeded the maximum number of attempts.");
-                Console.WriteLine("Please try again later.");
+                Console.WriteLine("You have exceeded the maximum number of attempts.");
                 return "null";
             }
             catch (Exception ex)
             {
-                Console.WriteLine($" An error occurred: {ex.Message}");
+                Console.WriteLine($"An error occurred: {ex.Message}");
                 return "null";
             }
         }
+
         // ================================== 6. Role ==========================================
-        public static string EnterRole()
-        {
-            string role = "";
-            int tries = 0;
+        //public static string EnterRole()
+        //{
+        //    string role = "";
+        //    int tries = 0;
 
-            // Allowed roles
-            string[] validRoles = { "Admin", "Doctor", "Patient", "Super Admin" };
+        //    // Allowed roles
+        //    string[] validRoles = { "Admin", "Doctor", "Patient", "Super Admin" };
 
-            try
-            {
-                do
-                {
-                    Console.Write("Enter Role (Admin / Doctor / Patient / Super Admin): ");
-                    role = Console.ReadLine()?.Trim();
+        //    try
+        //    {
+        //        do
+        //        {
+        //            Console.Write("Enter Role (Admin / Doctor / Patient / Super Admin): ");
+        //            role = Console.ReadLine()?.Trim();
 
-                    // Validate role: must match one of the valid roles (case-insensitive)
-                    bool isValidRole = UserValidator.ValidateRole(role) &&
-                                       Array.Exists(validRoles, r => r.Equals(role, StringComparison.OrdinalIgnoreCase));
+        //            // Validate role: must match one of the valid roles (case-insensitive)
+        //            bool isValidRole = UserValidator.ValidateRole(role) &&
+        //                               Array.Exists(validRoles, r => r.Equals(role, StringComparison.OrdinalIgnoreCase));
 
-                    if (isValidRole)
-                    {
-                        // Normalize role format (capitalize first letter of each word)
-                        string formattedRole = string.Join(" ", role.Split(' ')
-                            .Select(word => char.ToUpper(word[0]) + word.Substring(1).ToLower()));
+        //            if (isValidRole)
+        //            {
+        //                // Normalize role format (capitalize first letter of each word)
+        //                string formattedRole = string.Join(" ", role.Split(' ')
+        //                    .Select(word => char.ToUpper(word[0]) + word.Substring(1).ToLower()));
 
-                        Console.WriteLine($"Sucessfully Enter role");
-                        return formattedRole;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid Role. Please enter one of the following: Admin, Doctor, Patient, Super Admin.");
-                        tries++;
-                    }
+        //                Console.WriteLine($"Sucessfully Enter role");
+        //                return formattedRole;
+        //            }
+        //            else
+        //            {
+        //                Console.WriteLine("Invalid Role. Please enter one of the following: Admin, Doctor, Patient, Super Admin.");
+        //                tries++;
+        //            }
 
-                } while (tries < 3);
+        //        } while (tries < 3);
 
-                // If user fails 3 times
-                Console.WriteLine(" You have exceeded the maximum number of attempts.");
-                Console.WriteLine("Please try again later.");
-                return "null";
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($" An error occurred: {ex.Message}");
-                return "null";
-            }
-        }
+        //        // If user fails 3 times
+        //        Console.WriteLine(" You have exceeded the maximum number of attempts.");
+        //        Console.WriteLine("Please try again later.");
+        //        return "null";
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine($" An error occurred: {ex.Message}");
+        //        return "null";
+        //    }
+        //}
         // ================================== 7. IsActive ======================================
         public static bool EnterIsActive()
         {
