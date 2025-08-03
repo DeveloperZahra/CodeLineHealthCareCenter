@@ -57,6 +57,10 @@ namespace CodeLineHealthCareCenter
         {
 
             Console.WriteLine("List of Departments:");
+            if (BranchDepartment.Departments.Count == 0)
+            {
+                Console.WriteLine("There is no department");
+            }
             foreach (var dept in BranchDepartment.Departments)
             {
                 Console.WriteLine($"ID: {dept.DepartmentId}, Name: {dept.DepartmentName}");
