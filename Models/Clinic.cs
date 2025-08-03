@@ -143,7 +143,7 @@ namespace CodeLineHealthCareCenter.Models
             int branchId = UserData.EnterBranchId(Branch.branches);
 
             // Ask the user to enter Department ID
-            int departmentId = UserData.EnterDepartmentId(BranchDepartment.Departments);
+            int departmentId = UserData.EnterDepartmentId(BranchDepartment.Departments, branchId);
 
             // Check if there are any clinics
             if (!Clinics.Any())
