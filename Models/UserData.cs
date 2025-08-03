@@ -589,54 +589,54 @@ namespace CodeLineHealthCareCenter.Models
         }
 
         // promots the user to enter a department ID to be able to assign to new branch creation 
-        public static int SelectDepartmentIdToAssignToBranch(List<Department> departments)
-        {
-            int tries = 0; // Count number of attempts
+        //public static int SelectDepartmentIdToAssignToBranch(List<Department> departments)
+        //{
+        //    int tries = 0; // Count number of attempts
 
-            try
-            {
-                // Check if there are any departments
-                if (departments == null || departments.Count == 0)
-                {
-                    Console.WriteLine("No departments available in the system.");
-                    return -1;
-                }
+        //    try
+        //    {
+        //        // Check if there are any departments
+        //        if (departments == null || departments.Count == 0)
+        //        {
+        //            Console.WriteLine("No departments available in the system.");
+        //            return -1;
+        //        }
 
-                // Display all available departments
-                Console.WriteLine("\n=== Available Departments ===");
-                foreach (var dept in departments)
-                {
-                    Console.WriteLine($"ID: {dept.DepartmentId} | Name: {dept.DepartmentName}");
-                }
-                Console.WriteLine("==============================");
+        //        // Display all available departments
+        //        Console.WriteLine("\n=== Available Departments ===");
+        //        foreach (var dept in departments)
+        //        {
+        //            Console.WriteLine($"ID: {dept.DepartmentId} | Name: {dept.DepartmentName}");
+        //        }
+        //        Console.WriteLine("==============================");
 
-                // Ask user to enter Department ID
-                do
-                {
-                    Console.Write("Enter Department ID: ");
-                    string input = Console.ReadLine();
+        //        // Ask user to enter Department ID
+        //        do
+        //        {
+        //            Console.Write("Enter Department ID: ");
+        //            string input = Console.ReadLine();
 
-                    if (int.TryParse(input, out int departmentId) &&
-                        departments.Any(d => d.DepartmentId == departmentId))
-                    {
-                        Console.WriteLine("Department selected successfully.");
-                        return departmentId;
-                    }
+        //            if (int.TryParse(input, out int departmentId) &&
+        //                departments.Any(d => d.DepartmentId == departmentId))
+        //            {
+        //                Console.WriteLine("Department selected successfully.");
+        //                return departmentId;
+        //            }
 
-                    Console.WriteLine("Invalid Department ID. Please try again.");
-                    tries++;
+        //            Console.WriteLine("Invalid Department ID. Please try again.");
+        //            tries++;
 
-                } while (tries < 3); // Allow up to 3 attempts
+        //        } while (tries < 3); // Allow up to 3 attempts
 
-                Console.WriteLine("You have exceeded the maximum number of attempts.");
-                return -1;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"An error occurred: {ex.Message}");
-                return -1;
-            }
-        }
+        //        Console.WriteLine("You have exceeded the maximum number of attempts.");
+        //        return -1;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine($"An error occurred: {ex.Message}");
+        //        return -1;
+        //    }
+        //}
 
 
         // =================================== 11. Specialty =================================
