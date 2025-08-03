@@ -13,7 +13,7 @@ namespace CodeLineHealthCareCenter.Models
     {    public static int tries = 0;
         /// =================================== General User Input Data ===============================
         // ================================== 1. User Name====================================
-        public static string EnterName(string TypeOfName)
+        public static string EnterName(string typeOfName)
         {
             string userName = "";
             int tries = 0; // Counter for the number of attempts
@@ -22,37 +22,35 @@ namespace CodeLineHealthCareCenter.Models
             {
                 do
                 {
-                    Console.Write($"Enter {TypeOfName} Name: ");
-                    userName = Console.ReadLine();
+                    Console.Write($"Enter {typeOfName} Name: ");
+                    userName = Console.ReadLine()?.Trim();
 
-                    // Check if the input is valid (not empty and at least 3 characters)
-                    bool isValidName = UserValidator.ValidateName(userName);
+                    // Check if the input is not null, contains only letters, and is at least 3 characters
+                    bool isValidName = !string.IsNullOrWhiteSpace(userName) &&
+                                       userName.All(char.IsLetter); // Ensures only letters
 
                     if (isValidName)
                     {
-                        //Console.WriteLine($"Sucessfully Enter Name");
-                        return userName; // Return the valid name
+                        return userName; // Return valid name
                     }
                     else
                     {
-                        Console.WriteLine(" Invalid User Name. Please enter at least 3 characters.");
+                        Console.WriteLine("Invalid Name. letters only.");
                         tries++;
                     }
 
-                } while (tries < 3); // Allow a maximum of 3 attempts
+                } while (tries < 3); // Allow up to 3 attempts
 
-                // If user fails 3 times
-                Console.WriteLine("You have exceeded the maximum number of attempts.");
-                Console.WriteLine("Please try again later.");
-                return "null"; // Return "null" to indicate failure
+                Console.WriteLine("❌ You have exceeded the maximum number of attempts.");
+                return "null"; // Failure
             }
             catch (Exception ex)
             {
-                // Handle any unexpected exceptions
-                Console.WriteLine($" An error occurred: {ex.Message}");
+                Console.WriteLine($"⚠ An error occurred: {ex.Message}");
                 return "null";
             }
         }
+
 
         // ================================== 2. Email ========================================
         public static string EnterUserEmail()
