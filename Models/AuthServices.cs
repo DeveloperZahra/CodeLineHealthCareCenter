@@ -40,7 +40,7 @@ namespace CodeLineHealthCareCenter.Models
             if (choice == "1")
             {
                 // Validate Super Admin Code
-                Console.Write("Enter Super Admin Code: ");
+                Console.Write("Enter Super Admin Code (It's 5566): ");
                 string enteredCode = Console.ReadLine();
                 if (!int.TryParse(enteredCode, out int parsedCode) || parsedCode != int.Parse(SuperAdminCode))
                 {

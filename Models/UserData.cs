@@ -353,7 +353,7 @@ namespace CodeLineHealthCareCenter.Models
 
             while (tries < 3)
             {
-                Console.Write("Enter a new password: ");
+                Console.Write("Enter a new password (must be 6 digit) : ");
                 string password = ReadPassword();
 
                 // Validate password (at least 6 chars, contains letter & number)
@@ -366,7 +366,7 @@ namespace CodeLineHealthCareCenter.Models
                     continue;
                 }
 
-                Console.Write("Confirm password: ");
+                Console.Write("Confirm password (must be 6 digit): ");
                 string confirmPassword = ReadPassword();
 
                 if (password == confirmPassword)
