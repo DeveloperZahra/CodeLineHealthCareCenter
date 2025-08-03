@@ -395,6 +395,21 @@ namespace CodeLineHealthCareCenter.Models
 
             try
             {
+                // Show all available branches before asking for input
+                if (branches == null || branches.Count == 0)
+                {
+                    Console.WriteLine(" No branches available.");
+                    return -1;
+                }
+
+                Console.WriteLine("\n=== Available Branches ===");
+                foreach (var branch in branches)
+                {
+                    Console.WriteLine($"ID: {branch.BranchId} | Name: {branch.BranchName}");
+                }
+                Console.WriteLine("==========================\n");
+
+                // Ask user to enter branch ID
                 do
                 {
                     Console.Write("Enter Branch ID: ");
@@ -408,12 +423,11 @@ namespace CodeLineHealthCareCenter.Models
 
                         if (exists)
                         {
-                            Console.WriteLine($"Sucessfully Enter Branch ID");
+                            Console.WriteLine("Successfully selected Branch ID.");
                             return branchId;
                         }
                     }
 
-                    // If input is invalid or branch does not exist
                     Console.WriteLine("Invalid Branch ID. Please enter an existing ID.");
                     tries++;
 
@@ -428,6 +442,7 @@ namespace CodeLineHealthCareCenter.Models
                 return -1;
             }
         }
+
 
         // ==================================== 10. Department ID ===============================
         /// Input Data Specility for some users in the system 
