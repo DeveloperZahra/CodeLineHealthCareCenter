@@ -489,6 +489,7 @@ namespace CodeLineHealthCareCenter
         {
             bool hasUpdates = false;
             bool continueUpdating = true;
+            int branchID = 0;
 
             while (continueUpdating)
             {
@@ -534,23 +535,44 @@ namespace CodeLineHealthCareCenter
                         hasUpdates = true;
                         break;
                     case "5":
-                        int branchID = UserData.EnterBranchId(Branch.branches);
-                        
-                        int 
+                        branchID = UserData.EnterBranchId(Branch.branches);
+                        for (int i = 0; i < Doctor.doctors.Count; i++)
+                        {
+                            if (Doctor.doctors[i].UserId == userId)
+                            {
+                                Doctor.doctors[i].BranchId = branchID;
+                                Console.WriteLine($"Branch ID for {role} with ID {userId} has been updated to {branchID}.");
+                                hasUpdates = true;
+                                break;
+                            }
+                        }
 
+                        break;
+                    case "6":
+                        int departmentID = UserData.EnterDepartmentId(BranchDepartment.Departments, branchID);
+                        for (int i = 0; i < Doctor.doctors.Count; i++)
+                        {
+                            if (Doctor.doctors[i].UserId == userId)
+                            {
+                                Doctor.doctors[i].DepartmentId = departmentID;
+                                Console.WriteLine($"Department ID for {role} with ID {userId} has been updated to {departmentID}.");
+                                hasUpdates = true;
+                                break;
+                            }
+                        }
                         break;
 
                     case "0":
                         if (hasUpdates)
-                            Console.WriteLine("\n✅ Your data has been successfully updated.");
+                            Console.WriteLine("\nYour data has been successfully updated.");
                         else
-                            Console.WriteLine("\nℹ️ No changes were made to your data.");
+                            Console.WriteLine("\nNo changes were made to your data.");
 
                         continueUpdating = false;
                         break;
 
                     default:
-                        Console.WriteLine("\n⚠️ Invalid choice. Please try again.");
+                        Console.WriteLine("\n Invalid choice. Please try again.");
                         break;
                 }
             }
