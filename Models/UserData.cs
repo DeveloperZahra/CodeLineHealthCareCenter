@@ -468,7 +468,7 @@ namespace CodeLineHealthCareCenter.Models
                 Console.WriteLine("==========================");
 
                 // Ask user to select a branch ID
-                Console.Write("Enter Branch ID: ");
+                Console.Write("Enter department ID: ");
                 string branchInput = Console.ReadLine();
 
                 if (!int.TryParse(branchInput, out int branchId) ||
