@@ -449,45 +449,195 @@ namespace CodeLineHealthCareCenter.Models
         // Prompts the user to enter a Department ID that must already exist in the system.
         public static int EnterDepartmentId(List<Department> departments)
         {
-            int tries = 0; // Counter for user attempts
+            int tries = 0;
 
             try
             {
+                // Show all branches first
+                if (Branch.branches == null || Branch.branches.Count == 0)
+                {
+                    Console.WriteLine("No branches available.");
+                    return -1;
+                }
+
+                Console.WriteLine("\n=== Available Branches ===");
+                foreach (var branch in Branch.branches)
+                {
+                    Console.WriteLine($"ID: {branch.BranchId} | Name: {branch.BranchName}");
+                }
+                Console.WriteLine("==========================");
+
+                // Ask user to select a branch ID
+                Console.Write("Enter Branch ID: ");
+                string branchInput = Console.ReadLine();
+
+                if (!int.TryParse(branchInput, out int branchId) ||
+                    !Branch.branches.Any(b => b.BranchId == branchId))
+                {
+                    Console.WriteLine(" Invalid Branch ID. Returning to menu.");
+                    return -1;
+                }
+
+                // Get departments for the selected branch
+                var branchDepartments = BranchDepartment.branchDepartments
+                    .Where(bd => bd.branchId == branchId)
+                    .Select(bd => bd.departmentId)
+                    .Distinct()
+                    .ToList();
+
+                if (branchDepartments.Count == 0)
+                {
+                    Console.WriteLine("No departments available for this branch.");
+                    return -1;
+                }
+
+                // Show departments available in this branch
+                Console.WriteLine($"\n=== Departments in Branch ID {branchId} ===");
+                foreach (var deptId in branchDepartments)
+                {
+                    var dept = departments.FirstOrDefault(d => d.DepartmentId == deptId);
+                    if (dept != null)
+                        Console.WriteLine($"ID: {dept.DepartmentId} | Name: {dept.DepartmentName}");
+                }
+                Console.WriteLine("==========================================");
+
+                // Ask user to enter department ID
                 do
                 {
                     Console.Write("Enter Department ID: ");
                     string input = Console.ReadLine();
 
-                    // Check if the entered value is a valid integer
-                    if (int.TryParse(input, out int departmentId))
+                    if (int.TryParse(input, out int departmentId) && branchDepartments.Contains(departmentId))
                     {
-                        // Check if the entered department ID exists in the provided list
-                        bool exists = departments.Any(d => d.DepartmentId == departmentId);
-
-                        if (exists)
-                        {
-                            Console.WriteLine($"Sucessfully Enter Department ID");
-                            return departmentId; // Return valid department ID
-                        }
+                        Console.WriteLine(" Successfully selected Department ID.");
+                        return departmentId;
                     }
 
-                    // If the input is invalid or department not found
-                    Console.WriteLine(" Invalid Department ID. Please enter an existing ID.");
-                    tries++; // Increase the number of failed attempts
+                    Console.WriteLine("Invalid Department ID. Please try again.");
+                    tries++;
 
-                } while (tries < 3); // Allow a maximum of 3 attempts
+                } while (tries < 3);
 
-                // If user failed 3 times
-                Console.WriteLine(" You have exceeded the maximum number of attempts.");
-                return -1; // Indicate failure
+                Console.WriteLine("You have exceeded the maximum number of attempts.");
+                return -1;
             }
             catch (Exception ex)
             {
-                // Handle unexpected errors
-                Console.WriteLine($" An error occurred: {ex.Message}");
-                return -1; // Indicate failure
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return -1;
             }
         }
+
+        public static int EnterDepartmentId(List<Department> departments, int branchID)
+        {
+            int tries = 0;
+
+            try
+            {
+                // Get departments that belong to the selected branch
+                var branchDepartments = BranchDepartment.branchDepartments
+                    .Where(bd => bd.branchId == branchID)
+                    .Select(bd => bd.departmentId)
+                    .ToList();
+
+                // Filter available departments
+                var availableDepartments = departments
+                    .Where(d => branchDepartments.Contains(d.DepartmentId))
+                    .ToList();
+
+                // Check if there are any departments for this branch
+                if (availableDepartments.Count == 0)
+                {
+                    Console.WriteLine("No departments available for this branch.");
+                    return -1;
+                }
+
+                // Display all departments under the branch
+                Console.WriteLine($"\n=== Departments in Branch ID {branchID} ===");
+                foreach (var dept in availableDepartments)
+                {
+                    Console.WriteLine($"ID: {dept.DepartmentId} | Name: {dept.DepartmentName}");
+                }
+                Console.WriteLine("=========================================");
+
+                // Ask the user to enter a department ID
+                do
+                {
+                    Console.Write("Enter Department ID: ");
+                    string input = Console.ReadLine();
+
+                    if (int.TryParse(input, out int departmentId) &&
+                        availableDepartments.Any(d => d.DepartmentId == departmentId))
+                    {
+                        Console.WriteLine("Department selected successfully.");
+                        return departmentId;
+                    }
+
+                    Console.WriteLine("Invalid Department ID. Please try again.");
+                    tries++;
+
+                } while (tries < 3);
+
+                Console.WriteLine("You have exceeded the maximum number of attempts.");
+                return -1;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return -1;
+            }
+        }
+
+        // promots the user to enter a department ID to be able to assign to new branch creation 
+        public static int SelectDepartmentIdToAssignToBranch(List<Department> departments)
+        {
+            int tries = 0; // Count number of attempts
+
+            try
+            {
+                // Check if there are any departments
+                if (departments == null || departments.Count == 0)
+                {
+                    Console.WriteLine("No departments available in the system.");
+                    return -1;
+                }
+
+                // Display all available departments
+                Console.WriteLine("\n=== Available Departments ===");
+                foreach (var dept in departments)
+                {
+                    Console.WriteLine($"ID: {dept.DepartmentId} | Name: {dept.DepartmentName}");
+                }
+                Console.WriteLine("==============================");
+
+                // Ask user to enter Department ID
+                do
+                {
+                    Console.Write("Enter Department ID: ");
+                    string input = Console.ReadLine();
+
+                    if (int.TryParse(input, out int departmentId) &&
+                        departments.Any(d => d.DepartmentId == departmentId))
+                    {
+                        Console.WriteLine("Department selected successfully.");
+                        return departmentId;
+                    }
+
+                    Console.WriteLine("Invalid Department ID. Please try again.");
+                    tries++;
+
+                } while (tries < 3); // Allow up to 3 attempts
+
+                Console.WriteLine("You have exceeded the maximum number of attempts.");
+                return -1;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return -1;
+            }
+        }
+
 
         // =================================== 11. Specialty =================================
         /// Input Data Specility for doctore
