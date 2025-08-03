@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CodeLineHealthCareCenter
 {
-    class Patient : User, IPatientService
+    public class Patient : User, IPatientService
     {
         // 1. ======================== Class Fields ==========================
         public DateTime DateOfBirth { get; set; } // Patient's date of birth

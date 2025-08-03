@@ -13,7 +13,7 @@ namespace CodeLineHealthCareCenter.Models
     {    public static int tries = 0;
         /// =================================== General User Input Data ===============================
         // ================================== 1. User Name====================================
-        public static string EnterUserName()
+        public static string EnterName(string TypeOfName)
         {
             string userName = "";
             int tries = 0; // Counter for the number of attempts
@@ -22,7 +22,7 @@ namespace CodeLineHealthCareCenter.Models
             {
                 do
                 {
-                    Console.Write("Enter User Name: ");
+                    Console.Write($"Enter {TypeOfName} Name: ");
                     userName = Console.ReadLine();
 
                     // Check if the input is valid (not empty and at least 3 characters)
@@ -64,7 +64,7 @@ namespace CodeLineHealthCareCenter.Models
             {
                 do
                 {
-                    Console.Write("Enter Your Email: ");
+                    Console.Write("Enter Your Email (format: emailaddress@gmail.com): ");
                     email = Console.ReadLine();
 
                     // Validate email format using a simple regex
@@ -77,7 +77,7 @@ namespace CodeLineHealthCareCenter.Models
                     }
                     else
                     {
-                        Console.WriteLine("Invalid Email. Please enter a valid email (e.g., user@example.com).");
+                        Console.WriteLine("Invalid Email. Please enter a valid email (e.g., emailaddress@example.com).");
                         tries++;
                     }
 
@@ -105,7 +105,7 @@ namespace CodeLineHealthCareCenter.Models
             {
                 do
                 {
-                    Console.Write("Enter National ID: ");
+                    Console.Write("Enter National ID (must be exactly 3 digit): ");
                     nationalId = Console.ReadLine();
 
                     //  Validate National ID: must be digits only and 10 to 14 characters long
@@ -145,10 +145,10 @@ namespace CodeLineHealthCareCenter.Models
             {
                 do
                 {
-                    Console.Write("Enter Phone Number: ");
+                    Console.Write("Enter Phone Number {must be digits only and between 8 digit}: ");
                     phoneNumber = Console.ReadLine();
 
-                    // Validate phone number: must be digits only and between 8-12 digits
+                    // Validate phone number: must be digits only and between 8 digits
                     bool isValidPhone = UserValidator.ValidatePhoneNumber(phoneNumber);
 
                     if (isValidPhone)
@@ -183,88 +183,89 @@ namespace CodeLineHealthCareCenter.Models
 
             try
             {
-                do
+                while (tries < 3) // Allow up to 3 attempts
                 {
-                    Console.Write("Enter Gender (Male/Female): ");
-                    gender = Console.ReadLine()?.Trim();
+                    Console.WriteLine("Enter Gender:");
+                    Console.WriteLine(" 1. Male");
+                    Console.WriteLine(" 2. Female");
+                    Console.Write("Select option (1 or 2): ");
 
-                    // Validate gender: must be "Male" or "Female" (case-insensitive)
-                    bool isValidGender = UserValidator.ValidateGender(gender);
+                    string genderOption = Console.ReadLine()?.Trim();
 
-                    if (isValidGender)
+                    if (genderOption == "1")
                     {
-                        // Normalize output to start with capital letter
-                        string formattedGender = char.ToUpper(gender[0]) + gender.Substring(1).ToLower();
-                        Console.WriteLine($"Sucessfully Enter gender");
-                        return formattedGender;
+                        return "Male"; // Return immediately if valid
+                    }
+                    else if (genderOption == "2")
+                    {
+                        return "Female"; // Return immediately if valid
                     }
                     else
                     {
-                        Console.WriteLine("❌ Invalid Gender. Gender cannot be empty. and only be ( M/F ).");
+                        Console.WriteLine("Incorrect option selected. Please try again.");
                         tries++;
                     }
-
-                } while (tries < 3); // Allow up to 3 attempts
+                }
 
                 // If user fails 3 times
-                Console.WriteLine(" You have exceeded the maximum number of attempts.");
-                Console.WriteLine("Please try again later.");
+                Console.WriteLine("You have exceeded the maximum number of attempts.");
                 return "null";
             }
             catch (Exception ex)
             {
-                Console.WriteLine($" An error occurred: {ex.Message}");
+                Console.WriteLine($"An error occurred: {ex.Message}");
                 return "null";
             }
         }
+
         // ================================== 6. Role ==========================================
-        public static string EnterRole()
-        {
-            string role = "";
-            int tries = 0;
+        //public static string EnterRole()
+        //{
+        //    string role = "";
+        //    int tries = 0;
 
-            // Allowed roles
-            string[] validRoles = { "Admin", "Doctor", "Patient", "Super Admin" };
+        //    // Allowed roles
+        //    string[] validRoles = { "Admin", "Doctor", "Patient", "Super Admin" };
 
-            try
-            {
-                do
-                {
-                    Console.Write("Enter Role (Admin / Doctor / Patient / Super Admin): ");
-                    role = Console.ReadLine()?.Trim();
+        //    try
+        //    {
+        //        do
+        //        {
+        //            Console.Write("Enter Role (Admin / Doctor / Patient / Super Admin): ");
+        //            role = Console.ReadLine()?.Trim();
 
-                    // Validate role: must match one of the valid roles (case-insensitive)
-                    bool isValidRole = UserValidator.ValidateRole(role) &&
-                                       Array.Exists(validRoles, r => r.Equals(role, StringComparison.OrdinalIgnoreCase));
+        //            // Validate role: must match one of the valid roles (case-insensitive)
+        //            bool isValidRole = UserValidator.ValidateRole(role) &&
+        //                               Array.Exists(validRoles, r => r.Equals(role, StringComparison.OrdinalIgnoreCase));
 
-                    if (isValidRole)
-                    {
-                        // Normalize role format (capitalize first letter of each word)
-                        string formattedRole = string.Join(" ", role.Split(' ')
-                            .Select(word => char.ToUpper(word[0]) + word.Substring(1).ToLower()));
+        //            if (isValidRole)
+        //            {
+        //                // Normalize role format (capitalize first letter of each word)
+        //                string formattedRole = string.Join(" ", role.Split(' ')
+        //                    .Select(word => char.ToUpper(word[0]) + word.Substring(1).ToLower()));
 
-                        Console.WriteLine($"Sucessfully Enter role");
-                        return formattedRole;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid Role. Please enter one of the following: Admin, Doctor, Patient, Super Admin.");
-                        tries++;
-                    }
+        //                Console.WriteLine($"Sucessfully Enter role");
+        //                return formattedRole;
+        //            }
+        //            else
+        //            {
+        //                Console.WriteLine("Invalid Role. Please enter one of the following: Admin, Doctor, Patient, Super Admin.");
+        //                tries++;
+        //            }
 
-                } while (tries < 3);
+        //        } while (tries < 3);
 
-                // If user fails 3 times
-                Console.WriteLine(" You have exceeded the maximum number of attempts.");
-                Console.WriteLine("Please try again later.");
-                return "null";
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($" An error occurred: {ex.Message}");
-                return "null";
-            }
-        }
+        //        // If user fails 3 times
+        //        Console.WriteLine(" You have exceeded the maximum number of attempts.");
+        //        Console.WriteLine("Please try again later.");
+        //        return "null";
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine($" An error occurred: {ex.Message}");
+        //        return "null";
+        //    }
+        //}
         // ================================== 7. IsActive ======================================
         public static bool EnterIsActive()
         {
@@ -394,6 +395,21 @@ namespace CodeLineHealthCareCenter.Models
 
             try
             {
+                // Show all available branches before asking for input
+                if (branches == null || branches.Count == 0)
+                {
+                    Console.WriteLine(" No branches available.");
+                    return -1;
+                }
+
+                Console.WriteLine("\n=== Available Branches ===");
+                foreach (var branch in branches)
+                {
+                    Console.WriteLine($"ID: {branch.BranchId} | Name: {branch.BranchName}");
+                }
+                Console.WriteLine("==========================\n");
+
+                // Ask user to enter branch ID
                 do
                 {
                     Console.Write("Enter Branch ID: ");
@@ -407,12 +423,11 @@ namespace CodeLineHealthCareCenter.Models
 
                         if (exists)
                         {
-                            Console.WriteLine($"Sucessfully Enter Branch ID");
+                            Console.WriteLine("Successfully selected Branch ID.");
                             return branchId;
                         }
                     }
 
-                    // If input is invalid or branch does not exist
                     Console.WriteLine("Invalid Branch ID. Please enter an existing ID.");
                     tries++;
 
@@ -428,50 +443,201 @@ namespace CodeLineHealthCareCenter.Models
             }
         }
 
+
         // ==================================== 10. Department ID ===============================
         /// Input Data Specility for some users in the system 
         // Prompts the user to enter a Department ID that must already exist in the system.
         public static int EnterDepartmentId(List<Department> departments)
         {
-            int tries = 0; // Counter for user attempts
+            int tries = 0;
 
             try
             {
+                // Show all branches first
+                if (Branch.branches == null || Branch.branches.Count == 0)
+                {
+                    Console.WriteLine("No branches available.");
+                    return -1;
+                }
+
+                Console.WriteLine("\n=== Available Branches ===");
+                foreach (var branch in Branch.branches)
+                {
+                    Console.WriteLine($"ID: {branch.BranchId} | Name: {branch.BranchName}");
+                }
+                Console.WriteLine("==========================");
+
+                // Ask user to select a branch ID
+                Console.Write("Enter Branch ID: ");
+                string branchInput = Console.ReadLine();
+
+                if (!int.TryParse(branchInput, out int branchId) ||
+                    !Branch.branches.Any(b => b.BranchId == branchId))
+                {
+                    Console.WriteLine(" Invalid Branch ID. Returning to menu.");
+                    return -1;
+                }
+
+                // Get departments for the selected branch
+                var branchDepartments = BranchDepartment.branchDepartments
+                    .Where(bd => bd.branchId == branchId)
+                    .Select(bd => bd.departmentId)
+                    .Distinct()
+                    .ToList();
+
+                if (branchDepartments.Count == 0)
+                {
+                    Console.WriteLine("No departments available for this branch.");
+                    return -1;
+                }
+
+                // Show departments available in this branch
+                Console.WriteLine($"\n=== Departments in Branch ID {branchId} ===");
+                foreach (var deptId in branchDepartments)
+                {
+                    var dept = departments.FirstOrDefault(d => d.DepartmentId == deptId);
+                    if (dept != null)
+                        Console.WriteLine($"ID: {dept.DepartmentId} | Name: {dept.DepartmentName}");
+                }
+                Console.WriteLine("==========================================");
+
+                // Ask user to enter department ID
                 do
                 {
                     Console.Write("Enter Department ID: ");
                     string input = Console.ReadLine();
 
-                    // Check if the entered value is a valid integer
-                    if (int.TryParse(input, out int departmentId))
+                    if (int.TryParse(input, out int departmentId) && branchDepartments.Contains(departmentId))
                     {
-                        // Check if the entered department ID exists in the provided list
-                        bool exists = departments.Any(d => d.DepartmentId == departmentId);
-
-                        if (exists)
-                        {
-                            Console.WriteLine($"Sucessfully Enter Department ID");
-                            return departmentId; // Return valid department ID
-                        }
+                        Console.WriteLine(" Successfully selected Department ID.");
+                        return departmentId;
                     }
 
-                    // If the input is invalid or department not found
-                    Console.WriteLine(" Invalid Department ID. Please enter an existing ID.");
-                    tries++; // Increase the number of failed attempts
+                    Console.WriteLine("Invalid Department ID. Please try again.");
+                    tries++;
 
-                } while (tries < 3); // Allow a maximum of 3 attempts
+                } while (tries < 3);
 
-                // If user failed 3 times
-                Console.WriteLine(" You have exceeded the maximum number of attempts.");
-                return -1; // Indicate failure
+                Console.WriteLine("You have exceeded the maximum number of attempts.");
+                return -1;
             }
             catch (Exception ex)
             {
-                // Handle unexpected errors
-                Console.WriteLine($" An error occurred: {ex.Message}");
-                return -1; // Indicate failure
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return -1;
             }
         }
+
+        public static int EnterDepartmentId(List<Department> departments, int branchID)
+        {
+            int tries = 0;
+
+            try
+            {
+                // Get departments that belong to the selected branch
+                var branchDepartments = BranchDepartment.branchDepartments
+                    .Where(bd => bd.branchId == branchID)
+                    .Select(bd => bd.departmentId)
+                    .ToList();
+
+                // Filter available departments
+                var availableDepartments = departments
+                    .Where(d => branchDepartments.Contains(d.DepartmentId))
+                    .ToList();
+
+                // Check if there are any departments for this branch
+                if (availableDepartments.Count == 0)
+                {
+                    Console.WriteLine("No departments available for this branch.");
+                    return -1;
+                }
+
+                // Display all departments under the branch
+                Console.WriteLine($"\n=== Departments in Branch ID {branchID} ===");
+                foreach (var dept in availableDepartments)
+                {
+                    Console.WriteLine($"ID: {dept.DepartmentId} | Name: {dept.DepartmentName}");
+                }
+                Console.WriteLine("=========================================");
+
+                // Ask the user to enter a department ID
+                do
+                {
+                    Console.Write("Enter Department ID: ");
+                    string input = Console.ReadLine();
+
+                    if (int.TryParse(input, out int departmentId) &&
+                        availableDepartments.Any(d => d.DepartmentId == departmentId))
+                    {
+                        Console.WriteLine("Department selected successfully.");
+                        return departmentId;
+                    }
+
+                    Console.WriteLine("Invalid Department ID. Please try again.");
+                    tries++;
+
+                } while (tries < 3);
+
+                Console.WriteLine("You have exceeded the maximum number of attempts.");
+                return -1;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return -1;
+            }
+        }
+
+        // promots the user to enter a department ID to be able to assign to new branch creation 
+        //public static int SelectDepartmentIdToAssignToBranch(List<Department> departments)
+        //{
+        //    int tries = 0; // Count number of attempts
+
+        //    try
+        //    {
+        //        // Check if there are any departments
+        //        if (departments == null || departments.Count == 0)
+        //        {
+        //            Console.WriteLine("No departments available in the system.");
+        //            return -1;
+        //        }
+
+        //        // Display all available departments
+        //        Console.WriteLine("\n=== Available Departments ===");
+        //        foreach (var dept in departments)
+        //        {
+        //            Console.WriteLine($"ID: {dept.DepartmentId} | Name: {dept.DepartmentName}");
+        //        }
+        //        Console.WriteLine("==============================");
+
+        //        // Ask user to enter Department ID
+        //        do
+        //        {
+        //            Console.Write("Enter Department ID: ");
+        //            string input = Console.ReadLine();
+
+        //            if (int.TryParse(input, out int departmentId) &&
+        //                departments.Any(d => d.DepartmentId == departmentId))
+        //            {
+        //                Console.WriteLine("Department selected successfully.");
+        //                return departmentId;
+        //            }
+
+        //            Console.WriteLine("Invalid Department ID. Please try again.");
+        //            tries++;
+
+        //        } while (tries < 3); // Allow up to 3 attempts
+
+        //        Console.WriteLine("You have exceeded the maximum number of attempts.");
+        //        return -1;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine($"An error occurred: {ex.Message}");
+        //        return -1;
+        //    }
+        //}
+
 
         // =================================== 11. Specialty =================================
         /// Input Data Specility for doctore
@@ -586,7 +752,7 @@ namespace CodeLineHealthCareCenter.Models
 
         // =================================== 13. Address ====================================
 
-        public static string EnterAddress()
+        public static string EnterAddress(string AddressForWhat)
         {
             string address = "";
             int tries = 0; // Counter for the number of attempts
@@ -595,7 +761,7 @@ namespace CodeLineHealthCareCenter.Models
             {
                 do
                 {
-                    Console.Write("Enter User Address: ");
+                    Console.Write($"Enter {AddressForWhat} Address: ");
                     address = Console.ReadLine();
 
                     //validat fpr input data 
@@ -727,12 +893,64 @@ namespace CodeLineHealthCareCenter.Models
 
         internal static int EnterBookingId()
         {
-            throw new NotImplementedException();
+            int tries = 0;
+
+            while (tries < 3) // Allow up to 3 attempts
+            {
+                Console.Write("Enter Booking ID: ");
+                string input = Console.ReadLine();
+
+                // Check if input is a valid integer
+                if (int.TryParse(input, out int bookingId))
+                {
+                    // Check if the booking exists in the list
+                    bool exists = Booking.Bookings.Any(b => b.BookingId == bookingId);
+                    if (exists)
+                    {
+                        Console.WriteLine("Booking ID found successfully.");
+                        return bookingId; // Return valid booking ID
+                    }
+                    else
+                    {
+                        Console.WriteLine("Booking ID not found. Please enter a valid ID.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please enter a number.");
+                }
+
+                tries++;
+            }
+
+            Console.WriteLine("Maximum attempts reached. Returning -1.");
+            return -1; // Return -1 if user fails after 3 tries
         }
+
 
         internal static string EnterAppointmentStatus()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("\nSelect Appointment Status:");
+            Console.WriteLine("1. Scheduled");
+            Console.WriteLine("2. Completed");
+            Console.WriteLine("3. Canceled");
+            Console.Write("Enter your choice (1-3): ");
+
+            string choice = Console.ReadLine();
+
+            switch (choice)
+            {
+                case "1":
+                    return "Scheduled";
+                case "2":
+                    return "Completed";
+                case "3":
+                    return "Canceled";
+                default:
+                    Console.WriteLine("❌ Invalid choice. Defaulting to 'Scheduled'.");
+                    return "Scheduled";
+            }
         }
+
     }
 }

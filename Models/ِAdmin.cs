@@ -100,7 +100,7 @@ namespace CodeLineHealthCareCenter.Models
             Console.WriteLine("Leave input empty to keep the current value.\n");
 
             // 2. Update Name
-            string newName = UserData.EnterUserName();
+            string newName = UserData.EnterName("new admin");
             if (newName != "null" && !string.IsNullOrWhiteSpace(newName))
                 adminToUpdate.UserName = newName;
 

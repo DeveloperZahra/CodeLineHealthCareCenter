@@ -156,6 +156,107 @@ namespace CodeLineHealthCareCenter
             }
         }
 
+        // 4.7 Changes the active status of a specific branch-department relation.
+
+        public void SetBranchDepartmentActiveStatus(int branchId, int departmentId, bool isActive)
+        {
+            BranchDepartment relation = branchDepartments.FirstOrDefault(bd => bd.branchId == branchId && bd.departmentId == departmentId);
+            if (relation != null)
+            {
+                relation.isActive = isActive; // Update the active status
+                Console.WriteLine($"Branch-Department relation updated: Branch {branchId}, Department {departmentId} is now {(isActive ? "Active" : "Inactive")}.");
+            }
+            else
+            {
+                Console.WriteLine("Branch-Department relation not found.");
+            }
+
+        }
+
+        // 4.8 assigns a department to a specific a branch.
+        public void AssignDepartmentsToBranch(int branchId)
+        {
+            // Check if branch exists
+            Branch branch = Branch.branches.FirstOrDefault(b => b.BranchId == branchId);
+            if (branch == null)
+            {
+                Console.WriteLine(" Branch not found.");
+                return;
+            }
+
+            Console.WriteLine($"\nAssigning Departments to Branch: {branch.BranchName} (ID: {branch.BranchId})");
+
+            bool addMore = true;
+
+            while (addMore)
+            {
+                // Display all departments that are NOT yet assigned to this branch
+                var alreadyAssignedIds = branchDepartments
+                    .Where(bd => bd.branchId == branchId)
+                    .Select(bd => bd.departmentId)
+                    .ToList();
+
+                var availableDepartments = Departments
+                    .Where(d => !alreadyAssignedIds.Contains(d.DepartmentId))
+                    .ToList();
+
+                if (availableDepartments.Count == 0)
+                {
+                    Console.WriteLine("All departments are already assigned to this branch.");
+                    break;
+                }
+
+                Console.WriteLine("\n=== Available Departments ===");
+                foreach (var dept in availableDepartments)
+                {
+                    Console.WriteLine($"ID: {dept.DepartmentId} | Name: {dept.DepartmentName}");
+                }
+
+                Console.Write("\nEnter Department ID to assign: ");
+                string input = Console.ReadLine();
+
+                if (int.TryParse(input, out int deptId))
+                {
+                    Department dept = Departments.FirstOrDefault(d => d.DepartmentId == deptId);
+                    if (dept == null)
+                    {
+                        Console.WriteLine(" Invalid Department ID.");
+                    }
+                    else
+                    {
+                        //  Create new BranchDepartment relationship
+                        int newId = branchDepartments.Count + 1;
+                        BranchDepartment newRelation = new BranchDepartment(
+                            newId,
+                            branchId,
+                            deptId,
+                            FloorId: 0, // You can ask user for floor input if needed
+                            branchName: branch.BranchName,
+                            departmentName: dept.DepartmentName,
+                            isActive: true
+                        );
+
+                        branchDepartments.Add(newRelation);
+                        Console.WriteLine($" Department '{dept.DepartmentName}' assigned to Branch '{branch.BranchName}'.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine(" Invalid input. Please enter a valid number.");
+                }
+
+                // Ask if user wants to add another department
+                Console.Write("\nDo you want to add another department? (yes/no): ");
+                string choice = Console.ReadLine().Trim().ToLower();
+
+                if (choice != "yes")
+                    addMore = false;
+            }
+
+            Console.WriteLine("\n Department assignment process completed.");
+        }
+
+
 
     }
 }
