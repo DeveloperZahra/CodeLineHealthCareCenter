@@ -35,8 +35,6 @@ namespace CodeLineHealthCareCenter
         {
             Services.Add(service);
 
-            SaveLoadingFile.SaveToFile(Services, SaveLoadingFile.ServiceFile); // Save the updated list to file
-
             Console.WriteLine($"Service '{service.ServiceName}' added successfully.");
         }
 

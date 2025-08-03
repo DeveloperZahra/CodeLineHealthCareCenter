@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CodeLineHealthCareCenter.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -45,16 +46,7 @@ namespace CodeLineHealthCareCenter
             else return true;
         }
 
-        public static bool ValidateGender(string gender) // Validates the gender of a user
-        {
-            if (string.IsNullOrWhiteSpace(gender) &&
-                                         (gender.Equals("M", StringComparison.OrdinalIgnoreCase) ||
-                                          gender.Equals("F", StringComparison.OrdinalIgnoreCase)))
-            {
-                return false;
-            }
-            else {  return true; }
-        }
+        
 
         public static bool ValidateRole(string role) // Validates the role of a user
         {
@@ -131,6 +123,100 @@ namespace CodeLineHealthCareCenter
             return DateTimeInput; // Return the validated input
         }
 
+        // 3. decimal data type
+        public static decimal DecimalValidation(string message)
+        {
+            bool DecimalFlag; // to handle user decimal error input
+            decimal DecimalInput = 0;
+            do
+            {
+                DecimalFlag = false;
+                try
+                {
+                    Console.WriteLine($"Enter {message}:");
+                    DecimalInput = decimal.Parse(Console.ReadLine());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"{message} not accepted due to: " + e.Message);
+                    Console.ReadLine();
+                    DecimalFlag = true; // ask user again
+                }
+            } while (DecimalFlag);
+            return DecimalInput; // Return the validated input
+        }
+
+        /// ========================Check Exist Data==============================
+        // Checks if the given email already exists in any user list (SuperAdmin, Admin, Doctor, Patient).
+        public static bool IsEmailUnique(string email)
+        {
+            // Check if email already exists in SuperAdmins
+            bool existsInSuperAdmins = SuperAdmin.SuperAdmins.Any(u =>
+                u.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+
+            // Check if email already exists in Admins
+            bool existsInAdmins = Admin.Admins.Any(u =>
+                u.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+
+            // Check if email already exists in Doctors
+            bool existsInDoctors = Doctor.doctors.Any(u =>
+                u.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+
+            // Check if email already exists in Patients
+            bool existsInPatients = Patient.patients.Any(u =>
+                u.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+
+            // If found in any list → return false (not unique)
+            return !(existsInSuperAdmins || existsInAdmins || existsInDoctors || existsInPatients);
+        }
+
+        
+        /// Checks if the given National ID already exists in any user list.
+        public static bool IsNationalIdUnique(string nationalId)
+        {
+            bool existsInSuperAdmins = SuperAdmin.SuperAdmins.Any(u => u.NationalID == nationalId);
+            bool existsInAdmins = Admin.Admins.Any(u => u.NationalID == nationalId);
+            bool existsInDoctors = Doctor.doctors.Any(u => u.NationalID == nationalId);
+            bool existsInPatients = Patient.patients.Any(u => u.NationalID == nationalId);
+
+            return !(existsInSuperAdmins || existsInAdmins || existsInDoctors || existsInPatients);
+
+
+        }
+
+        public static bool VerifyPassword(string enteredPassword, string storedHashedPassword)
+        {
+            // Convert the entered password to a hash using the same saving method
+            string enteredHash = UserData.HashPassword(enteredPassword);
+
+            // Compare the resulting hash with the stored hash
+            return enteredHash == storedHashedPassword;
+        }
+
+        public static bool EnterAndCheckPassword(User foundUser)
+        {
+            int tries = 0;
+
+            while (tries < 3)
+            {
+                Console.Write("Enter Password: ");
+                string enteredPassword = UserData.ReadPassword();
+
+                if (VerifyPassword(enteredPassword, foundUser.Password))
+                {
+                    Console.WriteLine("Password verified successfully!");
+                    return true;
+                }
+                else
+                {
+                    tries++;
+                    Console.WriteLine($"Incorrect password. Attempts left: {3 - tries}");
+                }
+            }
+
+            Console.WriteLine("Too many failed attempts. Please try again later.");
+            return false;
+        }
 
     }
 }

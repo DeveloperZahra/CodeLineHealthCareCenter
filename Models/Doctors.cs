@@ -31,6 +31,7 @@ namespace CodeLineHealthCareCenter.Models
             UserId = UserCount;
             // By default, the doctor account is active
             IsActive = true;
+            Role = "Doctor"; // Set role to Doctor  
         }
         public Doctor(string name,string email,string password,string nationalId,string phoneNumber,string gender,string specialization, int branchId, int departmentId)
         : base(name, email, password, nationalId, phoneNumber, gender, "Doctor") // Call parent User constructor
@@ -67,7 +68,6 @@ namespace CodeLineHealthCareCenter.Models
             // 3️⃣ Add the new doctor to the static list
             doctors.Add(newDoctor);
 
-            SaveLoadingFile.SaveToFile(doctors, SaveLoadingFile.DoctorFile); // Save the updated list to the file
 
 
             // 4️⃣ Confirmation message
