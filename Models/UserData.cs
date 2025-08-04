@@ -325,7 +325,7 @@ namespace CodeLineHealthCareCenter.Models
                     password += key.KeyChar;
                     Console.Write("*");
                 }
-                else if (key.Key == ConsoleKey.Backspace && password.Length > 0)
+                else if (key.Key == ConsoleKey.Backspace && password.Length > 3)
                 {
                     password = password[..^1];
                     Console.Write("\b \b");
@@ -351,7 +351,7 @@ namespace CodeLineHealthCareCenter.Models
 
             while (tries < 3)
             {
-                Console.Write("Enter a new password (must be 6 digit) : ");
+                Console.Write("Enter a new password (must be 6 digit or more) : ");
                 string password = ReadPassword();
 
                 // Validate password (at least 6 chars, contains letter & number)
@@ -359,12 +359,12 @@ namespace CodeLineHealthCareCenter.Models
 
                 if (!validPassword)
                 {
-                    Console.WriteLine("\n Password must be at least 6 characters long and contain letters and numbers.");
+                    Console.WriteLine("\n Password must be at least 3 characters long and contain letters and numbers.");
                     tries++;
                     continue;
                 }
 
-                Console.Write("Confirm password (must be 6 digit): ");
+                Console.Write("Confirm password: ");
                 string confirmPassword = ReadPassword();
 
                 if (password == confirmPassword)

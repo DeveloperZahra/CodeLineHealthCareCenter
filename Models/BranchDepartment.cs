@@ -202,7 +202,7 @@ namespace CodeLineHealthCareCenter
 
                 if (availableDepartments.Count == 0)
                 {
-                    Console.WriteLine("All departments are already assigned to this branch.");
+                    Console.WriteLine("There is no department to assign.");
                     break;
                 }
 
@@ -255,6 +255,133 @@ namespace CodeLineHealthCareCenter
 
             Console.WriteLine("\n Department assignment process completed.");
         }
+
+        // 4.9 
+        //public  void AssignUserToBranchAndDepartment()
+        //{
+        //    Console.WriteLine("\n=== Assign Admin or Doctor to Specific Branch & Department ===");
+
+        //    // ✅ 1. Display all branches
+        //    if (Branch.branches.Count == 0)
+        //    {
+        //        Console.WriteLine("❌ No branches available.");
+        //        return;
+        //    }
+
+        //    Console.WriteLine("\nAvailable Branches:");
+        //    foreach (var branch in Branch.branches)
+        //        Console.WriteLine($"ID: {branch.BranchId} | Name: {branch.BranchName}");
+
+        //    // ✅ 2. Ask for Branch ID
+        //    int branchId = UserData.EnterBranchId(Branch.branches);
+        //    if (branchId == -1)
+        //    {
+        //        Console.WriteLine("❌ Invalid Branch ID.");
+        //        return;
+        //    }
+
+        //    // ✅ 3. Display all departments in that branch
+        //    var branchDepartments = BranchDepartment.branchDepartments
+        //        .Where(bd => bd.branchId == branchId)
+        //        .Select(bd => bd.departmentId)
+        //        .ToList();
+
+        //    if (branchDepartments.Count == 0)
+        //    {
+        //        Console.WriteLine("❌ No departments found for this branch.");
+        //        return;
+        //    }
+
+        //    Console.WriteLine("\nDepartments in this Branch:");
+        //    foreach (var deptId in branchDepartments)
+        //    {
+        //        var dept = BranchDepartment.Departments.FirstOrDefault(d => d.DepartmentId == deptId);
+        //        if (dept != null)
+        //            Console.WriteLine($"ID: {dept.DepartmentId} | Name: {dept.DepartmentName}");
+        //    }
+
+        //    // ✅ 4. Ask for Department ID
+        //    int departmentId = UserData.EnterDepartmentId(BranchDepartment.Departments, branchId);
+        //    if (departmentId == -1)
+        //    {
+        //        Console.WriteLine("❌ Invalid Department ID.");
+        //        return;
+        //    }
+
+        //    // ✅ 5. Ask for user role
+        //    Console.WriteLine("\nAssign which type of user?");
+        //    Console.WriteLine("1. Doctor");
+        //    Console.WriteLine("2. Admin");
+        //    Console.Write("Choose (1 or 2): ");
+        //    string choice = Console.ReadLine();
+
+        //    if (choice == "1")
+        //    {
+        //        AssignDoctorToDepartment(branchId, departmentId);
+        //    }
+        //    else if (choice == "2")
+        //    {
+        //        AssignAdminToDepartment(branchId, departmentId);
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("❌ Invalid choice.");
+        //    }
+        //}
+
+        //private void AssignDoctorToDepartment(int branchId, int departmentId)
+        //{
+        //    if (Doctor.doctors.Count == 0)
+        //    {
+        //        Console.WriteLine("❌ No doctors available.");
+        //        return;
+        //    }
+
+        //    Console.WriteLine("\nAvailable Doctors:");
+        //    foreach (var doc in Doctor.doctors)
+        //        Console.WriteLine($"ID: {doc.UserId} | Name: {doc.UserName} | Specialty: {doc.Specialty}");
+
+        //    int doctorId = UserValidator.IntValidation("Enter Doctor ID");
+        //    var doctor = Doctor.doctors.FirstOrDefault(d => d.UserId == doctorId);
+
+        //    if (doctor == null)
+        //    {
+        //        Console.WriteLine("❌ Doctor not found.");
+        //        return;
+        //    }
+
+        //    doctor.BranchId = branchId;
+        //    doctor.DepartmentId = departmentId;
+
+        //    Console.WriteLine($"✅ Doctor {doctor.UserName} assigned to Branch {branchId}, Department {departmentId}");
+        //}
+
+        //private void AssignAdminToDepartment(int branchId, int departmentId)
+        //{
+        //    if (Admin.Admins.Count == 0)
+        //    {
+        //        Console.WriteLine("❌ No admins available.");
+        //        return;
+        //    }
+
+        //    Console.WriteLine("\nAvailable Admins:");
+        //    foreach (var admin in Admin.Admins)
+        //        Console.WriteLine($"ID: {admin.UserId} | Name: {admin.UserName} | Email: {admin.Email}");
+
+        //    int adminId = UserValidator.IntValidation("Enter Admin ID");
+        //    var adminUser = Admin.Admins.FirstOrDefault(a => a.UserId == adminId);
+
+        //    if (adminUser == null)
+        //    {
+        //        Console.WriteLine("❌ Admin not found.");
+        //        return;
+        //    }
+
+        //    adminUser.BranchId = branchId;
+        //    adminUser.DepartmentId = departmentId;
+
+        //    Console.WriteLine($"✅ Admin {adminUser.UserName} assigned to Branch {branchId}, Department {departmentId}");
+        //}
 
 
 
